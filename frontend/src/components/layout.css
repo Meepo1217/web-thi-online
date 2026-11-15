@@ -1,0 +1,455 @@
+/* ==========================================================================
+   LAYOUT COMPONENTS CSS (Header, Sidebar, Footer)
+   Fonts: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. HEADER COMPONENT
+   -------------------------------------------------------------------------- */
+.layout-header {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 24px;
+  width: 100%;
+  height: 64px;
+  background: #FFFFFF;
+  border-bottom: 1px solid #E5EEFF;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+.layout-header-brand {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.brand-icon-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 36px;
+  height: 36px;
+  background: #131B2E;
+  box-shadow: 0px 1px 2px rgba(19, 27, 46, 0.2);
+  border-radius: 8px;
+  color: #DBE1FF;
+}
+
+.brand-text-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.brand-title-wrap {
+  display: flex;
+  align-items: center;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 17px;
+  line-height: 17px;
+  letter-spacing: -0.425px;
+  color: #0B1C30;
+  margin: 0;
+}
+
+.brand-title-wrap .brand-blue {
+  color: #0051D5;
+  margin-left: 4px;
+}
+
+.brand-subtitle {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 16px;
+  letter-spacing: 0.55px;
+  text-transform: uppercase;
+  color: #45464D;
+  margin-top: 2px;
+}
+
+.header-tools-right {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+}
+
+.header-tool-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: #45464D;
+  transition: all 0.15s;
+  position: relative;
+}
+
+.header-tool-btn:hover {
+  background: #F1F5F9;
+  color: #0B1C30;
+}
+
+.header-bell-badge {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  right: 8px;
+  top: 8px;
+  background: #0051D5;
+  border-radius: 12px;
+  box-shadow: 0px 0px 0px 2px #FFFFFF;
+}
+
+.header-divider-v {
+  width: 1px;
+  height: 24px;
+  background: #E5EEFF;
+}
+
+.header-user-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 4px 8px 4px 4px;
+  gap: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.header-user-card:hover {
+  background: #F8FAFC;
+}
+
+.header-avatar-badge {
+  position: relative;
+  width: 36px;
+  height: 36px;
+}
+
+.avatar-circle-navy {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 36px;
+  height: 36px;
+  background: #131B2E;
+  border-radius: 12px;
+  box-shadow: 0px 0px 0px 2px rgba(0, 81, 213, 0.2);
+  color: #FFFFFF;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.online-dot-green {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  right: 0px;
+  bottom: 0px;
+  background: #10B981;
+  border-radius: 12px;
+  box-shadow: 0px 0px 0px 2px #FFFFFF;
+}
+
+.header-user-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.user-meta-name {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 18px;
+  color: #0B1C30;
+}
+
+.user-meta-role {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  color: #45464D;
+  margin-top: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   2. SIDEBAR COMPONENT (Width: 256px)
+   -------------------------------------------------------------------------- */
+.layout-sidebar {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 16px;
+  width: 256px;
+  min-width: 256px;
+  height: calc(100vh - 64px);
+  position: sticky;
+  top: 64px;
+  background: #FFFFFF;
+  border-right: 1px solid #E5EEFF;
+  overflow-y: auto;
+  z-index: 10;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+.sidebar-nav-groups {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  width: 223px;
+}
+
+.sidebar-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  width: 223px;
+}
+
+.sidebar-group-title {
+  padding: 0px 12px 8px;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 16px;
+  letter-spacing: 0.55px;
+  text-transform: uppercase;
+  color: #45464D;
+}
+
+.sidebar-secondary-divider {
+  box-sizing: border-box;
+  padding-top: 16px;
+  border-top: 1px solid #E5EEFF;
+}
+
+.sidebar-nav-btn {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px 14px;
+  gap: 12px;
+  width: 223px;
+  height: 40px;
+  box-sizing: border-box;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.15s ease;
+  color: #45464D;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.sidebar-nav-btn:hover {
+  background: #F1F5F9;
+  color: #0B1C30;
+}
+
+.sidebar-nav-btn.active {
+  background: #131B2E;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  color: #FFFFFF;
+  font-weight: 600;
+}
+
+.sidebar-nav-btn.active svg {
+  color: #DBE1FF;
+}
+
+.nav-active-dot {
+  width: 6px;
+  height: 6px;
+  background: #DBE1FF;
+  border-radius: 12px;
+  margin-left: auto;
+}
+
+.nav-badge-gray {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 8px;
+  background: #E5EEFF;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #45464D;
+  margin-left: auto;
+}
+
+.nav-badge-blue {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 8px;
+  background: rgba(0, 81, 213, 0.1);
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #0051D5;
+  margin-left: auto;
+}
+
+/* Sidebar Footer Mini Profile */
+.sidebar-profile-card {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 14px;
+  gap: 12px;
+  width: 223px;
+  background: rgba(239, 244, 255, 0.8);
+  border: 1px solid #E5EEFF;
+  border-radius: 8px;
+  margin-top: 16px;
+}
+
+.profile-card-user-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.profile-card-badge {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 28px;
+  height: 32px;
+  background: #0051D5;
+  border-radius: 4px;
+  color: #FFFFFF;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  flex-shrink: 0;
+}
+
+.profile-card-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.profile-card-name {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  color: #0B1C30;
+}
+
+.profile-card-sub {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 16px;
+  color: #45464D;
+}
+
+.profile-card-status-row {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0px 0px;
+  width: 100%;
+  border-top: 1px solid #E5EEFF;
+}
+
+.status-label-text {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 16px;
+  color: #45464D;
+}
+
+.status-indicator-dot {
+  width: 8px;
+  height: 8px;
+  background: #10B981;
+  border-radius: 12px;
+}
+
+/* --------------------------------------------------------------------------
+   3. FOOTER COMPONENT (Height: 49px)
+   -------------------------------------------------------------------------- */
+.layout-footer {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 64px;
+  width: 100%;
+  height: 49px;
+  background: #FFFFFF;
+  border-top: 1px solid #E2E8F0;
+  font-family: 'Inter', system-ui, sans-serif;
+  margin-top: auto;
+}
+
+.footer-copyright {
+  font-size: 12px;
+  line-height: 16px;
+  color: #64748B;
+}
+
+.footer-nav-links {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+}
+
+.footer-link-item {
+  font-size: 12px;
+  line-height: 16px;
+  color: #64748B;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.15s;
+}
+
+.footer-link-item:hover {
+  color: #0051D5;
+}
+

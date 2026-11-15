@@ -1,0 +1,1088 @@
+/* ==========================================================================
+   PAGES CONTENT CSS (StudentDashboardPage & ExamPreparationPage)
+   Chỉ định dạng nội dung riêng của từng trang, tách biệt hoàn toàn khỏi Layout
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   A. STUDENT DASHBOARD PAGE CONTENT
+   -------------------------------------------------------------------------- */
+.dashboard-content-canvas {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 32px;
+  width: 1024px;
+  max-width: 1024px;
+  flex-grow: 1;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+.dashboard-container-960 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 32px;
+  width: 960px;
+}
+
+/* 4b. Khối Tìm Kiếm & Bộ Lọc Bài Thi */
+.exam-search-box-card {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px;
+  gap: 20px;
+  width: 960px;
+  background: #FFFFFF;
+  border: 1px solid #E5EEFF;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 16px;
+}
+
+.exam-search-heading-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  width: 516px;
+  max-width: 576px;
+  text-align: center;
+}
+
+.exam-main-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 33px;
+  letter-spacing: -0.55px;
+  color: #0B1C30;
+  margin: 0;
+}
+
+.exam-main-desc {
+  font-size: 12px;
+  line-height: 16px;
+  color: #45464D;
+  margin: 0;
+}
+
+/* Hàng tìm kiếm */
+.search-controls-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  width: 672px;
+  max-width: 672px;
+  height: 44px;
+}
+
+.search-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 547.73px;
+  height: 44px;
+}
+
+.search-input-field {
+  box-sizing: border-box;
+  width: 100%;
+  height: 44px;
+  padding: 12.5px 96px 12.5px 44px;
+  background: #EFF4FF;
+  border: 1px solid #E5EEFF;
+  box-shadow: inset 0px 2px 4px 1px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  font-size: 14px;
+  line-height: 17px;
+  color: #0B1C30;
+  outline: none;
+  transition: all 0.2s;
+}
+
+.search-input-field::placeholder {
+  color: rgba(69, 70, 77, 0.7);
+}
+
+.search-input-field:focus {
+  border-color: #0051D5;
+  background: #FFFFFF;
+}
+
+.search-leading-icon {
+  position: absolute;
+  left: 14px;
+  color: #45464D;
+  pointer-events: none;
+}
+
+.search-kbd-badge {
+  position: absolute;
+  right: 9.5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 2px 8px;
+  gap: 2px;
+  background: #FFFFFF;
+  border: 1px solid #E5EEFF;
+  border-radius: 6px;
+  font-size: 11px;
+  line-height: 16px;
+  color: #45464D;
+  pointer-events: none;
+}
+
+.btn-search-primary {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 20px;
+  gap: 8px;
+  width: 114.27px;
+  height: 44px;
+  background: #0051D5;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  color: #FFFFFF;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  transition: background 0.15s;
+}
+
+.btn-search-primary:hover {
+  background: #0043b3;
+}
+
+/* Hàng Tags lọc nhanh */
+.filter-tags-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  width: 679.31px;
+}
+
+.filter-tags-label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  line-height: 16px;
+  color: #45464D;
+  padding-right: 4px;
+}
+
+.filter-tag-pill {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4px 12px;
+  height: 26px;
+  background: #EFF4FF;
+  border: 1px solid #E5EEFF;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
+  line-height: 16px;
+  color: #0B1C30;
+  transition: all 0.15s;
+}
+
+.filter-tag-pill:hover {
+  background: #E5EEFF;
+}
+
+.filter-tag-pill.active {
+  background: #0051D5;
+  color: #FFFFFF;
+  font-weight: 600;
+  border: none;
+}
+
+/* Khối Danh Sách & Điều Khiển Bài Thi */
+.exams-section-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  width: 960px;
+}
+
+.section-controls-bar {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px 0px 12px;
+  gap: 12px;
+  width: 960px;
+  border-bottom: 1px solid #E5EEFF;
+}
+
+.section-controls-top-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 960px;
+  height: 28px;
+}
+
+.section-heading-with-icon {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.section-h2-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 27px;
+  letter-spacing: -0.45px;
+  color: #0B1C30;
+  margin: 0;
+}
+
+.btn-refresh-sm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6px 14px;
+  background: #0051D5;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  color: #FFFFFF;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  transition: background 0.15s;
+}
+
+.btn-refresh-sm:hover {
+  background: #0043b3;
+}
+
+.section-filter-btns-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  width: 960px;
+  height: 28px;
+}
+
+.filter-btn-pill-sm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6px 14px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  background: #E5EEFF;
+  color: #45464D;
+  transition: all 0.15s;
+}
+
+.filter-btn-pill-sm.active {
+  background: #0051D5;
+  color: #FFFFFF;
+}
+
+/* Lưới Thẻ Bài Thi (Cards Layout - 3 Cột) */
+.exams-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 307.33px);
+  gap: 19px;
+  width: 960px;
+  box-sizing: border-box;
+}
+
+.exam-figma-card {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  isolation: isolate;
+  width: 307.33px;
+  background: #FFFFFF;
+  border: 1px solid #E5EEFF;
+  border-radius: 8px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  overflow: hidden;
+}
+
+.exam-figma-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.06);
+}
+
+.card-header-top {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 16px;
+  width: 307.33px;
+  background: #F9FAFB;
+  border-bottom: 1px solid #E5EEFF;
+  text-align: center;
+}
+
+.card-department-title {
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 16px;
+  letter-spacing: -0.275px;
+  text-transform: uppercase;
+  color: #1E3A8A;
+  margin: 0;
+}
+
+.card-room-badge {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 27px;
+  letter-spacing: -0.45px;
+  color: #DC2626;
+  margin-top: 4px;
+}
+
+.card-room-badge.font-md {
+  font-size: 14px;
+  line-height: 21px;
+}
+
+.card-status-time {
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 16px;
+  color: #DC2626;
+  margin-top: 2px;
+}
+
+.card-shift-text {
+  font-weight: 600;
+  font-size: 10px;
+  line-height: 15px;
+  color: #64748B;
+  margin-top: 2px;
+}
+
+.card-body-content {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 14px;
+  gap: 9.5px;
+  width: 307.33px;
+}
+
+.card-exam-name {
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 18px;
+  color: #0B1C30;
+  min-height: 36px;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.card-meta-line {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  font-size: 11px;
+  line-height: 16px;
+  color: #45464D;
+}
+
+.card-meta-dual-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+}
+
+.card-meta-subitem {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 16px;
+  color: #45464D;
+}
+
+.card-divider-school {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 4px 0px 0px;
+  gap: 2px;
+  width: 100%;
+  border-top: 1px solid rgba(229, 238, 255, 0.6);
+}
+
+.school-tag-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+}
+
+.school-check-badge {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 16px;
+  height: 16px;
+  background: #059669;
+  border-radius: 12px;
+  color: #FFFFFF;
+  font-weight: 700;
+  font-size: 9px;
+  flex-shrink: 0;
+}
+
+.school-status-text {
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 16px;
+  color: #0B1C30;
+}
+
+.school-name-text {
+  font-size: 10px;
+  line-height: 15px;
+  color: #45464D;
+}
+
+.card-action-btn-wrap {
+  width: 100%;
+  padding-top: 4px;
+}
+
+.btn-card-action {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 12px;
+  gap: 6px;
+  width: 100%;
+  height: 32px;
+  background: #0051D5;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  color: #FFFFFF;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  transition: background 0.15s;
+}
+
+.btn-card-action:hover {
+  background: #0043b3;
+}
+
+/* Thanh Phân Trang Dưới Cùng */
+.bottom-pagination-row {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 0px 0px;
+  width: 960px;
+  height: 57px;
+  border-top: 1px solid #E5EEFF;
+}
+
+.pagination-info-text {
+  font-size: 12px;
+  line-height: 16px;
+  color: #45464D;
+}
+
+.pagination-info-text strong {
+  font-weight: 600;
+  color: #0B1C30;
+}
+
+.pagination-buttons-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+}
+
+.btn-page-nav {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 6px 10px;
+  gap: 4px;
+  height: 30px;
+  background: #FFFFFF;
+  border: 1px solid #E5EEFF;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: #0B1C30;
+  transition: all 0.15s;
+}
+
+.btn-page-nav:hover {
+  background: #F8FAFC;
+}
+
+.btn-page-number {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  background: #FFFFFF;
+  border: 1px solid #E5EEFF;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  color: #0B1C30;
+  transition: all 0.15s;
+}
+
+.btn-page-number:hover {
+  background: #F8FAFC;
+}
+
+.btn-page-number.active {
+  background: #0051D5;
+  color: #FFFFFF;
+  border: none;
+}
+
+.pagination-ellipsis {
+  padding: 0px 4px;
+  font-size: 12px;
+  color: #45464D;
+}
+
+/* --------------------------------------------------------------------------
+   B. EXAM PREPARATION PAGE CONTENT
+   -------------------------------------------------------------------------- */
+.prep-main-canvas {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 24px 64px;
+  background: #F8F9FF;
+  flex: 1;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+.prep-main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 16px;
+  width: 1152px;
+  max-width: 1152px;
+}
+
+.prep-breadcrumb-title {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  color: #0F172A;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-back-link {
+  background: none;
+  border: none;
+  color: #0051D5;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 13px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0;
+}
+
+.btn-back-link:hover {
+  text-decoration: underline;
+}
+
+/* Khối 1: Thông tin đề thi */
+.prep-exam-info-card {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 20px;
+  gap: 24px;
+  width: 1152px;
+  height: 307.5px;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+}
+
+.prep-room-card-left {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 16px;
+  width: 354px;
+  height: 265.5px;
+  background: linear-gradient(135deg, #EFF6FF 0%, #E0E7FF 100%);
+  border: 1px solid #BFDBFE;
+  box-shadow: inset 0px 2px 4px 1px rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.prep-room-tag-top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.prep-room-tag-text {
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 24px;
+  letter-spacing: 0.55px;
+  text-transform: uppercase;
+  color: #334155;
+}
+
+.prep-room-tag-icon {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #60A5FA;
+}
+
+.prep-room-center-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 8px;
+  text-align: center;
+}
+
+.prep-room-center-heading {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: -0.4px;
+  text-transform: uppercase;
+  color: #B91C1C;
+  margin: 0;
+}
+
+.prep-shift-badge-red {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3px 12px;
+  background: #DC2626;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  color: #FFFFFF;
+}
+
+.prep-room-footer-row {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding-top: 8px;
+  border-top: 1px solid rgba(203, 213, 225, 0.6);
+}
+
+.prep-room-code-text {
+  font-weight: 600;
+  font-size: 11px;
+  color: #475569;
+}
+
+.prep-room-footer-icon {
+  color: #64748B;
+}
+
+.prep-exam-details-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 732px;
+  height: 265.5px;
+}
+
+.prep-exam-details-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.prep-exam-h1-title {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 28px;
+  color: #0F172A;
+  margin: 0;
+}
+
+.prep-status-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.prep-status-icon-circle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  background: #059669;
+  border-radius: 12px;
+  color: #FFFFFF;
+  font-size: 11px;
+  font-weight: 700;
+  box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0.2);
+}
+
+.prep-status-label {
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  color: #1E293B;
+}
+
+.prep-meta-tags-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  line-height: 16px;
+  color: #64748B;
+}
+
+.prep-meta-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+}
+
+.prep-meta-separator {
+  color: #CBD5E1;
+}
+
+.prep-time-window-section {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 2px;
+}
+
+.prep-time-window-label {
+  font-size: 12px;
+  line-height: 16px;
+  color: #64748B;
+}
+
+.prep-time-window-val {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  line-height: 16px;
+  color: #64748B;
+}
+
+.prep-action-buttons-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.btn-start-exam-blue {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  gap: 8px;
+  height: 36px;
+  background: #0051D5;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  color: #FFFFFF;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  transition: background 0.15s;
+}
+
+.btn-start-exam-blue:hover {
+  background: #0043b3;
+}
+
+.btn-back-exam-outline {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 16px;
+  gap: 8px;
+  height: 38px;
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+  cursor: pointer;
+  color: #334155;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  transition: background 0.15s;
+}
+
+.btn-back-exam-outline:hover {
+  background: #F1F5F9;
+}
+
+/* Khối 2: Kết quả ôn tập */
+.prep-results-card {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  width: 1152px;
+  height: 280px;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+}
+
+.prep-tab-header-strip {
+  box-sizing: border-box;
+  width: 100%;
+  height: 43px;
+  border-bottom: 1px solid #E2E8F0;
+  display: flex;
+  align-items: flex-end;
+  padding: 0px 20px;
+}
+
+.prep-active-tab-btn {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 42px;
+  padding: 0px 12px;
+  border: none;
+  background: transparent;
+  border-bottom: 2px solid #0051D5;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  color: #0051D5;
+  cursor: pointer;
+}
+
+.prep-results-body {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px;
+  gap: 16px;
+  width: 100%;
+  height: 235px;
+}
+
+.prep-mode-text {
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  color: #1E293B;
+}
+
+.prep-score-subtext {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: #64748B;
+  margin-top: -10px;
+}
+
+.prep-metrics-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0px;
+  gap: 16px;
+  width: 100%;
+  height: 72px;
+}
+
+.prep-metric-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+}
+
+.prep-score-square-badge {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 56px;
+  height: 56px;
+  background: #F8FAFC;
+  border: 2px solid #CBD5E1;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 28px;
+  color: #1E293B;
+  flex-shrink: 0;
+}
+
+.prep-metric-texts {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.prep-metric-title {
+  font-size: 12px;
+  line-height: 16px;
+  color: #64748B;
+}
+
+.prep-metric-num {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  color: #0F172A;
+}
+
+.prep-results-footer-strip {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 16px;
+  width: 100%;
+  border-top: 1px solid #E2E8F0;
+}
+
+.prep-results-meta-list {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 24px;
+  font-size: 12px;
+  line-height: 16px;
+  color: #64748B;
+}
+
+.btn-detail-sm {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4px 14px;
+  border: 1px solid #0051D5;
+  border-radius: 2px;
+  background: transparent;
+  color: #0051D5;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.btn-detail-sm:hover {
+  background: #EFF4FF;
+}
+
