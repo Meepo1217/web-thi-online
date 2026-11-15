@@ -109,3 +109,42 @@ code {
   padding: 4px 8px;
   background: var(--code-bg);
 }
+
+/* TÙY CHỈNH THANH CUỘN (SCROLLBAR) */
+
+/* 1. Hỗ trợ cho Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(148, 163, 184, 0.4) transparent;
+}
+
+/* 2. Hỗ trợ cho Chrome, Edge, Safari (WebKit) */
+::-webkit-scrollbar {
+  width: 6px;  /* Độ mỏng của thanh cuộn dọc */
+  height: 6px; /* Độ mỏng của thanh cuộn ngang */
+}
+
+/* Phần nền (Track) - Đặt trong suốt hoàn toàn */
+::-webkit-scrollbar-track {
+  background: transparent; 
+}
+
+/* Phần con trượt (Thumb) - Màu xám trong suốt và bo góc */
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.4); /* Màu xám Slate-400 pha 40% trong suốt */
+  border-radius: 10px;
+}
+
+/* Khi người dùng di chuột lên con trượt (Hover) */
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 116, 139, 0.7); /* Đậm hơn một chút khi tương tác */
+}
+
+/* Ẩn hẳn thanh cuộn ở những vùng không muốn hiển thị nhưng vẫn cho cuộn */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}

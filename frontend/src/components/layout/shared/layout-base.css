@@ -1,0 +1,162 @@
+/* layout-base.css - Biến thiết kế và kiểu dáng dùng chung dựa theo Figma */
+:root {
+  /* Kích thước shell */
+  --sidebar-width: 288px;
+  --header-height: 64px;
+
+  /* Bảng màu chuẩn từ Figma */
+  --color-primary: #0051D5;
+  --color-primary-hover: #0043b3;
+  --color-primary-bg: #EFF4FF;
+  --color-primary-track: #DCE9FF;
+  
+  --color-text-title: #0B1C30;
+  --color-text-nav: #45464D;
+  --color-text-muted: #76777D;
+  --color-text-white: #FFFFFF;
+  --color-danger: #BA1A1A;
+
+  --color-bg-page: #F8F9FF;
+  --color-bg-white: #FFFFFF;
+  --color-border-divider: #DCE9FF;
+
+  /* Bóng đổ */
+  --shadow-aside: 0px 1px 8px rgba(0, 0, 0, 0.04);
+  --shadow-header: 0px 1px 8px rgba(0, 0, 0, 0.04);
+  --shadow-button: 0px 1px 2px rgba(0, 0, 0, 0.05);
+
+  /* Typography fallback */
+  --font-inter: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-jakarta: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Định dạng một mục điều hướng SidebarNavItem */
+.sidebar-nav-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 8px 16px;
+  gap: 8px;
+  width: 256px;
+  height: 36px;
+  border-radius: 4px;
+  box-sizing: border-box;
+  text-decoration: none;
+  background: transparent;
+  color: var(--color-text-nav);
+  transition: background-color 0.15s ease, color 0.15s ease;
+  user-select: none;
+}
+
+.sidebar-nav-item:hover:not(.active) {
+  background-color: var(--color-primary-bg);
+  color: var(--color-primary);
+}
+
+.sidebar-nav-item:hover:not(.active) .sidebar-nav-item__icon {
+  color: var(--color-primary);
+}
+
+/* Trạng thái Active chuẩn theo Figma: nền #0051D5, shadow, chữ và icon trắng */
+.sidebar-nav-item.active {
+  background: var(--color-primary);
+  box-shadow: var(--shadow-button);
+  border-radius: 4px;
+  color: var(--color-text-white);
+}
+
+.sidebar-nav-item.active .sidebar-nav-item__icon {
+  color: var(--color-text-white);
+}
+
+.sidebar-nav-item__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  color: var(--color-text-nav);
+}
+
+.sidebar-nav-item__label {
+  flex: 1;
+  font-family: var(--font-inter);
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sidebar-nav-item__badge {
+  font-family: var(--font-inter);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 14px;
+  letter-spacing: 0.44px;
+  padding: 2px 6px;
+  border-radius: 9999px;
+  background-color: var(--color-primary-bg);
+  color: var(--color-primary);
+}
+
+.sidebar-nav-item.active .sidebar-nav-item__badge {
+  background-color: rgba(255, 255, 255, 0.25);
+  color: #FFFFFF;
+}
+
+/* Nhóm SidebarGroup */
+.sidebar-group {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.sidebar-group__header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 16px 8px 4px;
+  gap: 4px;
+  width: 256px;
+  height: 34px;
+  box-sizing: border-box;
+}
+
+.sidebar-group__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  color: var(--color-text-muted);
+  flex-shrink: 0;
+}
+
+.sidebar-group__title {
+  font-family: var(--font-inter);
+  font-style: normal;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.55px;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sidebar-group__items {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
