@@ -1,0 +1,983 @@
+/**
+ * exam-management.css - Stylesheet cho trang Quản lý đề thi (Exam Management)
+ * Tái hiện chính xác 100% thông số từ bản thiết kế Figma
+ * Phông chữ: Plus Jakarta Sans cho tiêu đề, Inter cho nội dung giao diện
+ */
+
+/* ==========================================================================
+   1. Trang Quản lý đề thi (Container chung)
+   ========================================================================== */
+.exam-management-page {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 32px 32px 40px;
+  gap: 24px;
+  width: 100%;
+  max-width: 1520px;
+  box-sizing: border-box;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: #0B1C30;
+}
+
+/* ==========================================================================
+   2. Top Action Bar & Page Header
+   ========================================================================== */
+.exam-top-action-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  min-height: 56px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.exam-title-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+/* Breadcrumbs */
+.exam-breadcrumbs {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  height: 16px;
+}
+
+.exam-breadcrumb-item {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.24px;
+  color: #45464D;
+}
+
+.exam-breadcrumb-item.active {
+  color: #0051D5;
+  font-weight: 600;
+}
+
+.exam-breadcrumb-separator {
+  display: inline-flex;
+  align-items: center;
+  color: #45464D;
+}
+
+/* Heading row: Title + Total Badge */
+.exam-heading-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+}
+
+.exam-page-title {
+  margin: 0;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 36px;
+  letter-spacing: -0.7px;
+  color: #0B1C30;
+}
+
+.exam-total-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 8px;
+  height: 20px;
+  background: #DCE9FF;
+  border-radius: 12px;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.24px;
+  color: #0051D5;
+  white-space: nowrap;
+}
+
+/* Action Buttons Group */
+.exam-action-buttons {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.exam-btn {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: all 0.15s ease-in-out;
+  border: none;
+  outline: none;
+}
+
+.exam-btn-outline {
+  height: 36px;
+  padding: 8px 16px;
+  background: #FFFFFF;
+  border: 1px solid #C6C6CD;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.24px;
+  color: #0B1C30;
+}
+
+.exam-btn-outline:hover {
+  background: #F8F9FF;
+  border-color: #0051D5;
+  color: #0051D5;
+}
+
+.exam-btn-primary {
+  height: 40px;
+  padding: 10px 24px;
+  background: #0051D5;
+  border: 1px solid #0051D5;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.14px;
+  color: #FFFFFF;
+}
+
+.exam-btn-primary:hover {
+  background: #003EA8;
+  border-color: #003EA8;
+}
+
+/* ==========================================================================
+   3. Main Container: Card bao ngoài chứa Tabs, Filters, Table và Pagination
+   ========================================================================== */
+.exam-main-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  background: #FFFFFF;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* ==========================================================================
+   4. Tabs Bar
+   ========================================================================== */
+.exam-tabs-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px 0px;
+  width: 100%;
+  box-sizing: border-box;
+  background: #FFFFFF;
+  border-bottom: 1px solid rgba(198, 198, 205, 0.25);
+  gap: 16px;
+  overflow-x: auto;
+}
+
+.exam-tabs-list {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 24px;
+}
+
+.exam-tab-item {
+  position: relative;
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px 0px 12px;
+  gap: 6px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  transition: color 0.15s ease;
+  white-space: nowrap;
+}
+
+.exam-tab-label {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  color: #45464D;
+  transition: color 0.15s ease;
+}
+
+.exam-tab-item.active .exam-tab-label {
+  color: #0051D5;
+}
+
+.exam-tab-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 6px;
+  min-width: 18px;
+  height: 18px;
+  background: #DCE9FF;
+  border-radius: 12px;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 14px;
+  color: #0B1C30;
+  box-sizing: border-box;
+}
+
+.exam-tab-badge.active {
+  background: #DBE1FF;
+  color: #003EA8;
+}
+
+.exam-tab-indicator {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: #0051D5;
+  border-radius: 12px;
+}
+
+/* Chuyển đổi View mode (List / Grid) */
+.exam-view-modes {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+  padding-bottom: 8px;
+}
+
+.exam-view-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.exam-view-btn:hover {
+  background: #EFF4FF;
+}
+
+.exam-view-btn.active {
+  background: #DCE9FF;
+}
+
+/* ==========================================================================
+   5. Search, Filter Toolbar & Active Tags
+   ========================================================================== */
+.exam-filter-section {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.exam-filter-toolbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px;
+  gap: 16px;
+  width: 100%;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+}
+
+/* Search input */
+.exam-search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 280px;
+  height: 40px;
+  background: #EFF4FF;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.exam-search-icon {
+  position: absolute;
+  left: 14px;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+}
+
+.exam-search-input {
+  width: 100%;
+  height: 100%;
+  padding: 10px 32px 10px 42px;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  color: #0B1C30;
+  box-sizing: border-box;
+}
+
+.exam-search-input::placeholder {
+  color: #76777D;
+}
+
+.exam-search-clear-btn {
+  position: absolute;
+  right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.exam-search-clear-btn:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* Selectors Group */
+.exam-selectors-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* Advanced filter trigger button */
+.exam-filter-trigger-btn {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  height: 36px;
+  padding: 10px 16px;
+  gap: 6px;
+  background: #DCE9FF;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: #0051D5;
+  transition: background 0.15s ease;
+  white-space: nowrap;
+}
+
+.exam-filter-trigger-btn:hover {
+  background: #cddffc;
+}
+
+.exam-filter-dot {
+  width: 8px;
+  height: 8px;
+  background: #0051D5;
+  border-radius: 12px;
+}
+
+/* Select wrappers */
+.exam-select-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  height: 36px;
+}
+
+.exam-select {
+  height: 36px;
+  padding: 8px 32px 8px 12px;
+  background: #EFF4FF;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: #0B1C30;
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  transition: border-color 0.15s ease;
+}
+
+.exam-select:focus {
+  border-color: #0051D5;
+}
+
+.exam-select-arrow {
+  position: absolute;
+  right: 12px;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+}
+
+/* Quick Active Tags Row */
+.exam-active-tags-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px 24px 16px;
+  gap: 8px;
+  width: 100%;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+}
+
+.exam-active-tags-label {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 14px;
+  color: #76777D;
+}
+
+.exam-active-tags-list {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.exam-tag-pill {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 4px 8px;
+  gap: 6px;
+  background: #DBE1FF;
+  border-radius: 4px;
+}
+
+.exam-tag-text {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 14px;
+  color: #003EA8;
+}
+
+.exam-tag-remove-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 12px;
+  height: 12px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+.exam-tag-remove-btn:hover {
+  background: rgba(0, 62, 168, 0.1);
+}
+
+.exam-clear-all-tags-btn {
+  display: inline-flex;
+  align-items: center;
+  background: transparent;
+  border: none;
+  padding: 4px 6px;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 14px;
+  color: #0051D5;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity 0.15s ease;
+}
+
+.exam-clear-all-tags-btn:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   6. Table Section
+   ========================================================================== */
+.exam-table-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.exam-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+/* Table Header */
+.exam-thead-row {
+  height: 56px;
+  background: #EFF4FF;
+}
+
+.exam-th {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  color: #45464D;
+  padding: 18px 16px;
+  box-sizing: border-box;
+}
+
+.exam-th-checkbox {
+  width: 56px;
+  padding: 18px 24px;
+  text-align: center;
+}
+
+.exam-th-name {
+  min-width: 380px;
+}
+
+.exam-th-date {
+  width: 180px;
+}
+
+.exam-th-actions {
+  width: 120px;
+  text-align: right;
+  padding-right: 24px;
+}
+
+/* Table Body */
+.exam-tbody-row {
+  min-height: 74.5px;
+  border-bottom: 1px solid rgba(198, 198, 205, 0.25);
+  transition: background 0.15s ease;
+}
+
+.exam-tbody-row:hover {
+  background: #F8F9FF;
+}
+
+.exam-tbody-row.row-selected {
+  background: #EFF4FF;
+}
+
+.exam-td {
+  padding: 16px;
+  vertical-align: middle;
+  box-sizing: border-box;
+}
+
+.exam-td-checkbox {
+  width: 56px;
+  padding: 16px 24px;
+  text-align: center;
+}
+
+.exam-checkbox {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  accent-color: #0051D5;
+  border: 1px solid #767676;
+  border-radius: 2.5px;
+}
+
+/* Exam Info Cell */
+.exam-info-cell {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+}
+
+.exam-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.exam-details-block {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.exam-title-link {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+  color: #0B1C30;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.exam-title-link:hover {
+  color: #0051D5;
+}
+
+/* Meta row (Status badge, Questions count, Duration) */
+.exam-meta-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.exam-status-badge {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 3px 8px;
+  gap: 6px;
+  border-radius: 12px;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.2px;
+  white-space: nowrap;
+}
+
+.exam-status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.exam-meta-item {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+}
+
+.exam-meta-text {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: #0B1C30;
+}
+
+.exam-meta-separator {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 11px;
+  color: #45464D;
+}
+
+.exam-duration-text {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 14px;
+  color: #45464D;
+}
+
+.exam-duration-text.draft-duration {
+  color: #76777D;
+}
+
+/* Date & Deadline Cell */
+.exam-date-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.exam-created-date {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: #0B1C30;
+}
+
+.exam-deadline-text {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 14px;
+  color: #45464D;
+}
+
+.exam-deadline-text.deadline-warning {
+  color: #BA1A1A;
+  font-weight: 500;
+}
+
+/* Actions Cell */
+.exam-actions-cell {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+  padding-right: 8px;
+}
+
+.exam-row-action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 29.5px;
+  height: 29.5px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.exam-row-action-btn.btn-edit,
+.exam-row-action-btn.btn-upload {
+  background: #E5EEFF;
+  color: #0B1C30;
+}
+
+.exam-row-action-btn.btn-edit:hover,
+.exam-row-action-btn.btn-upload:hover {
+  background: #d4e3ff;
+}
+
+.exam-row-action-btn.btn-delete {
+  background: #DCE9FF;
+  color: #852221;
+}
+
+.exam-row-action-btn.btn-delete:hover {
+  background: #ffdada;
+}
+
+/* ==========================================================================
+   7. Pagination & Bottom Actions
+   ========================================================================== */
+.exam-pagination-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px;
+  width: 100%;
+  min-height: 80px;
+  box-sizing: border-box;
+  background: #FFFFFF;
+  box-shadow: 0px -1px 0px rgba(198, 198, 205, 0.25);
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.exam-pagination-left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+}
+
+.exam-pagination-info {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 20px;
+  color: #45464D;
+}
+
+.exam-page-size-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  height: 25px;
+}
+
+.exam-page-size-select {
+  height: 25px;
+  padding: 3px 22px 3px 8px;
+  background: #EFF4FF;
+  border-radius: 4px;
+  border: none;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.44px;
+  color: #0B1C30;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.exam-page-size-arrow {
+  position: absolute;
+  right: 6px;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+}
+
+/* Navigation Buttons */
+.exam-pagination-nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+}
+
+.exam-page-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+}
+
+.exam-page-btn.nav-btn {
+  background: transparent;
+}
+
+.exam-page-btn.nav-btn:hover:not(:disabled) {
+  background: #EFF4FF;
+}
+
+.exam-page-btn.nav-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.exam-page-btn.page-number {
+  background: #EFF4FF;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 14px;
+  color: #0B1C30;
+}
+
+.exam-page-btn.page-number:hover:not(.active) {
+  background: #DCE9FF;
+}
+
+.exam-page-btn.page-number.active {
+  background: #0051D5;
+  color: #FFFFFF;
+  font-weight: 600;
+}
+
+.exam-page-ellipsis {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 32px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  color: #76777D;
+}
+
+/* ==========================================================================
+   8. Responsive Adjustments
+   ========================================================================== */
+@media (max-width: 900px) {
+  .exam-management-page {
+    padding: 20px 16px 32px;
+    gap: 16px;
+  }
+
+  .exam-filter-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .exam-search-box {
+    width: 100%;
+  }
+
+  .exam-selectors-group {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .exam-pagination-bar {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+}

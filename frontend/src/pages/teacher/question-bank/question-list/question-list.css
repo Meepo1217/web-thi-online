@@ -1,0 +1,1487 @@
+/**
+ * question-list.css
+ * Bộ định dạng chuẩn xác cho màn hình Danh sách câu hỏi (Toán học THPT)
+ * Dựa trên thiết kế Figma 100% không dùng thư viện ngoài
+ */
+
+/* 1. Page Root Container */
+.ql-page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 32px 24px;
+  gap: 24px;
+  width: 100%;
+  min-height: 100%;
+  background: linear-gradient(0deg, #F8F9FF, #F8F9FF), #FFFFFF;
+  box-sizing: border-box;
+}
+
+/* 2. Header Section */
+.ql-header-section {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 12px;
+}
+
+/* Breadcrumb Bar */
+.ql-breadcrumb-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding-bottom: 4px;
+}
+
+.ql-breadcrumb-nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+}
+
+.ql-breadcrumb-link {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.24px;
+  color: #45464D;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.ql-breadcrumb-link:hover {
+  color: #0051D5;
+}
+
+.ql-breadcrumb-sep {
+  display: flex;
+  align-items: center;
+  color: #76777D;
+}
+
+.ql-breadcrumb-current {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.24px;
+  color: #0B1C30;
+}
+
+/* Sync Status Badge */
+.ql-sync-badge {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 2px 10px;
+  gap: 6px;
+  background: #DCE9FF;
+  border-radius: 12px;
+  height: 20px;
+}
+
+.ql-sync-dot {
+  width: 8px;
+  height: 8px;
+  background: #0051D5;
+  border-radius: 12px;
+}
+
+.ql-sync-text {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.44px;
+  color: #45464D;
+}
+
+/* Main Header Banner */
+.ql-main-banner {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px;
+  width: 100%;
+  background: #FFFFFF;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  box-sizing: border-box;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.ql-banner-left {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-width: 650px;
+}
+
+.ql-title-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.ql-subject-icon-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+}
+
+.ql-page-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 26px;
+  line-height: 34px;
+  letter-spacing: -0.7px;
+  color: #0B1C30;
+  margin: 0;
+}
+
+.ql-count-badge {
+  display: flex;
+  align-items: center;
+  padding: 2px 10px;
+  background: #E5EEFF;
+  border-radius: 12px;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.44px;
+  color: #0051D5;
+}
+
+.ql-page-desc {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 20px;
+  color: #45464D;
+  margin: 0;
+}
+
+/* Action Buttons Cluster */
+.ql-action-cluster {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.ql-btn {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 16px;
+  gap: 8px;
+  height: 36px;
+  border-radius: 8px;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.24px;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  transition: all 0.15s ease;
+}
+
+.ql-btn-soft {
+  background: #EFF4FF;
+  color: #0B1C30;
+}
+
+.ql-btn-soft:hover {
+  background: #E0EBFF;
+}
+
+.ql-btn-primary-tint {
+  background: #E5EEFF;
+  color: #0051D5;
+}
+
+.ql-btn-primary-tint:hover {
+  background: #D3E4FF;
+}
+
+.ql-btn-dark {
+  background: #000000;
+  color: #FFFFFF;
+  padding: 10px 20px;
+}
+
+.ql-btn-dark:hover {
+  background: #242424;
+}
+
+.ql-btn-danger {
+  background: #93000A;
+  color: #FFFFFF;
+}
+
+.ql-btn-danger:hover {
+  background: #7A0008;
+}
+
+/* 3. Filters & Smart Search Bar */
+.ql-filter-container {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  gap: 12px;
+  width: 100%;
+  background: #FFFFFF;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+.ql-filter-top-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.ql-search-wrapper {
+  position: relative;
+  flex: 1 1 360px;
+  min-width: 240px;
+  display: flex;
+  align-items: center;
+}
+
+.ql-search-icon {
+  position: absolute;
+  left: 14px;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+}
+
+.ql-search-input {
+  width: 100%;
+  height: 40px;
+  padding: 12px 16px 12px 40px;
+  background: #F8F9FF;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  color: #0B1C30;
+  box-sizing: border-box;
+  outline: none;
+  transition: all 0.15s ease;
+}
+
+.ql-search-input:focus {
+  border-color: #0051D5;
+  background: #FFFFFF;
+  box-shadow: 0 0 0 3px rgba(0, 81, 213, 0.1);
+}
+
+.ql-search-input::placeholder {
+  color: #76777D;
+}
+
+.ql-select-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.ql-select {
+  appearance: none;
+  height: 38px;
+  padding: 10px 32px 10px 16px;
+  background: #F8F9FF;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  color: #0B1C30;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.15s ease;
+}
+
+.ql-select:focus {
+  border-color: #0051D5;
+  background: #FFFFFF;
+}
+
+.ql-select-compact select {
+  padding-right: 28px;
+}
+
+.ql-select-arrow {
+  position: absolute;
+  right: 12px;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+}
+
+/* Active Filter Chips */
+.ql-chips-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding-top: 4px;
+}
+
+.ql-chips-label {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.55px;
+  text-transform: uppercase;
+  color: #76777D;
+}
+
+.ql-chip {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 4px 10px;
+  gap: 6px;
+  border-radius: 12px;
+  height: 22px;
+  box-sizing: border-box;
+}
+
+.ql-chip-blue {
+  background: #E5EEFF;
+  color: #0051D5;
+}
+
+.ql-chip-slate {
+  background: #DCE9FF;
+  color: #45464D;
+}
+
+.ql-chip-text {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.44px;
+}
+
+.ql-chip-remove {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: inherit;
+  opacity: 0.8;
+  transition: opacity 0.15s;
+}
+
+.ql-chip-remove:hover {
+  opacity: 1;
+}
+
+.ql-clear-all-btn {
+  background: none;
+  border: none;
+  padding: 0 4px;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.44px;
+  color: #0051D5;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.ql-clear-all-btn:hover {
+  text-decoration: underline;
+}
+
+/* 4. Batch Action Toolbar */
+.ql-batch-toolbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 16px;
+  width: 100%;
+  background: #DCE9FF;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.ql-batch-left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+}
+
+.ql-batch-select-label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.ql-batch-checkbox {
+  width: 16px;
+  height: 16px;
+  accent-color: #0051D5;
+  border-radius: 2.5px;
+  cursor: pointer;
+}
+
+.ql-batch-count-text {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.24px;
+  color: #0B1C30;
+}
+
+.ql-batch-divider {
+  width: 4px;
+  height: 16px;
+  background: #C6C6CD;
+  border-radius: 12px;
+}
+
+.ql-batch-action-hint {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.44px;
+  color: #76777D;
+}
+
+.ql-batch-right {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.ql-batch-btn {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 6px 12px;
+  gap: 4px;
+  height: 26px;
+  border-radius: 4px;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.44px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  transition: all 0.15s ease;
+}
+
+.ql-batch-btn-white {
+  background: #FFFFFF;
+  color: #0B1C30;
+}
+
+.ql-batch-btn-white:hover {
+  background: #F1F4F9;
+}
+
+.ql-batch-btn-danger {
+  background: #FFDAD6;
+  color: #93000A;
+}
+
+.ql-batch-btn-danger:hover {
+  background: #FFCDD2;
+}
+
+/* 5. Question List Canvas */
+.ql-canvas {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 12px;
+}
+
+/* Question Card */
+.ql-question-card {
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  width: 100%;
+  background: #FFFFFF;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  box-sizing: border-box;
+  border: 1px solid transparent;
+  transition: box-shadow 0.15s ease, border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.ql-question-card:hover {
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.ql-card-selected {
+  border-color: #0051D5;
+  background: #FCFDFF;
+}
+
+.ql-card-inner {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 16px;
+  width: 100%;
+}
+
+.ql-card-select-col {
+  display: flex;
+  padding-top: 4px;
+  flex-shrink: 0;
+}
+
+.ql-question-checkbox {
+  width: 16px;
+  height: 16px;
+  accent-color: #0051D5;
+  border-radius: 2.5px;
+  cursor: pointer;
+}
+
+.ql-card-body-col {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+  min-width: 0;
+}
+
+/* Metadata Bar */
+.ql-metadata-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.ql-metadata-left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.ql-code-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  background: #E5EEFF;
+  border-radius: 2px;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.55px;
+  color: #0051D5;
+}
+
+/* Bloom Badges */
+.ql-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.44px;
+}
+
+.ql-badge-vd-cao {
+  background: #FFDAD6;
+  color: #93000A;
+}
+
+.ql-badge-van-dung {
+  background: #D3E4FE;
+  color: #0B1C30;
+}
+
+.ql-badge-thong-hieu {
+  background: #DCE9FF;
+  color: #0051D5;
+}
+
+.ql-badge-nhan-biet {
+  background: #DCE9FF;
+  color: #069669;
+}
+
+.ql-badge-default {
+  background: #F1F4F9;
+  color: #45464D;
+}
+
+.ql-chapter-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  background: #EFF4FF;
+  border-radius: 2px;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.44px;
+  color: #45464D;
+}
+
+/* Status Indicator */
+.ql-status-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.44px;
+}
+
+.ql-status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 12px;
+}
+
+.ql-status-approved {
+  color: #069669;
+}
+
+.ql-status-approved .ql-status-dot {
+  background: #069669;
+}
+
+.ql-status-pending {
+  color: #76777D;
+}
+
+.ql-status-pending .ql-status-dot {
+  background: #76777D;
+}
+
+.ql-metadata-right {
+  display: flex;
+  align-items: center;
+}
+
+.ql-author-info {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.44px;
+  color: #45464D;
+}
+
+/* Question Content */
+.ql-question-content {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 24px;
+  color: #0B1C30;
+  word-break: break-word;
+}
+
+.ql-question-content p {
+  margin: 0;
+}
+
+/* Options Grid Preview (MCQ) */
+.ql-options-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 8px;
+  width: 100%;
+  padding-top: 4px;
+}
+
+.ql-option-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 8px 12px;
+  gap: 8px;
+  background: #F8F9FF;
+  border-radius: 4px;
+  box-sizing: border-box;
+  transition: all 0.15s ease;
+}
+
+.ql-option-correct {
+  background: #E5EEFF;
+}
+
+.ql-option-circle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  background: #DCE9FF;
+  border-radius: 12px;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.44px;
+  color: #0B1C30;
+  flex-shrink: 0;
+}
+
+.ql-option-correct .ql-option-circle {
+  background: #0051D5;
+  color: #FFFFFF;
+}
+
+.ql-option-text {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 20px;
+  color: #45464D;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ql-option-correct .ql-option-text {
+  color: #0051D5;
+  font-weight: 500;
+}
+
+.ql-option-key-label {
+  font-weight: 600;
+}
+
+/* Statement List for True/False Format */
+.ql-statements-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  padding-top: 4px;
+}
+
+.ql-statement-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  background: #F8F9FF;
+  border-radius: 4px;
+  gap: 12px;
+}
+
+.ql-statement-left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.ql-statement-key {
+  font-weight: 600;
+  color: #0051D5;
+  font-size: 12px;
+}
+
+.ql-statement-text {
+  color: #0B1C30;
+}
+
+.ql-tf-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 2px;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.44px;
+  flex-shrink: 0;
+}
+
+.ql-tf-true {
+  background: #E5EEFF;
+  color: #0051D5;
+}
+
+.ql-tf-false {
+  background: #FFDAD6;
+  color: #93000A;
+}
+
+/* Short Answer Box */
+.ql-short-answer-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 14px;
+  width: 384px;
+  max-width: 100%;
+  height: 40px;
+  background: #F8F9FF;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 4px;
+}
+
+.ql-short-answer-label {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.44px;
+  color: #76777D;
+}
+
+.ql-short-answer-val {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 12px;
+  background: #E5EEFF;
+  border-radius: 2px;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 16px;
+  color: #0051D5;
+}
+
+/* Footer Topic Tags */
+.ql-card-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 8px;
+  border-top: 1px solid #F1F4F9;
+  width: 100%;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 2px;
+}
+
+.ql-tags-cluster {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.ql-topic-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  background: #F8F9FF;
+  border-radius: 2px;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.44px;
+  color: #76777D;
+}
+
+.ql-usage-text {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.44px;
+  color: #76777D;
+}
+
+/* Quick Action Buttons Column */
+.ql-card-actions-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px 0px 0px 8px;
+  gap: 4px;
+  width: 40px;
+  flex-shrink: 0;
+}
+
+.ql-action-icon-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.ql-action-icon-btn:hover {
+  background: #F1F4F9;
+}
+
+.ql-action-btn-danger:hover {
+  background: #FFDAD6;
+}
+
+/* 6. Academic Pagination Footer */
+.ql-pagination-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  width: 100%;
+  background: #FFFFFF;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.ql-pagination-left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.ql-pagination-text {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.24px;
+  color: #45464D;
+}
+
+.ql-page-size-select-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.ql-page-size-select {
+  appearance: none;
+  height: 28px;
+  padding: 2px 24px 2px 10px;
+  background: #F8F9FF;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  letter-spacing: 0.24px;
+  color: #0B1C30;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.15s ease;
+}
+
+.ql-page-size-select:focus {
+  border-color: #0051D5;
+}
+
+.ql-page-size-arrow {
+  position: absolute;
+  right: 8px;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+}
+
+.ql-pagination-controls {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+}
+
+.ql-page-numbers-cluster {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px 4px;
+  gap: 4px;
+}
+
+.ql-page-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 4px;
+  border: none;
+  background: #F8F9FF;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.24px;
+  color: #0B1C30;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.ql-page-btn:hover:not(:disabled) {
+  background: #E5EEFF;
+}
+
+.ql-page-btn-active {
+  background: #000000 !important;
+  color: #FFFFFF !important;
+  font-weight: 600;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.ql-page-btn-nav:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.ql-page-ellipsis {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  color: #76777D;
+  padding: 0 4px;
+}
+
+/* 7. Modals / Dialogs */
+.ql-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(11, 28, 48, 0.45);
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 16px;
+}
+
+.ql-modal-dialog {
+  background: #FFFFFF;
+  border-radius: 12px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  width: 100%;
+  max-width: 680px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: qlModalFadeIn 0.18s ease-out;
+}
+
+@keyframes qlModalFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.97) translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.ql-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 24px;
+  border-bottom: 1px solid #F1F4F9;
+}
+
+.ql-modal-header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ql-modal-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 8px;
+  background: #E5EEFF;
+  border-radius: 4px;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: #0051D5;
+}
+
+.ql-modal-title {
+  margin: 0;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: #0B1C30;
+}
+
+.ql-modal-close-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  border: none;
+  background: #F8F9FF;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.ql-modal-close-btn:hover {
+  background: #E5EEFF;
+}
+
+.ql-modal-body {
+  padding: 24px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.ql-modal-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.ql-modal-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  background: #F8F9FF;
+  border-radius: 4px;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: #45464D;
+}
+
+.ql-modal-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ql-modal-section-title {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #0B1C30;
+}
+
+.ql-modal-content-box {
+  padding: 14px 16px;
+  background: #F8F9FF;
+  border-radius: 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  line-height: 22px;
+  color: #0B1C30;
+  border-left: 3px solid #0051D5;
+}
+
+.ql-modal-content-box p {
+  margin: 0;
+}
+
+.ql-modal-options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ql-modal-option-row {
+  display: flex;
+  align-items: center;
+  padding: 10px 14px;
+  background: #F8F9FF;
+  border-radius: 6px;
+  gap: 10px;
+  transition: all 0.15s;
+}
+
+.ql-modal-option-correct {
+  background: #E5EEFF;
+  border: 1px solid #B8D5FF;
+}
+
+.ql-modal-opt-circle {
+  width: 22px;
+  height: 22px;
+  border-radius: 12px;
+  background: #DCE9FF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: #0B1C30;
+  flex-shrink: 0;
+}
+
+.ql-modal-option-correct .ql-modal-opt-circle {
+  background: #0051D5;
+  color: #FFFFFF;
+}
+
+.ql-modal-opt-text {
+  flex: 1;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: #0B1C30;
+}
+
+.ql-modal-correct-tag {
+  display: inline-flex;
+  padding: 2px 8px;
+  background: #0051D5;
+  border-radius: 4px;
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #FFFFFF;
+}
+
+.ql-modal-tf-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px;
+  background: #F8F9FF;
+  border-radius: 6px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: #0B1C30;
+}
+
+.ql-modal-short-answer-display {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: #F8F9FF;
+  border-radius: 6px;
+}
+
+.ql-modal-short-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #76777D;
+}
+
+.ql-modal-short-value {
+  padding: 4px 16px;
+  background: #E5EEFF;
+  border-radius: 4px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #0051D5;
+}
+
+.ql-modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 16px 24px;
+  border-top: 1px solid #F1F4F9;
+  background: #FCFDFF;
+}
+
+/* Delete Modal Special */
+.ql-delete-modal-dialog {
+  max-width: 500px;
+}
+
+.ql-delete-icon-circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #FFDAD6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ql-delete-title {
+  color: #93000A;
+}
+
+.ql-delete-prompt {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  line-height: 22px;
+  color: #0B1C30;
+  margin: 0;
+}
+
+.ql-delete-warning-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 14px;
+  background: #FFF8E1;
+  border-radius: 6px;
+  border-left: 3px solid #F59E0B;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  line-height: 18px;
+  color: #78350F;
+}
+
+.ql-delete-warning-icon {
+  font-size: 14px;
+}
+
+/* 8. Empty State */
+.ql-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 24px;
+  background: #FFFFFF;
+  border-radius: 8px;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  text-align: center;
+  gap: 12px;
+}
+
+.ql-empty-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #F8F9FF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #76777D;
+}
+
+.ql-empty-title {
+  margin: 0;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: #0B1C30;
+}
+
+.ql-empty-desc {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: #76777D;
+  max-width: 400px;
+}

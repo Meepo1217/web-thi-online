@@ -1,211 +1,217 @@
-import { useState } from 'react'
-import Header from './components/Header'
-import Sidebar from './components/Sidebar'
-import Footer from './components/Footer'
-import StudentDashboardPage from './pages/StudentDashboardPage'
-import ExamPreparationPage from './pages/ExamPreparationPage'
-import TakeExamPage from './pages/TakeExamPage'
-import ExamResultPage from './pages/ExamResultPage'
+import { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route, Navigate, Link } from 'react-router-dom';
+import axios from 'axios';
+import TeacherLayout from './components/layout/teacher/TeacherLayout';
+import TeacherHome from './pages/teacher/TeacherHome';
+import { QuestionBankFolders, QuestionList, QuestionDetail, QuestionEdit } from './pages/teacher/question-bank';
+import ExamManagement from './pages/teacher/exam-management/ExamManagement';
+import TeacherDashboard from './pages/teacher/TeacherDashboard';
+import Login from './pages/auth/Login';
+import StudentPortal from './pages/student/StudentPortal';
 
-function App() {
-  const [currentPage, setCurrentPage] = useState('dashboard') // 'dashboard' | 'prep' | 'exam' | 'result'
-  const [selectedExam, setSelectedExam] = useState(null)
-  const [examResult, setExamResult] = useState(null)
-  const [activeNav, setActiveNav] = useState('home')
+/**
+ * Component kiểm tra kết nối với Laravel Backend
+ */
+function ConnectionTest() {
+  const [data, setData] = useState(null);
+  const [error, setError] = useState(null);
 
-  const handleSelectExam = (exam) => {
-    setSelectedExam({
-      room: exam.room,
-      roomCode: exam.id,
-      shift: exam.statusTime,
-      title: `${exam.title} - ${exam.department}`,
-      status: 'Đang mở',
-      date: exam.date,
-      duration: exam.duration,
-      questions: exam.questions,
-      timeWindow: `${exam.statusTime} - Hôm nay`,
-      school: exam.school
-    })
-    setCurrentPage('prep')
-  }
-
-  const handleStartExam = (exam) => {
-    if (exam) {
-      setSelectedExam(exam)
-    }
-    setCurrentPage('exam')
-  }
-
-  const handleCompleteExam = (resultData) => {
-    setExamResult(resultData)
-    setCurrentPage('result')
-  }
-
-  const handleRetakeExam = () => {
-    setCurrentPage('exam')
-  }
-
-  const handleBackToDashboard = () => {
-    setCurrentPage('dashboard')
-  }
+  useEffect(() => {
+    axios
+      .get('http://localhost:8000/api/test-connection')
+      .then((response) => {
+        setData(response.data);
+      })
+      .catch((err) => {
+        console.error('Lỗi kết nối:', err);
+        setError(
+          'Không thể kết nối đến Laravel. Hãy kiểm tra xem server Laravel đã bật chưa hoặc có lỗi CORS không.'
+        );
+      });
+  }, []);
 
   return (
-    <div style={{
-      display: 'flex',
-      justifyContent: 'center',
-      width: '100%',
-      minHeight: '100vh',
-      background: 'linear-gradient(0deg, #F8F9FF, #F8F9FF), #FFFFFF'
-    }}>
-      {/* Khung Desktop 1280px chuẩn Figma */}
-      <div style={{
-        position: 'relative',
-        width: '1280px',
-        minHeight: '100vh',
-        background: 'linear-gradient(0deg, #F8F9FF, #F8F9FF), #FFFFFF',
-        display: 'flex',
-        flexDirection: 'column',
-        boxShadow: '0 4px 30px rgba(0, 0, 0, 0.04)'
-      }}>
-        
-        {/* 1. Component Dùng Chung: Header (hiển thị ở dashboard, prep, exam) */}
-        {currentPage !== 'result' && (
-          <Header onLogoClick={handleBackToDashboard} />
-        )}
+    <div style={{ padding: '32px', fontFamily: "'Inter', sans-serif" }}>
+      <h2>Kiểm tra kết nối Frontend (React) và Backend (Laravel)</h2>
 
-        {/* 2. Nội dung các Trang (Pages) */}
-        {currentPage === 'dashboard' && (
-          <div style={{ display: 'flex', flexDirection: 'row', width: '100%', flex: 1 }}>
-            {/* Component Dùng Chung: Sidebar bên trái */}
-            <Sidebar activeNav={activeNav} onNavChange={setActiveNav} />
+      {error && <p style={{ color: 'red', fontWeight: 'bold' }}>{error}</p>}
 
-            {/* Nội Dung Trang: StudentDashboardPage */}
-            <StudentDashboardPage onSelectExam={handleSelectExam} />
-          </div>
-        )}
+      {data ? (
+        <div
+          style={{
+            padding: '20px',
+            backgroundColor: '#d4edda',
+            border: '1px solid #c3e6cb',
+            borderRadius: '5px',
+            color: '#155724',
+            marginTop: '16px',
+          }}
+        >
+          <h3>Trạng thái: {data.status}</h3>
+          <p>{data.message}</p>
+        </div>
+      ) : (
+        !error && <p>Đang tải dữ liệu từ Backend Laravel...</p>
+      )}
 
-        {currentPage === 'prep' && (
-          <div style={{ display: 'flex', flexDirection: 'column', width: '100%', flex: 1 }}>
-            {/* Nội Dung Trang: ExamPreparationPage */}
-            <ExamPreparationPage
-              exam={selectedExam}
-              onBack={handleBackToDashboard}
-              onStartExam={handleStartExam}
-            />
-
-            {/* Component Dùng Chung: Footer dưới đáy */}
-            <Footer />
-          </div>
-        )}
-
-        {currentPage === 'exam' && (
-          <div style={{ display: 'flex', flexDirection: 'column', width: '100%', flex: 1 }}>
-            {/* Nội Dung Trang: TakeExamPage (Làm bài thi) */}
-            <TakeExamPage
-              exam={selectedExam}
-              onBack={handleBackToDashboard}
-              onComplete={handleCompleteExam}
-            />
-
-            {/* Component Dùng Chung: Footer dưới đáy */}
-            <Footer />
-          </div>
-        )}
-
-        {currentPage === 'result' && (
-          <div style={{ display: 'flex', flexDirection: 'column', width: '100%', flex: 1 }}>
-            {/* Nội Dung Trang: ExamResultPage (Kết quả bài thi chuẩn Figma) */}
-            <ExamResultPage
-              exam={examResult || selectedExam}
-              onBack={handleBackToDashboard}
-              onRetake={handleRetakeExam}
-            />
-          </div>
-        )}
-
+      <div style={{ marginTop: '24px', display: 'flex', gap: '16px' }}>
+        <Link
+          to="/student"
+          style={{
+            padding: '8px 16px',
+            background: '#059669',
+            color: '#FFFFFF',
+            textDecoration: 'none',
+            borderRadius: '6px',
+            fontWeight: 600,
+          }}
+        >
+          👨‍🎓 Cổng Sinh viên &rarr;
+        </Link>
+        <Link
+          to="/teacher/dashboard"
+          style={{
+            padding: '8px 16px',
+            background: '#0051D5',
+            color: '#FFFFFF',
+            textDecoration: 'none',
+            borderRadius: '6px',
+            fontWeight: 600,
+          }}
+        >
+          👨‍🏫 Cổng Giảng viên &rarr;
+        </Link>
+        <Link
+          to="/login"
+          style={{
+            padding: '8px 16px',
+            background: '#45464D',
+            color: '#FFFFFF',
+            textDecoration: 'none',
+            borderRadius: '6px',
+            fontWeight: 600,
+          }}
+        >
+          Trang Đăng nhập (Auth)
+        </Link>
       </div>
+    </div>
+  );
+}
 
-      {/* Thanh công cụ chuyển nhanh góc màn hình */}
+/**
+ * App - Cấu hình hệ thống Router phân chia theo Roles:
+ * - /student/* : Cổng Sinh viên (Student Portal)
+ * - /teacher/* : Cổng Giảng viên (Teacher Portal)
+ * - /login     : Xác thực tài khoản (Auth)
+ */
+function App() {
+  return (
+    <BrowserRouter>
+      {/* Thanh chuyển đổi Role nhanh nổi ở góc trên màn hình */}
       <div style={{
         position: 'fixed',
-        bottom: '20px',
+        top: '12px',
         right: '20px',
-        zIndex: 9999,
-        background: '#131B2E',
+        zIndex: 99999,
+        background: 'rgba(15, 23, 42, 0.88)',
+        backdropFilter: 'blur(8px)',
         color: '#FFFFFF',
-        padding: '8px 14px',
+        padding: '6px 12px',
         borderRadius: '30px',
         display: 'flex',
         alignItems: 'center',
         gap: '8px',
-        boxShadow: '0 8px 24px rgba(0, 0, 0, 0.25)',
+        boxShadow: '0 4px 16px rgba(0, 0, 0, 0.25)',
         fontSize: '12px',
         fontFamily: "'Inter', sans-serif"
       }}>
-        <span style={{ color: '#94A3B8', fontWeight: 500 }}>Chuyển trang:</span>
-        <button
-          onClick={() => setCurrentPage('dashboard')}
+        <span style={{ color: '#94A3B8', fontWeight: 600 }}>Vai trò:</span>
+        <Link
+          to="/student"
           style={{
-            background: currentPage === 'dashboard' ? '#0051D5' : 'transparent',
             color: '#FFFFFF',
-            border: 'none',
-            padding: '5px 12px',
-            borderRadius: '20px',
-            cursor: 'pointer',
-            fontWeight: currentPage === 'dashboard' ? 600 : 400,
-            transition: 'all 0.15s'
+            textDecoration: 'none',
+            padding: '4px 10px',
+            borderRadius: '16px',
+            background: '#059669',
+            fontWeight: 600,
+            fontSize: '11px'
           }}
         >
-          Trang chủ
-        </button>
-        <button
-          onClick={() => setCurrentPage('prep')}
+          👨‍🎓 Học sinh
+        </Link>
+        <Link
+          to="/teacher/dashboard"
           style={{
-            background: currentPage === 'prep' ? '#0051D5' : 'transparent',
             color: '#FFFFFF',
-            border: 'none',
-            padding: '5px 12px',
-            borderRadius: '20px',
-            cursor: 'pointer',
-            fontWeight: currentPage === 'prep' ? 600 : 400,
-            transition: 'all 0.15s'
+            textDecoration: 'none',
+            padding: '4px 10px',
+            borderRadius: '16px',
+            background: '#0051D5',
+            fontWeight: 600,
+            fontSize: '11px'
           }}
         >
-          Chuẩn bị
-        </button>
-        <button
-          onClick={() => setCurrentPage('exam')}
+          👨‍🏫 Giảng viên
+        </Link>
+        <Link
+          to="/login"
           style={{
-            background: currentPage === 'exam' ? '#0051D5' : 'transparent',
-            color: '#FFFFFF',
-            border: 'none',
-            padding: '5px 12px',
-            borderRadius: '20px',
-            cursor: 'pointer',
-            fontWeight: currentPage === 'exam' ? 600 : 400,
-            transition: 'all 0.15s'
+            color: '#CBD5E1',
+            textDecoration: 'none',
+            padding: '4px 8px',
+            borderRadius: '16px',
+            fontWeight: 500,
+            fontSize: '11px'
           }}
         >
-          Làm bài
-        </button>
-        <button
-          onClick={() => setCurrentPage('result')}
-          style={{
-            background: currentPage === 'result' ? '#0051D5' : 'transparent',
-            color: '#FFFFFF',
-            border: 'none',
-            padding: '5px 12px',
-            borderRadius: '20px',
-            cursor: 'pointer',
-            fontWeight: currentPage === 'result' ? 600 : 400,
-            transition: 'all 0.15s'
-          }}
-        >
-          Kết quả
-        </button>
+          🔐 Đăng nhập
+        </Link>
       </div>
-    </div>
-  )
+
+      <Routes>
+        {/* Route Cổng Sinh viên (Student Portal) */}
+        <Route path="/student/*" element={<StudentPortal />} />
+
+        {/* Route xác thực tài khoản (Auth nằm NGOÀI TeacherLayout) */}
+        <Route path="/login" element={<Login />} />
+
+        {/* Route kiểm tra kết nối ban đầu */}
+        <Route path="/test-connection" element={<ConnectionTest />} />
+
+        {/* Layout Route cha dành cho Giảng viên (Teacher Portal) */}
+        <Route path="/teacher" element={<TeacherLayout />}>
+          <Route index element={<TeacherHome />} />
+          <Route path="dashboard" element={<TeacherHome />} />
+          <Route path="schedule" element={<TeacherDashboard />} />
+          <Route path="questions" element={<QuestionBankFolders />} />
+          <Route path="questions/:subjectId" element={<QuestionList />} />
+          <Route path="questions/list" element={<QuestionList />} />
+          <Route path="questions/detail/:questionId" element={<QuestionDetail />} />
+          <Route path="questions/detail" element={<QuestionDetail />} />
+          <Route path="questions/edit/:questionId" element={<QuestionEdit />} />
+          <Route path="questions/edit" element={<QuestionEdit />} />
+          <Route path="exams" element={<ExamManagement />} />
+          <Route path="exam-management" element={<ExamManagement />} />
+          <Route path="sessions" element={<TeacherDashboard />} />
+          <Route path="results" element={<TeacherDashboard />} />
+          <Route path="classes" element={<TeacherDashboard />} />
+          <Route path="students" element={<TeacherDashboard />} />
+          <Route path="statistics" element={<TeacherDashboard />} />
+          <Route path="settings" element={<TeacherDashboard />} />
+          <Route path="help" element={<TeacherDashboard />} />
+          <Route path="*" element={<Navigate to="/teacher/dashboard" replace />} />
+        </Route>
+
+        {/* Mặc định điều hướng vào cổng sinh viên */}
+        <Route path="/" element={<Navigate to="/student" replace />} />
+
+        {/* Bắt mọi route lạ điều hướng về cổng sinh viên */}
+        <Route path="*" element={<Navigate to="/student" replace />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;

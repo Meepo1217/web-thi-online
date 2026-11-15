@@ -1,0 +1,608 @@
+/* teacher-layout.css - App Shell cố định cho Giao diện Giáo viên (Figma Pixel-Accurate) */
+@import '../shared/layout-base.css';
+
+/* Ghi đè giới hạn fixed-width của Vite starter trên #root khi layout giáo viên hiển thị */
+body:has(.teacher-layout) #root,
+#root:has(.teacher-layout) {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  border-inline: none !important;
+  text-align: left !important;
+}
+
+/* ==================== KHUNG SHELL CHÍNH ==================== */
+.teacher-layout {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  background-color: var(--color-bg-page);
+  position: relative;
+  text-align: left;
+  box-sizing: border-box;
+}
+
+/* ==================== ASIDE (SIDEBAR) ==================== */
+/* Giá trị Figma: width 288px, background #FFFFFF, shadow 0 1px 8px rgba(0,0,0,0.04), cố định bên trái */
+.teacher-sidebar {
+  width: var(--sidebar-width);
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background: var(--color-bg-white);
+  box-shadow: var(--shadow-aside);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0;
+  z-index: 100;
+  box-sizing: border-box;
+  transition: transform 0.25s ease-in-out;
+}
+
+.teacher-sidebar__top {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0;
+  width: 100%;
+  flex: 1;
+  min-height: 0; /* Cho phép cuộn */
+}
+
+/* Brand: cao 64px, padding 0 24px, gap 8px */
+.teacher-sidebar__brand {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  gap: 8px;
+  width: var(--sidebar-width);
+  height: var(--header-height);
+  background: var(--color-bg-white);
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+.teacher-sidebar__brand-link {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+}
+
+/* Logo: 40x40 nền #0051D5, bo 8px, shadow 0 1px 2px rgba(0,0,0,0.05), icon trắng */
+.teacher-sidebar__logo {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  background: var(--color-primary);
+  box-shadow: var(--shadow-button);
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.teacher-sidebar__brand-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0;
+}
+
+/* Tên app: Plus Jakarta Sans 600, 16px, line-height 20px, #0B1C30 */
+.teacher-sidebar__app-name {
+  font-family: var(--font-jakarta);
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+  color: var(--color-text-title);
+  white-space: nowrap;
+}
+
+/* Dòng phụ: Inter 600, 11px, line-height 14px, uppercase, letter-spacing 0.55px, #0051D5 */
+.teacher-sidebar__app-sub {
+  font-family: var(--font-inter);
+  font-style: normal;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.55px;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  white-space: nowrap;
+}
+
+.teacher-sidebar__mobile-close {
+  display: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+/* Nav: padding 8px 16px, gap 4px, cuộn dọc khi danh sách dài */
+.teacher-sidebar__nav {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 8px 16px;
+  gap: 4px;
+  width: var(--sidebar-width);
+  box-sizing: border-box;
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex: 1;
+}
+
+/* Khối dưới cùng: nền #FFFFFF, padding 16px, gap 8px */
+.teacher-sidebar__bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 16px;
+  gap: 8px;
+  width: var(--sidebar-width);
+  background: var(--color-bg-white);
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+/* Thẻ dung lượng: nền #EFF4FF, padding 16px, bo 8px, gap 4px, width 256px, height 84px */
+.teacher-storage-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 16px;
+  gap: 4px;
+  width: 256px;
+  height: 84px;
+  background: var(--color-primary-bg);
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+.teacher-storage-card__row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0;
+  width: 100%;
+  height: 16px;
+}
+
+/* Hàng trên: nhãn Inter 600 12px #0B1C30 */
+.teacher-storage-card__label {
+  font-family: var(--font-inter);
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.24px;
+  color: var(--color-text-title);
+}
+
+/* và phần trăm Inter 600 11px #0051D5 */
+.teacher-storage-card__percent {
+  font-family: var(--font-inter);
+  font-style: normal;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.44px;
+  color: var(--color-primary);
+}
+
+/* Thanh tiến trình: cao 8px, nền #DCE9FF, bo 12px */
+.teacher-storage-card__track {
+  width: 100%;
+  height: 8px;
+  background: var(--color-primary-track);
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Phần đầy #0051D5 rộng 78% */
+.teacher-storage-card__bar {
+  height: 100%;
+  background: var(--color-primary);
+  border-radius: 12px;
+  transition: width 0.3s ease;
+}
+
+/* Dòng chữ: Inter 400, 13px, line-height 20px, #45464D */
+.teacher-storage-card__caption {
+  font-family: var(--font-inter);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 20px;
+  color: var(--color-text-nav);
+  white-space: nowrap;
+}
+
+/* Link phụ dưới thẻ dung lượng: width 256px, height 36px, space-between */
+.teacher-sidebar__sublink {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 16px;
+  width: 256px;
+  height: 36px;
+  border-radius: 4px;
+  box-sizing: border-box;
+  text-decoration: none;
+  color: var(--color-text-nav);
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.teacher-sidebar__sublink:hover {
+  background-color: var(--color-primary-bg);
+  color: var(--color-primary);
+}
+
+.teacher-sidebar__sublink.active {
+  background-color: var(--color-primary);
+  box-shadow: var(--shadow-button);
+  color: var(--color-text-white);
+}
+
+.teacher-sidebar__sublink-left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0;
+  gap: 8px;
+}
+
+.teacher-sidebar__sublink-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 15px;
+  height: 15px;
+}
+
+.teacher-sidebar__sublink-text {
+  font-family: var(--font-inter);
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.14px;
+}
+
+.teacher-sidebar__sublink-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 5px;
+  height: 8px;
+}
+
+/* Overlay mờ trên mobile */
+.teacher-sidebar-overlay {
+  display: none;
+}
+
+/* ==================== VÙNG THÂN NỘI DUNG ==================== */
+/* Margin-left 288px để tránh chèn đè lên Sidebar cố định */
+.teacher-main-wrapper {
+  margin-left: var(--sidebar-width);
+  width: calc(100% - var(--sidebar-width));
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-bg-page);
+  box-sizing: border-box;
+}
+
+/* ==================== HEADER ==================== */
+/* Cao 64px, padding 0 24px, space-between, align-items center
+   Nền rgba(255,255,255,0.9), shadow 0 1px 8px rgba(0,0,0,0.04), backdrop-filter: blur(24px) */
+.teacher-header {
+  height: var(--header-height);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: var(--shadow-header);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-sizing: border-box;
+}
+
+.teacher-header__left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+}
+
+.teacher-header__mobile-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+/* Ô tìm kiếm: rộng ~384px, cao 28px, padding 4px 16px, gap 8px, nền #EFF4FF, bo 8px */
+.teacher-header__search {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 4px 16px;
+  gap: 8px;
+  width: 384px;
+  height: 28px;
+  background: var(--color-primary-bg);
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+.teacher-header__search-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+}
+
+.teacher-header__search-input {
+  width: 329px;
+  height: 20px;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-family: var(--font-inter);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  color: var(--color-text-muted);
+  box-sizing: border-box;
+}
+
+.teacher-header__search-input::placeholder {
+  color: var(--color-text-muted);
+}
+
+.teacher-header__right {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0;
+  gap: 16px;
+}
+
+/* Nút chính: nền #0051D5, bo 8px, padding 4px 16px, cao 28px, shadow 0 1px 2px rgba(0,0,0,0.05) */
+.teacher-header__primary-btn {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 4px 16px;
+  gap: 4px;
+  height: 28px;
+  background: var(--color-primary);
+  box-shadow: var(--shadow-button);
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  color: var(--color-text-white);
+  transition: background-color 0.15s ease;
+  box-sizing: border-box;
+}
+
+.teacher-header__primary-btn:hover {
+  background-color: var(--color-primary-hover);
+}
+
+.teacher-header__primary-btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 10.5px;
+  height: 10.5px;
+}
+
+.teacher-header__primary-btn-text {
+  font-family: var(--font-inter);
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.14px;
+  color: var(--color-text-white);
+  white-space: nowrap;
+}
+
+/* Icon buttons (chuông + icon thứ hai) */
+.teacher-header__icon-btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 4px 4px 11px;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  box-sizing: border-box;
+  color: var(--color-text-nav);
+  transition: background-color 0.15s ease;
+}
+
+.teacher-header__icon-btn:hover {
+  background-color: var(--color-primary-bg);
+}
+
+.teacher-header__icon-btn--bell {
+  position: relative;
+  width: 22.67px;
+  height: 33.33px;
+}
+
+.teacher-header__bell-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14.67px;
+  height: 18.33px;
+}
+
+/* Chấm đỏ thông báo: 8x8, bo tròn, nền #BA1A1A, top 4px, right 3.67px */
+.teacher-header__badge-dot {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  right: 3.67px;
+  top: 4px;
+  background: var(--color-danger);
+  border-radius: 12px;
+}
+
+.teacher-header__second-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18.33px;
+  height: 18.33px;
+}
+
+/* Vạch ngăn dọc: 1x24px, #DCE9FF */
+.teacher-header__divider {
+  width: 1px;
+  height: 24px;
+  background: var(--color-border-divider);
+  flex-shrink: 0;
+}
+
+/* Khối người dùng: Tên, Vai trò, Avatar 32x32 */
+.teacher-header__user-block {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0 0 0 4px;
+  gap: 8px;
+}
+
+.teacher-header__user-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 0;
+}
+
+/* Tên: Inter 600, 14px, line-height 20px, #0B1C30, căn phải */
+.teacher-header__user-name {
+  font-family: var(--font-inter);
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.14px;
+  text-align: right;
+  color: var(--color-text-title);
+  white-space: nowrap;
+}
+
+/* Vai trò: "Giảng viên", Inter 600, 11px, letter-spacing 0.44px, #45464D, căn phải */
+.teacher-header__user-role {
+  font-family: var(--font-inter);
+  font-style: normal;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.44px;
+  text-align: right;
+  color: var(--color-text-nav);
+  white-space: nowrap;
+}
+
+/* Avatar: 32x32, nền #000000, bo 12px, icon trắng 12px */
+.teacher-header__avatar {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  background: #000000;
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+
+/* ==================== VÙNG NỘI DUNG (MAIN) ==================== */
+/* Nền #F8F9FF, chứa <Outlet /> */
+.teacher-main-content {
+  flex: 1;
+  background-color: var(--color-bg-page);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 992px) {
+  .teacher-sidebar {
+    transform: translateX(-100%);
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.15);
+  }
+
+  .teacher-sidebar.open {
+    transform: translateX(0);
+  }
+
+  .teacher-sidebar__mobile-close {
+    display: block;
+  }
+
+  .teacher-sidebar-overlay {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 90;
+    backdrop-filter: blur(2px);
+  }
+
+  .teacher-main-wrapper {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .teacher-header__mobile-toggle {
+    display: block;
+  }
+
+  .teacher-header__search {
+    width: 200px;
+  }
+
+  .teacher-header__search-input {
+    width: 150px;
+  }
+
+  .teacher-header__user-meta {
+    display: none;
+  }
+}
