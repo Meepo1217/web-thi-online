@@ -7,6 +7,7 @@ import { QuestionBankFolders, QuestionList, QuestionDetail, QuestionEdit } from 
 import ExamManagement from './pages/teacher/exam-management/ExamManagement';
 import TeacherDashboard from './pages/teacher/TeacherDashboard';
 import Login from './pages/auth/Login';
+import StudentLogin from './pages/student/StudentLogin';
 import StudentPortal from './pages/student/StudentPortal';
 
 /**
@@ -172,10 +173,12 @@ function App() {
 
       <Routes>
         {/* Route Cổng Sinh viên (Student Portal) */}
+        <Route path="/student/login" element={<StudentLogin />} />
         <Route path="/student/*" element={<StudentPortal />} />
 
-        {/* Route xác thực tài khoản (Auth nằm NGOÀI TeacherLayout) */}
-        <Route path="/login" element={<Login />} />
+        {/* Route xác thực tài khoản học sinh / sinh viên chuẩn Figma */}
+        <Route path="/login" element={<StudentLogin />} />
+        <Route path="/teacher/login" element={<Login />} />
 
         {/* Route kiểm tra kết nối ban đầu */}
         <Route path="/test-connection" element={<ConnectionTest />} />

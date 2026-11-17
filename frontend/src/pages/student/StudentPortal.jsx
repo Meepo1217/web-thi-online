@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import Header from '../../components/student/Header'
 import Sidebar from '../../components/student/Sidebar'
 import Footer from '../../components/student/Footer'
@@ -193,6 +194,20 @@ export default function StudentPortal() {
         >
           Kết quả
         </button>
+        <Link
+          to="/login"
+          style={{
+            background: 'rgba(255, 255, 255, 0.1)',
+            color: '#CBD5E1',
+            textDecoration: 'none',
+            padding: '5px 12px',
+            borderRadius: '20px',
+            fontWeight: 500,
+            transition: 'all 0.15s'
+          }}
+        >
+          Đăng nhập
+        </Link>
       </div>
     </div>
   )
