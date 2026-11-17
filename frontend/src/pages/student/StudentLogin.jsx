@@ -257,3 +257,4 @@ export default function StudentLogin() {
     </div>
   );
 }
+
