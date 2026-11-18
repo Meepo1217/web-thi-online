@@ -1,0 +1,960 @@
+/* ========================================================
+   TAKEXAMPAGE STYLES - CHUẨN FIGMA PIXEL-PERFECT (1280px)
+   ======================================================== */
+
+.exam-take-canvas {
+  position: relative;
+  width: 1280px;
+  min-height: 100vh;
+  background: #F8F9FF;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  box-sizing: border-box;
+}
+
+/* 1. EXAM SUB-HEADER: Progress, Quick Settings & Status Indicators */
+.exam-sticky-subheader {
+  position: sticky;
+  top: 64px;
+  z-index: 100;
+  width: 1280px;
+  background: #FFFFFF;
+  border-bottom: 1px solid #E5EEFF;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.04);
+  padding: 12px 32px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.exam-subheader-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.exam-badge-room {
+  background: #EFF6FF;
+  color: #0051D5;
+  font-family: 'Liberation Mono', monospace;
+  font-weight: 700;
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+  border: 1px solid #BFDBFE;
+}
+
+.exam-subheader-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: #0B1C30;
+  max-width: 440px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.exam-subheader-center {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Đồng hồ đếm ngược */
+.exam-timer-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #F1F5F9;
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1px solid #E2E8F0;
+  transition: all 0.2s ease;
+}
+
+.exam-timer-box.warning {
+  background: #FEF2F2;
+  border-color: #FECACA;
+  color: #DC2626;
+  animation: pulse-timer 1.5s infinite;
+}
+
+@keyframes pulse-timer {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.exam-timer-icon {
+  color: #0051D5;
+}
+
+.exam-timer-box.warning .exam-timer-icon {
+  color: #DC2626;
+}
+
+.exam-timer-digits {
+  font-family: 'Liberation Mono', monospace;
+  font-size: 16px;
+  font-weight: 700;
+  color: #0B1C30;
+  letter-spacing: 0.5px;
+}
+
+.exam-timer-box.warning .exam-timer-digits {
+  color: #DC2626;
+}
+
+/* Tiến độ làm bài */
+.exam-progress-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 140px;
+}
+
+.exam-progress-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: #45464D;
+  font-weight: 500;
+}
+
+.exam-progress-bar-bg {
+  width: 100%;
+  height: 6px;
+  background: #E5EEFF;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.exam-progress-bar-fill {
+  height: 100%;
+  background: #0051D5;
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+.exam-subheader-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.exam-sync-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #059669;
+  font-weight: 500;
+  background: #ECFDF5;
+  padding: 4px 10px;
+  border-radius: 12px;
+  border: 1px solid #A7F3D0;
+}
+
+.exam-sync-dot {
+  width: 7px;
+  height: 7px;
+  background: #10B981;
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+}
+
+.btn-quit-exam {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  color: #45464D;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-quit-exam:hover {
+  background: #FEE2E2;
+  border-color: #FCA5A5;
+  color: #B91C1C;
+}
+
+/* 2. PRIMARY CANVAS GRID: SPLIT-SCREEN ARCHITECTURE */
+.exam-split-grid {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 24px 32px 64px;
+  gap: 24px;
+  width: 1280px;
+  box-sizing: border-box;
+}
+
+/* CỘT TRÁI: DÒNG CÂU HỎI CUỘN LIÊN TỤC (8 COLUMNS ~ 802.67px) */
+.exam-question-stream {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  width: 802.67px;
+  flex-shrink: 0;
+}
+
+/* ARTICLE - QUESTION CARD */
+.exam-question-card {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 24px;
+  gap: 20px;
+  width: 802.67px;
+  background: #FFFFFF;
+  border: 1px solid #E5EEFF;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.exam-question-card.active {
+  border-color: #0051D5;
+  box-shadow: 0 4px 16px rgba(0, 81, 213, 0.08);
+}
+
+.exam-question-card.flagged {
+  border-left: 4px solid #BA1A1A;
+}
+
+/* Question Header Bar */
+.question-header-strip {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 12px;
+  width: 100%;
+  border-bottom: 1px solid #E5EEFF;
+}
+
+.question-meta-tags {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.tag-question-num {
+  background: #DCE9FF;
+  color: #0B1C30;
+  border-radius: 3px;
+  padding: 4px 12px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.2px;
+}
+
+.tag-question-points {
+  background: #EFF4FF;
+  color: #45464D;
+  border-radius: 3px;
+  padding: 4px 10px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.2px;
+}
+
+.tag-question-type {
+  background: #E5EEFF;
+  color: #0B1C30;
+  border-radius: 3px;
+  padding: 3px 8px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.25px;
+}
+
+/* Flag / Bookmark Button */
+.btn-flag-question {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  transition: all 0.15s ease;
+}
+
+.btn-flag-question.neutral {
+  background: #E5EEFF;
+  color: #45464D;
+}
+
+.btn-flag-question.neutral:hover {
+  background: #D3E4FE;
+  color: #0B1C30;
+}
+
+.btn-flag-question.flagged {
+  background: #FFDAD6;
+  color: #BA1A1A;
+}
+
+.btn-flag-question.flagged:hover {
+  background: #FFCDD2;
+}
+
+/* Question Content / Prompt */
+.question-prompt-text {
+  width: 100%;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+  color: #0B1C30;
+}
+
+.code-inline {
+  font-family: 'Liberation Mono', monospace;
+  font-weight: 600;
+  font-size: 15px;
+  background: #EFF4FF;
+  color: #0051D5;
+  padding: 2px 8px;
+  border-radius: 4px;
+  border: 1px solid #DCE9FF;
+}
+
+/* Diagram Card (Question 14 Academic SVG Graph) */
+.academic-diagram-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  width: 100%;
+  background: #EFF4FF;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+.academic-svg-canvas {
+  width: 512px;
+  height: 288px;
+  max-width: 100%;
+}
+
+/* Options Container */
+.question-options-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.options-heading-sub {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.55px;
+  text-transform: uppercase;
+  color: #45464D;
+  margin-bottom: 2px;
+}
+
+/* Option Row Item */
+.option-item-row {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 18px;
+  width: 100%;
+  min-height: 60px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
+  border: 1px solid #E2E8F0;
+  background: #FFFFFF;
+}
+
+.option-item-row:hover {
+  background: #F8FAFC;
+  border-color: #CBD5E1;
+}
+
+.option-item-row.selected {
+  background: #EFF4FF;
+  border: 1.5px solid #0051D5;
+  box-shadow: 0 2px 8px rgba(0, 81, 213, 0.08);
+}
+
+.option-left-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  flex: 1;
+}
+
+.option-badge-key {
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  transition: all 0.15s ease;
+  background: #D3E4FE;
+  color: #0B1C30;
+}
+
+.option-item-row.selected .option-badge-key {
+  background: #0051D5;
+  color: #FFFFFF;
+}
+
+.option-label-text {
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 22px;
+  color: #0B1C30;
+}
+
+.option-item-row.selected .option-label-text {
+  font-weight: 600;
+  color: #00174B;
+}
+
+/* Radio Indicator */
+.option-radio-indicator {
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+  border: 2px solid #CBD5E1;
+  background: #FFFFFF;
+}
+
+.option-item-row.selected .option-radio-indicator {
+  border-color: #0051D5;
+  background: #0051D5;
+}
+
+.option-radio-dot-white {
+  width: 8px;
+  height: 8px;
+  background: #FFFFFF;
+  border-radius: 50%;
+}
+
+/* CỘT PHẢI: BẢNG MATRIX CÂU HỎI (STICKY SIDEBAR 389.33px) */
+.exam-sticky-sidebar {
+  position: sticky;
+  top: 130px;
+  width: 389.33px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-palette-card {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  gap: 16px;
+  width: 100%;
+  background: #FFFFFF;
+  border: 1px solid #E5EEFF;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+}
+
+/* Palette Header */
+.palette-header-strip {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #E5EEFF;
+}
+
+.palette-heading-text {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  color: #0B1C30;
+  margin: 0;
+}
+
+.palette-count-badge {
+  background: #E5EEFF;
+  border-radius: 4px;
+  padding: 3px 10px;
+  font-family: 'Liberation Mono', monospace;
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.44px;
+  color: #45464D;
+}
+
+/* Chú thích trạng thái (Legend) */
+.palette-legend-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  font-size: 12px;
+  color: #45464D;
+  padding-bottom: 4px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legend-swatch {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+}
+
+.legend-swatch.answered {
+  background: #DBE1FF;
+  border: 1px solid #BFDBFE;
+}
+
+.legend-swatch.current {
+  background: #0051D5;
+}
+
+.legend-swatch.flagged {
+  background: #FFDAD6;
+  border: 1px solid #FCA5A5;
+}
+
+.legend-swatch.unanswered {
+  background: #EFF4FF;
+  border: 1px solid #E2E8F0;
+}
+
+/* 50 Question Interactive Grid (5 columns x 10 rows) */
+.palette-50-grid {
+  width: 100%;
+  max-height: 380px;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+  padding: 4px 2px;
+  box-sizing: border-box;
+}
+
+.palette-num-btn {
+  height: 36px;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.15s ease;
+  text-decoration: none;
+}
+
+/* Trạng thái đã làm */
+.palette-num-btn.answered {
+  background: #DBE1FF;
+  color: #00174B;
+}
+
+.palette-num-btn.answered:hover {
+  background: #C4D3FE;
+}
+
+/* Trạng thái hiện tại đang xem */
+.palette-num-btn.current {
+  background: #0051D5 !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 2px 6px rgba(0, 81, 213, 0.35);
+}
+
+/* Trạng thái chưa làm */
+.palette-num-btn.unanswered {
+  background: #EFF4FF;
+  color: #45464D;
+}
+
+.palette-num-btn.unanswered:hover {
+  background: #E2E8F0;
+  color: #0B1C30;
+}
+
+/* Đặt cờ: chấm đỏ ở góc */
+.palette-flag-dot {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  width: 7px;
+  height: 7px;
+  background: #DC2626;
+  border-radius: 50%;
+  border: 1.5px solid #FFFFFF;
+}
+
+/* NÚT NỘP BÀI NỔI BẬT (PROMINENT SUBMIT BUTTON) */
+.btn-submit-exam-primary {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 14px 0px;
+  gap: 8px;
+  width: 100%;
+  height: 52px;
+  background: #0051D5;
+  color: #FFFFFF;
+  border-radius: 8px;
+  border: none;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0px 4px 14px rgba(0, 81, 213, 0.3);
+  transition: all 0.2s ease;
+}
+
+.btn-submit-exam-primary:hover {
+  background: #0043B3;
+  transform: translateY(-1px);
+  box-shadow: 0px 6px 18px rgba(0, 81, 213, 0.4);
+}
+
+.btn-submit-exam-primary:active {
+  transform: translateY(0);
+}
+
+/* ========================================================
+   MODAL XÁC NHẬN NỘP BÀI
+   ======================================================== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(11, 28, 48, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.submit-confirm-modal {
+  background: #FFFFFF;
+  width: 480px;
+  max-width: 95%;
+  border-radius: 12px;
+  padding: 28px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  animation: modal-pop 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modal-pop {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.modal-header-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.modal-icon-circle {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #EFF6FF;
+  color: #0051D5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  color: #0B1C30;
+  margin: 0;
+}
+
+.modal-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  background: #F8FAFC;
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid #E2E8F0;
+  text-align: center;
+}
+
+.modal-stat-box .stat-num {
+  font-family: 'Liberation Mono', monospace;
+  font-size: 22px;
+  font-weight: 700;
+  display: block;
+}
+
+.modal-stat-box .stat-label {
+  font-size: 12px;
+  color: #64748B;
+}
+
+.modal-actions-row {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 8px;
+}
+
+.btn-modal-cancel {
+  padding: 10px 18px;
+  background: #F1F5F9;
+  border: 1px solid #CBD5E1;
+  color: #475569;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.btn-modal-confirm {
+  padding: 10px 22px;
+  background: #0051D5;
+  border: none;
+  color: #FFFFFF;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 81, 213, 0.3);
+}
+
+/* ========================================================
+   SCREEN 2: POST-SUBMIT EXAM RESULT VIEW (FIGMA SCREEN 2)
+   ======================================================== */
+.result-view-container {
+  width: 1216px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 32px 0 64px;
+}
+
+.result-top-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn-result-back {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border: 1px solid #CBD5E1;
+  border-radius: 4px;
+  background: #FFFFFF;
+  color: #0F172A;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* Hero Score Card */
+.score-hero-card {
+  background: linear-gradient(135deg, #EFF6FF 0%, #E0E7FF 100%);
+  border: 1px solid #BFDBFE;
+  border-radius: 12px;
+  padding: 32px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 20px rgba(0, 81, 213, 0.08);
+}
+
+.score-hero-left {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.score-title-sub {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #334155;
+  text-transform: uppercase;
+}
+
+.score-value-big {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 54px;
+  font-weight: 800;
+  color: #0051D5;
+  line-height: 1;
+}
+
+.score-value-max {
+  font-size: 24px;
+  color: #64748B;
+  font-weight: 500;
+}
+
+.grade-badge-box {
+  display: inline-block;
+  background: #0051D5;
+  color: #FFFFFF;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  width: fit-content;
+}
+
+/* 4 Academic Indicators Grid */
+.academic-indicators-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.indicator-card {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.indicator-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #64748B;
+}
+
+.indicator-value {
+  font-family: 'Liberation Mono', monospace;
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.indicator-value.green { color: #16A34A; }
+.indicator-value.red { color: #DC2626; }
+.indicator-value.yellow { color: #D97706; }
+.indicator-value.blue { color: #0051D5; }
+
+.indicator-sub {
+  font-size: 12px;
+  color: #94A3B8;
+}
+
+/* Competency Domain Progress */
+.competency-card {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.competency-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #0B1C30;
+  margin: 0;
+}
+
+.topic-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.topic-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #334155;
+  font-weight: 500;
+}
+
+.topic-bar-bg {
+  width: 100%;
+  height: 8px;
+  background: #F1F5F9;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.topic-bar-fill {
+  height: 100%;
+  background: #0051D5;
+  border-radius: 4px;
+}
+

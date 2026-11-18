@@ -7,9 +7,11 @@ import { QuestionBankFolders, QuestionList, QuestionDetail, QuestionEdit } from 
 import ExamManagement from './pages/teacher/exam-management/ExamManagement';
 import TeacherDashboard from './pages/teacher/TeacherDashboard';
 import Login from './pages/auth/Login';
+import StudentLogin from './pages/student/StudentLogin';
+import StudentPortal from './pages/student/StudentPortal';
 
 /**
- * Component kiểm tra kết nối với Laravel Backend (giữ nguyên tính năng ban đầu của dự án)
+ * Component kiểm tra kết nối với Laravel Backend
  */
 function ConnectionTest() {
   const [data, setData] = useState(null);
@@ -55,6 +57,19 @@ function ConnectionTest() {
 
       <div style={{ marginTop: '24px', display: 'flex', gap: '16px' }}>
         <Link
+          to="/student"
+          style={{
+            padding: '8px 16px',
+            background: '#059669',
+            color: '#FFFFFF',
+            textDecoration: 'none',
+            borderRadius: '6px',
+            fontWeight: 600,
+          }}
+        >
+          👨‍🎓 Cổng Sinh viên &rarr;
+        </Link>
+        <Link
           to="/teacher/dashboard"
           style={{
             padding: '8px 16px',
@@ -65,7 +80,7 @@ function ConnectionTest() {
             fontWeight: 600,
           }}
         >
-          Đến Giao diện Giảng viên &rarr;
+          👨‍🏫 Cổng Giảng viên &rarr;
         </Link>
         <Link
           to="/login"
@@ -86,19 +101,89 @@ function ConnectionTest() {
 }
 
 /**
- * App - Cấu hình hệ thống Router cho ứng dụng
+ * App - Cấu hình hệ thống Router phân chia theo Roles:
+ * - /student/* : Cổng Sinh viên (Student Portal)
+ * - /teacher/* : Cổng Giảng viên (Teacher Portal)
+ * - /login     : Xác thực tài khoản (Auth)
  */
 function App() {
   return (
     <BrowserRouter>
+      {/* Thanh chuyển đổi Role nhanh nổi ở góc trên màn hình */}
+      <div style={{
+        position: 'fixed',
+        top: '12px',
+        right: '20px',
+        zIndex: 99999,
+        background: 'rgba(15, 23, 42, 0.88)',
+        backdropFilter: 'blur(8px)',
+        color: '#FFFFFF',
+        padding: '6px 12px',
+        borderRadius: '30px',
+        display: 'flex',
+        alignItems: 'center',
+        gap: '8px',
+        boxShadow: '0 4px 16px rgba(0, 0, 0, 0.25)',
+        fontSize: '12px',
+        fontFamily: "'Inter', sans-serif"
+      }}>
+        <span style={{ color: '#94A3B8', fontWeight: 600 }}>Vai trò:</span>
+        <Link
+          to="/student"
+          style={{
+            color: '#FFFFFF',
+            textDecoration: 'none',
+            padding: '4px 10px',
+            borderRadius: '16px',
+            background: '#059669',
+            fontWeight: 600,
+            fontSize: '11px'
+          }}
+        >
+          👨‍🎓 Học sinh
+        </Link>
+        <Link
+          to="/teacher/dashboard"
+          style={{
+            color: '#FFFFFF',
+            textDecoration: 'none',
+            padding: '4px 10px',
+            borderRadius: '16px',
+            background: '#0051D5',
+            fontWeight: 600,
+            fontSize: '11px'
+          }}
+        >
+          👨‍🏫 Giảng viên
+        </Link>
+        <Link
+          to="/login"
+          style={{
+            color: '#CBD5E1',
+            textDecoration: 'none',
+            padding: '4px 8px',
+            borderRadius: '16px',
+            fontWeight: 500,
+            fontSize: '11px'
+          }}
+        >
+          🔐 Đăng nhập
+        </Link>
+      </div>
+
       <Routes>
+        {/* Route Cổng Sinh viên (Student Portal) */}
+        <Route path="/student/login" element={<StudentLogin />} />
+        <Route path="/student/*" element={<StudentPortal />} />
+
+        {/* Route xác thực tài khoản học sinh / sinh viên chuẩn Figma */}
+        <Route path="/login" element={<StudentLogin />} />
+        <Route path="/teacher/login" element={<Login />} />
+
         {/* Route kiểm tra kết nối ban đầu */}
         <Route path="/test-connection" element={<ConnectionTest />} />
 
-        {/* Route xác thực tài khoản (Auth nằm NGOÀI TeacherLayout) */}
-        <Route path="/login" element={<Login />} />
-
-        {/* Layout Route cha dành cho Giảng viên */}
+        {/* Layout Route cha dành cho Giảng viên (Teacher Portal) */}
         <Route path="/teacher" element={<TeacherLayout />}>
           <Route index element={<TeacherHome />} />
           <Route path="dashboard" element={<TeacherHome />} />
@@ -119,15 +204,14 @@ function App() {
           <Route path="statistics" element={<TeacherDashboard />} />
           <Route path="settings" element={<TeacherDashboard />} />
           <Route path="help" element={<TeacherDashboard />} />
-          {/* Fallback cho các đường dẫn con chưa định nghĩa */}
           <Route path="*" element={<Navigate to="/teacher/dashboard" replace />} />
         </Route>
 
-        {/* Mặc định điều hướng vào cổng giảng viên */}
-        <Route path="/" element={<Navigate to="/teacher/dashboard" replace />} />
+        {/* Mặc định điều hướng vào cổng sinh viên */}
+        <Route path="/" element={<Navigate to="/student" replace />} />
 
-        {/* Bắt mọi route lạ điều hướng về trang chủ */}
-        <Route path="*" element={<Navigate to="/teacher/dashboard" replace />} />
+        {/* Bắt mọi route lạ điều hướng về cổng sinh viên */}
+        <Route path="*" element={<Navigate to="/student" replace />} />
       </Routes>
     </BrowserRouter>
   );
