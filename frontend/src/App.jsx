@@ -7,8 +7,7 @@ import { QuestionBankFolders, QuestionList, QuestionDetail, QuestionEdit } from 
 import ExamManagement from './pages/teacher/exam-management/ExamManagement';
 import TeacherDashboard from './pages/teacher/TeacherDashboard';
 import Login from './pages/auth/Login';
-import StudentLogin from './pages/student/StudentLogin';
-import StudentRegister from './pages/student/StudentRegister';
+import Register from './pages/auth/Register';
 import StudentPortal from './pages/student/StudentPortal';
 
 /**
@@ -173,15 +172,15 @@ function App() {
       </div>
 
       <Routes>
-        {/* Route Cổng Sinh viên (Student Portal) */}
-        <Route path="/student/login" element={<StudentLogin />} />
-        <Route path="/student/register" element={<StudentRegister />} />
-        <Route path="/student/*" element={<StudentPortal />} />
+        {/* Route xác thực tài khoản chung cho cả Giảng viên và Học sinh / Sinh viên */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/student/login" element={<Navigate to="/login" replace />} />
+        <Route path="/student/register" element={<Navigate to="/register" replace />} />
+        <Route path="/teacher/login" element={<Navigate to="/login" replace />} />
 
-        {/* Route xác thực tài khoản học sinh / sinh viên chuẩn Figma */}
-        <Route path="/login" element={<StudentLogin />} />
-        <Route path="/register" element={<StudentRegister />} />
-        <Route path="/teacher/login" element={<Login />} />
+        {/* Route Cổng Sinh viên (Student Portal) */}
+        <Route path="/student/*" element={<StudentPortal />} />
 
         {/* Route kiểm tra kết nối ban đầu */}
         <Route path="/test-connection" element={<ConnectionTest />} />

@@ -1,13 +1,13 @@
 /* ========================================================
-   STUDENT REGISTER PAGE STYLES - CHUẨN FIGMA PIXEL-PERFECT
+   AUTH COMMON STYLES - CHUẨN FIGMA CHO CẢ SINH VIÊN VÀ GIẢNG VIÊN
    ======================================================== */
 
-.student-register-wrapper {
+.auth-wrapper {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 32px 24px 48px;
+  padding: 32px 20px 48px;
   min-height: 100vh;
   width: 100%;
   background: linear-gradient(0deg, #F8F9FF, #F8F9FF), #FFFFFF;
@@ -17,10 +17,10 @@
   overflow-x: hidden;
 }
 
-/* Container chứa Card và Backdrop Ambient Glows */
-.student-register-container {
+/* Khung bọc Container chứa Card và các vệt sáng Ambient */
+.auth-container {
   position: relative;
-  width: 512px;
+  width: 500px;
   max-width: 100%;
   display: flex;
   flex-direction: column;
@@ -29,8 +29,8 @@
   z-index: 2;
 }
 
-/* Subtle ambient decorative glow backdrop - Figma specs */
-.register-glow-top-left {
+/* Subtle ambient decorative glow backdrop chuẩn Figma */
+.auth-glow-top-left {
   position: absolute;
   width: 256px;
   height: 256px;
@@ -43,7 +43,7 @@
   z-index: 0;
 }
 
-.register-glow-bottom-right {
+.auth-glow-bottom-right {
   position: absolute;
   width: 288px;
   height: 288px;
@@ -56,63 +56,37 @@
   z-index: 1;
 }
 
-/* Main Card Container 512px */
-.student-register-card {
-  width: 512px;
-  max-width: 512px;
+/* Thẻ Card trung tâm */
+.auth-card {
+  width: 100%;
   background: #FFFFFF;
   box-shadow: 0px 20px 25px -5px rgba(0, 0, 0, 0.1), 0px 8px 10px -6px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   border: 1px solid #E5EEFF;
-  padding: 32px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
   position: relative;
+  overflow: hidden;
   box-sizing: border-box;
   z-index: 3;
 }
 
-/* Header Section */
-.student-register-header {
+/* Nội dung bên trong thẻ Card */
+.auth-card-body {
+  padding: 32px 32px 24px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  width: 100%;
-  gap: 12px;
-  padding-top: 4px;
+  gap: 18px;
 }
 
-/* Badge & Brand Identity */
-.register-badge-pill {
+/* Header thương hiệu */
+.auth-brand-row {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   align-items: center;
-  padding: 4px 12px;
-  gap: 8px;
-  background: #EFF4FF;
-  border-radius: 12px;
+  width: 100%;
 }
 
-.register-badge-dot {
-  width: 8px;
-  height: 8px;
-  background: #0051D5;
-  border-radius: 50%;
-}
-
-.register-badge-text {
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
-  font-size: 11px;
-  line-height: 14px;
-  letter-spacing: 0.275px;
-  text-transform: uppercase;
-  color: #0051D5;
-}
-
-/* EduQuiz Brand Logo Row */
-.register-brand-logo-row {
+.auth-brand-left {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -121,95 +95,171 @@
   cursor: pointer;
 }
 
-.register-brand-icon-box {
-  position: relative;
-  width: 40px;
-  height: 40px;
+.auth-brand-emblem-box {
+  width: 34px;
+  height: 34px;
   background: #0051D5;
-  border-radius: 4px;
-  box-shadow: 0px 4px 6px -1px rgba(0, 0, 0, 0.1), 0px 2px 4px -2px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 2px 4px rgba(0, 81, 213, 0.2);
+  border-radius: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #FFFFFF;
 }
 
-.register-brand-info {
+.auth-brand-info {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 2px;
 }
 
-.register-brand-title {
+.auth-brand-title {
   font-family: 'Liberation Serif', Georgia, serif;
   font-style: normal;
   font-weight: 700;
-  font-size: 20px;
-  line-height: 24px;
-  letter-spacing: -0.5px;
+  font-size: 18px;
+  line-height: 22px;
+  letter-spacing: -0.4px;
   color: #0B1C30;
   margin: 0;
 }
 
-.register-brand-sub {
+.auth-brand-subtitle {
   font-family: 'Inter', sans-serif;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 11px;
-  line-height: 14px;
-  letter-spacing: 0.55px;
+  font-weight: 600;
+  font-size: 10px;
+  line-height: 12px;
+  letter-spacing: 0.5px;
   text-transform: uppercase;
   color: #45464D;
 }
 
-/* Headline & Subtext */
-.register-headline-group {
+.auth-badge-pill {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  text-align: center;
+  padding: 4px 10px;
   gap: 6px;
-  max-width: 448px;
+  background: #EFF4FF;
+  border-radius: 12px;
 }
 
-.register-headline-title {
+.auth-badge-dot {
+  width: 6px;
+  height: 6px;
+  background: #0051D5;
+  border-radius: 50%;
+}
+
+.auth-badge-label {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 14px;
+  color: #0051D5;
+}
+
+/* Tiêu đề & Giới thiệu */
+.auth-header-section {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.auth-heading {
   font-family: 'Liberation Serif', Georgia, serif;
   font-style: normal;
   font-weight: 700;
-  font-size: 26px;
-  line-height: 34px;
-  letter-spacing: -0.7px;
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing: -0.6px;
   color: #0B1C30;
   margin: 0;
 }
 
-.register-headline-desc {
+.auth-subtext {
   font-family: 'Inter', sans-serif;
-  font-style: normal;
-  font-weight: 400;
   font-size: 13px;
-  line-height: 20px;
-  color: #45464D;
+  line-height: 18px;
+  color: #64748B;
   margin: 0;
 }
 
-/* Registration Form */
-.student-register-form {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  width: 100%;
-}
-
-.register-form-field {
+/* Tab chuyển đổi vai trò (Sinh viên / Giảng viên) */
+.auth-role-tabs-container {
   display: flex;
   flex-direction: column;
   gap: 6px;
   width: 100%;
 }
 
-.register-field-label-row {
+.auth-role-tabs-label {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  color: #45464D;
+}
+
+.auth-role-tabs {
+  display: flex;
+  flex-direction: row;
+  background: #EFF4FF;
+  border-radius: 6px;
+  padding: 3px;
+  gap: 4px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.auth-role-tab-btn {
+  flex: 1;
+  height: 38px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 5px;
+  border: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: #45464D;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.auth-role-tab-btn:hover {
+  color: #0B1C30;
+}
+
+.auth-role-tab-btn.active {
+  background: #FFFFFF;
+  color: #0051D5;
+  font-weight: 600;
+  box-shadow: 0px 2px 5px rgba(0, 81, 213, 0.12);
+}
+
+/* Form Section */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+}
+
+.auth-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 100%;
+}
+
+.auth-form-label-row {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -217,41 +267,41 @@
   width: 100%;
 }
 
-.register-field-label {
+.auth-form-label {
   font-family: 'Inter', sans-serif;
+  font-style: normal;
   font-weight: 600;
   font-size: 12px;
   line-height: 16px;
-  letter-spacing: 0.24px;
+  letter-spacing: 0.2px;
   color: #0B1C30;
 }
 
-.register-field-tag {
+.auth-form-tag {
   font-family: 'Inter', sans-serif;
   font-weight: 500;
   font-size: 11px;
   line-height: 14px;
-  letter-spacing: 0.44px;
   color: #45464D;
   text-transform: uppercase;
 }
 
-.register-field-tag.blue {
+.auth-form-tag.blue {
   color: #0051D5;
   font-weight: 600;
 }
 
-/* Input container with inset border */
-.register-input-wrap {
+/* Input Container */
+.auth-input-container {
   position: relative;
   display: flex;
   align-items: center;
   width: 100%;
 }
 
-.register-input-icon {
+.auth-input-icon {
   position: absolute;
-  left: 15px;
+  left: 14px;
   width: 16px;
   height: 16px;
   color: #76777D;
@@ -261,14 +311,13 @@
   justify-content: center;
 }
 
-.register-input-field {
+.auth-input-field {
   width: 100%;
-  height: 43px;
-  background: #FFFFFF;
-  box-shadow: inset 0px 0px 0px 1px #D3E4FE;
+  height: 44px;
+  background: #EFF4FF;
+  border: 1px solid transparent;
   border-radius: 4px;
-  border: none;
-  padding: 0 44px 0 44px;
+  padding: 0 42px 0 42px;
   font-family: 'Inter', sans-serif;
   font-size: 14px;
   color: #0B1C30;
@@ -277,16 +326,18 @@
   box-sizing: border-box;
 }
 
-.register-input-field::placeholder {
-  color: rgba(118, 119, 125, 0.7);
-  font-size: 14px;
+.auth-input-field::placeholder {
+  color: rgba(69, 70, 77, 0.65);
+  font-size: 13.5px;
 }
 
-.register-input-field:focus {
-  box-shadow: inset 0px 0px 0px 2px #0051D5, 0 0 0 3px rgba(0, 81, 213, 0.12);
+.auth-input-field:focus {
+  background: #FFFFFF;
+  border-color: #0051D5;
+  box-shadow: 0 0 0 3px rgba(0, 81, 213, 0.12);
 }
 
-.register-input-toggle-btn {
+.auth-btn-toggle-password {
   position: absolute;
   right: 12px;
   background: none;
@@ -300,104 +351,104 @@
   transition: color 0.15s ease;
 }
 
-.register-input-toggle-btn:hover {
+.auth-btn-toggle-password:hover {
   color: #0B1C30;
 }
 
-/* Field Sub-Hint */
-.register-field-hint {
+/* Gợi ý dưới input */
+.auth-field-hint {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
   font-family: 'Inter', sans-serif;
-  font-weight: 500;
   font-size: 11px;
   line-height: 14px;
-  letter-spacing: 0.44px;
-  color: #45464D;
+  color: #64748B;
   margin-top: 2px;
 }
 
-.register-field-hint-icon {
-  color: #0051D5;
-  display: flex;
-  align-items: center;
-}
-
 /* 4-Level Password Strength Bar */
-.register-strength-bar-wrap {
+.auth-strength-bar-wrap {
   display: flex;
   flex-direction: row;
-  gap: 6px;
+  gap: 5px;
   width: 100%;
   margin-top: 4px;
 }
 
-.register-strength-segment {
-  height: 6px;
+.auth-strength-segment {
+  height: 5px;
   flex: 1;
   background: #D3E4FE;
-  border-radius: 12px;
+  border-radius: 10px;
   transition: background-color 0.25s ease;
 }
 
-.register-strength-segment.active-weak {
-  background: #EF4444; /* Đỏ - Yếu */
+.auth-strength-segment.active-weak {
+  background: #EF4444;
 }
 
-.register-strength-segment.active-fair {
-  background: #F59E0B; /* Vàng cam - Trung bình */
+.auth-strength-segment.active-fair {
+  background: #F59E0B;
 }
 
-.register-strength-segment.active-good {
-  background: #3B82F6; /* Xanh dương - Khá */
+.auth-strength-segment.active-good {
+  background: #3B82F6;
 }
 
-.register-strength-segment.active-strong {
-  background: #10B981; /* Xanh lá - Mạnh */
+.auth-strength-segment.active-strong {
+  background: #10B981;
 }
 
-/* Agreement Checkbox Row */
-.register-agreement-row {
+/* Utilities Row */
+.auth-utilities-row {
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
-  gap: 10px;
-  padding: 4px 0 6px;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.auth-remember-label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
   cursor: pointer;
   user-select: none;
 }
 
-.register-agreement-checkbox {
+.auth-remember-checkbox {
   width: 16px;
   height: 16px;
-  margin-top: 2px;
   accent-color: #0051D5;
   cursor: pointer;
-  flex-shrink: 0;
 }
 
-.register-agreement-text {
+.auth-remember-text {
   font-family: 'Inter', sans-serif;
-  font-weight: 400;
   font-size: 13px;
-  line-height: 18px;
   color: #45464D;
 }
 
-.register-agreement-link {
-  color: #0051D5;
+.auth-forgot-link {
+  font-family: 'Inter', sans-serif;
   font-weight: 500;
+  font-size: 12px;
+  color: #0051D5;
   text-decoration: none;
+  cursor: pointer;
+  transition: color 0.15s ease;
 }
 
-.register-agreement-link:hover {
+.auth-forgot-link:hover {
   text-decoration: underline;
+  color: #003da1;
 }
 
-/* Submit Primary Button - Gradient 90deg #0051D5 -> #316BF3 */
-.btn-student-register-submit {
+/* Primary Submit Button */
+.btn-auth-submit {
   width: 100%;
   height: 44px;
   background: linear-gradient(90deg, #0051D5 0%, #316BF3 100%);
@@ -411,48 +462,47 @@
   gap: 8px;
   color: #FFFFFF;
   font-family: 'Inter', sans-serif;
-  font-weight: 700;
+  font-weight: 600;
   font-size: 14px;
-  line-height: 20px;
-  letter-spacing: 0.14px;
   cursor: pointer;
   transition: all 0.2s ease;
+  margin-top: 4px;
 }
 
-.btn-student-register-submit:hover {
+.btn-auth-submit:hover {
   opacity: 0.95;
   transform: translateY(-1px);
   box-shadow: 0px 8px 16px -2px rgba(0, 81, 213, 0.35);
 }
 
-.btn-student-register-submit:active {
+.btn-auth-submit:active {
   transform: translateY(0);
 }
 
-.btn-student-register-submit:disabled {
+.btn-auth-submit:disabled {
   opacity: 0.65;
   cursor: not-allowed;
   transform: none;
 }
 
-/* Social SSO Separator */
-.register-sso-separator {
+/* Phân cách Social SSO */
+.auth-social-divider {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 4px 0;
+  margin: 6px 0;
   width: 100%;
 }
 
-.register-sso-line {
+.auth-divider-line {
   position: absolute;
   width: 100%;
   height: 1px;
-  background: #D3E4FE;
+  background: #DCE9FF;
 }
 
-.register-sso-badge {
+.auth-divider-badge {
   position: relative;
   background: #FFFFFF;
   padding: 0 12px;
@@ -462,20 +512,20 @@
   line-height: 14px;
   letter-spacing: 0.55px;
   text-transform: uppercase;
-  color: #45464D;
+  color: #64748B;
 }
 
 /* SSO Buttons Row */
-.register-sso-buttons-row {
+.auth-sso-row {
   display: flex;
   flex-direction: row;
-  gap: 12px;
+  gap: 10px;
   width: 100%;
 }
 
-.btn-sso-item {
+.btn-auth-sso {
   flex: 1;
-  height: 38px;
+  height: 40px;
   background: #EFF4FF;
   border: 1px solid #DCE9FF;
   border-radius: 4px;
@@ -483,26 +533,25 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 10px;
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
-  font-size: 12px;
-  line-height: 16px;
-  letter-spacing: 0.24px;
-  color: #0B1C30;
+  gap: 8px;
   cursor: pointer;
   transition: all 0.15s ease;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 13px;
+  color: #0B1C30;
 }
 
-.btn-sso-item:hover {
+.btn-auth-sso:hover {
   background: #E2E8F0;
   border-color: #CBD5E1;
 }
 
-/* Login Link Footer */
-.register-login-footer {
+/* Footer Chuyển đổi Đăng nhập / Đăng ký */
+.auth-footer-strip {
+  background: rgba(239, 244, 255, 0.6);
   border-top: 1px solid #E5EEFF;
-  padding-top: 16px;
+  padding: 16px 24px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -510,41 +559,72 @@
   gap: 6px;
   font-family: 'Inter', sans-serif;
   font-size: 13px;
-  line-height: 20px;
   color: #45464D;
+  border-radius: 0 0 8px 8px;
 }
 
-.register-login-link {
+.auth-footer-link {
   font-family: 'Inter', sans-serif;
   font-weight: 600;
   font-size: 13px;
-  line-height: 20px;
   color: #0051D5;
   text-decoration: none;
+  cursor: pointer;
   display: flex;
   align-items: center;
   gap: 3px;
-  transition: color 0.15s ease;
 }
 
-.register-login-link:hover {
+.auth-footer-link:hover {
   text-decoration: underline;
   color: #003da1;
 }
 
+/* Quick Fill Demo Credentials Bar */
+.auth-demo-bar {
+  background: #F1F5F9;
+  border: 1px dashed #CBD5E1;
+  border-radius: 6px;
+  padding: 8px 12px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #475569;
+}
+
+.btn-auth-demo-chip {
+  background: #FFFFFF;
+  border: 1px solid #CBD5E1;
+  border-radius: 4px;
+  padding: 3px 8px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #0051D5;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-auth-demo-chip:hover {
+  background: #0051D5;
+  color: #FFFFFF;
+  border-color: #0051D5;
+}
+
 /* Academic Trust Assurance Footer */
-.register-trust-footer {
+.auth-trust-footer {
   margin-top: 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 8px;
-  width: 512px;
+  width: 500px;
   max-width: 100%;
   z-index: 2;
 }
 
-.register-trust-badges-row {
+.auth-trust-badges {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -553,7 +633,7 @@
   flex-wrap: wrap;
 }
 
-.register-trust-badge {
+.auth-trust-badge-item {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -562,27 +642,24 @@
   font-weight: 500;
   font-size: 11px;
   line-height: 14px;
-  letter-spacing: 0.44px;
+  letter-spacing: 0.3px;
   color: #45464D;
 }
 
-.register-trust-badge-icon {
+.auth-trust-badge-item svg {
   color: #0051D5;
-  display: flex;
-  align-items: center;
 }
 
-.register-trust-dot {
+.auth-trust-dot {
   color: #94A3B8;
   font-size: 12px;
 }
 
-.register-copyright-text {
+.auth-copyright {
   font-family: 'Inter', sans-serif;
   font-weight: 500;
   font-size: 11px;
   line-height: 14px;
-  letter-spacing: 0.44px;
   color: rgba(69, 70, 77, 0.7);
   text-align: center;
 }
