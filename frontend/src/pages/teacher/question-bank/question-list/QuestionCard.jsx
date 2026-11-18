@@ -34,17 +34,6 @@ export default function QuestionCard({
     }
   };
 
-  // Render Status Badge (Đã duyệt / Chờ duyệt)
-  const renderStatus = () => {
-    const isApproved = question.status === 'approved';
-    return (
-      <div className={`ql-status-indicator ${isApproved ? 'ql-status-approved' : 'ql-status-pending'}`}>
-        <span className="ql-status-dot" />
-        <span className="ql-status-text">{question.statusText}</span>
-      </div>
-    );
-  };
-
   // Render Options / Statements / Short Answer dựa trên question.type
   const renderTypeBody = () => {
     if (question.type === 'mcq' && question.options) {
@@ -126,8 +115,6 @@ export default function QuestionCard({
             <div className="ql-metadata-left">
               <span className="ql-code-badge">{question.code}</span>
               {renderBloomBadge()}
-              <span className="ql-chapter-badge">{question.chapter}</span>
-              {renderStatus()}
             </div>
 
             <div className="ql-metadata-right">

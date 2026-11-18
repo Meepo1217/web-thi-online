@@ -12,9 +12,6 @@ import {
 export default function QuestionBankFilterBar({
   searchTerm = '',
   onSearchChange,
-  activeGrade = 'all',
-  onGradeChange,
-  gradeTabs = [],
   sortOrder = 'newest',
   onSortChange,
   viewMode = 'grid',
@@ -22,7 +19,7 @@ export default function QuestionBankFilterBar({
 }) {
   return (
     <div className="qb-filter-bar">
-      {/* Left side: Search input + Grade level tabs */}
+      {/* Left side: Search input */}
       <div className="qb-filter-left">
         {/* Fast Search input */}
         <div className="qb-search-input-box">
@@ -34,25 +31,6 @@ export default function QuestionBankFilterBar({
             value={searchTerm}
             onChange={(e) => onSearchChange(e.target.value)}
           />
-        </div>
-
-        {/* Grade tabs */}
-        <div className="qb-grade-tabs-container" role="tablist">
-          {gradeTabs.map((tab) => {
-            const isActive = tab.id === activeGrade;
-            return (
-              <button
-                key={tab.id}
-                type="button"
-                role="tab"
-                aria-selected={isActive}
-                className={`qb-grade-tab-btn ${isActive ? 'active' : ''}`}
-                onClick={() => onGradeChange(tab.id)}
-              >
-                {tab.label}
-              </button>
-            );
-          })}
         </div>
       </div>
 

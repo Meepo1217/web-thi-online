@@ -579,6 +579,76 @@ export function IconFormula({ width = 14, height = 14, color = 'currentColor' })
   );
 }
 
+export function IconAlertTriangle({ width = 20, height = 20, color = 'currentColor' }) {
+  return (
+    <svg width={width} height={height} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+      <line x1="12" y1="9" x2="12" y2="13" />
+      <line x1="12" y1="17" x2="12.01" y2="17" />
+    </svg>
+  );
+}
+
+export function IconStrikethrough({ width = 12, height = 12, color = 'currentColor' }) {
+  return (
+    <svg width={width} height={height} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M16 4H9a3 3 0 0 0-2.83 4" />
+      <path d="M14 12a4 4 0 0 1 0 8H6" />
+      <line x1="4" y1="12" x2="20" y2="12" />
+    </svg>
+  );
+}
+
+export function IconSuperscript({ width = 12, height = 12, color = 'currentColor' }) {
+  return (
+    <svg width={width} height={height} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M4 19l6-6" />
+      <path d="M4 13l6 6" />
+      <path d="M20 5h-4l3-3h-3" />
+    </svg>
+  );
+}
+
+export function IconSubscript({ width = 12, height = 12, color = 'currentColor' }) {
+  return (
+    <svg width={width} height={height} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M4 5l6 6" />
+      <path d="M4 11l6-6" />
+      <path d="M20 19h-4l3-3h-3" />
+    </svg>
+  );
+}
+
+export function IconTable({ width = 14, height = 14, color = 'currentColor' }) {
+  return (
+    <svg width={width} height={height} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="3" y="3" width="18" height="18" rx="2" />
+      <line x1="3" y1="9" x2="21" y2="9" />
+      <line x1="3" y1="15" x2="21" y2="15" />
+      <line x1="12" y1="3" x2="12" y2="21" />
+    </svg>
+  );
+}
+
+export function IconGripVertical({ width = 9, height = 14, color = 'currentColor' }) {
+  return (
+    <svg width={width} height={height} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="9" cy="5" r="1.5" fill={color} />
+      <circle cx="9" cy="12" r="1.5" fill={color} />
+      <circle cx="9" cy="19" r="1.5" fill={color} />
+      <circle cx="15" cy="5" r="1.5" fill={color} />
+      <circle cx="15" cy="12" r="1.5" fill={color} />
+      <circle cx="15" cy="19" r="1.5" fill={color} />
+    </svg>
+  );
+}
+
+export function IconFunction({ width = 14, height = 14, color = 'currentColor' }) {
+  return <IconFormula width={width} height={height} color={color} />;
+}
+
+
+
 
 
 

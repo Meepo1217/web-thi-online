@@ -19,7 +19,7 @@ import './question-edit.css';
  * - Cấu hình phương án trắc nghiệm A-D, chọn đáp án đúng
  * - Biên soạn lời giải chi tiết, MathJax, mẹo giải nhanh
  * - Phân loại môn học, khối lớp, chuyên đề, cấp độ Bloom, điểm số
- * - Gắn thẻ (Tags), trạng thái kiểm định, phân tích hiệu suất
+ * - Gắn thẻ (Tags), trạng thái duyệt, phân tích hiệu suất
  * - Thanh nổi lưu thay đổi & tự động lưu
  */
 export default function QuestionEdit() {

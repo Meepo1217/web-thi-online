@@ -36,8 +36,8 @@ export default function QuestionListHeader({
           <span className="ql-breadcrumb-sep">
             <IconChevronRight width={5} height={8} color="#76777D" />
           </span>
-          <Link to="/teacher/questions" className="ql-breadcrumb-link">
-            Thư mục chuyên môn
+          <Link to="/teacher/questions/math" className="ql-breadcrumb-link">
+            Toán học 12
           </Link>
           <span className="ql-breadcrumb-sep">
             <IconChevronRight width={5} height={8} color="#76777D" />

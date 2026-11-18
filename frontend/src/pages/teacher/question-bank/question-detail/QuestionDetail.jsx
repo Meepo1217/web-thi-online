@@ -7,6 +7,7 @@ import QuestionDetailedSolution from './QuestionDetailedSolution';
 import QuestionMetaCard from './QuestionMetaCard';
 import QuestionPerformanceCard from './QuestionPerformanceCard';
 import QuestionExamUsageCard from './QuestionExamUsageCard';
+import QuestionDeleteModal from '../question-delete/QuestionDeleteModal';
 import { QUESTION_DETAIL_DATA } from './questionDetailData';
 import './question-detail.css';
 
@@ -22,6 +23,8 @@ export default function QuestionDetail() {
 
   // Dữ liệu câu hỏi chi tiết
   const [question, setQuestion] = useState(QUESTION_DETAIL_DATA);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   // Xử lý các hành động
   const handleHistoryClick = () => {
@@ -29,10 +32,17 @@ export default function QuestionDetail() {
   };
 
   const handleDeleteClick = () => {
-    if (window.confirm(`Bạn có chắc chắn muốn xóa câu hỏi ${question.code} khỏi ngân hàng câu hỏi?`)) {
-      alert(`Đã xóa câu hỏi ${question.code} thành công.`);
-      navigate('/teacher/questions/math');
-    }
+    setIsDeleteModalOpen(true);
+  };
+
+  const handleConfirmDelete = () => {
+    setIsDeleting(true);
+    setTimeout(() => {
+      setIsDeleting(false);
+      setIsDeleteModalOpen(false);
+      alert(`Đã xóa vĩnh viễn câu hỏi ${question.code} thành công.`);
+      navigate('/teacher/questions/math/list');
+    }, 600);
   };
 
   const handleEditClick = () => {
@@ -85,6 +95,15 @@ export default function QuestionDetail() {
           />
         </div>
       </div>
+
+      {/* Popup xác nhận xóa câu hỏi */}
+      <QuestionDeleteModal
+        isOpen={isDeleteModalOpen}
+        question={question}
+        onConfirm={handleConfirmDelete}
+        onCancel={() => setIsDeleteModalOpen(false)}
+        isDeleting={isDeleting}
+      />
     </div>
   );
 }
