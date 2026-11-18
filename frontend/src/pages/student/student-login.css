@@ -1,0 +1,382 @@
+/* ========================================================
+   STUDENT LOGIN PAGE STYLES - CHUẨN FIGMA PIXEL-PERFECT
+   ======================================================== */
+
+.student-login-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 80px 24px;
+  min-height: 100vh;
+  width: 100%;
+  background: linear-gradient(0deg, #F8F9FF, #F8F9FF), #FFFFFF;
+  box-sizing: border-box;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Card container 460px */
+.student-login-card {
+  width: 460px;
+  max-width: 460px;
+  background: #FFFFFF;
+  border-radius: 8px;
+  box-shadow: 0px 20px 25px -5px rgba(0, 0, 0, 0.1), 0px 8px 10px -6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #E5EEFF;
+}
+
+/* Inner content area */
+.student-login-body {
+  padding: 32px 32px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Brand Emblem & Academic Identifier */
+.student-login-brand-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.student-brand-left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+}
+
+.student-brand-emblem-box {
+  width: 32px;
+  height: 32px;
+  background: #131B2E;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  font-family: 'Liberation Serif', Georgia, serif;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.student-brand-text {
+  font-family: 'Liberation Serif', Georgia, serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: -0.4px;
+  color: #0B1C30;
+}
+
+.student-academic-pill {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 4px 10px;
+  gap: 6px;
+  background: #EFF4FF;
+  border-radius: 12px;
+}
+
+.student-pill-dot {
+  width: 6px;
+  height: 6px;
+  background: #0051D5;
+  border-radius: 50%;
+}
+
+.student-pill-label {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: #45464D;
+}
+
+/* Header Section */
+.student-login-header-section {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.student-login-heading {
+  font-family: 'Liberation Serif', Georgia, serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 26px;
+  line-height: 34px;
+  letter-spacing: -0.7px;
+  color: #0B1C30;
+  margin: 0;
+}
+
+.student-login-subtext {
+  font-size: 13px;
+  color: #64748B;
+  margin: 0;
+}
+
+/* Form Section */
+.student-login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.student-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+
+.student-form-label {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.24px;
+  color: #0B1C30;
+}
+
+.student-input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.student-input-icon {
+  position: absolute;
+  left: 14px;
+  width: 16px;
+  height: 16px;
+  color: #45464D;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.student-input-field {
+  width: 100%;
+  height: 44px;
+  background: #EFF4FF;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  padding: 0 40px 0 40px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: #0B1C30;
+  outline: none;
+  transition: all 0.15s ease;
+  box-sizing: border-box;
+}
+
+.student-input-field::placeholder {
+  color: rgba(69, 70, 77, 0.6);
+  font-size: 14px;
+}
+
+.student-input-field:focus {
+  background: #FFFFFF;
+  border-color: #0051D5;
+  box-shadow: 0 0 0 3px rgba(0, 81, 213, 0.12);
+}
+
+.btn-toggle-password {
+  position: absolute;
+  right: 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  color: #45464D;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.15s ease;
+}
+
+.btn-toggle-password:hover {
+  color: #0B1C30;
+}
+
+/* Utilities: Remember Me & Forgot Password */
+.student-utilities-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: -2px;
+}
+
+.student-remember-label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.student-remember-checkbox {
+  width: 16px;
+  height: 16px;
+  accent-color: #0051D5;
+  cursor: pointer;
+}
+
+.student-remember-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: #45464D;
+}
+
+.student-forgot-link {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  color: #0051D5;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.student-forgot-link:hover {
+  text-decoration: underline;
+  color: #003da1;
+}
+
+/* Primary Action Button */
+.btn-student-login-submit {
+  width: 100%;
+  height: 44px;
+  background: #0051D5;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+  border: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  color: #FFFFFF;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 4px;
+}
+
+.btn-student-login-submit:hover {
+  background: #0043B3;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 81, 213, 0.25);
+}
+
+.btn-student-login-submit:active {
+  transform: translateY(0);
+}
+
+/* Social Authentication Divider */
+.student-social-divider {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 6px 0;
+  width: 100%;
+}
+
+.student-divider-line {
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background: #DCE9FF;
+}
+
+.student-divider-badge {
+  position: relative;
+  background: #FFFFFF;
+  padding: 0 12px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.55px;
+  text-transform: uppercase;
+  color: #45464D;
+}
+
+/* Button - Google SSO */
+.btn-google-sso {
+  width: 100%;
+  height: 40px;
+  background: #EFF4FF;
+  border: 1px solid #DCE9FF;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 13px;
+  color: #0B1C30;
+}
+
+.btn-google-sso:hover {
+  background: #E2E8F0;
+  border-color: #CBD5E1;
+}
+
+/* Registration Link Footer */
+.student-registration-footer {
+  background: rgba(239, 244, 255, 0.6);
+  border-top: 1px solid #E5EEFF;
+  padding: 16px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: #45464D;
+  border-radius: 0 0 8px 8px;
+}
+
+.student-register-link {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  color: #0051D5;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.student-register-link:hover {
+  text-decoration: underline;
+}
+
