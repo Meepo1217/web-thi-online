@@ -8,6 +8,7 @@ import ExamManagement from './pages/teacher/exam-management/ExamManagement';
 import TeacherDashboard from './pages/teacher/TeacherDashboard';
 import Login from './pages/auth/Login';
 import StudentLogin from './pages/student/StudentLogin';
+import StudentRegister from './pages/student/StudentRegister';
 import StudentPortal from './pages/student/StudentPortal';
 
 /**
@@ -174,10 +175,12 @@ function App() {
       <Routes>
         {/* Route Cổng Sinh viên (Student Portal) */}
         <Route path="/student/login" element={<StudentLogin />} />
+        <Route path="/student/register" element={<StudentRegister />} />
         <Route path="/student/*" element={<StudentPortal />} />
 
         {/* Route xác thực tài khoản học sinh / sinh viên chuẩn Figma */}
         <Route path="/login" element={<StudentLogin />} />
+        <Route path="/register" element={<StudentRegister />} />
         <Route path="/teacher/login" element={<Login />} />
 
         {/* Route kiểm tra kết nối ban đầu */}

@@ -249,9 +249,9 @@ export default function StudentLogin() {
         {/* 6. Footer Đăng ký tài khoản */}
         <div className="student-registration-footer">
           <span>Chưa có tài khoản sinh viên?</span>
-          <a href="#register" onClick={handleRegister} className="student-register-link">
+          <Link to="/register" className="student-register-link">
             Đăng ký ngay
-          </a>
+          </Link>
         </div>
       </div>
     </div>

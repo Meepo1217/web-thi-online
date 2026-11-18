@@ -1,0 +1,588 @@
+/* ========================================================
+   STUDENT REGISTER PAGE STYLES - CHUẨN FIGMA PIXEL-PERFECT
+   ======================================================== */
+
+.student-register-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 32px 24px 48px;
+  min-height: 100vh;
+  width: 100%;
+  background: linear-gradient(0deg, #F8F9FF, #F8F9FF), #FFFFFF;
+  box-sizing: border-box;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Container chứa Card và Backdrop Ambient Glows */
+.student-register-container {
+  position: relative;
+  width: 512px;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  isolation: isolate;
+  z-index: 2;
+}
+
+/* Subtle ambient decorative glow backdrop - Figma specs */
+.register-glow-top-left {
+  position: absolute;
+  width: 256px;
+  height: 256px;
+  left: -48px;
+  top: -48px;
+  background: rgba(220, 233, 255, 0.4);
+  filter: blur(64px);
+  border-radius: 12px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.register-glow-bottom-right {
+  position: absolute;
+  width: 288px;
+  height: 288px;
+  right: -40px;
+  bottom: 0px;
+  background: rgba(219, 225, 255, 0.3);
+  filter: blur(64px);
+  border-radius: 12px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Main Card Container 512px */
+.student-register-card {
+  width: 512px;
+  max-width: 512px;
+  background: #FFFFFF;
+  box-shadow: 0px 20px 25px -5px rgba(0, 0, 0, 0.1), 0px 8px 10px -6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  border: 1px solid #E5EEFF;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+  box-sizing: border-box;
+  z-index: 3;
+}
+
+/* Header Section */
+.student-register-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 12px;
+  padding-top: 4px;
+}
+
+/* Badge & Brand Identity */
+.register-badge-pill {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 4px 12px;
+  gap: 8px;
+  background: #EFF4FF;
+  border-radius: 12px;
+}
+
+.register-badge-dot {
+  width: 8px;
+  height: 8px;
+  background: #0051D5;
+  border-radius: 50%;
+}
+
+.register-badge-text {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.275px;
+  text-transform: uppercase;
+  color: #0051D5;
+}
+
+/* EduQuiz Brand Logo Row */
+.register-brand-logo-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.register-brand-icon-box {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  background: #0051D5;
+  border-radius: 4px;
+  box-shadow: 0px 4px 6px -1px rgba(0, 0, 0, 0.1), 0px 2px 4px -2px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+}
+
+.register-brand-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+}
+
+.register-brand-title {
+  font-family: 'Liberation Serif', Georgia, serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: -0.5px;
+  color: #0B1C30;
+  margin: 0;
+}
+
+.register-brand-sub {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.55px;
+  text-transform: uppercase;
+  color: #45464D;
+}
+
+/* Headline & Subtext */
+.register-headline-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 6px;
+  max-width: 448px;
+}
+
+.register-headline-title {
+  font-family: 'Liberation Serif', Georgia, serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 26px;
+  line-height: 34px;
+  letter-spacing: -0.7px;
+  color: #0B1C30;
+  margin: 0;
+}
+
+.register-headline-desc {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 20px;
+  color: #45464D;
+  margin: 0;
+}
+
+/* Registration Form */
+.student-register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.register-form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+
+.register-field-label-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.register-field-label {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.24px;
+  color: #0B1C30;
+}
+
+.register-field-tag {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.44px;
+  color: #45464D;
+  text-transform: uppercase;
+}
+
+.register-field-tag.blue {
+  color: #0051D5;
+  font-weight: 600;
+}
+
+/* Input container with inset border */
+.register-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.register-input-icon {
+  position: absolute;
+  left: 15px;
+  width: 16px;
+  height: 16px;
+  color: #76777D;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.register-input-field {
+  width: 100%;
+  height: 43px;
+  background: #FFFFFF;
+  box-shadow: inset 0px 0px 0px 1px #D3E4FE;
+  border-radius: 4px;
+  border: none;
+  padding: 0 44px 0 44px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: #0B1C30;
+  outline: none;
+  transition: all 0.15s ease;
+  box-sizing: border-box;
+}
+
+.register-input-field::placeholder {
+  color: rgba(118, 119, 125, 0.7);
+  font-size: 14px;
+}
+
+.register-input-field:focus {
+  box-shadow: inset 0px 0px 0px 2px #0051D5, 0 0 0 3px rgba(0, 81, 213, 0.12);
+}
+
+.register-input-toggle-btn {
+  position: absolute;
+  right: 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  color: #76777D;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.15s ease;
+}
+
+.register-input-toggle-btn:hover {
+  color: #0B1C30;
+}
+
+/* Field Sub-Hint */
+.register-field-hint {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.44px;
+  color: #45464D;
+  margin-top: 2px;
+}
+
+.register-field-hint-icon {
+  color: #0051D5;
+  display: flex;
+  align-items: center;
+}
+
+/* 4-Level Password Strength Bar */
+.register-strength-bar-wrap {
+  display: flex;
+  flex-direction: row;
+  gap: 6px;
+  width: 100%;
+  margin-top: 4px;
+}
+
+.register-strength-segment {
+  height: 6px;
+  flex: 1;
+  background: #D3E4FE;
+  border-radius: 12px;
+  transition: background-color 0.25s ease;
+}
+
+.register-strength-segment.active-weak {
+  background: #EF4444; /* Đỏ - Yếu */
+}
+
+.register-strength-segment.active-fair {
+  background: #F59E0B; /* Vàng cam - Trung bình */
+}
+
+.register-strength-segment.active-good {
+  background: #3B82F6; /* Xanh dương - Khá */
+}
+
+.register-strength-segment.active-strong {
+  background: #10B981; /* Xanh lá - Mạnh */
+}
+
+/* Agreement Checkbox Row */
+.register-agreement-row {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 4px 0 6px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.register-agreement-checkbox {
+  width: 16px;
+  height: 16px;
+  margin-top: 2px;
+  accent-color: #0051D5;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.register-agreement-text {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 18px;
+  color: #45464D;
+}
+
+.register-agreement-link {
+  color: #0051D5;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.register-agreement-link:hover {
+  text-decoration: underline;
+}
+
+/* Submit Primary Button - Gradient 90deg #0051D5 -> #316BF3 */
+.btn-student-register-submit {
+  width: 100%;
+  height: 44px;
+  background: linear-gradient(90deg, #0051D5 0%, #316BF3 100%);
+  box-shadow: 0px 4px 6px -1px rgba(0, 0, 0, 0.1), 0px 2px 4px -2px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  border: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  color: #FFFFFF;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-student-register-submit:hover {
+  opacity: 0.95;
+  transform: translateY(-1px);
+  box-shadow: 0px 8px 16px -2px rgba(0, 81, 213, 0.35);
+}
+
+.btn-student-register-submit:active {
+  transform: translateY(0);
+}
+
+.btn-student-register-submit:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Social SSO Separator */
+.register-sso-separator {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 4px 0;
+  width: 100%;
+}
+
+.register-sso-line {
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background: #D3E4FE;
+}
+
+.register-sso-badge {
+  position: relative;
+  background: #FFFFFF;
+  padding: 0 12px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.55px;
+  text-transform: uppercase;
+  color: #45464D;
+}
+
+/* SSO Buttons Row */
+.register-sso-buttons-row {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  width: 100%;
+}
+
+.btn-sso-item {
+  flex: 1;
+  height: 38px;
+  background: #EFF4FF;
+  border: 1px solid #DCE9FF;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.24px;
+  color: #0B1C30;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-sso-item:hover {
+  background: #E2E8F0;
+  border-color: #CBD5E1;
+}
+
+/* Login Link Footer */
+.register-login-footer {
+  border-top: 1px solid #E5EEFF;
+  padding-top: 16px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  line-height: 20px;
+  color: #45464D;
+}
+
+.register-login-link {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 20px;
+  color: #0051D5;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  transition: color 0.15s ease;
+}
+
+.register-login-link:hover {
+  text-decoration: underline;
+  color: #003da1;
+}
+
+/* Academic Trust Assurance Footer */
+.register-trust-footer {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 512px;
+  max-width: 100%;
+  z-index: 2;
+}
+
+.register-trust-badges-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.register-trust-badge {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.44px;
+  color: #45464D;
+}
+
+.register-trust-badge-icon {
+  color: #0051D5;
+  display: flex;
+  align-items: center;
+}
+
+.register-trust-dot {
+  color: #94A3B8;
+  font-size: 12px;
+}
+
+.register-copyright-text {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.44px;
+  color: rgba(69, 70, 77, 0.7);
+  text-align: center;
+}
