@@ -5,6 +5,7 @@ import QuestionListFilterBar from './QuestionListFilterBar';
 import QuestionBatchToolbar from './QuestionBatchToolbar';
 import QuestionCard from './QuestionCard';
 import QuestionPagination from './QuestionPagination';
+import QuestionDeleteModal from '../question-delete/QuestionDeleteModal';
 import {
   SUBJECT_INFO,
   INITIAL_QUESTIONS,
@@ -36,19 +37,15 @@ export default function QuestionList() {
     'MATH-12-0215',
   ]);
 
-  // Bộ lọc & Tìm kiếm
+  // Bộ lọc & Tìm kiếm (chỉ giữ lại mức độ theo yêu cầu)
   const [searchTerm, setSearchTerm] = useState('');
   const [filters, setFilters] = useState({
-    chapter: 'all',
     bloom: 'all',
-    format: 'all',
-    status: 'all',
   });
 
   // Active filter chips (như trong Figma: TOÁN 12, VẬN DỤNG CAO)
   const [activeChips, setActiveChips] = useState([
     { id: 'grade', label: 'TOÁN 12', color: 'blue' },
-    { id: 'bloom', label: 'VẬN DỤNG CAO', color: 'slate' },
   ]);
 
   // Modal xem chi tiết câu hỏi
@@ -86,11 +83,26 @@ export default function QuestionList() {
   // Thay đổi bộ lọc select
   const handleFilterChange = (key, value) => {
     setFilters((prev) => ({ ...prev, [key]: value }));
+    if (key === 'bloom') {
+      if (value === 'all') {
+        setActiveChips((prev) => prev.filter((c) => c.id !== 'bloom'));
+      } else {
+        const found = FILTER_OPTIONS.bloomLevels.find((b) => b.value === value);
+        const label = found ? found.label.toUpperCase() : value.toUpperCase();
+        setActiveChips((prev) => {
+          const others = prev.filter((c) => c.id !== 'bloom');
+          return [...others, { id: 'bloom', label, color: 'slate' }];
+        });
+      }
+    }
   };
 
   // Xóa chip lọc
   const handleRemoveChip = (chipId) => {
     setActiveChips((prev) => prev.filter((c) => c.id !== chipId));
+    if (chipId === 'bloom') {
+      setFilters((prev) => ({ ...prev, bloom: 'all' }));
+    }
   };
 
   // Xóa tất cả bộ lọc
@@ -98,10 +110,7 @@ export default function QuestionList() {
     setActiveChips([]);
     setSearchTerm('');
     setFilters({
-      chapter: 'all',
       bloom: 'all',
-      format: 'all',
-      status: 'all',
     });
   };
 
@@ -141,7 +150,7 @@ export default function QuestionList() {
 
   // Action handlers
   const handleAddQuestion = () => {
-    alert('Chức năng Thêm câu hỏi mới vào ngân hàng môn Toán học THPT');
+    navigate(subjectId ? `/teacher/questions/${subjectId}/create` : '/teacher/questions/create');
   };
 
   const handleAutoShuffle = () => {
@@ -164,19 +173,29 @@ export default function QuestionList() {
     navigate(`/teacher/questions/edit/${question.id}`);
   };
 
-  // Lọc câu hỏi theo từ khóa tìm kiếm
+  // Lọc câu hỏi theo từ khóa tìm kiếm và mức độ nhận thức
   const filteredQuestions = useMemo(() => {
     return questions.filter((q) => {
-      if (!searchTerm) return true;
-      const lower = searchTerm.toLowerCase();
-      return (
-        q.code.toLowerCase().includes(lower) ||
-        q.content.toLowerCase().includes(lower) ||
-        q.chapter.toLowerCase().includes(lower) ||
-        q.tags?.some((t) => t.toLowerCase().includes(lower))
-      );
+      if (searchTerm) {
+        const lower = searchTerm.toLowerCase();
+        const matchSearch =
+          q.code.toLowerCase().includes(lower) ||
+          q.content.toLowerCase().includes(lower) ||
+          q.chapter.toLowerCase().includes(lower) ||
+          q.tags?.some((t) => t.toLowerCase().includes(lower));
+        if (!matchSearch) return false;
+      }
+
+      if (filters.bloom && filters.bloom !== 'all') {
+        const matchBloom =
+          q.bloomType === filters.bloom ||
+          (filters.bloom === 'van-dung-cao' && q.bloomType === 'vd-cao');
+        if (!matchBloom) return false;
+      }
+
+      return true;
     });
-  }, [questions, searchTerm]);
+  }, [questions, searchTerm, filters.bloom]);
 
   return (
     <div className="ql-page-container">
@@ -255,7 +274,21 @@ export default function QuestionList() {
         onPageSizeChange={setPageSize}
       />
 
-      
+      {/* 6. Popup xác nhận xóa câu hỏi chuẩn Figma */}
+      <QuestionDeleteModal
+        isOpen={deleteModalState.isOpen}
+        question={
+          deleteModalState.target || {
+            code: selectedIds[0] || 'MATH-12-0482',
+            linkedExamsCount: selectedIds.length > 1 ? selectedIds.length * 2 : 3,
+            studentSubmissionsCount: '1,420',
+          }
+        }
+        onConfirm={handleConfirmDelete}
+        onCancel={() =>
+          setDeleteModalState({ isOpen: false, target: null, count: 1 })
+        }
+      />
     </div>
   );
 }

@@ -1,0 +1,503 @@
+/**
+ * question-delete.css
+ * Stylesheet cho Màn hình 5: Popup xác nhận xóa vĩnh viễn câu hỏi
+ * Chuẩn thiết kế Figma (Không Header & Sidebar, có lớp nền mờ underlay)
+ */
+
+/* ==========================================================================
+   1. Root Page & Underlay Canvas (Standalone Page View)
+   ========================================================================== */
+.qdm-page-root {
+  position: relative;
+  width: 100vw;
+  min-height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(0deg, #F8F9FF, #F8F9FF), #FFFFFF;
+  box-sizing: border-box;
+}
+
+/* Subtle Realistic Underlay: Question Bank Interface (De-emphasized & Blurred) */
+.qdm-underlay-canvas {
+  position: absolute;
+  inset: 0;
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  opacity: 0.4;
+  filter: blur(12px);
+  -webkit-filter: blur(12px);
+  pointer-events: none;
+  z-index: 0;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.qdm-underlay-header {
+  width: 100%;
+  height: 64px;
+  background: #FFFFFF;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.qdm-underlay-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.qdm-underlay-icon-box {
+  width: 32px;
+  height: 32px;
+  background: #DCE9FF;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.qdm-underlay-text-math {
+  font-size: 13px;
+  color: #45464D;
+  font-weight: 500;
+}
+
+.qdm-underlay-title-col {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.qdm-underlay-bar-long {
+  width: 192px;
+  height: 16px;
+  background: #DCE9FF;
+  border-radius: 2px;
+}
+
+.qdm-underlay-bar-short {
+  width: 128px;
+  height: 12px;
+  background: #E5EEFF;
+  border-radius: 2px;
+}
+
+.qdm-underlay-btn-box {
+  width: 96px;
+  height: 32px;
+  background: #DCE9FF;
+  border-radius: 4px;
+}
+
+.qdm-underlay-card {
+  width: 100%;
+  height: 324px;
+  background: #FFFFFF;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-sizing: border-box;
+}
+
+.qdm-underlay-bar-title {
+  width: 852px;
+  max-width: 80%;
+  height: 20px;
+  background: #DCE9FF;
+  border-radius: 2px;
+}
+
+.qdm-underlay-bar-line1 {
+  width: 100%;
+  height: 16px;
+  background: #E5EEFF;
+  border-radius: 2px;
+}
+
+.qdm-underlay-bar-line2 {
+  width: 80%;
+  height: 16px;
+  background: #E5EEFF;
+  border-radius: 2px;
+}
+
+.qdm-underlay-options-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.qdm-underlay-opt-box {
+  height: 56px;
+  background: #EFF4FF;
+  border-radius: 4px;
+}
+
+/* ==========================================================================
+   2. Fullscreen Modal Overlay Canvas
+   ========================================================================== */
+.qdm-overlay-canvas {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 1200;
+  animation: qdmFadeIn 0.2s ease-out;
+  box-sizing: border-box;
+}
+
+@keyframes qdmFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ==========================================================================
+   3. Modal Card Container
+   ========================================================================== */
+.qdm-modal-card {
+  position: relative;
+  width: 540px;
+  max-width: 540px;
+  background: #FFFFFF;
+  border-radius: 12px;
+  box-shadow: 0px 25px 50px -12px rgba(0, 0, 0, 0.25);
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  isolation: isolate;
+  box-sizing: border-box;
+  animation: qdmScaleUp 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+@keyframes qdmScaleUp {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* 1. Decorative Accent Indicator Top Bar */
+.qdm-accent-bar {
+  position: absolute;
+  height: 4px;
+  left: 32px;
+  right: 32px;
+  top: 0px;
+  background: linear-gradient(90deg, rgba(186, 26, 26, 0.2) 0%, #BA1A1A 50%, rgba(186, 26, 26, 0.2) 100%);
+  border-radius: 12px;
+}
+
+/* ==========================================================================
+   4. Header & Warning Badge Section
+   ========================================================================== */
+.qdm-header-section {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 16px;
+  width: 100%;
+}
+
+.qdm-warning-icon-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: #FFDAD6;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+
+.qdm-header-text-col {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.qdm-badge-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+}
+
+.qdm-badge-dot {
+  width: 6px;
+  height: 6px;
+  background: #BA1A1A;
+  border-radius: 50%;
+}
+
+.qdm-badge-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  line-height: 14px;
+  font-weight: 600;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  color: #BA1A1A;
+}
+
+.qdm-main-heading {
+  margin: 2px 0 0 0;
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 600;
+  letter-spacing: -0.2px;
+  color: #0B1C30;
+}
+
+/* ==========================================================================
+   5. Context Body Message
+   ========================================================================== */
+.qdm-context-message {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  line-height: 24px;
+  color: #45464D;
+}
+
+.qdm-context-p1 {
+  margin: 0;
+}
+
+.qdm-code-highlight {
+  display: inline-block;
+  background: #EFF4FF;
+  color: #000000;
+  font-weight: 600;
+  padding: 1px 8px;
+  border-radius: 4px;
+  font-size: 14.5px;
+}
+
+.qdm-context-p2 {
+  margin: 0;
+  font-weight: 500;
+  color: #0B1C30;
+}
+
+/* ==========================================================================
+   6. Impact Assessment Box (Khung cảnh báo tác động dữ liệu)
+   ========================================================================== */
+.qdm-impact-box {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+  background: rgba(255, 218, 214, 0.4);
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.qdm-impact-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+}
+
+.qdm-impact-title {
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 600;
+  letter-spacing: 0.24px;
+  text-transform: uppercase;
+  color: #93000A;
+}
+
+.qdm-impact-matrix {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 14px 16px;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 4px;
+}
+
+.qdm-matrix-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 20px;
+}
+
+.qdm-matrix-label-wrap {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+}
+
+.qdm-matrix-label {
+  font-size: 13px;
+  line-height: 20px;
+  color: #0B1C30;
+}
+
+.qdm-matrix-val {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 600;
+  letter-spacing: 0.14px;
+  color: #BA1A1A;
+}
+
+.qdm-impact-link-row {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 4px;
+  border-top: 1px dashed #FFDAD6;
+}
+
+.qdm-impact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  color: #0051D5;
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.qdm-impact-link:hover {
+  text-decoration: underline;
+  opacity: 0.85;
+}
+
+/* ==========================================================================
+   7. Safety Confirmation Checkbox Area
+   ========================================================================== */
+.qdm-checkbox-label {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 10px 12px;
+  gap: 10px;
+  background: #EFF4FF;
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+  cursor: pointer;
+  user-select: none;
+}
+
+.qdm-checkbox-input {
+  width: 15px;
+  height: 15px;
+  margin-top: 2px;
+  cursor: pointer;
+  accent-color: #0051D5;
+}
+
+.qdm-checkbox-text {
+  font-size: 13px;
+  line-height: 18px;
+  font-weight: 400;
+  color: #0B1C30;
+  flex: 1;
+}
+
+/* ==========================================================================
+   8. Action Buttons Footer
+   ========================================================================== */
+.qdm-footer-actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding-top: 8px;
+}
+
+.qdm-btn-cancel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+  height: 44px;
+  background: #EFF4FF;
+  border: none;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  color: #0B1C30;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.qdm-btn-cancel:hover {
+  background: #E5EEFF;
+}
+
+.qdm-btn-delete {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 0 24px;
+  gap: 6px;
+  height: 44px;
+  background: #BA1A1A;
+  border: none;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  color: #FFFFFF;
+  box-shadow: 0px 4px 6px -1px rgba(0, 0, 0, 0.1), 0px 2px 4px -2px rgba(0, 0, 0, 0.1);
+  transition: all 0.15s ease;
+}
+
+.qdm-btn-delete.is-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.qdm-btn-delete.is-enabled {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.qdm-btn-delete.is-enabled:hover {
+  background: #93000A;
+}

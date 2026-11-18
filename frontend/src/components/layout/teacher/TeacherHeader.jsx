@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import {
   IconSearch,
   IconPlus,
@@ -18,6 +19,7 @@ export default function TeacherHeader({
   },
   onPrimaryAction,
 }) {
+  const navigate = useNavigate();
   return (
     <header className="teacher-header">
       {/* Vùng trái: Nút toggle mobile + Ô tìm kiếm */}
@@ -76,12 +78,13 @@ export default function TeacherHeader({
           <span className="teacher-header__badge-dot" />
         </button>
 
-        {/* Nút icon thứ hai: icon #45464D (18.33x18.33px) */}
+        {/* Nút icon thứ hai: icon #45464D (18.33x18.33px) dẫn tới Lịch giảng & Ca thi */}
         <button
           type="button"
           className="teacher-header__icon-btn"
-          aria-label="Lịch công tác"
-          title="Lịch công tác"
+          aria-label="Lịch giảng & Ca thi"
+          title="Lịch giảng & Ca thi"
+          onClick={() => navigate('/teacher/schedule')}
         >
           <span className="teacher-header__second-icon">
             <IconCalendar width={18} height={18} color="#45464D" />

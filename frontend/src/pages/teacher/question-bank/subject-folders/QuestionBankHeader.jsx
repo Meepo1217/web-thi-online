@@ -1,10 +1,10 @@
-import { IconArrowRight, IconUpload, IconPlus } from '../../../../components/ui/icons';
+import { IconArrowRight, IconTrash, IconPlus } from '../../../../components/ui/icons';
 
 /**
  * QuestionBankHeader - Top Navigation & Breadcrumbs cho Ngân hàng câu hỏi
- * Chuẩn thông số Figma: Tiêu đề 28px, nút Nhập câu hỏi và Tạo thư mục mới
+ * Gồm tiêu đề trang và 2 nút hành động: Xóa thư mục & Tạo thư mục mới
  */
-export default function QuestionBankHeader({ onImportExcel, onCreateFolder }) {
+export default function QuestionBankHeader({ onDeleteFolder, onCreateFolder }) {
   return (
     <div className="qb-top-header">
       {/* Breadcrumbs */}
@@ -28,12 +28,12 @@ export default function QuestionBankHeader({ onImportExcel, onCreateFolder }) {
         <div className="qb-toolbar-controls">
           <button
             type="button"
-            className="qb-btn qb-btn-secondary"
-            onClick={onImportExcel}
-            title="Nhập câu hỏi từ tệp Excel"
+            className="qb-btn qb-btn-danger-outline"
+            onClick={onDeleteFolder}
+            title="Xóa thư mục môn học"
           >
-            <IconUpload width={12} height={15} color="#0051D5" />
-            <span>Nhập câu hỏi (Excel)</span>
+            <IconTrash width={13} height={14} color="#BA1A1A" />
+            <span>Xóa thư mục</span>
           </button>
 
           <button

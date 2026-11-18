@@ -1,0 +1,1063 @@
+/**
+ * exam-detail.css
+ * Stylesheet cho màn hình Chi tiết đề thi (ExamDetail)
+ * Giữ chính xác thông số màu sắc, typography, spacing & shadows từ thiết kế Figma
+ */
+
+/* ==========================================================================
+   1. Page Wrapper & Container
+   ========================================================================== */
+.ed-page-wrapper {
+  width: 100%;
+  min-height: 100%;
+  background: #F8F9FF;
+  text-align: left;
+}
+
+.ed-page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding: 24px 32px;
+  gap: 24px;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* ==========================================================================
+   2. Top In-Page Action & Navigation Bar
+   ========================================================================== */
+.ed-top-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  gap: 24px;
+  width: 100%;
+  background: #FFFFFF;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+}
+
+.ed-top-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  min-width: 0;
+  flex: 1 1 480px;
+}
+
+.ed-back-link {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.24px;
+  color: #0051D5;
+  text-decoration: none;
+  transition: opacity 0.15s ease;
+}
+
+.ed-back-link:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+.ed-title-badges-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.ed-page-title {
+  margin: 0;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 28px;
+  letter-spacing: -0.5px;
+  color: #0B1C30;
+}
+
+.ed-code-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 10px;
+  height: 18px;
+  background: #DCE9FF;
+  border-radius: 12px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.55px;
+  text-transform: uppercase;
+  color: #3F465C;
+  box-sizing: border-box;
+}
+
+.ed-status-pill {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 2px 10px;
+  gap: 4px;
+  height: 18px;
+  background: #EFF4FF;
+  border-radius: 12px;
+  box-sizing: border-box;
+}
+
+.ed-status-dot {
+  width: 6px;
+  height: 6px;
+  background: #0051D5;
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+
+.ed-status-text {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.44px;
+  color: #0051D5;
+}
+
+.ed-meta-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 20px;
+  color: #45464D;
+}
+
+.ed-top-actions {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.ed-btn {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 36px;
+  border: none;
+  border-radius: 4px;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.24px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.15s ease, transform 0.1s ease;
+}
+
+.ed-btn:active {
+  transform: translateY(1px);
+}
+
+.ed-btn-soft {
+  padding: 10px 14px;
+  background: #E5EEFF;
+  color: #0B1C30;
+  font-weight: 500;
+}
+
+.ed-btn-soft:hover {
+  background: #D3E4FE;
+}
+
+.ed-btn-primary {
+  padding: 10px 16px;
+  background: #0051D5;
+  color: #FFFFFF;
+  font-weight: 600;
+}
+
+.ed-btn-primary:hover {
+  background: #0040AD;
+}
+
+/* ==========================================================================
+   3. Exam Quick Stats & Topic Filter Strip
+   ========================================================================== */
+.ed-stats-filter-card {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding: 20px;
+  gap: 16px;
+  width: 100%;
+  background: #FFFFFF;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+.ed-metrics-row {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  width: 100%;
+}
+
+.ed-metric-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 14px;
+  gap: 12px;
+  min-height: 68px;
+  background: #EFF4FF;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.ed-metric-icon-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: #D3E4FE;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.ed-metric-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+}
+
+.ed-metric-label {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.55px;
+  text-transform: uppercase;
+  color: #45464D;
+}
+
+.ed-metric-value {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  color: #0B1C30;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.ed-filters-stack {
+  display: flex;
+  flex-direction: column;
+  padding-top: 8px;
+  gap: 12px;
+  width: 100%;
+}
+
+.ed-filter-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.ed-chapter-tags-row {
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.ed-bloom-filters-row {
+  flex-wrap: wrap;
+  padding-bottom: 4px;
+}
+
+.ed-filter-label {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.44px;
+  text-transform: uppercase;
+  color: #45464D;
+  padding-right: 4px;
+  flex-shrink: 0;
+}
+
+.ed-chapter-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 12px;
+  height: 28px;
+  background: #E5EEFF;
+  border: none;
+  border-radius: 12px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.24px;
+  color: #0B1C30;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.ed-chapter-pill:hover {
+  background: #D3E4FE;
+}
+
+.ed-chapter-pill.is-active {
+  background: #0051D5;
+  color: #FFFFFF;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.ed-bloom-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 10px;
+  height: 22px;
+  background: #E5EEFF;
+  border: none;
+  border-radius: 6px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.44px;
+  color: #45464D;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.ed-bloom-pill:hover {
+  background: #DCE9FF;
+  color: #0B1C30;
+}
+
+.ed-bloom-pill.is-active {
+  background: #DCE9FF;
+  color: #0B1C30;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   4. Main Asymmetric Workspace (8 Cols Left + 4 Cols Right)
+   ========================================================================== */
+.ed-workspace-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 8fr) minmax(320px, 4fr);
+  gap: 24px;
+  align-items: start;
+  width: 100%;
+}
+
+/* ==========================================================================
+   5. LEFT: Continuous Question Feed
+   ========================================================================== */
+.ed-questions-feed {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 0;
+}
+
+.ed-question-card {
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  gap: 16px;
+  background: #FFFFFF;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  border: 1.5px solid transparent;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ed-question-card.is-focused {
+  border-color: rgba(0, 81, 213, 0.35);
+  box-shadow: 0px 2px 8px rgba(0, 81, 213, 0.08);
+}
+
+.ed-q-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 14px;
+  gap: 16px;
+  border-bottom: 1px solid #E5EEFF;
+}
+
+.ed-q-meta-left {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.ed-q-number-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 12px;
+  height: 32px;
+  background: #E5EEFF;
+  border-radius: 4px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  color: #0B1C30;
+  box-sizing: border-box;
+}
+
+.ed-q-bloom-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  height: 18px;
+  background: #DCE9FF;
+  border-radius: 2px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.44px;
+  color: #0051D5;
+  box-sizing: border-box;
+}
+
+.ed-q-meta-text {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.44px;
+  color: #45464D;
+}
+
+.ed-q-meta-sep {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 14px;
+  color: #C6C6CD;
+}
+
+.ed-q-actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.ed-q-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border: none;
+  background: transparent;
+  border-radius: 6px;
+  color: #45464D;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.ed-q-icon-btn:hover {
+  background: #EFF4FF;
+  color: #0051D5;
+}
+
+.ed-q-icon-btn--danger:hover {
+  background: #FFDAD6;
+  color: #BA1A1A;
+}
+
+/* Stem & Vector Graph */
+.ed-q-body {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 16px;
+}
+
+.ed-q-stem {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 24px;
+  color: #0B1C30;
+}
+
+.ed-math-expr {
+  font-family: 'Liberation Serif', Georgia, 'Times New Roman', serif;
+  font-weight: 600;
+  font-size: 15px;
+  color: #0B1C30;
+}
+
+.ed-graph-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  padding: 12px;
+  width: 100%;
+  max-width: 384px;
+  height: 200px;
+  background: #EFF4FF;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.ed-graph-svg {
+  width: 100%;
+  height: 100%;
+  max-width: 360px;
+  max-height: 176px;
+}
+
+/* Option Stack (2x2 Grid) */
+.ed-options-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  padding-top: 4px;
+}
+
+.ed-option-card {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px;
+  gap: 12px;
+  min-height: 56px;
+  background: #EFF4FF;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.ed-option-card.is-correct {
+  background: rgba(133, 248, 196, 0.3);
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.ed-option-left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.ed-option-letter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: #E5EEFF;
+  border-radius: 12px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.24px;
+  color: #45464D;
+  flex-shrink: 0;
+}
+
+.ed-option-card.is-correct .ed-option-letter {
+  background: #069669;
+  color: #FFFFFF;
+}
+
+.ed-option-text {
+  font-family: 'Liberation Serif', Georgia, 'Times New Roman', serif;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 24px;
+  color: #0B1C30;
+}
+
+.ed-option-card.is-correct .ed-option-text {
+  font-weight: 600;
+}
+
+.ed-correct-pill {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 2px 8px;
+  gap: 4px;
+  height: 18px;
+  background: #FFFFFF;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 12px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.44px;
+  color: #069669;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* Empty Filter Box */
+.ed-empty-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 24px;
+  gap: 12px;
+  background: #FFFFFF;
+  border-radius: 8px;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.ed-empty-title {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #45464D;
+}
+
+/* Bottom Pagination & Load Indicator */
+.ed-bottom-load-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  gap: 16px;
+  min-height: 64px;
+  background: #FFFFFF;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+}
+
+.ed-load-status-text {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 20px;
+  color: #45464D;
+}
+
+.ed-load-actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.ed-load-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  border: none;
+  border-radius: 4px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.24px;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.ed-load-btn-soft {
+  padding: 8px 16px;
+  background: #E5EEFF;
+  color: #0B1C30;
+}
+
+.ed-load-btn-soft:hover {
+  background: #D3E4FE;
+}
+
+.ed-load-btn-primary {
+  padding: 8px 12px;
+  background: #0051D5;
+  color: #FFFFFF;
+}
+
+.ed-load-btn-primary:hover {
+  background: #0040AD;
+}
+
+/* ==========================================================================
+   6. RIGHT: Sticky Question Palette & Meta Specification Card
+   ========================================================================== */
+.ed-right-sticky {
+  position: sticky;
+  top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.ed-side-card {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  gap: 16px;
+  background: #FFFFFF;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+.ed-specs-card {
+  gap: 12px;
+}
+
+.ed-side-card-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #E5EEFF;
+}
+
+.ed-side-header-left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.ed-side-heading {
+  margin: 0;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  color: #0B1C30;
+}
+
+.ed-side-count {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.44px;
+  color: #45464D;
+}
+
+/* Bloom Summary Multi-bar */
+.ed-bloom-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ed-bloom-summary-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.ed-bloom-summary-label {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 20px;
+  color: #45464D;
+}
+
+.ed-bloom-summary-badge {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 20px;
+  color: #0B1C30;
+}
+
+.ed-progress-multibar {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 8px;
+  background: #E5EEFF;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.ed-progress-seg {
+  height: 100%;
+}
+
+.ed-bloom-legend-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px 12px;
+  padding-top: 4px;
+}
+
+.ed-bloom-legend-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+}
+
+.ed-legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+
+.ed-legend-text {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.44px;
+  color: #45464D;
+}
+
+/* Matrix Grid for 50 Questions */
+.ed-matrix-section {
+  display: flex;
+  flex-direction: column;
+  padding-top: 8px;
+  gap: 12px;
+}
+
+.ed-matrix-label {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.55px;
+  text-transform: uppercase;
+  color: #45464D;
+}
+
+.ed-matrix-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.ed-matrix-tile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  border: none;
+  border-radius: 2px;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.44px;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease, transform 0.1s ease;
+}
+
+.ed-matrix-tile:hover {
+  transform: translateY(-1px);
+}
+
+.ed-matrix-tile.is-active {
+  background: #0051D5;
+  color: #FFFFFF;
+  font-weight: 600;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.ed-matrix-tile.is-loaded {
+  background: #E5EEFF;
+  color: #0B1C30;
+  font-weight: 600;
+}
+
+.ed-matrix-tile.is-loaded:hover {
+  background: #D3E4FE;
+}
+
+.ed-matrix-tile.is-unloaded {
+  background: #EFF4FF;
+  color: #45464D;
+  font-weight: 500;
+}
+
+.ed-matrix-tile.is-unloaded:hover {
+  background: #E5EEFF;
+  color: #0B1C30;
+}
+
+/* Palette Legend Footer */
+.ed-palette-legend {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 12px;
+  border-top: 1px solid #E5EEFF;
+  gap: 8px;
+}
+
+.ed-palette-legend-item {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.44px;
+  color: #45464D;
+}
+
+.ed-palette-swatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+}
+
+.ed-palette-swatch.is-active {
+  background: #0051D5;
+}
+
+.ed-palette-swatch.is-loaded {
+  background: #E5EEFF;
+}
+
+.ed-palette-swatch.is-unloaded {
+  background: #EFF4FF;
+}
+
+/* Meta Specification Card */
+.ed-specs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ed-spec-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 0;
+  gap: 12px;
+}
+
+.ed-spec-row.has-border {
+  border-bottom: 1px solid #E5EEFF;
+  padding-bottom: 8px;
+}
+
+.ed-spec-label {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 20px;
+  color: #45464D;
+}
+
+.ed-spec-value {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 20px;
+  color: #0B1C30;
+  text-align: right;
+}
+
+.ed-spec-value.is-green {
+  font-weight: 600;
+  color: #069669;
+}
+
+/* ==========================================================================
+   7. Responsive Breakpoints
+   ========================================================================== */
+@media (max-width: 1080px) {
+  .ed-metrics-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .ed-workspace-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ed-right-sticky {
+    position: static;
+  }
+}
+
+@media (max-width: 640px) {
+  .ed-page-container {
+    padding: 16px;
+    gap: 16px;
+  }
+
+  .ed-metrics-row {
+    grid-template-columns: 1fr;
+  }
+
+  .ed-options-grid {
+    grid-template-columns: 1fr;
+  }
+}

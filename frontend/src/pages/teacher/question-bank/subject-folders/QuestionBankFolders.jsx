@@ -6,9 +6,10 @@ import QuestionBankFilterBar from './QuestionBankFilterBar';
 import SubjectFolderCard from './SubjectFolderCard';
 import RecentFoldersWidget from './RecentFoldersWidget';
 import ContributionChartWidget from './ContributionChartWidget';
+import CreateFolderModal from './CreateFolderModal';
+import DeleteFolderModal from './DeleteFolderModal';
 import {
   QUESTION_METRICS,
-  GRADE_FILTER_TABS,
   SUBJECT_FOLDERS_DATA,
   RECENT_ACCESSED_FOLDERS,
   CONTRIBUTION_ANALYTICS,
@@ -21,70 +22,92 @@ import './question-bank.css';
  */
 export default function QuestionBankFolders() {
   const navigate = useNavigate();
+  const [folders, setFolders] = useState(SUBJECT_FOLDERS_DATA);
+  const [metrics, setMetrics] = useState(QUESTION_METRICS);
   const [searchTerm, setSearchTerm] = useState('');
-  const [activeGrade, setActiveGrade] = useState('all');
   const [sortOrder, setSortOrder] = useState('newest');
   const [viewMode, setViewMode] = useState('grid');
 
-  // Xử lý mở thư mục môn học (chuyển sang Màn hình 2: Danh sách câu hỏi)
+  // Modal states
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+  const [deleteModalState, setDeleteModalState] = useState({
+    isOpen: false,
+    folder: null,
+  });
+
+  // Xử lý mở thư mục môn học (chuyển sang Màn hình Danh sách câu hỏi)
   const handleOpenFolder = (folderId) => {
     navigate(`/teacher/questions/${folderId}`);
   };
 
-  // Menu tùy chọn trên thẻ thư mục
-  const handleFolderMenu = (folder) => {
-    alert(`Tùy chọn cho thư mục: "${folder.title}" (Đổi tên, cấu hình ma trận, phân quyền)`);
-  };
-
-  // Hành động các nút trên Header
-  const handleImportExcel = () => {
-    alert('Mở hộp thoại: Nhập câu hỏi từ file Excel');
-  };
-
-  const handleCreateFolder = () => {
-    alert('Mở hộp thoại: Tạo thư mục môn học mới');
-  };
-
-  // Lọc thư mục theo từ khóa và khối lớp
-  const filteredFolders = useMemo(() => {
-    return SUBJECT_FOLDERS_DATA.filter((folder) => {
-      // Lọc theo từ khóa
-      if (
-        searchTerm &&
-        !folder.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
-        !folder.code.toLowerCase().includes(searchTerm.toLowerCase()) &&
-        !folder.description.toLowerCase().includes(searchTerm.toLowerCase())
-      ) {
-        return false;
-      }
-      // Lọc theo khối lớp
-      if (activeGrade !== 'all' && folder.grade.toLowerCase() !== activeGrade.toLowerCase()) {
-        // Mock data hiện tại là Khối 12, nên nếu lọc khối khác sẽ trống hoặc lọc chuẩn
-        if (activeGrade === 'grade12' && folder.grade === 'Khối 12') return true;
-        if (activeGrade !== 'grade12') return false;
-      }
-      return true;
+  // Mở popup xác nhận xóa thư mục
+  const handleOpenDeleteModal = (targetFolder) => {
+    setDeleteModalState({
+      isOpen: true,
+      folder: targetFolder || folders[0] || null,
     });
-  }, [searchTerm, activeGrade]);
+  };
+
+  // Xác nhận xóa thư mục
+  const handleConfirmDelete = (folderToDelete) => {
+    if (!folderToDelete?.id) return;
+    setFolders((prev) => prev.filter((f) => f.id !== folderToDelete.id));
+    setMetrics((prev) => ({
+      ...prev,
+      totalFolders: {
+        ...prev.totalFolders,
+        value: String(Math.max(0, folders.length - 1)),
+      },
+    }));
+    setDeleteModalState({ isOpen: false, folder: null });
+  };
+
+  // Mở popup tạo thư mục mới
+  const handleOpenCreateModal = () => {
+    setIsCreateModalOpen(true);
+  };
+
+  // Xác nhận tạo thư mục mới
+  const handleSubmitCreateFolder = (newFolder) => {
+    setFolders((prev) => [newFolder, ...prev]);
+    setMetrics((prev) => ({
+      ...prev,
+      totalFolders: {
+        ...prev.totalFolders,
+        value: String(folders.length + 1),
+      },
+    }));
+    setIsCreateModalOpen(false);
+  };
+
+  // Lọc thư mục theo từ khóa
+  const filteredFolders = useMemo(() => {
+    return folders.filter((folder) => {
+      if (!searchTerm) return true;
+      const lower = searchTerm.toLowerCase();
+      return (
+        folder.title.toLowerCase().includes(lower) ||
+        folder.code.toLowerCase().includes(lower) ||
+        folder.description.toLowerCase().includes(lower)
+      );
+    });
+  }, [folders, searchTerm]);
 
   return (
     <div className="qb-folders-page">
       {/* 1. Top Navigation & Breadcrumbs */}
       <QuestionBankHeader
-        onImportExcel={handleImportExcel}
-        onCreateFolder={handleCreateFolder}
+        onDeleteFolder={() => handleOpenDeleteModal(folders[0])}
+        onCreateFolder={handleOpenCreateModal}
       />
 
       {/* 2. Key Metrics / Academic Pulse */}
-      <QuestionBankKpiCards metrics={QUESTION_METRICS} />
+      <QuestionBankKpiCards metrics={metrics} />
 
       {/* 3. Filter & Fast Search Bar */}
       <QuestionBankFilterBar
         searchTerm={searchTerm}
         onSearchChange={setSearchTerm}
-        activeGrade={activeGrade}
-        onGradeChange={setActiveGrade}
-        gradeTabs={GRADE_FILTER_TABS}
         sortOrder={sortOrder}
         onSortChange={() => setSortOrder((prev) => (prev === 'newest' ? 'oldest' : 'newest'))}
         viewMode={viewMode}
@@ -98,7 +121,7 @@ export default function QuestionBankFolders() {
             key={folder.id}
             folder={folder}
             onOpenFolder={handleOpenFolder}
-            onFolderMenu={handleFolderMenu}
+            onDeleteFolder={handleOpenDeleteModal}
           />
         ))}
       </div>
@@ -118,6 +141,25 @@ export default function QuestionBankFolders() {
           onOpenKpiDetail={() => alert('Xem chi tiết chỉ số KPI biên soạn')}
         />
       </div>
+
+      {/* 6. Popup Tạo thư mục môn học mới */}
+      <CreateFolderModal
+        isOpen={isCreateModalOpen}
+        onClose={() => setIsCreateModalOpen(false)}
+        onSubmit={handleSubmitCreateFolder}
+      />
+
+      {/* 7. Popup Xác nhận xóa thư mục */}
+      <DeleteFolderModal
+        isOpen={deleteModalState.isOpen}
+        folder={deleteModalState.folder}
+        foldersList={folders}
+        onFolderChange={(selectedFolder) =>
+          setDeleteModalState((prev) => ({ ...prev, folder: selectedFolder }))
+        }
+        onConfirm={handleConfirmDelete}
+        onCancel={() => setDeleteModalState({ isOpen: false, folder: null })}
+      />
     </div>
   );
 }

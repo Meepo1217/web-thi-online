@@ -32,7 +32,7 @@ export default function RecentFoldersWidget({ recentFolders = [], onOpenFolder, 
           >
             <div className="qb-recent-item-left">
               <div className="qb-recent-icon-box">
-                <IconFolder width={18.33} height={14.67} color={item.iconColor} />
+                <IconFolder width={18.33} height={14.67} color={item.iconColor || '#0051D5'} />
               </div>
               <div className="qb-recent-item-text">
                 <span className="qb-recent-item-title">{item.title}</span>

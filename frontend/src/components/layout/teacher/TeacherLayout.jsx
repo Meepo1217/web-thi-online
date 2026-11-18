@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import TeacherSidebar from './TeacherSidebar';
 import TeacherHeader from './TeacherHeader';
 import './teacher-layout.css';
@@ -11,6 +11,7 @@ import './teacher-layout.css';
  */
 export default function TeacherLayout() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const navigate = useNavigate();
 
   const handleToggleSidebar = () => {
     setIsSidebarOpen((prev) => !prev);
@@ -21,8 +22,8 @@ export default function TeacherLayout() {
   };
 
   const handlePrimaryAction = () => {
-    // Có thể điều hướng đến trang tạo đề thi
-    window.location.hash = '#/teacher/exams/create';
+    // Điều hướng đến trang quản lý đề thi
+    navigate('/teacher/exams');
   };
 
   return (

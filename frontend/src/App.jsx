@@ -3,8 +3,21 @@ import { BrowserRouter, Routes, Route, Navigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import TeacherLayout from './components/layout/teacher/TeacherLayout';
 import TeacherHome from './pages/teacher/TeacherHome';
-import { QuestionBankFolders, QuestionList, QuestionDetail, QuestionEdit } from './pages/teacher/question-bank';
-import ExamManagement from './pages/teacher/exam-management/ExamManagement';
+import {
+  QuestionBankFolders,
+  SubjectChapters,
+  QuestionList,
+  QuestionDetail,
+  QuestionEdit,
+  QuestionCreate,
+  QuestionDeletePage,
+} from './pages/teacher/question-bank';
+import {
+  ExamFolders,
+  ExamChapters,
+  ExamList,
+  ExamDetail,
+} from './pages/teacher/exam-management';
 import TeacherDashboard from './pages/teacher/TeacherDashboard';
 import Login from './pages/auth/Login';
 
@@ -98,20 +111,39 @@ function App() {
         {/* Route xác thực tài khoản (Auth nằm NGOÀI TeacherLayout) */}
         <Route path="/login" element={<Login />} />
 
+        {/* Route xác nhận xóa câu hỏi (Không Header & Sidebar theo thiết kế Figma) */}
+        <Route path="/teacher/questions/delete/:questionId" element={<QuestionDeletePage />} />
+        <Route path="/teacher/questions/delete" element={<QuestionDeletePage />} />
+
         {/* Layout Route cha dành cho Giảng viên */}
         <Route path="/teacher" element={<TeacherLayout />}>
-          <Route index element={<TeacherHome />} />
+          {/* Index route: Tự động điều hướng đến dashboard để sidebar NavLink active chính xác */}
+          <Route index element={<Navigate to="/teacher/dashboard" replace />} />
           <Route path="dashboard" element={<TeacherHome />} />
           <Route path="schedule" element={<TeacherDashboard />} />
           <Route path="questions" element={<QuestionBankFolders />} />
-          <Route path="questions/:subjectId" element={<QuestionList />} />
+          <Route path="questions/:subjectId" element={<SubjectChapters />} />
+          <Route path="questions/:subjectId/chapters" element={<SubjectChapters />} />
+          <Route path="questions/:subjectId/list" element={<QuestionList />} />
+          <Route path="questions/:subjectId/chapters/:chapterId" element={<QuestionList />} />
           <Route path="questions/list" element={<QuestionList />} />
           <Route path="questions/detail/:questionId" element={<QuestionDetail />} />
           <Route path="questions/detail" element={<QuestionDetail />} />
+          <Route path="questions/create" element={<QuestionCreate />} />
+          <Route path="questions/:subjectId/create" element={<QuestionCreate />} />
           <Route path="questions/edit/:questionId" element={<QuestionEdit />} />
           <Route path="questions/edit" element={<QuestionEdit />} />
-          <Route path="exams" element={<ExamManagement />} />
-          <Route path="exam-management" element={<ExamManagement />} />
+          {/* Quản lý đề thi (Exam Management) - Kế thừa cấu trúc 3 cấp như Ngân hàng câu hỏi */}
+          <Route path="exams" element={<ExamFolders />} />
+          <Route path="exams/detail/:examId" element={<ExamDetail />} />
+          <Route path="exams/detail" element={<ExamDetail />} />
+          <Route path="exams/:subjectId" element={<ExamChapters />} />
+          <Route path="exams/:subjectId/chapters" element={<ExamChapters />} />
+          <Route path="exams/:subjectId/list" element={<ExamList />} />
+          <Route path="exams/:subjectId/chapters/:chapterId" element={<ExamList />} />
+          <Route path="exams/:subjectId/detail/:examId" element={<ExamDetail />} />
+          <Route path="exams/list" element={<ExamList />} />
+          <Route path="exam-management" element={<Navigate to="/teacher/exams" replace />} />
           <Route path="sessions" element={<TeacherDashboard />} />
           <Route path="results" element={<TeacherDashboard />} />
           <Route path="classes" element={<TeacherDashboard />} />

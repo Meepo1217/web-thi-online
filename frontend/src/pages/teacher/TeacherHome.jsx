@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import {
   IconDownload,
   IconPlus,
@@ -25,16 +26,18 @@ const TEACHER_HEADER_DATA = {
  * Ghép: Thanh tiêu đề + 3 nút hành động nhanh; 4 thẻ KPI; bố cục 2 cột (trái 8 cột, phải 4 cột)
  */
 export default function TeacherHome() {
+  const navigate = useNavigate();
+
   const handleExportReport = () => {
-    alert('Tính năng xuất báo cáo đang được chuẩn bị.');
+    navigate('/teacher/statistics');
   };
 
   const handleCreateExam = () => {
-    window.location.hash = '#/teacher/exams/create';
+    navigate('/teacher/exams');
   };
 
   const handleEnterLiveRoom = () => {
-    window.location.hash = '#/teacher/sessions/live';
+    navigate('/teacher/sessions');
   };
 
   return (
