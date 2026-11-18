@@ -79,11 +79,11 @@ export default function Register() {
       setIsLoading(false);
       setAlertInfo({
         type: 'success',
-        message: `Đăng ký tài khoản ${role === 'student' ? 'Học viên' : 'Giảng viên'} thành công! Đang chuyển đến trang đăng nhập...`
+        message: `Đăng ký thông tin thành công! Đang chuyển đến bước xác thực mã OTP...`
       });
       setTimeout(() => {
-        navigate('/login');
-      }, 900);
+        navigate(`/verify-otp?email=${encodeURIComponent(email)}&role=${role}`);
+      }, 700);
     }, 700);
   };
 
@@ -546,3 +546,4 @@ export default function Register() {
     </div>
   );
 }
+

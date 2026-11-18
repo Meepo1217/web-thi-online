@@ -1,0 +1,465 @@
+/* ========================================================
+   VERIFY OTP STYLES - CHUẨN FIGMA PIXEL-PERFECT (AUTO LAYOUT)
+   ======================================================== */
+
+.otp-page-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 48px 24px;
+  min-height: 100vh;
+  width: 100%;
+  background: linear-gradient(0deg, #F8F9FF, #F8F9FF), #FFFFFF;
+  box-sizing: border-box;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Thẻ Card trung tâm chuẩn Figma 512px */
+.otp-main-card {
+  width: 512px;
+  max-width: 512px;
+  background: #FFFFFF;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px -1px rgba(0, 0, 0, 0.1), 0px 2px 4px -2px rgba(0, 0, 0, 0.1);
+  border: 1px solid #E5EEFF;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  box-sizing: border-box;
+  z-index: 2;
+}
+
+/* Stepper Navigation (Tiến trình 3 bước) */
+.otp-stepper-wrap {
+  width: 448px;
+  height: 54px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16px;
+  position: relative;
+  margin-bottom: 24px;
+  box-sizing: border-box;
+}
+
+.otp-stepper-line-bg {
+  position: absolute;
+  height: 2px;
+  left: 36px;
+  right: 36px;
+  top: 16px;
+  background: #DCE9FF;
+  z-index: 0;
+}
+
+.otp-stepper-line-active {
+  position: absolute;
+  height: 2px;
+  left: 36px;
+  width: calc(50% - 18px);
+  top: 16px;
+  background: #0051D5;
+  z-index: 1;
+  transition: width 0.3s ease;
+}
+
+.otp-step-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  z-index: 2;
+  position: relative;
+}
+
+.otp-step-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+}
+
+.otp-step-item.completed .otp-step-circle {
+  background: #0051D5;
+  color: #FFFFFF;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.otp-step-item.active .otp-step-circle {
+  background: #131B2E;
+  color: #FFFFFF;
+  box-shadow: 0px 0px 0px 4px #DCE9FF, 0px 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.otp-step-item.upcoming .otp-step-circle {
+  background: #E5EEFF;
+  color: #76777D;
+}
+
+.otp-step-label {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.44px;
+}
+
+.otp-step-item.completed .otp-step-label {
+  color: #0B1C30;
+}
+
+.otp-step-item.active .otp-step-label {
+  color: #0051D5;
+}
+
+.otp-step-item.upcoming .otp-step-label {
+  color: #76777D;
+}
+
+/* Security Emblem Icon */
+.otp-security-emblem {
+  width: 56px;
+  height: 56px;
+  background: #EFF4FF;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0051D5;
+  margin-bottom: 12px;
+}
+
+/* Tag Badge */
+.otp-tag-badge {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 4px 12px;
+  gap: 6px;
+  background: #DBE1FF;
+  border-radius: 12px;
+  margin-bottom: 8px;
+}
+
+.otp-tag-dot {
+  width: 6px;
+  height: 6px;
+  background: #0051D5;
+  border-radius: 50%;
+}
+
+.otp-tag-text {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.55px;
+  text-transform: uppercase;
+  color: #00174B;
+}
+
+/* Heading 1 - Title & Description */
+.otp-heading-title {
+  font-family: 'Liberation Serif', Georgia, serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 26px;
+  line-height: 34px;
+  letter-spacing: -0.7px;
+  color: #0B1C30;
+  text-align: center;
+  margin: 0 0 8px 0;
+}
+
+.otp-desc-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  max-width: 384px;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.otp-desc-text {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 20px;
+  color: #45464D;
+  margin: 0;
+}
+
+.otp-email-chip {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 3px 10px;
+  gap: 6px;
+  background: #E5EEFF;
+  border-radius: 4px;
+  margin: 2px 0;
+}
+
+.otp-email-text {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 20px;
+  color: #0B1C30;
+}
+
+.btn-otp-change-email {
+  background: none;
+  border: none;
+  color: #0051D5;
+  cursor: pointer;
+  padding: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.15s ease;
+}
+
+.btn-otp-change-email:hover {
+  opacity: 0.75;
+}
+
+.otp-desc-subhint {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.44px;
+  color: #76777D;
+  margin: 0;
+}
+
+/* 6-digit PIN input fields */
+.otp-inputs-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: 448px;
+  height: 56px;
+  margin-bottom: 20px;
+}
+
+.otp-digit-input {
+  width: 48px;
+  height: 56px;
+  background: #EFF4FF;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+  border: 1px solid transparent;
+  font-family: 'Liberation Mono', monospace, sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  text-align: center;
+  color: #0B1C30;
+  outline: none;
+  transition: all 0.15s ease;
+  box-sizing: border-box;
+}
+
+.otp-digit-input:focus {
+  background: #FFFFFF;
+  box-shadow: 0px 0px 0px 2px #0051D5, 0px 1px 2px rgba(0, 0, 0, 0.05);
+  border-color: #0051D5;
+}
+
+.otp-digit-input.filled {
+  background: #FFFFFF;
+  border-color: #CBD5E1;
+}
+
+/* Resend & Countdown Section */
+.otp-resend-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 24px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: #45464D;
+}
+
+.otp-countdown-val {
+  font-family: 'Liberation Mono', monospace;
+  font-weight: 600;
+  font-size: 13px;
+  color: #0051D5;
+}
+
+.btn-otp-resend {
+  background: none;
+  border: none;
+  color: #0051D5;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+}
+
+.btn-otp-resend:hover {
+  color: #003da1;
+}
+
+/* Submit CTA Button */
+.btn-otp-submit {
+  width: 448px;
+  height: 44px;
+  background: #000000;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  border: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  color: #FFFFFF;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-otp-submit:hover {
+  background: #1E293B;
+  transform: translateY(-1px);
+}
+
+.btn-otp-submit:active {
+  transform: translateY(0);
+}
+
+.btn-otp-submit:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Academic Security Advisory Box */
+.otp-advisory-box {
+  width: 448px;
+  background: #EFF4FF;
+  border-radius: 8px;
+  padding: 14px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: 20px;
+  box-sizing: border-box;
+}
+
+.otp-advisory-icon {
+  color: #0051D5;
+  display: flex;
+  align-items: center;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.otp-advisory-text {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12.5px;
+  line-height: 20px;
+  color: #0B1C30;
+  margin: 0;
+}
+
+/* Back Navigation Actions */
+.otp-back-nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.btn-otp-nav-back {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  color: #45464D;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.btn-otp-nav-back:hover {
+  color: #0B1C30;
+}
+
+.otp-nav-dot {
+  width: 4px;
+  height: 4px;
+  background: #C6C6CD;
+  border-radius: 50%;
+}
+
+.btn-otp-nav-help {
+  background: none;
+  border: none;
+  color: #0051D5;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.btn-otp-nav-help:hover {
+  text-decoration: underline;
+}
+
+/* Trust Footer Notice */
+.otp-trust-notice {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 24px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.275px;
+  color: #76777D;
+}

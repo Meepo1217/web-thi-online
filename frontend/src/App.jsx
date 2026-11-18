@@ -8,6 +8,7 @@ import ExamManagement from './pages/teacher/exam-management/ExamManagement';
 import TeacherDashboard from './pages/teacher/TeacherDashboard';
 import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
+import VerifyOtp from './pages/auth/VerifyOtp';
 import StudentPortal from './pages/student/StudentPortal';
 
 /**
@@ -175,6 +176,8 @@ function App() {
         {/* Route xác thực tài khoản chung cho cả Giảng viên và Học sinh / Sinh viên */}
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/verify-otp" element={<VerifyOtp />} />
+        <Route path="/auth/verify-otp" element={<VerifyOtp />} />
         <Route path="/student/login" element={<Navigate to="/login" replace />} />
         <Route path="/student/register" element={<Navigate to="/register" replace />} />
         <Route path="/teacher/login" element={<Navigate to="/login" replace />} />
