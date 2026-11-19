@@ -110,68 +110,6 @@ function ConnectionTest() {
 function App() {
   return (
     <BrowserRouter>
-      {/* Thanh chuyển đổi Role nhanh nổi ở góc trên màn hình */}
-      <div style={{
-        position: 'fixed',
-        top: '12px',
-        right: '20px',
-        zIndex: 99999,
-        background: 'rgba(15, 23, 42, 0.88)',
-        backdropFilter: 'blur(8px)',
-        color: '#FFFFFF',
-        padding: '6px 12px',
-        borderRadius: '30px',
-        display: 'flex',
-        alignItems: 'center',
-        gap: '8px',
-        boxShadow: '0 4px 16px rgba(0, 0, 0, 0.25)',
-        fontSize: '12px',
-        fontFamily: "'Inter', sans-serif"
-      }}>
-        <span style={{ color: '#94A3B8', fontWeight: 600 }}>Vai trò:</span>
-        <Link
-          to="/student"
-          style={{
-            color: '#FFFFFF',
-            textDecoration: 'none',
-            padding: '4px 10px',
-            borderRadius: '16px',
-            background: '#059669',
-            fontWeight: 600,
-            fontSize: '11px'
-          }}
-        >
-          👨‍🎓 Học sinh
-        </Link>
-        <Link
-          to="/teacher/dashboard"
-          style={{
-            color: '#FFFFFF',
-            textDecoration: 'none',
-            padding: '4px 10px',
-            borderRadius: '16px',
-            background: '#0051D5',
-            fontWeight: 600,
-            fontSize: '11px'
-          }}
-        >
-          👨‍🏫 Giảng viên
-        </Link>
-        <Link
-          to="/login"
-          style={{
-            color: '#CBD5E1',
-            textDecoration: 'none',
-            padding: '4px 8px',
-            borderRadius: '16px',
-            fontWeight: 500,
-            fontSize: '11px'
-          }}
-        >
-          🔐 Đăng nhập
-        </Link>
-      </div>
-
       <Routes>
         {/* Route xác thực tài khoản chung cho cả Giảng viên và Học sinh / Sinh viên */}
         <Route path="/login" element={<Login />} />

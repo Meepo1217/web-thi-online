@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
 import Header from '../../components/student/Header'
 import Sidebar from '../../components/student/Sidebar'
 import Footer from '../../components/student/Footer'
@@ -114,100 +113,6 @@ export default function StudentPortal() {
           </div>
         )}
 
-      </div>
-
-      {/* Thanh chuyển trang nhanh nội bộ giao diện sinh viên */}
-      <div style={{
-        position: 'fixed',
-        bottom: '20px',
-        right: '20px',
-        zIndex: 9998,
-        background: '#131B2E',
-        color: '#FFFFFF',
-        padding: '8px 14px',
-        borderRadius: '30px',
-        display: 'flex',
-        alignItems: 'center',
-        gap: '8px',
-        boxShadow: '0 8px 24px rgba(0, 0, 0, 0.25)',
-        fontSize: '12px',
-        fontFamily: "'Inter', sans-serif"
-      }}>
-        <span style={{ color: '#94A3B8', fontWeight: 500 }}>Học sinh:</span>
-        <button
-          onClick={() => setCurrentPage('dashboard')}
-          style={{
-            background: currentPage === 'dashboard' ? '#0051D5' : 'transparent',
-            color: '#FFFFFF',
-            border: 'none',
-            padding: '5px 12px',
-            borderRadius: '20px',
-            cursor: 'pointer',
-            fontWeight: currentPage === 'dashboard' ? 600 : 400,
-            transition: 'all 0.15s'
-          }}
-        >
-          Trang chủ
-        </button>
-        <button
-          onClick={() => setCurrentPage('prep')}
-          style={{
-            background: currentPage === 'prep' ? '#0051D5' : 'transparent',
-            color: '#FFFFFF',
-            border: 'none',
-            padding: '5px 12px',
-            borderRadius: '20px',
-            cursor: 'pointer',
-            fontWeight: currentPage === 'prep' ? 600 : 400,
-            transition: 'all 0.15s'
-          }}
-        >
-          Chuẩn bị
-        </button>
-        <button
-          onClick={() => setCurrentPage('exam')}
-          style={{
-            background: currentPage === 'exam' ? '#0051D5' : 'transparent',
-            color: '#FFFFFF',
-            border: 'none',
-            padding: '5px 12px',
-            borderRadius: '20px',
-            cursor: 'pointer',
-            fontWeight: currentPage === 'exam' ? 600 : 400,
-            transition: 'all 0.15s'
-          }}
-        >
-          Làm bài
-        </button>
-        <button
-          onClick={() => setCurrentPage('result')}
-          style={{
-            background: currentPage === 'result' ? '#0051D5' : 'transparent',
-            color: '#FFFFFF',
-            border: 'none',
-            padding: '5px 12px',
-            borderRadius: '20px',
-            cursor: 'pointer',
-            fontWeight: currentPage === 'result' ? 600 : 400,
-            transition: 'all 0.15s'
-          }}
-        >
-          Kết quả
-        </button>
-        <Link
-          to="/login"
-          style={{
-            background: 'rgba(255, 255, 255, 0.1)',
-            color: '#CBD5E1',
-            textDecoration: 'none',
-            padding: '5px 12px',
-            borderRadius: '20px',
-            fontWeight: 500,
-            transition: 'all 0.15s'
-          }}
-        >
-          Đăng nhập
-        </Link>
       </div>
     </div>
   )
