@@ -1,6 +1,6 @@
 import './layout.css'
 
-export default function Header({ onLogoClick, user }) {
+export default function Header({ onLogoClick, onProfileClick, user }) {
   const currentUser = user || {
     name: 'Nguyễn Văn An',
     role: 'Học sinh • Lớp 12A1',
@@ -46,7 +46,12 @@ export default function Header({ onLogoClick, user }) {
         <div className="header-divider-v"></div>
 
         {/* User Profile Card */}
-        <div className="header-user-card" title="Thông tin cá nhân">
+        <div 
+          className="header-user-card" 
+          title="Xem tài khoản cá nhân"
+          onClick={onProfileClick}
+          style={{ cursor: 'pointer' }}
+        >
           <div className="header-avatar-badge">
             <div className="avatar-circle-navy">{currentUser.initials}</div>
             <span className="online-dot-green"></span>

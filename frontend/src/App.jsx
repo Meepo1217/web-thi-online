@@ -121,6 +121,8 @@ function App() {
         <Route path="/teacher/login" element={<Navigate to="/login" replace />} />
 
         {/* Route Cổng Sinh viên (Student Portal) */}
+        <Route path="/student/profile" element={<StudentPortal />} />
+        <Route path="/profile" element={<Navigate to="/student/profile" replace />} />
         <Route path="/student/*" element={<StudentPortal />} />
 
         {/* Route kiểm tra kết nối ban đầu */}

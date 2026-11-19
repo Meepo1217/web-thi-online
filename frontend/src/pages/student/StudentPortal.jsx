@@ -7,13 +7,19 @@ import ExamPreparationPage from './ExamPreparationPage'
 import TakeExamPage from './TakeExamPage'
 import ExamResultPage from './ExamResultPage'
 import ExamHistoryPage from './ExamHistoryPage'
+import StudentProfilePage from './StudentProfilePage'
 
 export default function StudentPortal() {
   const isHistoryPath = typeof window !== 'undefined' && window.location.pathname.includes('/history')
-  const [currentPage, setCurrentPage] = useState(isHistoryPath ? 'history' : 'dashboard') // 'dashboard' | 'history' | 'prep' | 'exam' | 'result'
+  const isProfilePath = typeof window !== 'undefined' && window.location.pathname.includes('/profile')
+  
+  const initialPage = isProfilePath ? 'profile' : isHistoryPath ? 'history' : 'dashboard'
+  const initialNav = isProfilePath ? 'profile' : isHistoryPath ? 'history' : 'home'
+
+  const [currentPage, setCurrentPage] = useState(initialPage) // 'dashboard' | 'history' | 'profile' | 'prep' | 'exam' | 'result'
   const [selectedExam, setSelectedExam] = useState(null)
   const [examResult, setExamResult] = useState(null)
-  const [activeNav, setActiveNav] = useState(isHistoryPath ? 'history' : 'home')
+  const [activeNav, setActiveNav] = useState(initialNav)
 
   const handleNavChange = (navKey) => {
     setActiveNav(navKey)
@@ -21,6 +27,8 @@ export default function StudentPortal() {
       setCurrentPage('dashboard')
     } else if (navKey === 'history') {
       setCurrentPage('history')
+    } else if (navKey === 'profile') {
+      setCurrentPage('profile')
     }
   }
 
@@ -94,9 +102,12 @@ export default function StudentPortal() {
         boxShadow: '0 4px 30px rgba(0, 0, 0, 0.04)'
       }}>
 
-        {/* 1. Header sinh viên (hiển thị ở dashboard, history, prep, exam) */}
+        {/* 1. Header sinh viên (hiển thị ở dashboard, history, profile, prep, exam) */}
         {currentPage !== 'result' && (
-          <Header onLogoClick={handleBackToDashboard} />
+          <Header 
+            onLogoClick={handleBackToDashboard} 
+            onProfileClick={() => handleNavChange('profile')}
+          />
         )}
 
         {/* 2. Nội dung các màn hình sinh viên */}
@@ -111,6 +122,13 @@ export default function StudentPortal() {
           <div style={{ display: 'flex', flexDirection: 'row', width: '100%', flex: 1 }}>
             <Sidebar activeNav="history" onNavChange={handleNavChange} />
             <ExamHistoryPage onViewResult={handleViewHistoryResult} />
+          </div>
+        )}
+
+        {currentPage === 'profile' && (
+          <div style={{ display: 'flex', flexDirection: 'row', width: '100%', flex: 1 }}>
+            <Sidebar activeNav="profile" onNavChange={handleNavChange} />
+            <StudentProfilePage />
           </div>
         )}
 
