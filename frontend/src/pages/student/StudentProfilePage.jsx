@@ -8,7 +8,7 @@ import './student-profile.css';
 export default function StudentProfilePage() {
   // State thông tin cá nhân
   const [fullName, setFullName] = useState('Nguyễn Văn An');
-  const [email] = useState('nguyenvanan@hubt.edu.vn');
+  const [email] = useState('nguyenvanan@huce.edu.vn');
   const [phone, setPhone] = useState('0912 345 678');
   const [dob, setDob] = useState('2004-08-15');
   const [gender, setGender] = useState('male'); // 'male' | 'female' | 'other'

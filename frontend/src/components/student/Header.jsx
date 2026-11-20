@@ -18,7 +18,7 @@ export default function Header({ onLogoClick, onProfileClick, user }) {
         </div>
         <div className="brand-text-col">
           <h1 className="brand-title-wrap">
-            <span>HUBT</span>
+            <span>HUCE</span>
             <span className="brand-blue">EXAM</span>
           </h1>
           <span className="brand-subtitle">ACADEMIC PLATFORM</span>
