@@ -5,6 +5,8 @@ import QuestionListFilterBar from './QuestionListFilterBar';
 import QuestionBatchToolbar from './QuestionBatchToolbar';
 import QuestionCard from './QuestionCard';
 import QuestionPagination from './QuestionPagination';
+import QuestionDeleteModal from '../question-delete/QuestionDeleteModal';
+import ImportExamFileModal from '../../exam-management/exam-edit/ImportExamFileModal';
 import {
   SUBJECT_INFO,
   INITIAL_QUESTIONS,
@@ -36,19 +38,15 @@ export default function QuestionList() {
     'MATH-12-0215',
   ]);
 
-  // Bộ lọc & Tìm kiếm
+  // Bộ lọc & Tìm kiếm (chỉ giữ lại mức độ theo yêu cầu)
   const [searchTerm, setSearchTerm] = useState('');
   const [filters, setFilters] = useState({
-    chapter: 'all',
     bloom: 'all',
-    format: 'all',
-    status: 'all',
   });
 
   // Active filter chips (như trong Figma: TOÁN 12, VẬN DỤNG CAO)
   const [activeChips, setActiveChips] = useState([
     { id: 'grade', label: 'TOÁN 12', color: 'blue' },
-    { id: 'bloom', label: 'VẬN DỤNG CAO', color: 'slate' },
   ]);
 
   // Modal xem chi tiết câu hỏi
@@ -60,6 +58,10 @@ export default function QuestionList() {
     target: null, // null nếu xóa hàng loạt
     count: 1,
   });
+
+  // Modal đẩy file lên (Import File)
+  const [isImportModalOpen, setIsImportModalOpen] = useState(false);
+  const [alertInfo, setAlertInfo] = useState(null);
 
   // Phân trang
   const [currentPage, setCurrentPage] = useState(1);
@@ -86,11 +88,26 @@ export default function QuestionList() {
   // Thay đổi bộ lọc select
   const handleFilterChange = (key, value) => {
     setFilters((prev) => ({ ...prev, [key]: value }));
+    if (key === 'bloom') {
+      if (value === 'all') {
+        setActiveChips((prev) => prev.filter((c) => c.id !== 'bloom'));
+      } else {
+        const found = FILTER_OPTIONS.bloomLevels.find((b) => b.value === value);
+        const label = found ? found.label.toUpperCase() : value.toUpperCase();
+        setActiveChips((prev) => {
+          const others = prev.filter((c) => c.id !== 'bloom');
+          return [...others, { id: 'bloom', label, color: 'slate' }];
+        });
+      }
+    }
   };
 
   // Xóa chip lọc
   const handleRemoveChip = (chipId) => {
     setActiveChips((prev) => prev.filter((c) => c.id !== chipId));
+    if (chipId === 'bloom') {
+      setFilters((prev) => ({ ...prev, bloom: 'all' }));
+    }
   };
 
   // Xóa tất cả bộ lọc
@@ -98,10 +115,7 @@ export default function QuestionList() {
     setActiveChips([]);
     setSearchTerm('');
     setFilters({
-      chapter: 'all',
       bloom: 'all',
-      format: 'all',
-      status: 'all',
     });
   };
 
@@ -141,7 +155,7 @@ export default function QuestionList() {
 
   // Action handlers
   const handleAddQuestion = () => {
-    alert('Chức năng Thêm câu hỏi mới vào ngân hàng môn Toán học THPT');
+    navigate(subjectId ? `/teacher/questions/${subjectId}/create` : '/teacher/questions/create');
   };
 
   const handleAutoShuffle = () => {
@@ -153,7 +167,31 @@ export default function QuestionList() {
   };
 
   const handleDownloadTemplate = () => {
-    alert('Đang tải file Excel mẫu ma trận câu hỏi THPT chuẩn Quốc gia...');
+    setIsImportModalOpen(true);
+  };
+
+  const showAlert = (type, message) => {
+    setAlertInfo({ type, message });
+    setTimeout(() => {
+      setAlertInfo(null);
+    }, 3500);
+  };
+
+  const handleImportSuccess = (importedQuestions, mode, fileName) => {
+    if (mode === 'replace') {
+      setQuestions(importedQuestions);
+      setSelectedIds([]);
+      showAlert(
+        'success',
+        `Đã thay thế toàn bộ ngân hàng câu hỏi bằng ${importedQuestions.length} câu hỏi từ tệp "${fileName}"!`
+      );
+    } else {
+      setQuestions((prev) => [...importedQuestions, ...prev]);
+      showAlert(
+        'success',
+        `Đã nạp thành công ${importedQuestions.length} câu hỏi từ tệp "${fileName}" vào ngân hàng câu hỏi!`
+      );
+    }
   };
 
   const handleViewDetail = (question) => {
@@ -164,19 +202,29 @@ export default function QuestionList() {
     navigate(`/teacher/questions/edit/${question.id}`);
   };
 
-  // Lọc câu hỏi theo từ khóa tìm kiếm
+  // Lọc câu hỏi theo từ khóa tìm kiếm và mức độ nhận thức
   const filteredQuestions = useMemo(() => {
     return questions.filter((q) => {
-      if (!searchTerm) return true;
-      const lower = searchTerm.toLowerCase();
-      return (
-        q.code.toLowerCase().includes(lower) ||
-        q.content.toLowerCase().includes(lower) ||
-        q.chapter.toLowerCase().includes(lower) ||
-        q.tags?.some((t) => t.toLowerCase().includes(lower))
-      );
+      if (searchTerm) {
+        const lower = searchTerm.toLowerCase();
+        const matchSearch =
+          q.code.toLowerCase().includes(lower) ||
+          q.content.toLowerCase().includes(lower) ||
+          q.chapter.toLowerCase().includes(lower) ||
+          q.tags?.some((t) => t.toLowerCase().includes(lower));
+        if (!matchSearch) return false;
+      }
+
+      if (filters.bloom && filters.bloom !== 'all') {
+        const matchBloom =
+          q.bloomType === filters.bloom ||
+          (filters.bloom === 'van-dung-cao' && q.bloomType === 'vd-cao');
+        if (!matchBloom) return false;
+      }
+
+      return true;
     });
-  }, [questions, searchTerm]);
+  }, [questions, searchTerm, filters.bloom]);
 
   return (
     <div className="ql-page-container">
@@ -186,8 +234,32 @@ export default function QuestionList() {
         onAddQuestion={handleAddQuestion}
         onAutoShuffle={handleAutoShuffle}
         onExport={handleExport}
+        onImportFile={() => setIsImportModalOpen(true)}
         onDownloadTemplate={handleDownloadTemplate}
       />
+
+      {/* Thông báo Alert Toast */}
+      {alertInfo && (
+        <div
+          style={{
+            maxWidth: '1280px',
+            margin: '0 auto 16px',
+            padding: '10px 24px',
+            borderRadius: '6px',
+            fontSize: '14px',
+            background: alertInfo.type === 'error' ? '#FEE2E2' : '#DCFCE7',
+            color: alertInfo.type === 'error' ? '#991B1B' : '#166534',
+            border: `1px solid ${alertInfo.type === 'error' ? '#FCA5A5' : '#86EFAC'}`,
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+            zIndex: 10,
+          }}
+        >
+          <span>{alertInfo.type === 'error' ? '⚠️' : '✅'}</span>
+          <span>{alertInfo.message}</span>
+        </div>
+      )}
 
       {/* 2. Thanh tìm kiếm thông minh & 4 bộ lọc & Active Chips */}
       <QuestionListFilterBar
@@ -255,7 +327,33 @@ export default function QuestionList() {
         onPageSizeChange={setPageSize}
       />
 
-      
+      {/* 6. Popup xác nhận xóa câu hỏi chuẩn Figma */}
+      <QuestionDeleteModal
+        isOpen={deleteModalState.isOpen}
+        question={
+          deleteModalState.target || {
+            code: selectedIds[0] || 'MATH-12-0482',
+            linkedExamsCount: selectedIds.length > 1 ? selectedIds.length * 2 : 3,
+            studentSubmissionsCount: '1,420',
+          }
+        }
+        onConfirm={handleConfirmDelete}
+        onCancel={() =>
+          setDeleteModalState({ isOpen: false, target: null, count: 1 })
+        }
+      />
+
+      {/* 7. Popup đẩy file câu hỏi lên ngân hàng */}
+      <ImportExamFileModal
+        isOpen={isImportModalOpen}
+        onClose={() => setIsImportModalOpen(false)}
+        onImportSuccess={handleImportSuccess}
+        currentCount={questions.length}
+        title="Đẩy file câu hỏi lên Ngân hàng câu hỏi"
+        subtitle="Hỗ trợ file Word (.docx), Excel (.xlsx), PDF hoặc Text"
+        badgeText="Nhập câu hỏi ngân hàng"
+        targetName="ngân hàng câu hỏi"
+      />
     </div>
   );
 }

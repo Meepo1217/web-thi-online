@@ -1,13 +1,30 @@
 import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate, Link } from 'react-router-dom';
 import axios from 'axios';
+import { AuthProvider, useAuth } from './context/AuthContext';
+import ProtectedRoute from './components/auth/ProtectedRoute';
 import TeacherLayout from './components/layout/teacher/TeacherLayout';
 import TeacherHome from './pages/teacher/TeacherHome';
-import { QuestionBankFolders, QuestionList, QuestionDetail, QuestionEdit } from './pages/teacher/question-bank';
-import ExamManagement from './pages/teacher/exam-management/ExamManagement';
+import {
+  QuestionBankFolders,
+  SubjectChapters,
+  QuestionList,
+  QuestionDetail,
+  QuestionEdit,
+  QuestionCreate,
+  QuestionDeletePage,
+} from './pages/teacher/question-bank';
+import {
+  ExamFolders,
+  ExamChapters,
+  ExamList,
+  ExamDetail,
+  ExamEdit,
+} from './pages/teacher/exam-management';
+import StudentManagement from './pages/teacher/student-management';
+import TeacherSettings from './pages/teacher/settings';
 import TeacherDashboard from './pages/teacher/TeacherDashboard';
 import Login from './pages/auth/Login';
-import StudentLogin from './pages/student/StudentLogin';
 import StudentPortal from './pages/student/StudentPortal';
 
 /**
@@ -57,20 +74,7 @@ function ConnectionTest() {
 
       <div style={{ marginTop: '24px', display: 'flex', gap: '16px' }}>
         <Link
-          to="/student"
-          style={{
-            padding: '8px 16px',
-            background: '#059669',
-            color: '#FFFFFF',
-            textDecoration: 'none',
-            borderRadius: '6px',
-            fontWeight: 600,
-          }}
-        >
-          👨‍🎓 Cổng Sinh viên &rarr;
-        </Link>
-        <Link
-          to="/teacher/dashboard"
+          to="/login"
           style={{
             padding: '8px 16px',
             background: '#0051D5',
@@ -80,20 +84,7 @@ function ConnectionTest() {
             fontWeight: 600,
           }}
         >
-          👨‍🏫 Cổng Giảng viên &rarr;
-        </Link>
-        <Link
-          to="/login"
-          style={{
-            padding: '8px 16px',
-            background: '#45464D',
-            color: '#FFFFFF',
-            textDecoration: 'none',
-            borderRadius: '6px',
-            fontWeight: 600,
-          }}
-        >
-          Trang Đăng nhập (Auth)
+          Trang Đăng nhập (Auth) &rarr;
         </Link>
       </div>
     </div>
@@ -101,119 +92,131 @@ function ConnectionTest() {
 }
 
 /**
- * App - Cấu hình hệ thống Router phân chia theo Roles:
- * - /student/* : Cổng Sinh viên (Student Portal)
- * - /teacher/* : Cổng Giảng viên (Teacher Portal)
- * - /login     : Xác thực tài khoản (Auth)
+ * Điều hướng root "/" theo trạng thái xác thực và vai trò:
+ * - Chưa đăng nhập -> /login
+ * - Giảng viên -> /teacher/dashboard
+ * - Học sinh / Sinh viên -> /student
+ */
+function RootRedirect() {
+  const { user, isAuthenticated } = useAuth();
+
+  if (!isAuthenticated) {
+    return <Navigate to="/login" replace />;
+  }
+
+  if (user?.role === 'teacher') {
+    return <Navigate to="/teacher/dashboard" replace />;
+  }
+
+  return <Navigate to="/student" replace />;
+}
+
+/**
+ * App - Cấu hình hệ thống Router:
+ * 1. Truy cập ban đầu ("/") tự động điều hướng về /login.
+ * 2. Khi đăng nhập thành công -> tự động hiển thị theo vai trò (teacher: /teacher/dashboard, student: /student).
+ * 3. Bảo vệ các route với ProtectedRoute theo vai trò.
  */
 function App() {
   return (
-    <BrowserRouter>
-      {/* Thanh chuyển đổi Role nhanh nổi ở góc trên màn hình */}
-      <div style={{
-        position: 'fixed',
-        top: '12px',
-        right: '20px',
-        zIndex: 99999,
-        background: 'rgba(15, 23, 42, 0.88)',
-        backdropFilter: 'blur(8px)',
-        color: '#FFFFFF',
-        padding: '6px 12px',
-        borderRadius: '30px',
-        display: 'flex',
-        alignItems: 'center',
-        gap: '8px',
-        boxShadow: '0 4px 16px rgba(0, 0, 0, 0.25)',
-        fontSize: '12px',
-        fontFamily: "'Inter', sans-serif"
-      }}>
-        <span style={{ color: '#94A3B8', fontWeight: 600 }}>Vai trò:</span>
-        <Link
-          to="/student"
-          style={{
-            color: '#FFFFFF',
-            textDecoration: 'none',
-            padding: '4px 10px',
-            borderRadius: '16px',
-            background: '#059669',
-            fontWeight: 600,
-            fontSize: '11px'
-          }}
-        >
-          👨‍🎓 Học sinh
-        </Link>
-        <Link
-          to="/teacher/dashboard"
-          style={{
-            color: '#FFFFFF',
-            textDecoration: 'none',
-            padding: '4px 10px',
-            borderRadius: '16px',
-            background: '#0051D5',
-            fontWeight: 600,
-            fontSize: '11px'
-          }}
-        >
-          👨‍🏫 Giảng viên
-        </Link>
-        <Link
-          to="/login"
-          style={{
-            color: '#CBD5E1',
-            textDecoration: 'none',
-            padding: '4px 8px',
-            borderRadius: '16px',
-            fontWeight: 500,
-            fontSize: '11px'
-          }}
-        >
-          🔐 Đăng nhập
-        </Link>
-      </div>
+    <AuthProvider>
+      <BrowserRouter>
+        <Routes>
+          {/* 1. Mặc định truy cập đầu tiên ("/") -> chuyển hướng theo auth và role */}
+          <Route path="/" element={<RootRedirect />} />
 
-      <Routes>
-        {/* Route Cổng Sinh viên (Student Portal) */}
-        <Route path="/student/login" element={<StudentLogin />} />
-        <Route path="/student/*" element={<StudentPortal />} />
+          {/* 2. Route Đăng nhập chung */}
+          <Route path="/login" element={<Login />} />
+          <Route path="/student/login" element={<Login defaultRole="student" />} />
+          <Route path="/teacher/login" element={<Login defaultRole="teacher" />} />
 
-        {/* Route xác thực tài khoản học sinh / sinh viên chuẩn Figma */}
-        <Route path="/login" element={<StudentLogin />} />
-        <Route path="/teacher/login" element={<Login />} />
+          {/* Route kiểm tra kết nối ban đầu */}
+          <Route path="/test-connection" element={<ConnectionTest />} />
 
-        {/* Route kiểm tra kết nối ban đầu */}
-        <Route path="/test-connection" element={<ConnectionTest />} />
+          {/* 3. Cổng Sinh viên (Student Portal) - Chỉ sinh viên được truy cập */}
+          <Route
+            path="/student/*"
+            element={
+              <ProtectedRoute allowedRoles={['student']}>
+                <StudentPortal />
+              </ProtectedRoute>
+            }
+          />
 
-        {/* Layout Route cha dành cho Giảng viên (Teacher Portal) */}
-        <Route path="/teacher" element={<TeacherLayout />}>
-          <Route index element={<TeacherHome />} />
-          <Route path="dashboard" element={<TeacherHome />} />
-          <Route path="schedule" element={<TeacherDashboard />} />
-          <Route path="questions" element={<QuestionBankFolders />} />
-          <Route path="questions/:subjectId" element={<QuestionList />} />
-          <Route path="questions/list" element={<QuestionList />} />
-          <Route path="questions/detail/:questionId" element={<QuestionDetail />} />
-          <Route path="questions/detail" element={<QuestionDetail />} />
-          <Route path="questions/edit/:questionId" element={<QuestionEdit />} />
-          <Route path="questions/edit" element={<QuestionEdit />} />
-          <Route path="exams" element={<ExamManagement />} />
-          <Route path="exam-management" element={<ExamManagement />} />
-          <Route path="sessions" element={<TeacherDashboard />} />
-          <Route path="results" element={<TeacherDashboard />} />
-          <Route path="classes" element={<TeacherDashboard />} />
-          <Route path="students" element={<TeacherDashboard />} />
-          <Route path="statistics" element={<TeacherDashboard />} />
-          <Route path="settings" element={<TeacherDashboard />} />
-          <Route path="help" element={<TeacherDashboard />} />
-          <Route path="*" element={<Navigate to="/teacher/dashboard" replace />} />
-        </Route>
+          {/* 4. Route xác nhận xóa câu hỏi - Chỉ giảng viên được truy cập */}
+          <Route
+            path="/teacher/questions/delete/:questionId"
+            element={
+              <ProtectedRoute allowedRoles={['teacher']}>
+                <QuestionDeletePage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/teacher/questions/delete"
+            element={
+              <ProtectedRoute allowedRoles={['teacher']}>
+                <QuestionDeletePage />
+              </ProtectedRoute>
+            }
+          />
 
-        {/* Mặc định điều hướng vào cổng sinh viên */}
-        <Route path="/" element={<Navigate to="/student" replace />} />
+          {/* 5. Cổng Giảng viên (Teacher Portal) - Chỉ giảng viên được truy cập */}
+          <Route
+            path="/teacher"
+            element={
+              <ProtectedRoute allowedRoles={['teacher']}>
+                <TeacherLayout />
+              </ProtectedRoute>
+            }
+          >
+            <Route index element={<Navigate to="/teacher/dashboard" replace />} />
+            <Route path="dashboard" element={<TeacherHome />} />
+            <Route path="schedule" element={<TeacherDashboard />} />
+            <Route path="questions" element={<QuestionBankFolders />} />
+            <Route path="questions/:subjectId" element={<SubjectChapters />} />
+            <Route path="questions/:subjectId/chapters" element={<SubjectChapters />} />
+            <Route path="questions/:subjectId/list" element={<QuestionList />} />
+            <Route path="questions/:subjectId/chapters/:chapterId" element={<QuestionList />} />
+            <Route path="questions/list" element={<QuestionList />} />
+            <Route path="questions/detail/:questionId" element={<QuestionDetail />} />
+            <Route path="questions/detail" element={<QuestionDetail />} />
+            <Route path="questions/create" element={<QuestionCreate />} />
+            <Route path="questions/:subjectId/create" element={<QuestionCreate />} />
+            <Route path="questions/edit/:questionId" element={<QuestionEdit />} />
+            <Route path="questions/edit" element={<QuestionEdit />} />
 
-        {/* Bắt mọi route lạ điều hướng về cổng sinh viên */}
-        <Route path="*" element={<Navigate to="/student" replace />} />
-      </Routes>
-    </BrowserRouter>
+            {/* Quản lý đề thi (Exam Management) */}
+            <Route path="exams" element={<ExamFolders />} />
+            <Route path="exams/detail/:examId" element={<ExamDetail />} />
+            <Route path="exams/detail" element={<ExamDetail />} />
+            <Route path="exams/edit/:examId" element={<ExamEdit />} />
+            <Route path="exams/edit" element={<ExamEdit />} />
+            <Route path="exams/:subjectId" element={<ExamChapters />} />
+            <Route path="exams/:subjectId/chapters" element={<ExamChapters />} />
+            <Route path="exams/:subjectId/list" element={<ExamList />} />
+            <Route path="exams/:subjectId/chapters/:chapterId" element={<ExamList />} />
+            <Route path="exams/:subjectId/detail/:examId" element={<ExamDetail />} />
+            <Route path="exams/:subjectId/edit/:examId" element={<ExamEdit />} />
+            <Route path="exams/:subjectId/edit" element={<ExamEdit />} />
+            <Route path="exams/list" element={<ExamList />} />
+            <Route path="exam-management" element={<Navigate to="/teacher/exams" replace />} />
+
+            <Route path="sessions" element={<TeacherDashboard />} />
+            <Route path="results" element={<TeacherDashboard />} />
+            <Route path="classes" element={<TeacherDashboard />} />
+            <Route path="students" element={<StudentManagement />} />
+            <Route path="statistics" element={<TeacherDashboard />} />
+            <Route path="settings" element={<TeacherSettings />} />
+            <Route path="help" element={<TeacherDashboard />} />
+            <Route path="*" element={<Navigate to="/teacher/dashboard" replace />} />
+          </Route>
+
+          {/* 6. Bắt mọi route lạ -> Chuyển về RootRedirect */}
+          <Route path="*" element={<RootRedirect />} />
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
   );
 }
 

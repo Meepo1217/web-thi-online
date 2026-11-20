@@ -10,10 +10,7 @@ export default function QuestionListFilterBar({
   searchTerm = '',
   onSearchChange,
   filters = {
-    chapter: 'all',
     bloom: 'all',
-    format: 'all',
-    status: 'all',
   },
   onFilterChange,
   activeChips = [
@@ -41,68 +38,14 @@ export default function QuestionListFilterBar({
           />
         </div>
 
-        {/* Dropdown: Chương */}
+        {/* Dropdown: Mức độ */}
         <div className="ql-select-wrapper">
           <select
-            className="ql-select"
-            value={filters.chapter}
-            onChange={(e) => onFilterChange('chapter', e.target.value)}
-          >
-            {FILTER_OPTIONS.chapters.map((opt) => (
-              <option key={opt.value} value={opt.value}>
-                {opt.label}
-              </option>
-            ))}
-          </select>
-          <span className="ql-select-arrow">
-            <IconChevronDown width={9} height={6} color="#76777D" />
-          </span>
-        </div>
-
-        {/* Dropdown: Mức độ Bloom */}
-        <div className="ql-select-wrapper">
-          <select
-            className="ql-select"
-            value={filters.bloom}
+            className={`ql-select ${filters.bloom && filters.bloom !== 'all' ? 'ql-select--active' : ''}`}
+            value={filters.bloom || 'all'}
             onChange={(e) => onFilterChange('bloom', e.target.value)}
           >
             {FILTER_OPTIONS.bloomLevels.map((opt) => (
-              <option key={opt.value} value={opt.value}>
-                {opt.label}
-              </option>
-            ))}
-          </select>
-          <span className="ql-select-arrow">
-            <IconChevronDown width={9} height={6} color="#76777D" />
-          </span>
-        </div>
-
-        {/* Dropdown: Định dạng */}
-        <div className="ql-select-wrapper">
-          <select
-            className="ql-select"
-            value={filters.format}
-            onChange={(e) => onFilterChange('format', e.target.value)}
-          >
-            {FILTER_OPTIONS.formats.map((opt) => (
-              <option key={opt.value} value={opt.value}>
-                {opt.label}
-              </option>
-            ))}
-          </select>
-          <span className="ql-select-arrow">
-            <IconChevronDown width={9} height={6} color="#76777D" />
-          </span>
-        </div>
-
-        {/* Dropdown: Trạng thái */}
-        <div className="ql-select-wrapper ql-select-compact">
-          <select
-            className="ql-select"
-            value={filters.status}
-            onChange={(e) => onFilterChange('status', e.target.value)}
-          >
-            {FILTER_OPTIONS.statuses.map((opt) => (
               <option key={opt.value} value={opt.value}>
                 {opt.label}
               </option>

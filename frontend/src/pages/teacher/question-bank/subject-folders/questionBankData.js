@@ -14,19 +14,12 @@ export const QUESTION_METRICS = {
     subtext: '+128 tuần này',
     label: 'TỔNG SỐ CÂU HỎI',
   },
-  verificationRate: {
-    label: 'TỶ LỆ THẨM ĐỊNH',
-    approved: '92% ĐẠT',
-    pending: '8% CHỜ',
+  questionStatus: {
+    label: 'TRẠNG THÁI CÂU HỎI',
+    approved: '4,520 SẴN SÀNG',
+    pending: '330 BẢN NHÁP',
   },
 };
-
-export const GRADE_FILTER_TABS = [
-  { id: 'all', label: 'Tất cả' },
-  { id: 'grade10', label: 'Khối 10' },
-  { id: 'grade11', label: 'Khối 11' },
-  { id: 'grade12', label: 'Khối 12' },
-];
 
 export const SUBJECT_FOLDERS_DATA = [
   {
@@ -36,7 +29,6 @@ export const SUBJECT_FOLDERS_DATA = [
     title: 'Toán học THPT',
     description: 'Giải tích 12, Hình học không gian, Tổ hợp xác suất',
     totalQuestions: '1,420 câu',
-    verifiedPercent: 95,
     authorInitial: 'T',
     authorBg: '#000000',
     authorName: 'Tổ Toán • Thầy Nam',
@@ -53,7 +45,6 @@ export const SUBJECT_FOLDERS_DATA = [
     title: 'Vật lý đại cương & 12',
     description: 'Dao động cơ, Sóng điện từ, Vật lý hạt nhân',
     totalQuestions: '980 câu',
-    verifiedPercent: 88,
     authorInitial: 'L',
     authorBg: '#0051D5',
     authorName: 'Tổ Lý • Cô Thảo',
@@ -70,7 +61,6 @@ export const SUBJECT_FOLDERS_DATA = [
     title: 'Hóa học hữu cơ & vô cơ',
     description: 'Este - Lipit, Amin, Polime và Kim loại kiềm',
     totalQuestions: '850 câu',
-    verifiedPercent: 90,
     authorInitial: 'H',
     authorBg: '#131B2E',
     authorName: 'Tổ Hóa • Thầy Hùng',
@@ -87,7 +77,6 @@ export const SUBJECT_FOLDERS_DATA = [
     title: 'Tiếng Anh chuyên sâu B2-C1',
     description: 'Ngữ âm, Điền từ đoạn văn, Đọc hiểu học thuật',
     totalQuestions: '1,120 câu',
-    verifiedPercent: 98,
     authorInitial: 'E',
     authorBg: '#069669',
     authorName: 'Tổ Ngoại ngữ • Ms. Lan',
@@ -104,7 +93,6 @@ export const SUBJECT_FOLDERS_DATA = [
     title: 'Sinh học Di truyền & Tiến hóa',
     description: 'Cơ chế di truyền biến dị, Quy luật Menđen, Hệ sinh thái',
     totalQuestions: '640 câu',
-    verifiedPercent: 82,
     authorInitial: 'S',
     authorBg: '#000000',
     authorName: 'Tổ Sinh • Cô Minh',
@@ -121,7 +109,6 @@ export const SUBJECT_FOLDERS_DATA = [
     title: 'Lịch sử Việt Nam & Thế giới',
     description: 'Kháng chiến chống thực dân, Quan hệ quốc tế cận đại',
     totalQuestions: '520 câu',
-    verifiedPercent: 75,
     authorInitial: 'LS',
     authorBg: '#565E74',
     authorName: 'Tổ Sử • Thầy Bình',
@@ -144,7 +131,7 @@ export const RECENT_ACCESSED_FOLDERS = [
   {
     id: 2,
     title: 'Vật lý đại cương & 12 • Dao động cơ',
-    desc: 'Thẩm định hoàn tất 50 câu',
+    desc: 'Cập nhật hoàn tất 50 câu',
     time: '2 giờ trước',
     iconColor: '#131B2E',
   },
@@ -159,7 +146,7 @@ export const RECENT_ACCESSED_FOLDERS = [
 
 export const CONTRIBUTION_ANALYTICS = {
   growthRate: '+24% THÁNG NÀY',
-  subtitle: 'Tốc độ biên soạn & thẩm định theo các tuần trong tháng 10',
+  subtitle: 'Tốc độ biên soạn câu hỏi theo các tuần trong tháng 10',
   semesterGoal: '85% ĐẠT',
   weeks: ['Tuần 1', 'Tuần 2', 'Tuần 3', 'Tuần 4'],
 };

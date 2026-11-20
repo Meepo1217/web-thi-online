@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../../context/AuthContext';
 import {
   IconSearch,
   IconPlus,
@@ -12,12 +14,15 @@ import {
  */
 export default function TeacherHeader({
   onToggleSidebar,
-  user = {
-    name: 'ThS. Nguyễn Văn A',
-    role: 'Giảng viên',
-  },
+  user: userProp,
   onPrimaryAction,
 }) {
+  const navigate = useNavigate();
+  const { user: authUser, logout } = useAuth();
+  const user = userProp || authUser || {
+    name: 'ThS. Nguyễn Văn A',
+    role: 'Giảng viên',
+  };
   return (
     <header className="teacher-header">
       {/* Vùng trái: Nút toggle mobile + Ô tìm kiếm */}
@@ -76,12 +81,13 @@ export default function TeacherHeader({
           <span className="teacher-header__badge-dot" />
         </button>
 
-        {/* Nút icon thứ hai: icon #45464D (18.33x18.33px) */}
+        {/* Nút icon thứ hai: icon #45464D (18.33x18.33px) dẫn tới Lịch giảng & Ca thi */}
         <button
           type="button"
           className="teacher-header__icon-btn"
-          aria-label="Lịch công tác"
-          title="Lịch công tác"
+          aria-label="Lịch giảng & Ca thi"
+          title="Lịch giảng & Ca thi"
+          onClick={() => navigate('/teacher/schedule')}
         >
           <span className="teacher-header__second-icon">
             <IconCalendar width={18} height={18} color="#45464D" />
@@ -91,15 +97,49 @@ export default function TeacherHeader({
         {/* Vạch ngăn dọc: 1x24px, #DCE9FF */}
         <div className="teacher-header__divider" />
 
-        {/* Khối người dùng: Tên (Inter 600 14px), Vai trò (Inter 600 11px), Avatar 32x32 nền #000000 bo 12px */}
-        <div className="teacher-header__user-block">
+        {/* Khối người dùng: Tên (Inter 600 14px), Vai trò (Inter 600 11px), Avatar 32x32 */}
+        <div
+          className="teacher-header__user-block"
+          style={{ cursor: 'pointer' }}
+          onClick={() => navigate('/teacher/settings')}
+          title="Bấm để vào Cài đặt tài khoản"
+        >
           <div className="teacher-header__user-meta">
             <span className="teacher-header__user-name">{user.name}</span>
-            <span className="teacher-header__user-role">{user.role}</span>
+            <span className="teacher-header__user-role">{user.role === 'teacher' ? 'Giảng viên' : user.role}</span>
           </div>
-          <div className="teacher-header__avatar">
-            <IconUser width={12} height={12} color="#FFFFFF" />
+          <div
+            className="teacher-header__avatar"
+            style={{
+              background: user.avatarColor || '#000000',
+              overflow: 'hidden',
+            }}
+            title={`Tài khoản: ${user.name}`}
+          >
+            {user.avatarImg ? (
+              <img src={user.avatarImg} alt={user.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            ) : (
+              <IconUser width={12} height={12} color="#FFFFFF" />
+            )}
           </div>
+          <button
+            type="button"
+            className="teacher-header__icon-btn"
+            onClick={(e) => {
+              e.stopPropagation();
+              logout();
+              navigate('/login');
+            }}
+            aria-label="Đăng xuất"
+            title="Đăng xuất khỏi hệ thống"
+            style={{ marginLeft: '4px', color: '#BA1A1A' }}
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+              <polyline points="16 17 21 12 16 7"></polyline>
+              <line x1="21" y1="12" x2="9" y2="12"></line>
+            </svg>
+          </button>
         </div>
       </div>
     </header>

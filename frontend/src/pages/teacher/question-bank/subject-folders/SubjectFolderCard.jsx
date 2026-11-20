@@ -1,10 +1,17 @@
-import { IconFolder, IconMoreVertical, IconArrowRight } from '../../../../components/ui/icons';
+import { IconFolder, IconTrash, IconArrowRight } from '../../../../components/ui/icons';
 
 /**
  * SubjectFolderCard - Thẻ thư mục môn học trong Ngân hàng câu hỏi
- * Tái hiện 100% chi tiết thiết kế Figma: Viền trên 4px accent, thanh tiến độ thẩm định, tác giả và nút Xem câu hỏi
+ * Gồm viền trên 4px accent, nút xóa thư mục, tổng số câu hỏi, tác giả và nút Xem câu hỏi
  */
-export default function SubjectFolderCard({ folder, onOpenFolder, onFolderMenu }) {
+export default function SubjectFolderCard({
+  folder,
+  onOpenFolder,
+  onDeleteFolder,
+  metricsLabel = 'Tổng số câu hỏi',
+  unitLabel = '',
+  openLinkLabel = 'Xem câu hỏi',
+}) {
   const {
     id,
     code,
@@ -12,7 +19,6 @@ export default function SubjectFolderCard({ folder, onOpenFolder, onFolderMenu }
     title,
     description,
     totalQuestions,
-    verifiedPercent,
     authorInitial,
     authorBg,
     authorName,
@@ -44,15 +50,15 @@ export default function SubjectFolderCard({ folder, onOpenFolder, onFolderMenu }
 
           <button
             type="button"
-            className="qb-folder-options-btn"
+            className="qb-folder-delete-btn"
             onClick={(e) => {
               e.stopPropagation();
-              onFolderMenu(folder);
+              onDeleteFolder(folder);
             }}
-            title="Tùy chọn thư mục"
-            aria-label="Tùy chọn thư mục"
+            title="Xóa thư mục"
+            aria-label="Xóa thư mục"
           >
-            <IconMoreVertical width={3} height={12} color="#76777D" />
+            <IconTrash width={14} height={15} color="#76777D" />
           </button>
         </div>
 
@@ -75,24 +81,13 @@ export default function SubjectFolderCard({ folder, onOpenFolder, onFolderMenu }
           <p className="qb-folder-description">{description}</p>
         </div>
 
-        {/* Academic Metrics: Total questions & verification progress */}
+        {/* Academic Metrics: Total questions / exams */}
         <div className="qb-folder-metrics-box">
           <div className="qb-metrics-row">
-            <span className="qb-metrics-label">Tổng số câu</span>
-            <span className="qb-metrics-value">{totalQuestions}</span>
-          </div>
-
-          <div className="qb-metrics-row">
-            <span className="qb-metrics-label">Đã thẩm định</span>
-            <div className="qb-progress-wrapper">
-              <div className="qb-progress-track">
-                <span
-                  className="qb-progress-fill"
-                  style={{ width: `${verifiedPercent}%` }}
-                />
-              </div>
-              <span className="qb-progress-percent">{verifiedPercent}%</span>
-            </div>
+            <span className="qb-metrics-label">{metricsLabel}</span>
+            <span className="qb-metrics-value">
+              {unitLabel ? `${totalQuestions} ${unitLabel}` : totalQuestions}
+            </span>
           </div>
         </div>
 
@@ -112,9 +107,9 @@ export default function SubjectFolderCard({ folder, onOpenFolder, onFolderMenu }
             type="button"
             className="qb-folder-open-link"
             onClick={() => onOpenFolder(id)}
-            title={`Mở danh sách câu hỏi môn ${title}`}
+            title={`Mở ${title}`}
           >
-            <span>Xem câu hỏi</span>
+            <span>{openLinkLabel}</span>
             <IconArrowRight width={10.67} height={10.67} color="#0051D5" />
           </button>
         </div>

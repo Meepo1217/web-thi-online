@@ -1,0 +1,960 @@
+/* ==========================================================================
+   STUDENT MANAGEMENT PAGE STYLES (QUẢN LÝ SINH VIÊN - GIẢNG VIÊN)
+   Chuẩn phong cách thiết kế của hệ thống EduQuiz
+   ========================================================================== */
+
+.st-page-container {
+  padding: 24px 32px 64px;
+  max-width: 1280px;
+  margin: 0 auto;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  box-sizing: border-box;
+}
+
+/* 1. Breadcrumbs */
+.st-breadcrumb-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 20px;
+  font-size: 13px;
+  color: #76777D;
+}
+
+.st-breadcrumb-link {
+  color: #0051D5;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.15s ease;
+}
+
+.st-breadcrumb-link:hover {
+  text-decoration: underline;
+}
+
+.st-breadcrumb-sep {
+  font-size: 12px;
+  color: #94A3B8;
+}
+
+.st-breadcrumb-current {
+  color: #0B1C30;
+  font-weight: 600;
+}
+
+/* 2. Page Header Banner */
+.st-header-banner {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+  gap: 20px;
+}
+
+.st-header-left {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.st-page-title {
+  margin: 0;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: #0B1C30;
+  letter-spacing: -0.5px;
+}
+
+.st-page-subtitle {
+  margin: 0;
+  font-size: 14px;
+  color: #64748B;
+}
+
+.st-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.st-btn-export {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 16px;
+  background: #EFF4FF;
+  border: 1px solid #DCE9FF;
+  border-radius: 6px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #0051D5;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.st-btn-export:hover {
+  background: #DCE9FF;
+}
+
+.st-btn-add {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 18px;
+  background: #0051D5;
+  border: none;
+  border-radius: 6px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #FFFFFF;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  box-shadow: 0 1px 3px rgba(0, 81, 213, 0.2);
+}
+
+.st-btn-add:hover {
+  background: #0043B3;
+}
+
+/* 3. KPI Statistics Strip */
+.st-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+@media (max-width: 900px) {
+  .st-kpi-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.st-kpi-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 20px;
+  background: #FFFFFF;
+  border: 1px solid rgba(211, 228, 254, 0.5);
+  border-radius: 8px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.st-kpi-icon-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.st-kpi-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.st-kpi-value {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #0B1C30;
+}
+
+.st-kpi-label {
+  font-size: 12.5px;
+  color: #64748B;
+}
+
+/* 4. Filter Toolbar */
+.st-filter-toolbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  background: #FFFFFF;
+  border: 1px solid rgba(211, 228, 254, 0.5);
+  border-radius: 8px 8px 0 0;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.st-filter-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 280px;
+}
+
+.st-search-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: #F8F9FF;
+  border: 1px solid #DCE9FF;
+  border-radius: 6px;
+  width: 100%;
+  max-width: 380px;
+}
+
+.st-search-input {
+  border: none;
+  outline: none;
+  width: 100%;
+  background: transparent;
+  font-family: 'Inter', sans-serif;
+  font-size: 13.5px;
+  color: #0B1C30;
+}
+
+.st-filter-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.st-filter-select {
+  padding: 8px 12px;
+  background: #F8F9FF;
+  border: 1px solid #DCE9FF;
+  border-radius: 6px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: #0B1C30;
+  outline: none;
+  cursor: pointer;
+}
+
+.st-btn-clear-filter {
+  padding: 8px 12px;
+  background: transparent;
+  border: 1px dashed #CBD5E1;
+  border-radius: 6px;
+  font-size: 12.5px;
+  color: #64748B;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.st-btn-clear-filter:hover {
+  background: #F1F5F9;
+  color: #0B1C30;
+}
+
+/* Batch Bar */
+.st-batch-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background: #EFF4FF;
+  border-left: 1px solid rgba(211, 228, 254, 0.5);
+  border-right: 1px solid rgba(211, 228, 254, 0.5);
+  font-size: 13px;
+  color: #0051D5;
+}
+
+.st-btn-batch-delete {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  background: #FFF1F2;
+  border: 1px solid #FFE4E6;
+  border-radius: 4px;
+  color: #BA1A1A;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.st-btn-batch-delete:hover {
+  background: #FFE4E6;
+}
+
+/* 5. Data Table */
+.st-table-wrapper {
+  background: #FFFFFF;
+  border: 1px solid rgba(211, 228, 254, 0.5);
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+  overflow-x: auto;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.st-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.st-table th {
+  padding: 14px 18px;
+  background: #F8F9FF;
+  border-bottom: 1px solid #E5EEFF;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #64748B;
+  white-space: nowrap;
+}
+
+.st-table td {
+  padding: 14px 18px;
+  border-bottom: 1px solid #F1F5F9;
+  font-size: 13.5px;
+  color: #0B1C30;
+  vertical-align: middle;
+}
+
+.st-table tbody tr:hover {
+  background: #F8F9FF;
+}
+
+/* Student info cell */
+.st-student-cell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.st-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  color: #FFFFFF;
+  font-weight: 700;
+  font-size: 13px;
+  flex-shrink: 0;
+}
+
+.st-student-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.st-student-name {
+  font-weight: 600;
+  color: #0B1C30;
+  font-size: 14px;
+}
+
+.st-student-email {
+  font-size: 12px;
+  color: #64748B;
+}
+
+.st-mssv-badge {
+  display: inline-flex;
+  padding: 2px 8px;
+  background: #EFF4FF;
+  border-radius: 4px;
+  font-family: monospace;
+  font-weight: 700;
+  font-size: 12px;
+  color: #0051D5;
+}
+
+.st-class-badge {
+  display: inline-flex;
+  padding: 2px 8px;
+  background: #F1F5F9;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #475569;
+}
+
+.st-score-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.st-score-high {
+  background: #DCFCE7;
+  color: #166534;
+}
+
+.st-score-mid {
+  background: #EFF4FF;
+  color: #0051D5;
+}
+
+.st-score-low {
+  background: #FEF3C7;
+  color: #92400E;
+}
+
+/* Status Pill */
+.st-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 11.5px;
+  font-weight: 600;
+}
+
+.st-status-pill.status-active {
+  background: #DCFCE7;
+  color: #166534;
+}
+
+.st-status-pill.status-reserved {
+  background: #FEF3C7;
+  color: #92400E;
+}
+
+.st-status-pill.status-suspended {
+  background: #FEE2E2;
+  color: #991B1B;
+}
+
+.st-status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+/* Action Buttons */
+.st-actions-cell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.st-action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.st-action-btn--edit {
+  background: #EFF4FF;
+  border-color: #DCE9FF;
+  color: #0051D5;
+}
+
+.st-action-btn--edit:hover {
+  background: #DCE9FF;
+}
+
+.st-action-btn--delete {
+  background: #FFF1F2;
+  border-color: #FFE4E6;
+  color: #BA1A1A;
+}
+
+.st-action-btn--delete:hover {
+  background: #FFE4E6;
+}
+
+/* Empty state */
+.st-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 16px;
+  text-align: center;
+}
+
+.st-empty-icon {
+  font-size: 36px;
+  margin-bottom: 12px;
+}
+
+.st-empty-title {
+  margin: 0 0 6px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #0B1C30;
+}
+
+.st-empty-desc {
+  margin: 0 0 16px 0;
+  font-size: 13.5px;
+  color: #64748B;
+}
+
+/* 6. Form Modal Specific */
+.st-form-modal-container {
+  max-width: 640px;
+}
+
+.st-form-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.st-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  padding: 20px 24px;
+  overflow-y: auto;
+  max-height: 65vh;
+}
+
+.st-col-span-2 {
+  grid-column: span 2;
+}
+
+.st-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.st-form-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #0B1C30;
+}
+
+.st-required {
+  color: #BA1A1A;
+}
+
+.st-form-input,
+.st-form-select {
+  padding: 9px 12px;
+  background: #F8F9FF;
+  border: 1px solid #DCE9FF;
+  border-radius: 6px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13.5px;
+  color: #0B1C30;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.st-form-input:focus,
+.st-form-select:focus {
+  border-color: #0051D5;
+  background: #FFFFFF;
+}
+
+.st-form-input.is-error {
+  border-color: #BA1A1A;
+  background: #FFF1F2;
+}
+
+.st-error-msg {
+  font-size: 12px;
+  color: #BA1A1A;
+}
+
+.st-status-radios {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.st-radio-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #475569;
+  cursor: pointer;
+}
+
+/* 7. Delete Modal Specific */
+.st-delete-modal-container {
+  max-width: 520px;
+}
+
+.st-delete-body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+}
+
+.st-delete-icon-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #FEE2E2;
+}
+
+.st-delete-prompt {
+  margin: 0;
+  font-size: 15px;
+  line-height: 22px;
+  color: #0B1C30;
+}
+
+.st-delete-subwarning {
+  margin: 0;
+  font-size: 13px;
+  line-height: 18px;
+  color: #64748B;
+}
+
+.st-btn-confirm-delete {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 18px;
+  background: #BA1A1A;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 6px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.st-btn-confirm-delete:hover {
+  background: #991B1B;
+}
+
+/* ==========================================================================
+   8. DETAIL MODAL (XEM CHI TIẾT SINH VIÊN)
+   ========================================================================== */
+.st-detail-modal-container {
+  max-width: 780px;
+}
+
+.st-detail-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px 24px;
+  background: #F8F9FF;
+  border-bottom: 1px solid #E5EEFF;
+}
+
+.st-detail-profile-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.st-detail-avatar-large {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  color: #FFFFFF;
+  font-weight: 700;
+  font-size: 20px;
+  flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+.st-detail-header-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.st-detail-name-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.st-detail-name {
+  margin: 0;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  color: #0B1C30;
+}
+
+.st-detail-badges-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.st-detail-gender-tag {
+  display: inline-flex;
+  padding: 2px 8px;
+  background: #E2E8F0;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #475569;
+}
+
+.st-detail-body {
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  max-height: 68vh;
+  overflow-y: auto;
+}
+
+/* Mini KPI Grid inside detail */
+.st-detail-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+@media (max-width: 700px) {
+  .st-detail-kpi-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.st-detail-kpi-card {
+  padding: 12px 14px;
+  background: #F8F9FF;
+  border: 1px solid #DCE9FF;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.st-detail-kpi-num {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #0B1C30;
+  display: block;
+}
+
+.st-detail-kpi-sub {
+  font-size: 11.5px;
+  color: #64748B;
+  margin-top: 3px;
+  display: block;
+}
+
+/* 2-column info layout */
+.st-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 768px) {
+  .st-detail-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.st-detail-card {
+  background: #FFFFFF;
+  border: 1px solid #E5EEFF;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.st-detail-card-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.st-detail-card-title {
+  margin: 0 0 12px 0;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #0B1C30;
+}
+
+.st-detail-card-header-row .st-detail-card-title {
+  margin-bottom: 0;
+}
+
+.st-detail-exam-count-tag {
+  font-size: 11.5px;
+  padding: 2px 8px;
+  background: #EFF4FF;
+  border-radius: 12px;
+  color: #0051D5;
+  font-weight: 600;
+}
+
+.st-info-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.st-info-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #F1F5F9;
+}
+
+.st-info-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.st-info-label {
+  color: #64748B;
+}
+
+.st-info-value {
+  color: #0B1C30;
+  text-align: right;
+}
+
+/* Exam history list inside detail modal */
+.st-exam-history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.st-exam-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 12px;
+  background: #F8F9FF;
+  border: 1px solid #E5EEFF;
+  border-radius: 6px;
+}
+
+.st-exam-item-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.st-exam-icon-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: #EFF4FF;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+.st-exam-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.st-exam-title {
+  margin: 0;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #0B1C30;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 220px;
+}
+
+.st-exam-subrow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: #64748B;
+}
+
+.st-exam-score-badge {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #0051D5;
+  background: #EFF4FF;
+  padding: 4px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.st-btn-edit-from-detail {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  background: #EFF4FF;
+  border: 1px solid #DCE9FF;
+  border-radius: 6px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #0051D5;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.st-btn-edit-from-detail:hover {
+  background: #DCE9FF;
+}
+
+.st-action-btn--view {
+  background: #F1F5F9;
+  border-color: #E2E8F0;
+  color: #475569;
+}
+
+.st-action-btn--view:hover {
+  background: #E2E8F0;
+  color: #0B1C30;
+}
+
+.st-clickable-name {
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.st-clickable-name:hover {
+  color: #0051D5;
+  text-decoration: underline;
+}
+
