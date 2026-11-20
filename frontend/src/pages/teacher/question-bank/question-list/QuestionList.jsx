@@ -6,6 +6,7 @@ import QuestionBatchToolbar from './QuestionBatchToolbar';
 import QuestionCard from './QuestionCard';
 import QuestionPagination from './QuestionPagination';
 import QuestionDeleteModal from '../question-delete/QuestionDeleteModal';
+import ImportExamFileModal from '../../exam-management/exam-edit/ImportExamFileModal';
 import {
   SUBJECT_INFO,
   INITIAL_QUESTIONS,
@@ -57,6 +58,10 @@ export default function QuestionList() {
     target: null, // null nếu xóa hàng loạt
     count: 1,
   });
+
+  // Modal đẩy file lên (Import File)
+  const [isImportModalOpen, setIsImportModalOpen] = useState(false);
+  const [alertInfo, setAlertInfo] = useState(null);
 
   // Phân trang
   const [currentPage, setCurrentPage] = useState(1);
@@ -162,7 +167,31 @@ export default function QuestionList() {
   };
 
   const handleDownloadTemplate = () => {
-    alert('Đang tải file Excel mẫu ma trận câu hỏi THPT chuẩn Quốc gia...');
+    setIsImportModalOpen(true);
+  };
+
+  const showAlert = (type, message) => {
+    setAlertInfo({ type, message });
+    setTimeout(() => {
+      setAlertInfo(null);
+    }, 3500);
+  };
+
+  const handleImportSuccess = (importedQuestions, mode, fileName) => {
+    if (mode === 'replace') {
+      setQuestions(importedQuestions);
+      setSelectedIds([]);
+      showAlert(
+        'success',
+        `Đã thay thế toàn bộ ngân hàng câu hỏi bằng ${importedQuestions.length} câu hỏi từ tệp "${fileName}"!`
+      );
+    } else {
+      setQuestions((prev) => [...importedQuestions, ...prev]);
+      showAlert(
+        'success',
+        `Đã nạp thành công ${importedQuestions.length} câu hỏi từ tệp "${fileName}" vào ngân hàng câu hỏi!`
+      );
+    }
   };
 
   const handleViewDetail = (question) => {
@@ -205,8 +234,32 @@ export default function QuestionList() {
         onAddQuestion={handleAddQuestion}
         onAutoShuffle={handleAutoShuffle}
         onExport={handleExport}
+        onImportFile={() => setIsImportModalOpen(true)}
         onDownloadTemplate={handleDownloadTemplate}
       />
+
+      {/* Thông báo Alert Toast */}
+      {alertInfo && (
+        <div
+          style={{
+            maxWidth: '1280px',
+            margin: '0 auto 16px',
+            padding: '10px 24px',
+            borderRadius: '6px',
+            fontSize: '14px',
+            background: alertInfo.type === 'error' ? '#FEE2E2' : '#DCFCE7',
+            color: alertInfo.type === 'error' ? '#991B1B' : '#166534',
+            border: `1px solid ${alertInfo.type === 'error' ? '#FCA5A5' : '#86EFAC'}`,
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+            zIndex: 10,
+          }}
+        >
+          <span>{alertInfo.type === 'error' ? '⚠️' : '✅'}</span>
+          <span>{alertInfo.message}</span>
+        </div>
+      )}
 
       {/* 2. Thanh tìm kiếm thông minh & 4 bộ lọc & Active Chips */}
       <QuestionListFilterBar
@@ -288,6 +341,18 @@ export default function QuestionList() {
         onCancel={() =>
           setDeleteModalState({ isOpen: false, target: null, count: 1 })
         }
+      />
+
+      {/* 7. Popup đẩy file câu hỏi lên ngân hàng */}
+      <ImportExamFileModal
+        isOpen={isImportModalOpen}
+        onClose={() => setIsImportModalOpen(false)}
+        onImportSuccess={handleImportSuccess}
+        currentCount={questions.length}
+        title="Đẩy file câu hỏi lên Ngân hàng câu hỏi"
+        subtitle="Hỗ trợ file Word (.docx), Excel (.xlsx), PDF hoặc Text"
+        badgeText="Nhập câu hỏi ngân hàng"
+        targetName="ngân hàng câu hỏi"
       />
     </div>
   );

@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import {
   IconChevronRight,
+  IconUpload,
   IconExcel,
   IconExport,
   IconShuffle,
@@ -23,6 +24,7 @@ export default function QuestionListHeader({
   onAddQuestion,
   onAutoShuffle,
   onExport,
+  onImportFile,
   onDownloadTemplate,
 }) {
   return (
@@ -74,10 +76,11 @@ export default function QuestionListHeader({
           <button
             type="button"
             className="ql-btn ql-btn-soft"
-            onClick={onDownloadTemplate}
+            onClick={onImportFile || onDownloadTemplate}
+            title="Đẩy file lên để nạp câu hỏi vào ngân hàng"
           >
-            <IconExcel width={12} height={15} color="#76777D" />
-            <span>Tải file mẫu Excel</span>
+            <IconUpload width={14} height={14} color="#0B1C30" />
+            <span>Nhập File</span>
           </button>
 
           <button

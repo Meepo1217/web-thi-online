@@ -332,7 +332,11 @@ export default function ExamList() {
                   state: { exam: item },
                 })
               }
-              onEdit={(item) => alert(`Chỉnh sửa đề thi: "${item.title}" (${item.code})`)}
+              onEdit={(item) =>
+                navigate(`/teacher/exams/${subjectId || 'math'}/edit/${item.id}`, {
+                  state: { exam: item },
+                })
+              }
               onDelete={handleRequestDelete}
             />
           ))

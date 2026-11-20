@@ -1,0 +1,557 @@
+/* ==========================================================================
+   TEACHER ACCOUNT SETTINGS STYLES (CÀI ĐẶT TÀI KHOẢN GIẢNG VIÊN)
+   Thiết kế chuẩn Figma / EduQuiz Design System
+   ========================================================================== */
+
+.ts-page-container {
+  padding: 24px 32px 64px;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  box-sizing: border-box;
+  color: #0B1C30;
+}
+
+/* 1. Breadcrumbs */
+.ts-breadcrumb-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 20px;
+  font-size: 13px;
+  color: #76777D;
+}
+
+.ts-breadcrumb-link {
+  color: #0051D5;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.15s ease;
+}
+
+.ts-breadcrumb-link:hover {
+  text-decoration: underline;
+}
+
+.ts-breadcrumb-sep {
+  font-size: 12px;
+  color: #94A3B8;
+}
+
+.ts-breadcrumb-current {
+  color: #0B1C30;
+  font-weight: 600;
+}
+
+/* 2. Header Banner */
+.ts-header-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.ts-header-left {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ts-header-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  background: #EFF4FF;
+  border-radius: 12px;
+  color: #0051D5;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  width: fit-content;
+}
+
+.ts-header-title {
+  margin: 4px 0 0;
+  font-size: 24px;
+  font-weight: 700;
+  color: #0B1C30;
+  letter-spacing: -0.3px;
+}
+
+.ts-header-desc {
+  margin: 2px 0 0;
+  font-size: 13.5px;
+  color: #64748B;
+  line-height: 1.5;
+}
+
+/* 3. Alert / Toast Banner */
+.ts-alert-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 18px;
+  background: #ECFDF5;
+  border: 1px solid #A7F3D0;
+  border-radius: 8px;
+  color: #065F46;
+  font-size: 13.5px;
+  margin-bottom: 20px;
+  animation: tsSlideDown 0.25s ease-out;
+  box-shadow: 0 1px 3px rgba(16, 185, 129, 0.1);
+}
+
+.ts-alert-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 500;
+}
+
+.ts-alert-close {
+  background: none;
+  border: none;
+  color: #065F46;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 0 4px;
+  line-height: 1;
+}
+
+@keyframes tsSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 4. Tabs Navigation */
+.ts-tabs-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 2px solid #E5EEFF;
+  margin-bottom: 28px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.ts-tabs-nav::-webkit-scrollbar {
+  display: none;
+}
+
+.ts-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 18px;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  color: #64748B;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.ts-tab-btn:hover {
+  color: #0051D5;
+  background: #F8F9FF;
+  border-radius: 6px 6px 0 0;
+}
+
+.ts-tab-btn.active {
+  color: #0051D5;
+  border-bottom-color: #0051D5;
+  background: transparent;
+}
+
+.ts-tab-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 5. Main Card Layout */
+.ts-card {
+  background: #FFFFFF;
+  border: 1px solid rgba(211, 228, 254, 0.45);
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.04);
+  border-radius: 10px;
+  padding: 28px;
+  margin-bottom: 24px;
+}
+
+.ts-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 16px;
+  margin-bottom: 22px;
+  border-bottom: 1px solid #E5EEFF;
+}
+
+.ts-card-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.ts-card-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: #0B1C30;
+}
+
+.ts-card-subtitle {
+  margin: 0;
+  font-size: 13px;
+  color: #76777D;
+}
+
+/* 6. Profile Avatar Section */
+.ts-avatar-banner {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 20px;
+  background: #F8F9FF;
+  border-radius: 8px;
+  border: 1px solid #E5EEFF;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.ts-avatar-preview-box {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  font-size: 26px;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(0, 81, 213, 0.25);
+  flex-shrink: 0;
+  overflow: hidden;
+  user-select: none;
+}
+
+.ts-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ts-avatar-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ts-avatar-btns {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.ts-btn-upload {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  background: #0051D5;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.ts-btn-upload:hover {
+  background: #0040A8;
+}
+
+.ts-btn-remove-avatar {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 14px;
+  background: #FFFFFF;
+  color: #BA1A1A;
+  border: 1px solid #FECACA;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.ts-btn-remove-avatar:hover {
+  background: #FEF2F2;
+}
+
+.ts-avatar-hint {
+  font-size: 12px;
+  color: #76777D;
+}
+
+/* Color swatch picker for avatar */
+.ts-color-swatches {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.ts-color-dot {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+
+.ts-color-dot:hover {
+  transform: scale(1.15);
+}
+
+.ts-color-dot.active {
+  border-color: #0B1C30;
+  box-shadow: 0 0 0 2px #FFFFFF inset;
+}
+
+/* 7. Form Grid & Controls */
+.ts-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px 22px;
+}
+
+.ts-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ts-form-group.col-full {
+  grid-column: 1 / -1;
+}
+
+.ts-form-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #0B1C30;
+}
+
+.ts-form-label-tag {
+  font-size: 11px;
+  font-weight: 500;
+  color: #059669;
+  background: #ECFDF5;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.ts-form-input,
+.ts-form-select,
+.ts-form-textarea {
+  width: 100%;
+  padding: 9px 12px;
+  font-size: 14px;
+  font-family: inherit;
+  color: #0B1C30;
+  background: #F8F9FF;
+  border: 1px solid #DCE9FF;
+  border-radius: 6px;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+}
+
+.ts-form-input:focus,
+.ts-form-select:focus,
+.ts-form-textarea:focus {
+  background: #FFFFFF;
+  border-color: #0051D5;
+  box-shadow: 0 0 0 3px rgba(0, 81, 213, 0.12);
+}
+
+.ts-form-input:disabled,
+.ts-form-input[readonly] {
+  background: #F1F5F9;
+  color: #64748B;
+  cursor: not-allowed;
+  border-color: #E2E8F0;
+}
+
+.ts-form-textarea {
+  resize: vertical;
+  min-height: 80px;
+  line-height: 1.5;
+}
+
+.ts-input-icon-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.ts-input-icon-wrap input {
+  padding-right: 38px;
+}
+
+.ts-input-toggle-btn {
+  position: absolute;
+  right: 10px;
+  background: none;
+  border: none;
+  color: #76777D;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ts-form-help {
+  font-size: 12px;
+  color: #76777D;
+  margin-top: 2px;
+}
+
+/* 8. Password Strength Meter */
+.ts-strength-box {
+  margin-top: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ts-strength-bars {
+  display: flex;
+  gap: 4px;
+  height: 5px;
+}
+
+.ts-strength-bar {
+  flex: 1;
+  background: #E2E8F0;
+  border-radius: 3px;
+  transition: background 0.2s ease;
+}
+
+.ts-strength-bar.weak {
+  background: #EF4444;
+}
+
+.ts-strength-bar.medium {
+  background: #F59E0B;
+}
+
+.ts-strength-bar.strong {
+  background: #10B981;
+}
+
+.ts-strength-text {
+  font-size: 11.5px;
+  font-weight: 500;
+  color: #64748B;
+}
+
+/* 9. Footer Actions */
+.ts-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 24px;
+  padding-top: 18px;
+  border-top: 1px solid #E5EEFF;
+}
+
+.ts-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 20px;
+  background: #0051D5;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 6px;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  box-shadow: 0 1px 2px rgba(0, 81, 213, 0.2);
+}
+
+.ts-btn-primary:hover {
+  background: #0040A8;
+}
+
+.ts-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 18px;
+  background: #F8F9FF;
+  color: #475569;
+  border: 1px solid #DCE9FF;
+  border-radius: 6px;
+  font-size: 13.5px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.ts-btn-secondary:hover {
+  background: #EFF4FF;
+  color: #0051D5;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .ts-page-container {
+    padding: 16px 16px 48px;
+  }
+
+  .ts-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ts-avatar-banner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .ts-card-footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .ts-btn-primary,
+  .ts-btn-secondary {
+    justify-content: center;
+  }
+}
