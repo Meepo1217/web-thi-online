@@ -1,7 +1,7 @@
 import './layout.css'
 
 export default function Footer({ copyrightText }) {
-  const defaultText = copyrightText || '© 2025 HUBT EXAM - Đại học Kinh doanh và Công nghệ Hà Nội'
+  const defaultText = copyrightText || '© 2026 HUCE EXAM - Hệ thống Khảo thí Trực tuyến HUCE'
 
   return (
     <footer className="layout-footer">

@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
 import Header from '../../components/student/Header'
 import Sidebar from '../../components/student/Sidebar'
 import Footer from '../../components/student/Footer'
@@ -7,12 +6,31 @@ import StudentDashboardPage from './StudentDashboardPage'
 import ExamPreparationPage from './ExamPreparationPage'
 import TakeExamPage from './TakeExamPage'
 import ExamResultPage from './ExamResultPage'
+import ExamHistoryPage from './ExamHistoryPage'
+import StudentProfilePage from './StudentProfilePage'
 
 export default function StudentPortal() {
-  const [currentPage, setCurrentPage] = useState('dashboard') // 'dashboard' | 'prep' | 'exam' | 'result'
+  const isHistoryPath = typeof window !== 'undefined' && window.location.pathname.includes('/history')
+  const isProfilePath = typeof window !== 'undefined' && window.location.pathname.includes('/profile')
+  
+  const initialPage = isProfilePath ? 'profile' : isHistoryPath ? 'history' : 'dashboard'
+  const initialNav = isProfilePath ? 'profile' : isHistoryPath ? 'history' : 'home'
+
+  const [currentPage, setCurrentPage] = useState(initialPage) // 'dashboard' | 'history' | 'profile' | 'prep' | 'exam' | 'result'
   const [selectedExam, setSelectedExam] = useState(null)
   const [examResult, setExamResult] = useState(null)
-  const [activeNav, setActiveNav] = useState('home')
+  const [activeNav, setActiveNav] = useState(initialNav)
+
+  const handleNavChange = (navKey) => {
+    setActiveNav(navKey)
+    if (navKey === 'home') {
+      setCurrentPage('dashboard')
+    } else if (navKey === 'history') {
+      setCurrentPage('history')
+    } else if (navKey === 'profile') {
+      setCurrentPage('profile')
+    }
+  }
 
   const handleSelectExam = (exam) => {
     setSelectedExam({
@@ -48,6 +66,21 @@ export default function StudentPortal() {
 
   const handleBackToDashboard = () => {
     setCurrentPage('dashboard')
+    setActiveNav('home')
+  }
+
+  const handleViewHistoryResult = (exam) => {
+    setExamResult({
+      title: exam.title,
+      room: exam.roomCode,
+      code: exam.examCode,
+      score: exam.score,
+      correctCount: parseInt(exam.correctCount.split('/')[0], 10) || 18,
+      totalCount: parseInt(exam.correctCount.split('/')[1], 10) || 40,
+      duration: exam.duration,
+      submittedAt: exam.date + ' • 10:15'
+    })
+    setCurrentPage('result')
   }
 
   return (
@@ -69,16 +102,33 @@ export default function StudentPortal() {
         boxShadow: '0 4px 30px rgba(0, 0, 0, 0.04)'
       }}>
 
-        {/* 1. Header sinh viên (hiển thị ở dashboard, prep, exam) */}
+        {/* 1. Header sinh viên (hiển thị ở dashboard, history, profile, prep, exam) */}
         {currentPage !== 'result' && (
-          <Header onLogoClick={handleBackToDashboard} />
+          <Header 
+            onLogoClick={handleBackToDashboard} 
+            onProfileClick={() => handleNavChange('profile')}
+          />
         )}
 
         {/* 2. Nội dung các màn hình sinh viên */}
         {currentPage === 'dashboard' && (
           <div style={{ display: 'flex', flexDirection: 'row', width: '100%', flex: 1 }}>
-            <Sidebar activeNav={activeNav} onNavChange={setActiveNav} />
+            <Sidebar activeNav="home" onNavChange={handleNavChange} />
             <StudentDashboardPage onSelectExam={handleSelectExam} />
+          </div>
+        )}
+
+        {currentPage === 'history' && (
+          <div style={{ display: 'flex', flexDirection: 'row', width: '100%', flex: 1 }}>
+            <Sidebar activeNav="history" onNavChange={handleNavChange} />
+            <ExamHistoryPage onViewResult={handleViewHistoryResult} />
+          </div>
+        )}
+
+        {currentPage === 'profile' && (
+          <div style={{ display: 'flex', flexDirection: 'row', width: '100%', flex: 1 }}>
+            <Sidebar activeNav="profile" onNavChange={handleNavChange} />
+            <StudentProfilePage />
           </div>
         )}
 
@@ -108,106 +158,15 @@ export default function StudentPortal() {
           <div style={{ display: 'flex', flexDirection: 'column', width: '100%', flex: 1 }}>
             <ExamResultPage
               exam={examResult || selectedExam}
-              onBack={handleBackToDashboard}
+              onBack={() => {
+                setCurrentPage('history')
+                setActiveNav('history')
+              }}
               onRetake={handleRetakeExam}
             />
           </div>
         )}
 
-      </div>
-
-      {/* Thanh chuyển trang nhanh nội bộ giao diện sinh viên */}
-      <div style={{
-        position: 'fixed',
-        bottom: '20px',
-        right: '20px',
-        zIndex: 9998,
-        background: '#131B2E',
-        color: '#FFFFFF',
-        padding: '8px 14px',
-        borderRadius: '30px',
-        display: 'flex',
-        alignItems: 'center',
-        gap: '8px',
-        boxShadow: '0 8px 24px rgba(0, 0, 0, 0.25)',
-        fontSize: '12px',
-        fontFamily: "'Inter', sans-serif"
-      }}>
-        <span style={{ color: '#94A3B8', fontWeight: 500 }}>Học sinh:</span>
-        <button
-          onClick={() => setCurrentPage('dashboard')}
-          style={{
-            background: currentPage === 'dashboard' ? '#0051D5' : 'transparent',
-            color: '#FFFFFF',
-            border: 'none',
-            padding: '5px 12px',
-            borderRadius: '20px',
-            cursor: 'pointer',
-            fontWeight: currentPage === 'dashboard' ? 600 : 400,
-            transition: 'all 0.15s'
-          }}
-        >
-          Trang chủ
-        </button>
-        <button
-          onClick={() => setCurrentPage('prep')}
-          style={{
-            background: currentPage === 'prep' ? '#0051D5' : 'transparent',
-            color: '#FFFFFF',
-            border: 'none',
-            padding: '5px 12px',
-            borderRadius: '20px',
-            cursor: 'pointer',
-            fontWeight: currentPage === 'prep' ? 600 : 400,
-            transition: 'all 0.15s'
-          }}
-        >
-          Chuẩn bị
-        </button>
-        <button
-          onClick={() => setCurrentPage('exam')}
-          style={{
-            background: currentPage === 'exam' ? '#0051D5' : 'transparent',
-            color: '#FFFFFF',
-            border: 'none',
-            padding: '5px 12px',
-            borderRadius: '20px',
-            cursor: 'pointer',
-            fontWeight: currentPage === 'exam' ? 600 : 400,
-            transition: 'all 0.15s'
-          }}
-        >
-          Làm bài
-        </button>
-        <button
-          onClick={() => setCurrentPage('result')}
-          style={{
-            background: currentPage === 'result' ? '#0051D5' : 'transparent',
-            color: '#FFFFFF',
-            border: 'none',
-            padding: '5px 12px',
-            borderRadius: '20px',
-            cursor: 'pointer',
-            fontWeight: currentPage === 'result' ? 600 : 400,
-            transition: 'all 0.15s'
-          }}
-        >
-          Kết quả
-        </button>
-        <Link
-          to="/login"
-          style={{
-            background: 'rgba(255, 255, 255, 0.1)',
-            color: '#CBD5E1',
-            textDecoration: 'none',
-            padding: '5px 12px',
-            borderRadius: '20px',
-            fontWeight: 500,
-            transition: 'all 0.15s'
-          }}
-        >
-          Đăng nhập
-        </Link>
       </div>
     </div>
   )

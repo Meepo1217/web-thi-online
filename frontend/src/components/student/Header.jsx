@@ -1,12 +1,7 @@
-import { useNavigate } from 'react-router-dom'
-import { useAuth } from '../../context/AuthContext'
 import './layout.css'
 
-export default function Header({ onLogoClick, user: propUser }) {
-  const navigate = useNavigate()
-  const { user: authUser, logout } = useAuth()
-
-  const currentUser = propUser || authUser || {
+export default function Header({ onLogoClick, onProfileClick, user }) {
+  const currentUser = user || {
     name: 'Nguyễn Văn An',
     role: 'Học sinh • Lớp 12A1',
     initials: 'NA'
@@ -23,7 +18,7 @@ export default function Header({ onLogoClick, user: propUser }) {
         </div>
         <div className="brand-text-col">
           <h1 className="brand-title-wrap">
-            <span>HUBT</span>
+            <span>HUCE</span>
             <span className="brand-blue">EXAM</span>
           </h1>
           <span className="brand-subtitle">ACADEMIC PLATFORM</span>
@@ -51,7 +46,12 @@ export default function Header({ onLogoClick, user: propUser }) {
         <div className="header-divider-v"></div>
 
         {/* User Profile Card */}
-        <div className="header-user-card" title="Thông tin cá nhân">
+        <div 
+          className="header-user-card" 
+          title="Xem tài khoản cá nhân"
+          onClick={onProfileClick}
+          style={{ cursor: 'pointer' }}
+        >
           <div className="header-avatar-badge">
             <div className="avatar-circle-navy">{currentUser.initials}</div>
             <span className="online-dot-green"></span>
@@ -60,25 +60,10 @@ export default function Header({ onLogoClick, user: propUser }) {
             <span className="user-meta-name">{currentUser.name}</span>
             <span className="user-meta-role">{currentUser.role}</span>
           </div>
-        </div>
-
-        {/* Nút Đăng xuất */}
-        <button
-          className="header-tool-btn"
-          onClick={() => {
-            logout();
-            navigate('/login');
-          }}
-          title="Đăng xuất khỏi hệ thống"
-          aria-label="Đăng xuất"
-          style={{ color: '#BA1A1A' }}
-        >
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
-            <polyline points="16 17 21 12 16 7"></polyline>
-            <line x1="21" y1="12" x2="9" y2="12"></line>
+          <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="#45464D">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M1 1l4 4 4-4" />
           </svg>
-        </button>
+        </div>
       </div>
     </header>
   )

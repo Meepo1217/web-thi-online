@@ -1,0 +1,666 @@
+/* ========================================================
+   AUTH COMMON STYLES - CHUẨN FIGMA CHO CẢ SINH VIÊN VÀ GIẢNG VIÊN
+   ======================================================== */
+
+.auth-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 32px 20px 48px;
+  min-height: 100vh;
+  width: 100%;
+  background: linear-gradient(0deg, #F8F9FF, #F8F9FF), #FFFFFF;
+  box-sizing: border-box;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Khung bọc Container chứa Card và các vệt sáng Ambient */
+.auth-container {
+  position: relative;
+  width: 500px;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  isolation: isolate;
+  z-index: 2;
+}
+
+/* Subtle ambient decorative glow backdrop chuẩn Figma */
+.auth-glow-top-left {
+  position: absolute;
+  width: 256px;
+  height: 256px;
+  left: -48px;
+  top: -48px;
+  background: rgba(220, 233, 255, 0.4);
+  filter: blur(64px);
+  border-radius: 12px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.auth-glow-bottom-right {
+  position: absolute;
+  width: 288px;
+  height: 288px;
+  right: -40px;
+  bottom: 0px;
+  background: rgba(219, 225, 255, 0.3);
+  filter: blur(64px);
+  border-radius: 12px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Thẻ Card trung tâm */
+.auth-card {
+  width: 100%;
+  background: #FFFFFF;
+  box-shadow: 0px 20px 25px -5px rgba(0, 0, 0, 0.1), 0px 8px 10px -6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  border: 1px solid #E5EEFF;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+  z-index: 3;
+}
+
+/* Nội dung bên trong thẻ Card */
+.auth-card-body {
+  padding: 32px 32px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* Header thương hiệu */
+.auth-brand-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.auth-brand-left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.auth-brand-emblem-box {
+  width: 34px;
+  height: 34px;
+  background: #0051D5;
+  box-shadow: 0px 2px 4px rgba(0, 81, 213, 0.2);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+}
+
+.auth-brand-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-brand-title {
+  font-family: 'Liberation Serif', Georgia, serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 22px;
+  letter-spacing: -0.4px;
+  color: #0B1C30;
+  margin: 0;
+}
+
+.auth-brand-subtitle {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 10px;
+  line-height: 12px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #45464D;
+}
+
+.auth-badge-pill {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 4px 10px;
+  gap: 6px;
+  background: #EFF4FF;
+  border-radius: 12px;
+}
+
+.auth-badge-dot {
+  width: 6px;
+  height: 6px;
+  background: #0051D5;
+  border-radius: 50%;
+}
+
+.auth-badge-label {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 14px;
+  color: #0051D5;
+}
+
+/* Tiêu đề & Giới thiệu */
+.auth-header-section {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.auth-heading {
+  font-family: 'Liberation Serif', Georgia, serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing: -0.6px;
+  color: #0B1C30;
+  margin: 0;
+}
+
+.auth-subtext {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  line-height: 18px;
+  color: #64748B;
+  margin: 0;
+}
+
+/* Tab chuyển đổi vai trò (Sinh viên / Giảng viên) */
+.auth-role-tabs-container {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+
+.auth-role-tabs-label {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  color: #45464D;
+}
+
+.auth-role-tabs {
+  display: flex;
+  flex-direction: row;
+  background: #EFF4FF;
+  border-radius: 6px;
+  padding: 3px;
+  gap: 4px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.auth-role-tab-btn {
+  flex: 1;
+  height: 38px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 5px;
+  border: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: #45464D;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.auth-role-tab-btn:hover {
+  color: #0B1C30;
+}
+
+.auth-role-tab-btn.active {
+  background: #FFFFFF;
+  color: #0051D5;
+  font-weight: 600;
+  box-shadow: 0px 2px 5px rgba(0, 81, 213, 0.12);
+}
+
+/* Form Section */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+}
+
+.auth-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 100%;
+}
+
+.auth-form-label-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.auth-form-label {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.2px;
+  color: #0B1C30;
+}
+
+.auth-form-tag {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 14px;
+  color: #45464D;
+  text-transform: uppercase;
+}
+
+.auth-form-tag.blue {
+  color: #0051D5;
+  font-weight: 600;
+}
+
+/* Input Container */
+.auth-input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.auth-input-icon {
+  position: absolute;
+  left: 14px;
+  width: 16px;
+  height: 16px;
+  color: #76777D;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth-input-field {
+  width: 100%;
+  height: 44px;
+  background: #EFF4FF;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  padding: 0 42px 0 42px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: #0B1C30;
+  outline: none;
+  transition: all 0.15s ease;
+  box-sizing: border-box;
+}
+
+.auth-input-field::placeholder {
+  color: rgba(69, 70, 77, 0.65);
+  font-size: 13.5px;
+}
+
+.auth-input-field:focus {
+  background: #FFFFFF;
+  border-color: #0051D5;
+  box-shadow: 0 0 0 3px rgba(0, 81, 213, 0.12);
+}
+
+.auth-btn-toggle-password {
+  position: absolute;
+  right: 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  color: #76777D;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.15s ease;
+}
+
+.auth-btn-toggle-password:hover {
+  color: #0B1C30;
+}
+
+/* Gợi ý dưới input */
+.auth-field-hint {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  line-height: 14px;
+  color: #64748B;
+  margin-top: 2px;
+}
+
+/* 4-Level Password Strength Bar */
+.auth-strength-bar-wrap {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  width: 100%;
+  margin-top: 4px;
+}
+
+.auth-strength-segment {
+  height: 5px;
+  flex: 1;
+  background: #D3E4FE;
+  border-radius: 10px;
+  transition: background-color 0.25s ease;
+}
+
+.auth-strength-segment.active-weak {
+  background: #EF4444;
+}
+
+.auth-strength-segment.active-fair {
+  background: #F59E0B;
+}
+
+.auth-strength-segment.active-good {
+  background: #3B82F6;
+}
+
+.auth-strength-segment.active-strong {
+  background: #10B981;
+}
+
+/* Utilities Row */
+.auth-utilities-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.auth-remember-label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.auth-remember-checkbox {
+  width: 16px;
+  height: 16px;
+  accent-color: #0051D5;
+  cursor: pointer;
+}
+
+.auth-remember-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: #45464D;
+}
+
+.auth-forgot-link {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  color: #0051D5;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.auth-forgot-link:hover {
+  text-decoration: underline;
+  color: #003da1;
+}
+
+/* Primary Submit Button */
+.btn-auth-submit {
+  width: 100%;
+  height: 44px;
+  background: linear-gradient(90deg, #0051D5 0%, #316BF3 100%);
+  box-shadow: 0px 4px 6px -1px rgba(0, 0, 0, 0.1), 0px 2px 4px -2px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  border: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  color: #FFFFFF;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 4px;
+}
+
+.btn-auth-submit:hover {
+  opacity: 0.95;
+  transform: translateY(-1px);
+  box-shadow: 0px 8px 16px -2px rgba(0, 81, 213, 0.35);
+}
+
+.btn-auth-submit:active {
+  transform: translateY(0);
+}
+
+.btn-auth-submit:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Phân cách Social SSO */
+.auth-social-divider {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 6px 0;
+  width: 100%;
+}
+
+.auth-divider-line {
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background: #DCE9FF;
+}
+
+.auth-divider-badge {
+  position: relative;
+  background: #FFFFFF;
+  padding: 0 12px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.55px;
+  text-transform: uppercase;
+  color: #64748B;
+}
+
+/* SSO Buttons Row */
+.auth-sso-row {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  width: 100%;
+}
+
+.btn-auth-sso {
+  flex: 1;
+  height: 40px;
+  background: #EFF4FF;
+  border: 1px solid #DCE9FF;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 13px;
+  color: #0B1C30;
+}
+
+.btn-auth-sso:hover {
+  background: #E2E8F0;
+  border-color: #CBD5E1;
+}
+
+/* Footer Chuyển đổi Đăng nhập / Đăng ký */
+.auth-footer-strip {
+  background: rgba(239, 244, 255, 0.6);
+  border-top: 1px solid #E5EEFF;
+  padding: 16px 24px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: #45464D;
+  border-radius: 0 0 8px 8px;
+}
+
+.auth-footer-link {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  color: #0051D5;
+  text-decoration: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.auth-footer-link:hover {
+  text-decoration: underline;
+  color: #003da1;
+}
+
+/* Quick Fill Demo Credentials Bar */
+.auth-demo-bar {
+  background: #F1F5F9;
+  border: 1px dashed #CBD5E1;
+  border-radius: 6px;
+  padding: 8px 12px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #475569;
+}
+
+.btn-auth-demo-chip {
+  background: #FFFFFF;
+  border: 1px solid #CBD5E1;
+  border-radius: 4px;
+  padding: 3px 8px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #0051D5;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-auth-demo-chip:hover {
+  background: #0051D5;
+  color: #FFFFFF;
+  border-color: #0051D5;
+}
+
+/* Academic Trust Assurance Footer */
+.auth-trust-footer {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 500px;
+  max-width: 100%;
+  z-index: 2;
+}
+
+.auth-trust-badges {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.auth-trust-badge-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.3px;
+  color: #45464D;
+}
+
+.auth-trust-badge-item svg {
+  color: #0051D5;
+}
+
+.auth-trust-dot {
+  color: #94A3B8;
+  font-size: 12px;
+}
+
+.auth-copyright {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 14px;
+  color: rgba(69, 70, 77, 0.7);
+  text-align: center;
+}
+
