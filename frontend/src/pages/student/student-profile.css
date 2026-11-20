@@ -1,0 +1,696 @@
+/* ==========================================================================
+   STUDENT PROFILE PAGE STYLES - CHUẨN THIẾT KẾ FIGMA AUTO LAYOUT
+   ========================================================================== */
+
+.student-profile-page {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 32px 64px;
+  width: 1024px;
+  min-height: calc(100vh - 65px);
+  background: #F8FAFC;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.profile-container {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 24px;
+  width: 896px;
+  max-width: 896px;
+}
+
+/* ==========================================================================
+   1. BREADCRUMB & HEADER TITLE
+   ========================================================================== */
+.profile-header-title-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 4px;
+  width: 896px;
+}
+
+.profile-heading-1 {
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing: -0.6px;
+  color: #0F172A;
+  margin: 0;
+}
+
+.profile-subheading {
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #64748B;
+  margin: 0;
+}
+
+/* ==========================================================================
+   2. CARD 1: USER PROFILE HEADER CARD (896px x 130px)
+   ========================================================================== */
+.profile-card-header {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px;
+  width: 896px;
+  min-height: 130px;
+  background: #FFFFFF;
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 16px;
+}
+
+.profile-user-left-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Avatar Circle Container: 80x80px */
+.profile-avatar-wrap {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  flex-shrink: 0;
+}
+
+.profile-avatar-box {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #1E293B 0%, #020617 100%);
+  box-shadow: 0px 0px 0px 4px #F1F5F9, 0px 4px 6px -1px rgba(0, 0, 0, 0.1), 0px 2px 4px -2px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  user-select: none;
+}
+
+.avatar-initials-text {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 32px;
+  color: #FFFFFF;
+}
+
+.avatar-subtag-text {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 14px;
+  color: #94A3B8;
+  letter-spacing: 0.5px;
+}
+
+/* Camera button at bottom-right */
+.profile-avatar-edit-btn {
+  box-sizing: border-box;
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  right: -4px;
+  bottom: -4px;
+  background: #2563EB;
+  border: 2px solid #FFFFFF;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1), 0px 1px 2px -1px rgba(0, 0, 0, 0.1);
+  border-radius: 9999px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  color: #FFFFFF;
+  transition: all 0.2s ease;
+  z-index: 2;
+}
+
+.profile-avatar-edit-btn:hover {
+  background: #1D4ED8;
+  transform: scale(1.08);
+}
+
+/* User Identifier Details */
+.profile-user-info-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+}
+
+.profile-name-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.profile-name-text {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 28px;
+  color: #0F172A;
+  margin: 0;
+}
+
+.verified-blue-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  color: #3B82F6;
+}
+
+.profile-email-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: #64748B;
+}
+
+.profile-code-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  margin-top: 2px;
+}
+
+.profile-code-chip {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 8px;
+  background: #F1F5F9;
+  border: 1px solid #E2E8F0;
+  border-radius: 6px;
+  font-family: 'Liberation Mono', 'Roboto Mono', monospace;
+  font-size: 12px;
+  line-height: 16px;
+  color: #475569;
+  font-weight: 500;
+}
+
+.profile-copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #94A3B8;
+  padding: 2px 4px;
+  border-radius: 4px;
+  transition: all 0.15s ease;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 11px;
+}
+
+.profile-copy-btn:hover {
+  color: #2563EB;
+  background: #EFF6FF;
+}
+
+.profile-copy-btn.copied {
+  color: #059669;
+}
+
+/* Status badge on right side of Card 1 */
+.profile-status-pill {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 6px 12px;
+  gap: 6px;
+  background: #F0FDF4;
+  border: 1px solid #BBF7D0;
+  border-radius: 20px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  color: #16A34A;
+}
+
+.profile-status-dot {
+  width: 7px;
+  height: 7px;
+  background: #16A34A;
+  border-radius: 50%;
+}
+
+/* ==========================================================================
+   3. CARD 2: MAIN PERSONAL INFO & PASSWORD FORM
+   ========================================================================== */
+.profile-card-form {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  width: 896px;
+  background: #FFFFFF;
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+/* Sub-section 1: Personal Information */
+.profile-subsection-personal {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 28px;
+  gap: 24px;
+  width: 896px;
+}
+
+.subsection-header {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px 0px 16px;
+  gap: 4px;
+  width: 100%;
+  border-bottom: 1px solid #F1F5F9;
+}
+
+.subsection-title-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.subsection-title-left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.subsection-icon {
+  color: #2563EB;
+  display: flex;
+  align-items: center;
+}
+
+.subsection-heading {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  color: #0F172A;
+  margin: 0;
+}
+
+.subsection-desc {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  color: #64748B;
+  margin: 0;
+}
+
+/* Recommended Chip for Security */
+.recommended-security-chip {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 4px 10px;
+  gap: 5px;
+  background: #FFFBEB;
+  border: 1px solid rgba(253, 230, 138, 0.6);
+  border-radius: 6px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: #D97706;
+}
+
+/* 2-Column Grid Layout for Form Fields */
+.profile-fields-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px 24px;
+  width: 100%;
+}
+
+.profile-field-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  width: 100%;
+}
+
+.profile-field-item.full-width {
+  grid-column: span 2;
+}
+
+.profile-field-label {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  color: #334155;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.required-asterisk {
+  color: #DC2626;
+}
+
+.profile-input-wrap {
+  position: relative;
+  width: 100%;
+}
+
+.profile-input-control {
+  box-sizing: border-box;
+  width: 100%;
+  height: 42px;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  padding: 10px 14px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #0F172A;
+  outline: none;
+  transition: all 0.15s ease;
+}
+
+.profile-input-control:focus {
+  border-color: #2563EB;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+.profile-input-control.readonly {
+  background: #F8FAFC;
+  color: #64748B;
+  cursor: not-allowed;
+  border-color: #E2E8F0;
+}
+
+.profile-input-control.has-toggle {
+  padding-right: 42px;
+}
+
+.profile-input-helper {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 11.5px;
+  line-height: 16px;
+  color: #94A3B8;
+  margin-top: 2px;
+}
+
+/* Eye password toggle button */
+.password-eye-btn {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  color: #94A3B8;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  transition: color 0.15s ease;
+}
+
+.password-eye-btn:hover {
+  color: #475569;
+}
+
+/* Date input calendar icon */
+.calendar-icon-indicator {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #94A3B8;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+}
+
+/* Gender Radio Options */
+.gender-radio-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 28px;
+  height: 42px;
+}
+
+.custom-radio-option {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.custom-radio-input {
+  display: none;
+}
+
+.custom-radio-circle {
+  box-sizing: border-box;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1px solid #CBD5E1;
+  background: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+}
+
+.custom-radio-option:hover .custom-radio-circle {
+  border-color: #2563EB;
+}
+
+.custom-radio-option.selected .custom-radio-circle {
+  background: #2563EB;
+  border-color: #2563EB;
+}
+
+.custom-radio-dot {
+  width: 6px;
+  height: 6px;
+  background: #FFFFFF;
+  border-radius: 50%;
+}
+
+.custom-radio-text {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: #334155;
+}
+
+/* Sub-section 2: Security & Password Change */
+.profile-subsection-security {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 28px;
+  gap: 20px;
+  width: 896px;
+  background: rgba(248, 250, 252, 0.4);
+  border-top: 1px solid #F1F5F9;
+}
+
+/* Security Policy Notice Box */
+.security-notice-banner {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 12px 16px;
+  gap: 10px;
+  width: 100%;
+  background: rgba(239, 246, 255, 0.6);
+  border: 1px solid #DBEAFE;
+  border-radius: 12px;
+}
+
+.security-notice-icon {
+  color: #3B82F6;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+.security-notice-text {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 18px;
+  color: #1D4ED8;
+  margin: 0;
+}
+
+/* Sub-section 3: Action Footer Buttons */
+.profile-form-footer {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 20px 28px;
+  gap: 12px;
+  width: 896px;
+  background: #F8FAFC;
+  border-top: 1px solid #F1F5F9;
+  border-radius: 0px 0px 16px 16px;
+}
+
+.btn-secondary-cancel {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+  height: 38px;
+  background: #FFFFFF;
+  border: 1px solid #CBD5E1;
+  border-radius: 12px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 16px;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-secondary-cancel:hover {
+  background: #F1F5F9;
+  border-color: #94A3B8;
+  color: #1E293B;
+}
+
+.btn-primary-save {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 24px;
+  gap: 8px;
+  height: 38px;
+  background: #2563EB;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 12px;
+  border: none;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 16px;
+  color: #FFFFFF;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-primary-save:hover {
+  background: #1D4ED8;
+  box-shadow: 0px 4px 6px -1px rgba(37, 99, 235, 0.2);
+}
+
+.btn-primary-save:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Toast alert feedback */
+.profile-feedback-toast {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: #ECFDF5;
+  border: 1px solid #A7F3D0;
+  border-radius: 8px;
+  color: #065F46;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  animation: fadeInDown 0.3s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+

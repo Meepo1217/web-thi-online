@@ -25,6 +25,8 @@ import StudentManagement from './pages/teacher/student-management';
 import TeacherSettings from './pages/teacher/settings';
 import TeacherDashboard from './pages/teacher/TeacherDashboard';
 import Login from './pages/auth/Login';
+import Register from './pages/auth/Register';
+import VerifyOtp from './pages/auth/VerifyOtp';
 import StudentPortal from './pages/student/StudentPortal';
 
 /**
@@ -113,7 +115,7 @@ function RootRedirect() {
 
 /**
  * App - Cấu hình hệ thống Router:
- * 1. Truy cập ban đầu ("/") tự động điều hướng về /login.
+ * 1. Truy cập ban đầu ("/") tự động điều hướng về /login nếu chưa đăng nhập.
  * 2. Khi đăng nhập thành công -> tự động hiển thị theo vai trò (teacher: /teacher/dashboard, student: /student).
  * 3. Bảo vệ các route với ProtectedRoute theo vai trò.
  */
@@ -125,15 +127,20 @@ function App() {
           {/* 1. Mặc định truy cập đầu tiên ("/") -> chuyển hướng theo auth và role */}
           <Route path="/" element={<RootRedirect />} />
 
-          {/* 2. Route Đăng nhập chung */}
+          {/* 2. Route xác thực tài khoản chung cho cả Giảng viên và Học sinh / Sinh viên */}
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/verify-otp" element={<VerifyOtp />} />
+          <Route path="/auth/verify-otp" element={<VerifyOtp />} />
           <Route path="/student/login" element={<Login defaultRole="student" />} />
+          <Route path="/student/register" element={<Navigate to="/register" replace />} />
           <Route path="/teacher/login" element={<Login defaultRole="teacher" />} />
 
           {/* Route kiểm tra kết nối ban đầu */}
           <Route path="/test-connection" element={<ConnectionTest />} />
 
           {/* 3. Cổng Sinh viên (Student Portal) - Chỉ sinh viên được truy cập */}
+          <Route path="/profile" element={<Navigate to="/student/profile" replace />} />
           <Route
             path="/student/*"
             element={
