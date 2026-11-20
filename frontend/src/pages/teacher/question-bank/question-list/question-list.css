@@ -700,6 +700,32 @@
   color: #45464D;
 }
 
+.ql-exam-meta-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  background: #F1F5F9;
+  border-radius: 4px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 14px;
+  color: #45464D;
+}
+
+.ql-btn-danger-outline {
+  background: #FFF1F0;
+  border: 1px solid #FFDAD6;
+  color: #BA1A1A;
+}
+
+.ql-btn-danger-outline:hover {
+  background: #FFDAD6;
+  border-color: #BA1A1A;
+  color: #93000A;
+}
+
 /* Status Indicator */
 .ql-status-indicator {
   display: inline-flex;

@@ -129,6 +129,18 @@
   color: #0051D5;
 }
 
+.qb-btn-danger-outline {
+  background: #FFF1F0;
+  border: 1px solid #FFDAD6;
+  color: #BA1A1A;
+}
+
+.qb-btn-danger-outline:hover {
+  background: #FFDAD6;
+  border-color: #BA1A1A;
+  color: #93000A;
+}
+
 .qb-btn-primary {
   background: #000000;
   color: #FFFFFF;
@@ -310,44 +322,6 @@
   color: #76777D;
 }
 
-.qb-grade-tabs-container {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 4px;
-  gap: 4px;
-  background: #EFF4FF;
-  border-radius: 8px;
-  height: 30px;
-  box-sizing: border-box;
-}
-
-.qb-grade-tab-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 4px 16px;
-  height: 22px;
-  border-radius: 4px;
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
-  font-size: 11px;
-  line-height: 14px;
-  letter-spacing: 0.44px;
-  color: #45464D;
-  transition: all 0.15s ease;
-  white-space: nowrap;
-}
-
-.qb-grade-tab-btn.active {
-  background: #FFFFFF;
-  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
-  color: #0051D5;
-}
-
 .qb-filter-right {
   display: flex;
   flex-direction: row;
@@ -495,6 +469,62 @@
 
 .qb-folder-options-btn:hover {
   background: #EFF4FF;
+}
+
+.qb-folder-delete-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #76777D;
+  transition: all 0.15s ease;
+}
+
+.qb-folder-delete-btn:hover {
+  background: #FFDAD6;
+  color: #BA1A1A;
+}
+
+/* Delete Folder Select in Modal */
+.dfm-select-wrapper {
+  margin: 16px 32px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.dfm-select-label {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.44px;
+  color: #45464D;
+}
+
+.dfm-folder-select {
+  width: 100%;
+  padding: 10px 12px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #0B1C30;
+  background: #FFFFFF;
+  border: 1px solid #DCE9FF;
+  border-radius: 8px;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.dfm-folder-select:focus {
+  border-color: #BA1A1A;
+  box-shadow: 0 0 0 3px rgba(186, 26, 26, 0.12);
 }
 
 .qb-folder-info-block {

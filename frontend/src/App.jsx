@@ -1,10 +1,28 @@
 import { useState, useEffect } from 'react';
-import { BrowserRouter, Routes, Route, Navigate, Link } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { AuthProvider, useAuth } from './context/AuthContext';
+import ProtectedRoute from './components/auth/ProtectedRoute';
 import TeacherLayout from './components/layout/teacher/TeacherLayout';
 import TeacherHome from './pages/teacher/TeacherHome';
-import { QuestionBankFolders, QuestionList, QuestionDetail, QuestionEdit } from './pages/teacher/question-bank';
-import ExamManagement from './pages/teacher/exam-management/ExamManagement';
+import {
+  QuestionBankFolders,
+  SubjectChapters,
+  QuestionList,
+  QuestionDetail,
+  QuestionEdit,
+  QuestionCreate,
+  QuestionDeletePage,
+} from './pages/teacher/question-bank';
+import {
+  ExamFolders,
+  ExamChapters,
+  ExamList,
+  ExamDetail,
+  ExamEdit,
+} from './pages/teacher/exam-management';
+import StudentManagement from './pages/teacher/student-management';
+import TeacherSettings from './pages/teacher/settings';
 import TeacherDashboard from './pages/teacher/TeacherDashboard';
 import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
@@ -87,14 +105,14 @@ function ConnectionTest() {
           to="/login"
           style={{
             padding: '8px 16px',
-            background: '#45464D',
+            background: '#0051D5',
             color: '#FFFFFF',
             textDecoration: 'none',
             borderRadius: '6px',
             fontWeight: 600,
           }}
         >
-          Trang Đăng nhập (Auth)
+          Trang Đăng nhập (Auth) &rarr;
         </Link>
       </div>
     </div>

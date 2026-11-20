@@ -55,8 +55,8 @@ Phương trình g'(x) = 0 có các nghiệm đơn phân biệt làm g'(x) đổi
   // 6. Thẻ gắn & Thiết lập bổ sung
   tags: ['Hàm hợp', 'Cực trị', 'Đồ thị'],
   approvalStatus: {
-    status: 'verified',
-    title: 'Đã thẩm định',
+    status: 'approved',
+    title: 'Đã duyệt',
     subtitle: 'Sẵn sàng sử dụng trong kỳ thi chính thức',
   },
 

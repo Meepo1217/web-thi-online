@@ -2,8 +2,13 @@
  * ContributionChartWidget - Biểu đồ tốc độ biên soạn & đóng góp câu hỏi
  * Tái hiện chính xác biểu đồ SVG Sparkline và chỉ số KPI từ bản vẽ Figma
  */
-export default function ContributionChartWidget({ analytics, onOpenKpiDetail }) {
-  const { growthRate, subtitle, semesterGoal, weeks } = analytics;
+export default function ContributionChartWidget({ analytics = {}, onOpenKpiDetail }) {
+  const {
+    growthRate = '+24% THÁNG NÀY',
+    subtitle = 'Tốc độ khởi tạo theo các tuần trong tháng',
+    semesterGoal = '85% ĐẠT',
+    weeks = ['Tuần 1', 'Tuần 2', 'Tuần 3', 'Tuần 4'],
+  } = analytics || {};
 
   return (
     <div className="qb-chart-card">

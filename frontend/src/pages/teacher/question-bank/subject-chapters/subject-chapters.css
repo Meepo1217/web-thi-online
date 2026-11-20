@@ -1,0 +1,393 @@
+/**
+ * subject-chapters.css
+ * Stylesheet cho Màn hình Quản lý Chương của Môn học (Subject Chapters)
+ * Dựa trên cấu trúc Figma Wireframe chuẩn xác
+ */
+
+/* ==========================================================================
+   1. Root Page Container
+   ========================================================================== */
+.sc-page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 24px;
+  gap: 24px;
+  width: 100%;
+  max-width: 1024px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  font-family: 'Liberation Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #1A202C;
+}
+
+/* ==========================================================================
+   2. Wireframe Breadcrumb & Status Tag
+   ========================================================================== */
+.sc-breadcrumb-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 23px;
+  box-sizing: border-box;
+}
+
+.sc-breadcrumb-nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  line-height: 16px;
+  color: #6C757D;
+}
+
+.sc-breadcrumb-link {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #6C757D;
+  text-decoration: none;
+  font-weight: 400;
+  transition: color 0.15s ease;
+}
+
+.sc-breadcrumb-link:hover {
+  color: #1A202C;
+}
+
+.sc-breadcrumb-sep {
+  color: #6C757D;
+  font-size: 12px;
+}
+
+.sc-breadcrumb-current {
+  color: #1A202C;
+  font-weight: 600;
+}
+
+.sc-status-tag {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 8px;
+  height: 23px;
+  background: #F8F9FA;
+  border: 1px solid #CED4DA;
+  border-radius: 2px;
+  box-sizing: border-box;
+  font-size: 11px;
+  line-height: 16px;
+  font-weight: 500;
+  color: #6C757D;
+}
+
+/* ==========================================================================
+   3. Wireframe Subject Header Card
+   ========================================================================== */
+.sc-subject-card {
+  width: 100%;
+  box-sizing: border-box;
+  background: #FFFFFF;
+  border: 1px solid #DEE2E6;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+  padding: 24px;
+}
+
+.sc-subject-inner {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+}
+
+.sc-subject-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+  max-width: 672px;
+}
+
+.sc-subject-code-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  height: 16px;
+}
+
+.sc-subject-code {
+  font-family: 'Liberation Mono', 'Courier New', monospace;
+  font-size: 12px;
+  line-height: 16px;
+  color: #6C757D;
+  font-weight: 400;
+}
+
+.sc-subject-title {
+  margin: 4px 0 2px 0;
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 700;
+  letter-spacing: -0.6px;
+  color: #1A202C;
+}
+
+.sc-subject-desc {
+  margin: 0;
+  font-size: 12px;
+  line-height: 20px;
+  color: #6C757D;
+  font-weight: 400;
+}
+
+.sc-subject-actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.sc-btn-wireframe {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 6px 12px;
+  gap: 4px;
+  height: 30px;
+  background: #FFFFFF;
+  border: 1px solid #CED4DA;
+  border-radius: 2px;
+  box-sizing: border-box;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 500;
+  color: #495057;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.sc-btn-wireframe:hover {
+  background: #F8F9FA;
+  border-color: #ADB5BD;
+  color: #212529;
+}
+
+/* ==========================================================================
+   4. Wireframe Chapter List Section
+   ========================================================================== */
+.sc-chapters-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  width: 100%;
+}
+
+.sc-section-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 4px;
+  width: 100%;
+  box-sizing: border-box;
+  height: 16px;
+}
+
+.sc-section-title-wrap {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.sc-section-heading {
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: #6C757D;
+}
+
+.sc-section-count {
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 400;
+  color: #6C757D;
+}
+
+.sc-chapter-cards-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+/* ==========================================================================
+   5. Chapter Card
+   ========================================================================== */
+.sc-chapter-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  width: 100%;
+  height: 62px;
+  background: #FFFFFF;
+  border: 1px solid #DEE2E6;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+  box-sizing: border-box;
+  transition: all 0.15s ease;
+}
+
+.sc-chapter-card:hover {
+  border-color: #B0BEC5;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.sc-chapter-left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+}
+
+.sc-chapter-icon-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: #F8F9FA;
+  border: 1px solid #CED4DA;
+  border-radius: 2px;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.sc-chapter-icon-box:hover {
+  background: #E9ECEF;
+}
+
+.sc-chapter-text-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.sc-chapter-title {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 600;
+  color: #1A202C;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 0.15s ease;
+}
+
+.sc-chapter-title:hover {
+  color: #0051D5;
+}
+
+.sc-chapter-meta {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+  height: 16px;
+}
+
+.sc-chapter-count {
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 400;
+  color: #6C757D;
+}
+
+.sc-chapter-actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.sc-btn-icon-square {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: #F8F9FA;
+  border: 1px solid #CED4DA;
+  border-radius: 2px;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.sc-btn-icon-square:hover {
+  background: #E9ECEF;
+  border-color: #ADB5BD;
+}
+
+.sc-btn-icon-danger:hover {
+  background: #FFE8E8;
+  border-color: #FFC0C0;
+}
+
+.sc-btn-icon-danger:hover svg {
+  color: #BA1A1A;
+}
+
+/* ==========================================================================
+   6. Wireframe Dotted Bottom Button
+   ========================================================================== */
+.sc-btn-dotted-add {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 14px 16px;
+  gap: 8px;
+  width: 100%;
+  height: 48px;
+  background: #F8F9FA;
+  border: 2px dashed #ADB5BD;
+  border-radius: 4px;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.sc-btn-dotted-add:hover {
+  background: #E9ECEF;
+  border-color: #6C757D;
+}
+
+.sc-btn-dotted-text {
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 600;
+  color: #495057;
+  text-align: center;
+}

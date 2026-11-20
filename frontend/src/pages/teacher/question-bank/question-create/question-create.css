@@ -1,0 +1,1131 @@
+/**
+ * question-create.css
+ * Bảng kiểu dáng chi tiết cho Màn hình Thêm câu hỏi mới (EduQuiz Studio)
+ * Thiết kế giao diện mềm mại (soft rounded, smooth shadows & transitions)
+ */
+
+/* ==========================================================================
+   1. Page Layout & Container
+   ========================================================================== */
+.qc-create-page {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  min-height: 100%;
+  background: linear-gradient(180deg, #F8F9FF 0%, #F1F4FD 100%);
+  box-sizing: border-box;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #0B1C30;
+}
+
+/* ==========================================================================
+   2. Header - Top Navigation & Action Bar
+   ========================================================================== */
+.qc-header-bar-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px 0px 24px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.qc-header-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 28px;
+  width: 100%;
+  height: 68px;
+  background: #FFFFFF;
+  box-shadow: 0px 2px 8px rgba(11, 28, 48, 0.04);
+  border-bottom: 1px solid #E8EFFE;
+  box-sizing: border-box;
+  gap: 16px;
+}
+
+.qc-header-left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
+}
+
+.qc-back-link-btn {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  background: #F1F5FD;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 8px 14px;
+  color: #45464D;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.qc-back-link-btn:hover {
+  background: #EFF4FF;
+  border-color: #BFDBFE;
+  color: #0051D5;
+  transform: translateX(-2px);
+}
+
+.qc-back-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 12px;
+  height: 12px;
+}
+
+.qc-back-text {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: 0.2px;
+  color: inherit;
+}
+
+.qc-header-divider {
+  width: 1px;
+  height: 20px;
+  background: #DCE9FF;
+}
+
+.qc-title-box {
+  display: flex;
+  align-items: center;
+}
+
+.qc-page-title {
+  margin: 0;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 28px;
+  letter-spacing: -0.2px;
+  color: #0B1C30;
+}
+
+/* Header Action Buttons (Nút mềm mại hơn với bo tròn 8px, padding thoải mái, shadow mượt) */
+.qc-header-actions {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.qc-btn {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: 0.2px;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+  box-sizing: border-box;
+}
+
+.qc-btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 6px;
+}
+
+/* Nút Hủy */
+.qc-btn--cancel {
+  background: #F1F4FA;
+  border-color: #E2E8F0;
+  color: #45464D;
+}
+
+.qc-btn--cancel:hover {
+  background: #E5EBF5;
+  color: #0B1C30;
+}
+
+/* Nút Xem trước */
+.qc-btn--preview {
+  background: #F0F5FF;
+  border-color: #DCE9FF;
+  color: #0B1C30;
+}
+
+.qc-btn--preview:hover {
+  background: #E2ECFF;
+  border-color: #BFDBFE;
+}
+
+/* Nút Lưu & Thêm câu khác */
+.qc-btn--secondary-blue {
+  background: #EFF4FF;
+  border-color: #D3E4FE;
+  color: #0051D5;
+  font-weight: 600;
+}
+
+.qc-btn--secondary-blue:hover {
+  background: #DBE8FF;
+  border-color: #ADC8FF;
+}
+
+/* Nút Lưu câu hỏi (Chính) */
+.qc-btn--primary {
+  background: linear-gradient(135deg, #0059E8 0%, #0046BA 100%);
+  color: #FFFFFF;
+  font-weight: 600;
+  box-shadow: 0px 4px 12px rgba(0, 81, 213, 0.25), 0px 1px 3px rgba(0, 81, 213, 0.15);
+}
+
+.qc-btn--primary:hover:not(:disabled) {
+  background: linear-gradient(135deg, #004EC9 0%, #003A9E 100%);
+  box-shadow: 0px 6px 16px rgba(0, 81, 213, 0.32);
+  transform: translateY(-1px);
+}
+
+.qc-btn--primary:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.qc-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* ==========================================================================
+   3. Main Canvas: Asymmetric Academic 2-Column Grid
+   ========================================================================== */
+.qc-main-canvas {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0px 24px 64px;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  gap: 24px;
+}
+
+.qc-left-column {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  gap: 24px;
+}
+
+.qc-right-column {
+  display: flex;
+  flex-direction: column;
+  width: 394.67px;
+  flex-shrink: 0;
+  gap: 24px;
+}
+
+/* ==========================================================================
+   4. Universal Card Styling (Bo góc 12px mềm mại, viền nhẹ #E8EFFE)
+   ========================================================================== */
+.qc-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 24px;
+  background: #FFFFFF;
+  box-shadow: 0px 2px 10px rgba(11, 28, 48, 0.04);
+  border: 1px solid #E8EFFE;
+  border-radius: 12px;
+  box-sizing: border-box;
+  width: 100%;
+  transition: box-shadow 0.2s ease;
+}
+
+.qc-card:hover {
+  box-shadow: 0px 4px 16px rgba(11, 28, 48, 0.06);
+}
+
+.qc-card-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 28px;
+}
+
+.qc-card-header--with-subtitle {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.qc-card-label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.qc-step-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 13px;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 14px;
+}
+
+.qc-step-badge--primary {
+  background: #0051D5;
+  color: #FFFFFF;
+  box-shadow: 0 2px 6px rgba(0, 81, 213, 0.25);
+}
+
+.qc-step-badge--soft {
+  background: #E5EEFF;
+  color: #0051D5;
+}
+
+.qc-card-title {
+  margin: 0;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  color: #0B1C30;
+}
+
+.qc-required-star {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  color: #BA1A1A;
+  font-weight: 700;
+}
+
+.qc-card-subtitle {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 20px;
+  color: #64748B;
+}
+
+.qc-optional-badge {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.44px;
+  color: #64748B;
+  background: #F1F5F9;
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
+/* ==========================================================================
+   5. Card 1: Question Stem (Rich Text & Math Editor)
+   ========================================================================== */
+.qc-toolbar-wrapper {
+  width: 100%;
+  margin-top: 16px;
+}
+
+.qc-toolbar {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 8px 10px;
+  gap: 6px;
+  background: #F4F7FF;
+  border: 1px solid #E2E8F8;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+.qc-toolbar-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 3px;
+}
+
+/* Nút công cụ mềm mại hơn: bo tròn 6px, hover mượt */
+.qc-tool-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 9px;
+  min-height: 30px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #45464D;
+  transition: all 0.15s ease;
+}
+
+.qc-tool-btn:hover {
+  background: #FFFFFF;
+  border-color: #DCE9FF;
+  color: #0051D5;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.qc-tool-btn--text {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.2px;
+}
+
+.qc-tool-btn--highlight {
+  background: #DBE7FF;
+  border-color: #BED6FF;
+  padding: 5px 10px;
+  border-radius: 6px;
+  gap: 5px;
+  box-shadow: 0 1px 2px rgba(0, 81, 213, 0.08);
+}
+
+.qc-tool-btn--highlight:hover {
+  background: #CFE0FF;
+  border-color: #A9CAFF;
+  color: #00174B;
+}
+
+.qc-formula-icon {
+  font-size: 13px;
+  font-weight: 700;
+  color: #00174B;
+}
+
+.qc-formula-text {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.44px;
+  color: #00174B;
+}
+
+.qc-toolbar-sep {
+  width: 1px;
+  height: 18px;
+  background: #CBD5E1;
+  margin: 0 4px;
+}
+
+/* Editable Area (Nền dịu, bo góc 8px, viền mượt) */
+.qc-editable-area {
+  width: 100%;
+  margin-top: 16px;
+  padding: 16px 18px;
+  background: #F8FAFF;
+  border: 1px solid #DCE9FF;
+  border-radius: 8px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.qc-editable-area:focus-within {
+  border-color: #0051D5;
+  box-shadow: 0 0 0 3px rgba(0, 81, 213, 0.08);
+  background: #FFFFFF;
+}
+
+.qc-stem-textarea {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 24px;
+  color: #0B1C30;
+  resize: vertical;
+  min-height: 100px;
+  box-sizing: border-box;
+}
+
+.qc-stem-textarea::placeholder {
+  color: #94A3B8;
+}
+
+.qc-editor-footer-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #E2E8F8;
+  padding-top: 12px;
+  width: 100%;
+}
+
+.qc-char-counter {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.44px;
+  color: #64748B;
+}
+
+.qc-format-indicator {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+}
+
+.qc-format-text {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.44px;
+  color: #45464D;
+}
+
+/* ==========================================================================
+   6. Card 2: Question Options (A, B, C, D)
+   ========================================================================== */
+.qc-options-stack {
+  width: 100%;
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.qc-option-row {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 14px 16px;
+  gap: 12px;
+  background: #FFFFFF;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.04);
+  border: 1px solid #E2E8F0;
+  border-radius: 10px;
+  box-sizing: border-box;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.qc-option-row:hover {
+  border-color: #BFDBFE;
+  box-shadow: 0px 3px 8px rgba(0, 81, 213, 0.05);
+}
+
+.qc-option-row--selected {
+  border-color: #0051D5;
+  background: #F8FAFF;
+  box-shadow: 0px 2px 8px rgba(0, 81, 213, 0.08);
+}
+
+.qc-option-drag-handle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  border-radius: 4px;
+  cursor: grab;
+  padding: 8px 4px;
+  color: #CBD5E1;
+  transition: color 0.15s ease;
+}
+
+.qc-option-drag-handle:hover {
+  color: #64748B;
+  background: #F1F5F9;
+}
+
+.qc-option-radio {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 12px;
+  background: #FFFFFF;
+  border: 2px solid #CBD5E1;
+  cursor: pointer;
+  padding: 0;
+  margin-top: 6px;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.qc-option-radio:hover {
+  border-color: #0051D5;
+  transform: scale(1.05);
+}
+
+.qc-option-radio--checked {
+  background: #0051D5;
+  border-color: #0051D5;
+  box-shadow: 0 2px 6px rgba(0, 81, 213, 0.35);
+}
+
+.qc-radio-check-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.qc-option-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  background: #EFF4FF;
+  border: 1px solid #DCE9FF;
+  border-radius: 8px;
+  flex-shrink: 0;
+  margin-top: 2px;
+  transition: all 0.2s ease;
+}
+
+.qc-option-badge--active {
+  background: #0051D5;
+  border-color: #0051D5;
+  box-shadow: 0 2px 6px rgba(0, 81, 213, 0.25);
+}
+
+.qc-option-badge-text {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 24px;
+  color: #0051D5;
+}
+
+.qc-option-badge--active .qc-option-badge-text {
+  color: #FFFFFF;
+}
+
+.qc-option-input-block {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+
+.qc-option-input {
+  width: 100%;
+  height: 42px;
+  background: #F8FAFF;
+  border: 1px solid #CBD5E1;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 18px;
+  color: #0B1C30;
+  box-sizing: border-box;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.qc-option-input:focus {
+  border-color: #0051D5;
+  background: #FFFFFF;
+  box-shadow: 0 0 0 3px rgba(0, 81, 213, 0.08);
+}
+
+.qc-option-input::placeholder {
+  color: #94A3B8;
+}
+
+.qc-option-tools-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 6px;
+}
+
+.qc-option-tool-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #F1F5F9;
+  border: 1px solid #E2E8F0;
+  cursor: pointer;
+  padding: 5px 8px;
+  color: #64748B;
+  border-radius: 6px;
+  transition: all 0.15s ease;
+}
+
+.qc-option-tool-btn:hover {
+  background: #EFF4FF;
+  border-color: #BFDBFE;
+  color: #0051D5;
+}
+
+.qc-option-delete-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  padding: 8px;
+  color: #94A3B8;
+  transition: all 0.15s ease;
+}
+
+.qc-option-delete-btn:hover:not(:disabled) {
+  color: #BA1A1A;
+  background: #FEE2E2;
+}
+
+.qc-option-delete-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* Nút Thêm phương án lựa chọn (mềm mại, viền nét đứt nhẹ, bo tròn 8px) */
+.qc-add-option-wrapper {
+  width: 100%;
+  margin-top: 24px;
+}
+
+.qc-add-option-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 42px;
+  background: #F4F8FF;
+  border: 1.5px dashed #BFDBFE;
+  border-radius: 8px;
+  cursor: pointer;
+  gap: 8px;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.qc-add-option-btn:hover {
+  background: #E8F1FF;
+  border-color: #0051D5;
+  box-shadow: 0 2px 8px rgba(0, 81, 213, 0.08);
+  transform: translateY(-1px);
+}
+
+.qc-add-option-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.qc-add-option-text {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: 0.2px;
+  color: #0051D5;
+}
+
+/* ==========================================================================
+   7. Card 3: Detailed Solution Card
+   ========================================================================== */
+.qc-solution-editor-box {
+  width: 100%;
+  margin-top: 16px;
+  padding: 16px 18px;
+  background: #F8FAFF;
+  border: 1px solid #DCE9FF;
+  border-radius: 10px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.qc-solution-toolbar {
+  display: flex;
+  align-items: center;
+}
+
+.qc-solution-math-btn {
+  padding: 6px 12px;
+  height: 28px;
+  background: #FFFFFF;
+  border: 1px solid #CBD5E1;
+  border-radius: 6px;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  color: #45464D;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.qc-solution-math-btn:hover {
+  background: #EFF4FF;
+  border-color: #0051D5;
+  color: #0051D5;
+}
+
+.qc-solution-textarea-wrapper {
+  width: 100%;
+}
+
+.qc-solution-textarea {
+  width: 100%;
+  padding: 12px 14px;
+  background: #FFFFFF;
+  border: 1px solid #CBD5E1;
+  border-radius: 8px;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 24px;
+  color: #0B1C30;
+  box-sizing: border-box;
+  outline: none;
+  resize: vertical;
+  min-height: 120px;
+  transition: all 0.2s ease;
+}
+
+.qc-solution-textarea:focus {
+  border-color: #0051D5;
+  box-shadow: 0 0 0 3px rgba(0, 81, 213, 0.08);
+}
+
+.qc-solution-textarea::placeholder {
+  color: #94A3B8;
+}
+
+/* ==========================================================================
+   8. Right Column: Card A (Taxonomy & Knowledge Matrix)
+   ========================================================================== */
+.qc-taxonomy-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.qc-required-badge {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.44px;
+  color: #0051D5;
+  background: #EFF4FF;
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
+.qc-taxonomy-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  margin-top: 16px;
+}
+
+.qc-form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+
+.qc-field-label {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.2px;
+  color: #334155;
+}
+
+.qc-select-box {
+  position: relative;
+  width: 100%;
+}
+
+.qc-select {
+  width: 100%;
+  height: 44px;
+  padding: 10px 40px 10px 14px;
+  background: #F8FAFF;
+  border: 1px solid #CBD5E1;
+  border-radius: 8px;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  color: #0B1C30;
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+}
+
+.qc-select:focus {
+  border-color: #0051D5;
+  background: #FFFFFF;
+  box-shadow: 0 0 0 3px rgba(0, 81, 213, 0.08);
+}
+
+.qc-select-arrow {
+  position: absolute;
+  right: 14px;
+  top: calc(50% - 3px);
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 6px solid #64748B;
+  pointer-events: none;
+}
+
+/* Bloom Cognitive Level (Nút chọn bo góc mềm 8px) */
+.qc-bloom-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.qc-bloom-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.qc-bloom-tag {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.44px;
+  color: #64748B;
+  background: #F1F5F9;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.qc-bloom-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  width: 100%;
+}
+
+.qc-bloom-btn {
+  height: 36px;
+  background: #F8FAFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  letter-spacing: 0.2px;
+  color: #334155;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+}
+
+.qc-bloom-btn:hover {
+  background: #EFF4FF;
+  border-color: #BFDBFE;
+  color: #0051D5;
+  transform: translateY(-1px);
+}
+
+.qc-bloom-btn--active {
+  background: #0051D5;
+  border-color: #0051D5;
+  color: #FFFFFF;
+  font-weight: 600;
+  box-shadow: 0px 3px 8px rgba(0, 81, 213, 0.25);
+}
+
+.qc-bloom-btn--active:hover {
+  background: #0043b3;
+  border-color: #0043b3;
+  color: #FFFFFF;
+}
+
+/* ==========================================================================
+   9. Right Column: Card B (Cài đặt câu hỏi - Đã bỏ phần điểm số)
+   ========================================================================= */
+.qc-settings-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.qc-settings-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  margin-top: 16px;
+}
+
+/* Switch (Nút gạt bo tròn hoàn toàn 13px, hiệu ứng mềm mại) */
+.qc-switch-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 14px;
+  background: #F8FAFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+.qc-switch-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.qc-switch-title {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 18px;
+  letter-spacing: 0.2px;
+  color: #0B1C30;
+}
+
+.qc-switch-subtitle {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  color: #64748B;
+}
+
+.qc-switch-btn {
+  position: relative;
+  width: 48px;
+  height: 26px;
+  background: #CBD5E1;
+  border-radius: 13px;
+  border: none;
+  cursor: pointer;
+  padding: 2px;
+  transition: background-color 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  flex-shrink: 0;
+}
+
+.qc-switch-btn--checked {
+  background: #0051D5;
+  box-shadow: 0 2px 6px rgba(0, 81, 213, 0.3);
+}
+
+.qc-switch-knob {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  left: 2px;
+  top: 2px;
+  background: #FFFFFF;
+  border-radius: 11px;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.qc-switch-btn--checked .qc-switch-knob {
+  transform: translateX(22px);
+}
+
+/* ==========================================================================
+   10. Responsive Breakpoints
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .qc-main-canvas {
+    flex-direction: column;
+    padding: 0px 16px 48px;
+  }
+
+  .qc-right-column {
+    width: 100%;
+  }
+
+  .qc-header-bar {
+    height: auto;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px;
+  }
+
+  .qc-header-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
