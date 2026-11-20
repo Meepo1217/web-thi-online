@@ -1,0 +1,2094 @@
+/* ==========================================================================
+   EXAM EDIT PAGE STYLES (SỬA ĐỀ THI - CHUẨN FIGMA PIXEL-PERFECT)
+   Tương thích cấu trúc App Shell (TeacherLayout) và Auto Layout Figma
+   ========================================================================== */
+
+.ee-page-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(0deg, #F8F9FF, #F8F9FF), #FFFFFF;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  box-sizing: border-box;
+  padding-bottom: 90px; /* Chừa khoảng trống cho thanh Footer cố định */
+  position: relative;
+}
+
+/* ==================== 1. TOP HEADER / ACTION BAR ==================== */
+.ee-header-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 16px 24px;
+  background: #FFFFFF;
+  border-bottom: 1px solid rgba(211, 228, 254, 0.4);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.ee-header-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  gap: 24px;
+}
+
+.ee-header-left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  flex: 1;
+}
+
+.ee-back-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: #EFF4FF;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  flex-shrink: 0;
+  color: #0B1C30;
+}
+
+.ee-back-btn:hover {
+  background: #DCE9FF;
+}
+
+.ee-header-meta-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ee-breadcrumb-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.ee-badge-type {
+  display: inline-flex;
+  padding: 2px 8px;
+  background: #EFF4FF;
+  border-radius: 2px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 20px;
+  color: #0051D5;
+}
+
+.ee-breadcrumb-sep {
+  font-size: 13px;
+  line-height: 20px;
+  color: #76777D;
+}
+
+.ee-breadcrumb-info {
+  font-size: 14px;
+  line-height: 20px;
+  color: #45464D;
+}
+
+.ee-header-title {
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 28px;
+  letter-spacing: -0.5px;
+  color: #0B1C30;
+  margin: 0;
+}
+
+/* Nút hành động góc phải Header */
+.ee-header-actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.ee-btn-action-soft {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 14px;
+  height: 38px;
+  background: #EFF4FF;
+  border: 1px solid #DCE9FF;
+  border-radius: 4px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: #0B1C30;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  gap: 6px;
+}
+
+.ee-btn-action-soft:hover {
+  background: #E5EEFF;
+}
+
+.ee-btn-action-primary {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 18px;
+  height: 38px;
+  background: #0051D5;
+  border: none;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: #FFFFFF;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  gap: 8px;
+}
+
+.ee-btn-action-primary:hover {
+  background: #0043B3;
+}
+
+/* ==================== 2. MAIN 2-COLUMN WORKSPACE ==================== */
+.ee-workspace-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 24px 32px;
+  gap: 24px;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* Cột trái (70-75%): Metadata & Question Editor */
+.ee-col-left {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex: 1;
+  min-width: 0;
+}
+
+/* Cột phải (25-30%): Question Matrix Palette */
+.ee-col-right {
+  display: flex;
+  flex-direction: column;
+  width: 380px;
+  flex-shrink: 0;
+}
+
+/* ==================== BLOCK 1: OVERVIEW METADATA ==================== */
+.ee-card {
+  display: flex;
+  flex-direction: column;
+  background: #FFFFFF;
+  border: 1px solid rgba(211, 228, 254, 0.4);
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.04);
+  border-radius: 8px;
+  padding: 20px;
+  gap: 16px;
+  box-sizing: border-box;
+}
+
+.ee-card-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #E5EEFF;
+  width: 100%;
+}
+
+.ee-card-title-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.ee-card-icon-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0051D5;
+}
+
+.ee-card-heading {
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 24px;
+  color: #0B1C30;
+  margin: 0;
+}
+
+.ee-badge-status-editing {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 10px;
+  background: #EFF4FF;
+  border-radius: 12px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 20px;
+  color: #0051D5;
+}
+
+.ee-form-row {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  width: 100%;
+}
+
+.ee-form-col-title {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ee-form-col-subject {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ee-form-label {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  color: #0B1C30;
+}
+
+.ee-input-field {
+  width: 100%;
+  height: 39px;
+  background: #F8F9FF;
+  border: 1px solid #E2E8F0;
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  color: #0B1C30;
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.ee-input-field:focus {
+  background: #FFFFFF;
+  border-color: #0051D5;
+  box-shadow: 0 0 0 2px rgba(0, 81, 213, 0.1);
+}
+
+.ee-input-field::placeholder {
+  color: #9CA3AF;
+}
+
+.ee-textarea-field {
+  width: 100%;
+  min-height: 64px;
+  background: #F8F9FF;
+  border: 1px solid #E2E8F0;
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  line-height: 22px;
+  color: #0B1C30;
+  box-sizing: border-box;
+  outline: none;
+  resize: vertical;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.ee-textarea-field:focus {
+  background: #FFFFFF;
+  border-color: #0051D5;
+  box-shadow: 0 0 0 2px rgba(0, 81, 213, 0.1);
+}
+
+.ee-textarea-field::placeholder {
+  color: #9CA3AF;
+}
+
+/* ==================== BLOCK 2: QUESTION EDITOR CARD ==================== */
+.ee-question-editor-card {
+  display: flex;
+  flex-direction: column;
+  background: #FFFFFF;
+  border: 1px solid rgba(211, 228, 254, 0.4);
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.04);
+  border-radius: 8px;
+  padding: 24px;
+  gap: 18px;
+  box-sizing: border-box;
+}
+
+.ee-question-meta-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #E5EEFF;
+  width: 100%;
+}
+
+.ee-question-meta-left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.ee-question-num-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 12px;
+  background: #0051D5;
+  border-radius: 2px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  color: #FFFFFF;
+}
+
+.ee-question-type-text {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: #45464D;
+}
+
+.ee-question-points-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 10px;
+  background: #E5EEFF;
+  border-radius: 2px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 20px;
+  color: #0051D5;
+}
+
+/* Thân câu hỏi */
+.ee-stem-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.ee-stem-textarea {
+  width: 100%;
+  min-height: 70px;
+  background: #F8F9FF;
+  border: 1px solid #E2E8F0;
+  border-radius: 4px;
+  padding: 12px 14px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14.5px;
+  line-height: 24px;
+  color: #1E293B;
+  box-sizing: border-box;
+  outline: none;
+  resize: vertical;
+  transition: all 0.15s ease;
+}
+
+.ee-stem-textarea:focus {
+  background: #FFFFFF;
+  border-color: #0051D5;
+  box-shadow: 0 0 0 2px rgba(0, 81, 213, 0.1);
+}
+
+/* Danh sách 4 phương án A, B, C, D */
+.ee-options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  margin-top: 4px;
+}
+
+.ee-option-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 12px 14px;
+  gap: 14px;
+  width: 100%;
+  border-radius: 4px;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+/* Phương án chưa chọn */
+.ee-option-row.unselected {
+  background: #F8F9FF;
+  border: 1px solid rgba(211, 228, 254, 0.5);
+}
+
+.ee-option-row.unselected:hover {
+  background: #F1F5F9;
+  border-color: #CBD5E1;
+}
+
+/* Phương án ĐÚNG (Được chọn) */
+.ee-option-row.selected {
+  background: #EFF4FF;
+  border: 1px solid rgba(0, 81, 213, 0.4);
+}
+
+/* Radio button tròn */
+.ee-radio-circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.15s ease;
+  background: #FFFFFF;
+}
+
+.ee-radio-circle.unselected {
+  border: 1px solid #767676;
+}
+
+.ee-radio-circle.selected {
+  border: 1px solid #0051D5;
+}
+
+.ee-radio-dot {
+  width: 11px;
+  height: 11px;
+  background: #0051D5;
+  border-radius: 50%;
+}
+
+/* Ký hiệu A, B, C, D */
+.ee-option-letter {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 24px;
+  width: 20px;
+  flex-shrink: 0;
+}
+
+.ee-option-letter.selected {
+  color: #0051D5;
+}
+
+.ee-option-letter.unselected {
+  color: #0B1C30;
+}
+
+/* Ô input nội dung phương án */
+.ee-option-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 14.5px;
+  line-height: 24px;
+  color: #0B1C30;
+  padding: 0;
+}
+
+.ee-option-input:focus {
+  border-bottom: 1px dashed #0051D5;
+}
+
+/* Badge "ĐÁP ÁN ĐÚNG" */
+.ee-badge-correct {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  background: #0051D5;
+  border-radius: 2px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 20px;
+  color: #FFFFFF;
+  letter-spacing: 0.3px;
+  flex-shrink: 0;
+}
+
+/* ==================== RIGHT COLUMN: QUESTION MATRIX PALETTE ==================== */
+.ee-matrix-card {
+  display: flex;
+  flex-direction: column;
+  background: #FFFFFF;
+  border: 1px solid rgba(211, 228, 254, 0.4);
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.04);
+  border-radius: 8px;
+  padding: 20px;
+  gap: 16px;
+  box-sizing: border-box;
+}
+
+.ee-matrix-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #E5EEFF;
+  width: 100%;
+}
+
+.ee-matrix-title-block {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ee-matrix-heading-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.ee-matrix-heading {
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 24px;
+  color: #0B1C30;
+  margin: 0;
+}
+
+.ee-matrix-subtitle {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 20px;
+  color: #45464D;
+}
+
+.ee-matrix-counter-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1px;
+}
+
+.ee-matrix-counter-val {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  color: #0051D5;
+}
+
+.ee-matrix-counter-label {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.44px;
+  color: #76777D;
+}
+
+/* Thanh tiến độ */
+.ee-matrix-progress-section {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+
+.ee-matrix-progress-text-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.ee-matrix-progress-label {
+  color: #45464D;
+}
+
+.ee-matrix-progress-percent {
+  font-weight: 600;
+  color: #0051D5;
+}
+
+.ee-matrix-progress-track {
+  width: 100%;
+  height: 8px;
+  background: #E5EEFF;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+}
+
+.ee-matrix-progress-fill {
+  height: 100%;
+  background: #0051D5;
+  border-radius: 12px;
+  transition: width 0.3s ease;
+}
+
+/* 4x4 Grid Matrix Boxes */
+.ee-matrix-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  width: 100%;
+  margin-top: 4px;
+}
+
+.ee-matrix-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 24px;
+  transition: all 0.15s ease;
+  position: relative;
+}
+
+/* Câu đang chọn */
+.ee-matrix-btn.active {
+  background: #0051D5;
+  color: #FFFFFF;
+  box-shadow: 0px 0px 0px 2px #FFFFFF, 0px 0px 0px 4px #0051D5, 0px 1px 2px rgba(0, 0, 0, 0.05);
+  z-index: 2;
+}
+
+/* Câu chưa chọn */
+.ee-matrix-btn.inactive {
+  background: #EFF4FF;
+  color: #0B1C30;
+  opacity: 0.55;
+}
+
+.ee-matrix-btn.inactive:hover {
+  background: #DCE9FF;
+  opacity: 0.9;
+}
+
+/* Câu đã hoàn thành nhưng không active */
+.ee-matrix-btn.completed-inactive {
+  background: #E0EDFF;
+  color: #0051D5;
+  opacity: 0.9;
+  border: 1px solid #BFDBFE;
+}
+
+/* Nút thêm câu hỏi nhanh */
+.ee-btn-add-question {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  height: 44px;
+  background: #EFF4FF;
+  border: 1px dashed #BFDBFE;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 14.5px;
+  color: #0051D5;
+  transition: all 0.15s ease;
+  margin-top: 4px;
+}
+
+.ee-btn-add-question:hover {
+  background: #DCE9FF;
+  border-color: #0051D5;
+}
+
+/* ==================== 3. BOTTOM ACTION BAR (FOOTER BAR) ==================== */
+.ee-bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 72px;
+  background: #FFFFFF;
+  border-top: 1px solid rgba(211, 228, 254, 0.4);
+  box-shadow: 0px -2px 8px rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  padding: 0 32px;
+  box-sizing: border-box;
+  z-index: 99;
+}
+
+.ee-bottom-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.ee-bottom-status-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #64748B;
+}
+
+.ee-autosave-dot {
+  width: 8px;
+  height: 8px;
+  background: #10B981;
+  border-radius: 50%;
+}
+
+.ee-bottom-actions-right {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+}
+
+.ee-bottom-nav-btn {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  height: 40px;
+  background: #E5EEFF;
+  border: none;
+  border-radius: 4px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: #0B1C30;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  gap: 6px;
+}
+
+.ee-bottom-nav-btn:hover:not(:disabled) {
+  background: #DCE9FF;
+}
+
+.ee-bottom-nav-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.ee-bottom-btn-publish {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 20px;
+  height: 40px;
+  background: #0051D5;
+  border: none;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 14.5px;
+  color: #FFFFFF;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  gap: 8px;
+}
+
+.ee-bottom-btn-publish:hover {
+  background: #0043B3;
+}
+
+/* ==========================================================================
+   4. VIEW MODE TOGGLE (DANH SÁCH CHI TIẾT VS SOẠN THẢO TỪNG CÂU)
+   ========================================================================== */
+.ee-view-tabs {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  background: #EFF4FF;
+  padding: 4px;
+  border-radius: 8px;
+  margin-bottom: 4px;
+}
+
+.ee-view-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: none;
+  background: transparent;
+  color: #45464D;
+  font-family: 'Inter', sans-serif;
+  font-size: 13.5px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.ee-view-tab:hover {
+  color: #0051D5;
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.ee-view-tab.active {
+  background: #FFFFFF;
+  color: #0051D5;
+  font-weight: 600;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+/* ==========================================================================
+   5. DANH SÁCH CÂU HỎI TRONG ĐỀ THI (CONTINUOUS QUESTION FEED)
+   Phong cách chuẩn như màn hình Xem chi tiết câu hỏi / đề thi
+   ========================================================================== */
+.ee-list-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.ee-list-header-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  background: #FFFFFF;
+  border: 1px solid rgba(211, 228, 254, 0.4);
+  border-radius: 8px;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.ee-list-header-left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+}
+
+.ee-list-title {
+  margin: 0;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  color: #0B1C30;
+}
+
+.ee-list-counter-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 10px;
+  background: #EFF4FF;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #0051D5;
+}
+
+.ee-list-btn-bank {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  background: #EFF4FF;
+  border: 1px solid #DCE9FF;
+  border-radius: 6px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #0051D5;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.ee-list-btn-bank:hover {
+  background: #DCE9FF;
+  border-color: #0051D5;
+}
+
+/* Question Feed */
+.ee-list-feed {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ee-list-card {
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  gap: 16px;
+  background: #FFFFFF;
+  border-radius: 8px;
+  border: 1.5px solid rgba(211, 228, 254, 0.4);
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+}
+
+.ee-list-card:hover {
+  border-color: rgba(0, 81, 213, 0.3);
+  box-shadow: 0px 2px 8px rgba(0, 81, 213, 0.06);
+}
+
+.ee-list-card.is-focused {
+  border-color: #0051D5;
+  box-shadow: 0px 0px 0px 3px rgba(0, 81, 213, 0.15);
+}
+
+/* Header của từng thẻ câu hỏi */
+.ee-list-card-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #E5EEFF;
+}
+
+.ee-list-meta-left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.ee-list-number-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 12px;
+  height: 32px;
+  background: #E5EEFF;
+  border-radius: 4px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  color: #0B1C30;
+}
+
+.ee-list-bloom-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  height: 20px;
+  background: #DCE9FF;
+  border-radius: 2px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: #0051D5;
+}
+
+.ee-list-points-badge {
+  font-size: 12px;
+  font-weight: 600;
+  color: #45464D;
+}
+
+.ee-list-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 8px;
+  height: 20px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.ee-list-status-pill.is-done {
+  background: #DCFCE7;
+  color: #166534;
+}
+
+.ee-list-status-pill.is-pending {
+  background: #FEF3C7;
+  color: #92400E;
+}
+
+.ee-list-status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.ee-list-actions-right {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.ee-list-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 12px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  font-family: 'Inter', sans-serif;
+  font-size: 12.5px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.ee-list-action-btn--edit {
+  background: #EFF4FF;
+  border-color: #DCE9FF;
+  color: #0051D5;
+}
+
+.ee-list-action-btn--edit:hover {
+  background: #DCE9FF;
+}
+
+.ee-list-action-btn--danger {
+  background: #FFF1F2;
+  border-color: #FFE4E6;
+  color: #BA1A1A;
+}
+
+.ee-list-action-btn--danger:hover {
+  background: #FFE4E6;
+}
+
+/* Thân câu hỏi */
+.ee-list-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ee-list-stem {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 24px;
+  color: #0B1C30;
+}
+
+/* Lưới 4 đáp án 2x2 */
+.ee-list-options-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+@media (max-width: 900px) {
+  .ee-list-options-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ee-list-option-card {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  gap: 12px;
+  min-height: 52px;
+  background: #F8F9FF;
+  border: 1.5px solid #E5EEFF;
+  border-radius: 6px;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.ee-list-option-card:hover {
+  background: #EFF4FF;
+  border-color: #0051D5;
+}
+
+.ee-list-option-card.is-correct {
+  background: rgba(133, 248, 196, 0.28);
+  border-color: #059669;
+  box-shadow: 0px 1px 3px rgba(5, 150, 105, 0.1);
+}
+
+.ee-list-opt-left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  flex: 1;
+}
+
+.ee-list-opt-letter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: #E5EEFF;
+  border-radius: 50%;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  color: #45464D;
+  flex-shrink: 0;
+  transition: all 0.15s ease;
+}
+
+.ee-list-opt-letter.is-correct {
+  background: #059669;
+  color: #FFFFFF;
+}
+
+.ee-list-opt-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  color: #0B1C30;
+  word-break: break-word;
+}
+
+.ee-list-opt-badge-correct {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  background: #DCFCE7;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #059669;
+  flex-shrink: 0;
+}
+
+/* Dải nút hành động cuối danh sách */
+.ee-list-bottom-strip {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 0 24px;
+}
+
+.ee-list-btn-add-bank {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: #0051D5;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 6px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.ee-list-btn-add-bank:hover {
+  background: #0043B3;
+}
+
+.ee-list-btn-add-blank {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 18px;
+  background: #EFF4FF;
+  border: 1px solid #DCE9FF;
+  color: #0051D5;
+  border-radius: 6px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.ee-list-btn-add-blank:hover {
+  background: #DCE9FF;
+}
+
+/* ==========================================================================
+   6. POPUP: CHỌN CÂU HỎI TỪ NGÂN HÀNG CÂU HỎI (MODAL PICKER)
+   ========================================================================== */
+.ee-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(11, 28, 48, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  padding: 24px;
+  animation: eeFadeIn 0.2s ease-out;
+}
+
+@keyframes eeFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.ee-modal-container {
+  background: #FFFFFF;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 960px;
+  max-height: 88vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  animation: eeSlideUp 0.2s ease-out;
+}
+
+@keyframes eeSlideUp {
+  from {
+    transform: translateY(16px);
+    opacity: 0.95;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Modal Header */
+.ee-modal-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px 24px;
+  border-bottom: 1px solid #E5EEFF;
+  background: #FFFFFF;
+}
+
+.ee-modal-title {
+  margin: 0 0 6px 0;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  color: #0B1C30;
+}
+
+.ee-modal-subrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ee-modal-badge {
+  padding: 2px 8px;
+  background: #EFF4FF;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #0051D5;
+}
+
+.ee-modal-subtext {
+  font-size: 13px;
+  color: #64748B;
+}
+
+.ee-modal-close-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: #F1F5F9;
+  border-radius: 6px;
+  font-size: 16px;
+  color: #64748B;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.ee-modal-close-btn:hover {
+  background: #E2E8F0;
+  color: #0B1C30;
+}
+
+/* Modal Toolbar */
+.ee-modal-toolbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 24px;
+  background: #F8F9FF;
+  border-bottom: 1px solid #E5EEFF;
+}
+
+.ee-modal-search-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  background: #FFFFFF;
+  border: 1px solid #DCE9FF;
+  border-radius: 6px;
+  padding: 8px 12px;
+}
+
+.ee-modal-search-input {
+  border: none;
+  outline: none;
+  width: 100%;
+  font-family: 'Inter', sans-serif;
+  font-size: 13.5px;
+  color: #0B1C30;
+  background: transparent;
+}
+
+.ee-modal-clear-search {
+  border: none;
+  background: transparent;
+  color: #94A3B8;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.ee-modal-filters {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ee-modal-select {
+  padding: 8px 12px;
+  background: #FFFFFF;
+  border: 1px solid #DCE9FF;
+  border-radius: 6px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: #0B1C30;
+  outline: none;
+  cursor: pointer;
+}
+
+/* Selection strip */
+.ee-modal-selection-strip {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 24px;
+  background: #EFF4FF;
+  border-bottom: 1px solid #DCE9FF;
+}
+
+.ee-modal-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.ee-modal-select-all-text {
+  font-size: 13px;
+  font-weight: 500;
+  color: #0B1C30;
+}
+
+.ee-modal-selected-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #45464D;
+}
+
+.ee-modal-selected-badge strong {
+  color: #0051D5;
+}
+
+/* Scrollable Question List */
+.ee-modal-question-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ee-modal-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 16px;
+  text-align: center;
+}
+
+.ee-modal-empty-icon {
+  font-size: 32px;
+  margin-bottom: 12px;
+}
+
+.ee-modal-empty-text {
+  font-size: 14px;
+  color: #64748B;
+  margin: 0 0 12px 0;
+}
+
+.ee-modal-btn-reset {
+  padding: 6px 14px;
+  background: #EFF4FF;
+  border: 1px solid #DCE9FF;
+  border-radius: 4px;
+  font-size: 13px;
+  color: #0051D5;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* Question card in modal */
+.ee-modal-q-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px;
+  background: #FFFFFF;
+  border: 1.5px solid #E5EEFF;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.ee-modal-q-card:hover {
+  border-color: #0051D5;
+  background: #F8F9FF;
+}
+
+.ee-modal-q-card.is-selected {
+  border-color: #0051D5;
+  background: #EFF4FF;
+  box-shadow: 0px 2px 6px rgba(0, 81, 213, 0.08);
+}
+
+.ee-modal-q-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ee-modal-q-header-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ee-modal-q-checkbox {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.ee-modal-q-code {
+  font-family: 'Plus Jakarta Sans', monospace;
+  font-weight: 700;
+  font-size: 12px;
+  color: #0051D5;
+}
+
+.ee-modal-q-bloom {
+  padding: 2px 6px;
+  border-radius: 2px;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  background: #E2E8F0;
+  color: #334155;
+}
+
+.ee-modal-q-bloom.bloom-vd-cao {
+  background: #FEE2E2;
+  color: #991B1B;
+}
+
+.ee-modal-q-bloom.bloom-van-dung {
+  background: #FEF3C7;
+  color: #92400E;
+}
+
+.ee-modal-q-bloom.bloom-thong-hieu {
+  background: #E0E7FF;
+  color: #3730A3;
+}
+
+.ee-modal-q-bloom.bloom-nhan-biet {
+  background: #DCFCE7;
+  color: #166534;
+}
+
+.ee-modal-q-chapter {
+  font-size: 12px;
+  color: #64748B;
+}
+
+.ee-modal-q-author {
+  font-size: 11.5px;
+  color: #94A3B8;
+}
+
+.ee-modal-q-content {
+  margin: 0;
+  font-size: 14px;
+  line-height: 22px;
+  color: #0B1C30;
+  font-weight: 500;
+}
+
+.ee-modal-options-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  padding-top: 4px;
+}
+
+.ee-modal-option-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 4px;
+  font-size: 12.5px;
+}
+
+.ee-modal-option-item.is-correct {
+  background: #ECFDF5;
+  border-color: #A7F3D0;
+  color: #065F46;
+  font-weight: 500;
+}
+
+.ee-modal-opt-letter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  background: #E2E8F0;
+  border-radius: 50%;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.ee-modal-option-item.is-correct .ee-modal-opt-letter {
+  background: #059669;
+  color: #FFFFFF;
+}
+
+.ee-modal-opt-text {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ee-modal-opt-correct-icon {
+  display: flex;
+  align-items: center;
+}
+
+/* Modal Footer */
+.ee-modal-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  background: #FFFFFF;
+  border-top: 1px solid #E5EEFF;
+}
+
+.ee-modal-btn-blank {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  background: #EFF4FF;
+  border: 1px solid #DCE9FF;
+  border-radius: 6px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #0051D5;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.ee-modal-btn-blank:hover {
+  background: #DCE9FF;
+}
+
+.ee-modal-footer-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ee-modal-btn-cancel {
+  padding: 8px 16px;
+  background: #F1F5F9;
+  border: none;
+  border-radius: 6px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.ee-modal-btn-cancel:hover {
+  background: #E2E8F0;
+}
+
+.ee-modal-btn-submit {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 20px;
+  background: #0051D5;
+  border: none;
+  border-radius: 6px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #FFFFFF;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.ee-modal-btn-submit:hover:not(:disabled) {
+  background: #0043B3;
+}
+
+.ee-modal-btn-submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ==========================================================================
+   7. POPUP: ĐẨY FILE ĐỀ THI LÊN (IMPORT EXAM FILE MODAL)
+   ========================================================================== */
+.ee-import-modal-container {
+  max-width: 680px;
+}
+
+.ee-import-modal-body {
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow-y: auto;
+}
+
+.ee-upload-dropzone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 28px 20px;
+  background: #F8F9FF;
+  border: 2px dashed #BFDBFE;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.ee-upload-dropzone:hover {
+  border-color: #0051D5;
+  background: #EFF4FF;
+}
+
+.ee-upload-dropzone.is-dragging {
+  border-color: #0051D5;
+  background: #E5EEFF;
+  transform: scale(1.005);
+}
+
+.ee-upload-dropzone.has-file {
+  padding: 14px 18px;
+  background: #FFFFFF;
+  border-style: solid;
+  border-color: #DCE9FF;
+  cursor: default;
+}
+
+.ee-dropzone-icon-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  background: #EFF4FF;
+  border-radius: 50%;
+  margin-bottom: 12px;
+}
+
+.ee-dropzone-title {
+  margin: 0 0 6px 0;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 600;
+  font-size: 14.5px;
+  color: #0B1C30;
+}
+
+.ee-dropzone-browse {
+  color: #0051D5;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.ee-dropzone-desc {
+  margin: 0 0 10px 0;
+  font-size: 12.5px;
+  color: #64748B;
+}
+
+.ee-dropzone-tags {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.ee-file-tag {
+  display: inline-flex;
+  padding: 2px 8px;
+  background: #E2E8F0;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 500;
+  color: #475569;
+}
+
+/* File Preview inside dropzone */
+.ee-dropzone-file-preview {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.ee-preview-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.ee-preview-file-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: #EFF4FF;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.ee-preview-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.ee-preview-filename {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: #0B1C30;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 340px;
+}
+
+.ee-preview-filesize {
+  font-size: 12px;
+  color: #64748B;
+}
+
+.ee-preview-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.ee-preview-btn-change {
+  padding: 5px 10px;
+  background: #EFF4FF;
+  border: 1px solid #DCE9FF;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #0051D5;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.ee-preview-btn-change:hover {
+  background: #DCE9FF;
+}
+
+.ee-preview-btn-remove {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  background: #FFF1F2;
+  border: 1px solid #FFE4E6;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.ee-preview-btn-remove:hover {
+  background: #FFE4E6;
+}
+
+.ee-import-error-banner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: #FEE2E2;
+  border: 1px solid #FCA5A5;
+  border-radius: 6px;
+  font-size: 13px;
+  color: #991B1B;
+}
+
+/* Analyze status box */
+.ee-import-analyze-box {
+  padding: 12px 16px;
+  background: #F0FDF4;
+  border: 1px solid #BBF7D0;
+  border-radius: 6px;
+}
+
+.ee-analyzing-state {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: #166534;
+}
+
+.ee-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #BBF7D0;
+  border-top-color: #166534;
+  border-radius: 50%;
+  animation: eeSpin 0.7s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes eeSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.ee-analyzed-success {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.ee-analyzed-icon {
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.ee-analyzed-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 13px;
+  color: #166534;
+}
+
+.ee-analyzed-info strong {
+  color: #14532D;
+}
+
+/* Import Options Card */
+.ee-import-options-card {
+  background: #F8F9FF;
+  border: 1px solid #E5EEFF;
+  border-radius: 8px;
+  padding: 14px 16px;
+}
+
+.ee-import-options-title {
+  margin: 0 0 10px 0;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 600;
+  font-size: 13.5px;
+  color: #0B1C30;
+}
+
+.ee-import-radios {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ee-import-radio-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.ee-import-radio-item input[type='radio'] {
+  margin-top: 3px;
+  cursor: pointer;
+}
+
+.ee-radio-label-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ee-radio-label-group strong {
+  font-size: 13px;
+  color: #0B1C30;
+}
+
+.ee-radio-label-group span {
+  font-size: 12px;
+  color: #64748B;
+  line-height: 18px;
+}
+
+/* Templates row */
+.ee-import-templates-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 4px;
+}
+
+.ee-templates-label {
+  font-size: 12.5px;
+  color: #64748B;
+}
+
+.ee-templates-links {
+  display: flex;
+  gap: 8px;
+}
+
+.ee-template-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  background: #EFF4FF;
+  border: 1px solid #DCE9FF;
+  border-radius: 4px;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: #0051D5;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.ee-template-btn:hover {
+  background: #DCE9FF;
+}
+
+

@@ -144,7 +144,11 @@ export default function ExamDetail() {
         <ExamDetailHeader
           exam={examInfo}
           backPath={backPath}
-          onEditExam={() => alert(`Mở trình chỉnh sửa đề thi: ${examInfo.title}`)}
+          onEditExam={() =>
+            navigate(`/teacher/exams/${subjectId || 'math'}/edit/${examInfo.id || 'EXAM-12-001'}`, {
+              state: { exam: examInfo },
+            })
+          }
           onExportExam={() => alert(`Xuất đề thi ${examInfo.code} ra định dạng PDF / Word`)}
           onCreateSession={() => alert(`Trộn mã đề & tạo ca thi mới từ ${examInfo.code}`)}
         />
