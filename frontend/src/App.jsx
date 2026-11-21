@@ -28,6 +28,8 @@ import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
 import VerifyOtp from './pages/auth/VerifyOtp';
 import StudentPortal from './pages/student/StudentPortal';
+import AdminLayout from './components/layout/admin/AdminLayout';
+import AdminDashboard from './pages/admin/AdminDashboard';
 
 /**
  * Component kiểm tra kết nối với Laravel Backend
@@ -106,6 +108,10 @@ function RootRedirect() {
     return <Navigate to="/login" replace />;
   }
 
+  if (user?.role === 'admin') {
+    return <Navigate to="/admin/dashboard" replace />;
+  }
+
   if (user?.role === 'teacher') {
     return <Navigate to="/teacher/dashboard" replace />;
   }
@@ -135,6 +141,7 @@ function App() {
           <Route path="/student/login" element={<Login defaultRole="student" />} />
           <Route path="/student/register" element={<Navigate to="/register" replace />} />
           <Route path="/teacher/login" element={<Login defaultRole="teacher" />} />
+          <Route path="/admin/login" element={<Login defaultRole="admin" />} />
 
           {/* Route kiểm tra kết nối ban đầu */}
           <Route path="/test-connection" element={<ConnectionTest />} />
@@ -219,7 +226,28 @@ function App() {
             <Route path="*" element={<Navigate to="/teacher/dashboard" replace />} />
           </Route>
 
-          {/* 6. Bắt mọi route lạ -> Chuyển về RootRedirect */}
+          {/* 6. Cổng Quản trị viên (Admin Portal) - Chỉ quản trị viên được truy cập */}
+          <Route
+            path="/admin"
+            element={
+              <ProtectedRoute allowedRoles={['admin']}>
+                <AdminLayout />
+              </ProtectedRoute>
+            }
+          >
+            <Route index element={<Navigate to="/admin/dashboard" replace />} />
+            <Route path="dashboard" element={<AdminDashboard />} />
+            <Route path="users" element={<AdminDashboard />} />
+            <Route path="exams" element={<AdminDashboard />} />
+            <Route path="questions" element={<AdminDashboard />} />
+            <Route path="subjects" element={<AdminDashboard />} />
+            <Route path="logs" element={<AdminDashboard />} />
+            <Route path="settings" element={<AdminDashboard />} />
+            <Route path="help" element={<AdminDashboard />} />
+            <Route path="*" element={<Navigate to="/admin/dashboard" replace />} />
+          </Route>
+
+          {/* 7. Bắt mọi route lạ -> Chuyển về RootRedirect */}
           <Route path="*" element={<RootRedirect />} />
         </Routes>
       </BrowserRouter>

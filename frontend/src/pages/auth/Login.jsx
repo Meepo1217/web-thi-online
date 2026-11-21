@@ -30,8 +30,11 @@ export default function Login({ defaultRole = 'student' }) {
     if (newRole === 'student') {
       setIdentifier('sv21020015@eduquiz.vn');
       setPassword('123456');
-    } else {
+    } else if (newRole === 'teacher') {
       setIdentifier('gv.nguyenan@eduquiz.vn');
+      setPassword('123456');
+    } else if (newRole === 'admin') {
+      setIdentifier('admin@huce.edu.vn');
       setPassword('123456');
     }
   };
@@ -53,20 +56,37 @@ export default function Login({ defaultRole = 'student' }) {
     // Xác thực tài khoản
     setTimeout(() => {
       setIsLoading(false);
+      let activeRole = role;
+      if (identifier.includes('admin') || role === 'admin') {
+        activeRole = 'admin';
+      }
+
       if (login) {
-        login(role, {
+        login(activeRole, {
           email: identifier,
-          name: role === 'teacher' ? 'ThS. Nguyễn Văn A' : 'Nguyễn Văn An'
+          name: activeRole === 'admin'
+            ? 'Quản trị viên'
+            : activeRole === 'teacher'
+            ? 'ThS. Nguyễn Văn A'
+            : 'Nguyễn Văn An'
         });
       }
 
       setAlertInfo({
         type: 'success',
-        message: `Đăng nhập thành công với vai trò ${role === 'student' ? 'Học sinh/Sinh viên' : 'Giảng viên'}! Đang chuyển hướng...`
+        message: `Đăng nhập thành công với vai trò ${
+          activeRole === 'admin'
+            ? 'Quản trị viên'
+            : activeRole === 'teacher'
+            ? 'Giảng viên'
+            : 'Học sinh/Sinh viên'
+        }! Đang chuyển hướng...`
       });
 
       setTimeout(() => {
-        if (role === 'teacher') {
+        if (activeRole === 'admin') {
+          navigate('/admin/dashboard');
+        } else if (activeRole === 'teacher') {
           navigate('/teacher/dashboard');
         } else {
           navigate('/student');
@@ -116,7 +136,11 @@ export default function Login({ defaultRole = 'student' }) {
             <div className={`auth-role-pill ${role}`}>
               <span className="auth-role-dot"></span>
               <span className="auth-role-text">
-                {role === 'student' ? 'Dành cho Sinh viên' : 'Dành cho Giảng viên'}
+                {role === 'admin'
+                  ? 'Dành cho Quản trị viên'
+                  : role === 'student'
+                  ? 'Dành cho Sinh viên'
+                  : 'Dành cho Giảng viên'}
               </span>
             </div>
           </div>
@@ -141,7 +165,7 @@ export default function Login({ defaultRole = 'student' }) {
                 <svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a10.993 10.993 0 01-1.25 4.88c-.378.892-.619 1.879-.619 2.87a1 1 0 001 1h11.238a1 1 0 001-1c0-.991-.241-1.978-.619-2.87a10.993 10.993 0 01-1.25-4.88l2.644-1.131a1 1 0 000-1.84l-7-3z" />
                 </svg>
-                <span>Học sinh / Sinh viên</span>
+                <span>Sinh viên</span>
               </button>
 
               <button
@@ -152,14 +176,25 @@ export default function Login({ defaultRole = 'student' }) {
                 <svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
                 </svg>
-                <span>Giảng viên / Giám thị</span>
+                <span>Giảng viên</span>
+              </button>
+
+              <button
+                type="button"
+                className={`auth-role-tab-btn ${role === 'admin' ? 'active' : ''}`}
+                onClick={() => handleRoleChange('admin')}
+              >
+                <svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                </svg>
+                <span>Quản trị viên</span>
               </button>
             </div>
           </div>
 
           {/* Quick Demo Credentials Info */}
           <div className="auth-demo-hint-box">
-            <span>💡 Tài khoản mẫu: <strong>{role === 'student' ? 'Sinh viên' : 'Giảng viên'}</strong></span>
+            <span>💡 Tài khoản mẫu: <strong>{role === 'admin' ? 'Quản trị viên' : role === 'student' ? 'Sinh viên' : 'Giảng viên'}</strong></span>
             <code>{identifier} / {password}</code>
           </div>
 
