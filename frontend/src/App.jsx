@@ -30,6 +30,7 @@ import VerifyOtp from './pages/auth/VerifyOtp';
 import StudentPortal from './pages/student/StudentPortal';
 import AdminLayout from './components/layout/admin/AdminLayout';
 import AdminDashboard from './pages/admin/AdminDashboard';
+import UserManagement from './pages/admin/UserManagement';
 
 /**
  * Component kiểm tra kết nối với Laravel Backend
@@ -237,7 +238,7 @@ function App() {
           >
             <Route index element={<Navigate to="/admin/dashboard" replace />} />
             <Route path="dashboard" element={<AdminDashboard />} />
-            <Route path="users" element={<AdminDashboard />} />
+            <Route path="users" element={<UserManagement />} />
             <Route path="exams" element={<AdminDashboard />} />
             <Route path="questions" element={<AdminDashboard />} />
             <Route path="subjects" element={<AdminDashboard />} />

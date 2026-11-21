@@ -170,3 +170,4 @@ export default function AdminHeader({ onToggleSidebar, onSearch }) {
     </header>
   );
 }
+
