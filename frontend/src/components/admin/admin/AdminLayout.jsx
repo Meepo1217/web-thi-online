@@ -1,2 +1,3 @@
-export { default } from '../../layout/admin/AdminLayout';
-export * from '../../layout/admin/AdminLayout';
+import AdminLayout from '../../layout/admin/AdminLayout';
+
+export default AdminLayout;
