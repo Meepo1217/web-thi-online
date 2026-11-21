@@ -1,0 +1,736 @@
+/* ==========================================================================
+   admin-exams.css - Giao diện Quản lý đề thi (Admin Exam Management)
+   Chuẩn pixel-perfect Figma Auto Layout (1280px container, 944px content)
+   ========================================================================== */
+
+.admin-exams-container {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 1280px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 1024px) {
+  .admin-exams-container {
+    padding: 16px;
+    gap: 16px;
+  }
+}
+
+/* ==========================================================================
+   1. Header Trang & Breadcrumb
+   ========================================================================== */
+.exams-page-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.exams-page-header__left {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.exams-page-header__title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 36px;
+  letter-spacing: -0.7px;
+  color: #0B1C30;
+  margin: 0;
+}
+
+.exams-page-header__subtitle {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: #64748B;
+  margin: 0;
+}
+
+.exams-page-header__actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-export-excel {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px 16px;
+  gap: 6px;
+  height: 40px;
+  background: #FFFFFF;
+  border: 1px solid #E5EEFF;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.14px;
+  color: #0B1C30;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-export-excel:hover {
+  background: #F8FAFC;
+  border-color: #CBD5E1;
+}
+
+.btn-export-excel svg {
+  color: #069669;
+}
+
+.btn-create-exam {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px 16px;
+  gap: 6px;
+  height: 40px;
+  background: #316BF3;
+  border: none;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.14px;
+  color: #FFFFFF;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-create-exam:hover {
+  background: #2558d0;
+  box-shadow: 0px 4px 12px rgba(49, 107, 243, 0.3);
+}
+
+/* ==========================================================================
+   2. Khung thống kê nhanh (KPI cards)
+   ========================================================================== */
+.exams-kpi-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  width: 100%;
+}
+
+@media (max-width: 1024px) {
+  .exams-kpi-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .exams-kpi-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.exams-kpi-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 24px;
+  height: 147px;
+  background: #FFFFFF;
+  border: 1px solid #E5EEFF;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  box-sizing: border-box;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.exams-kpi-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.06);
+  border-color: #BFDBFE;
+}
+
+.exams-kpi-card__top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.exams-kpi-card__label {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 11.5px;
+  line-height: 14px;
+  letter-spacing: 0.55px;
+  text-transform: uppercase;
+  color: #45464D;
+}
+
+.exams-kpi-card__icon-box {
+  width: 36px;
+  height: 36px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.exams-kpi-card__icon-box.total-exams {
+  background: #EFF4FF;
+  color: #0051D5;
+}
+
+.exams-kpi-card__icon-box.total-attempts {
+  background: #EFF4FF;
+  color: #0051D5;
+}
+
+.exams-kpi-card__icon-box.active-exams {
+  background: #ECFDF5;
+  color: #059669;
+}
+
+.exams-kpi-card__icon-box.locked-exams {
+  background: rgba(245, 158, 11, 0.1);
+  color: #D97706;
+}
+
+.exams-kpi-card__bottom {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.exams-kpi-card__number {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 44px;
+  letter-spacing: -0.72px;
+  color: #0B1C30;
+}
+
+.exams-kpi-card__number.active-color {
+  color: #059669;
+}
+
+.exams-kpi-card__number.locked-color {
+  color: #D97706;
+}
+
+.exams-kpi-card__unit {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 11.5px;
+  line-height: 14px;
+  letter-spacing: 0.44px;
+  color: #45464D;
+}
+
+/* ==========================================================================
+   3. Thanh công cụ tìm kiếm và lọc
+   ========================================================================== */
+.exams-toolbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 16px;
+  gap: 16px;
+  background: #FFFFFF;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  border: 1px solid #E5EEFF;
+  border-radius: 8px;
+  flex-wrap: wrap;
+}
+
+.exams-toolbar__search-wrap {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  min-width: 280px;
+}
+
+.exams-toolbar__search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.exams-toolbar__search-icon {
+  position: absolute;
+  left: 12px;
+  display: flex;
+  align-items: center;
+  color: #45464D;
+  pointer-events: none;
+}
+
+.exams-toolbar__search-input {
+  width: 100%;
+  height: 40px;
+  background: #EFF4FF;
+  border: 1px solid #CBD5E1;
+  border-radius: 4px;
+  padding: 0 16px 0 38px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: #0B1C30;
+  transition: all 0.15s ease;
+  box-sizing: border-box;
+}
+
+.exams-toolbar__search-input:focus {
+  outline: none;
+  background: #FFFFFF;
+  border-color: #316BF3;
+  box-shadow: 0 0 0 2px rgba(49, 107, 243, 0.15);
+}
+
+.btn-search-submit {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 20px;
+  gap: 8px;
+  height: 40px;
+  background: #0051D5;
+  border: none;
+  border-radius: 8px;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  color: #FFFFFF;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.btn-search-submit:hover {
+  background: #0043b3;
+}
+
+.exams-toolbar__filters {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.exams-select-box {
+  height: 40px;
+  background: #EFF4FF;
+  border: 1px solid #CBD5E1;
+  border-radius: 4px;
+  padding: 0 28px 0 12px;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.24px;
+  color: #0B1C30;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236B7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  background-size: 14px;
+  outline: none;
+}
+
+.exams-select-box:focus {
+  border-color: #316BF3;
+  background-color: #FFFFFF;
+}
+
+.btn-filter-reset {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px 12px;
+  gap: 6px;
+  height: 40px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.24px;
+  color: #BA1A1A;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-filter-reset:hover {
+  background: #FEF2F2;
+  border-color: #FECACA;
+}
+
+/* ==========================================================================
+   4. Bảng danh sách đề thi
+   ========================================================================== */
+.exams-table-card {
+  background: #FFFFFF;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  border: 1px solid #E5EEFF;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.exams-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.exams-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.exams-table thead tr {
+  background: rgba(239, 244, 255, 0.7);
+  height: 49px;
+  border-bottom: 1px solid #E5EEFF;
+}
+
+.exams-table th {
+  padding: 14px 16px;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.24px;
+  color: #45464D;
+  white-space: nowrap;
+}
+
+.exams-table th.right,
+.exams-table td.right {
+  text-align: right;
+}
+
+.exams-table tbody tr {
+  height: 84px;
+  border-bottom: 1px solid #E5EEFF;
+  transition: background-color 0.15s ease;
+}
+
+.exams-table tbody tr:hover {
+  background: rgba(239, 244, 255, 0.35);
+}
+
+.exams-table tbody tr.row-locked {
+  background: #FFFBEB !important;
+}
+
+.exams-table td {
+  padding: 14px 16px;
+  vertical-align: middle;
+}
+
+/* Exam Title Cell */
+.exam-title-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-width: 280px;
+}
+
+.exam-title-text {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15.5px;
+  line-height: 22px;
+  color: #0B1C30;
+}
+
+.exam-meta-sub {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #64748B;
+}
+
+.exam-code-badge {
+  background: #F1F5F9;
+  color: #475569;
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 11px;
+}
+
+/* Question Count Pill */
+.exam-questions-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  background: #EFF4FF;
+  border-radius: 6px;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.24px;
+  color: #0B1C30;
+  white-space: nowrap;
+}
+
+/* Duration Cell */
+.exam-duration-cell {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  color: #45464D;
+}
+
+.exam-duration-text {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 22px;
+  color: #0B1C30;
+}
+
+/* Attempts Cell */
+.exam-attempts-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.exam-attempts-number {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 22px;
+  color: #0051D5;
+}
+
+.exam-attempts-unit {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.44px;
+  color: #45464D;
+}
+
+/* Time Window Cell */
+.exam-time-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.exam-time-start {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 11.5px;
+  line-height: 16px;
+  letter-spacing: 0.24px;
+  color: #1D4ED8;
+}
+
+.exam-time-end {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 11.5px;
+  line-height: 14px;
+  letter-spacing: 0.44px;
+  color: #D97706;
+}
+
+/* Action Buttons */
+.exam-actions-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-exam-action {
+  width: 32px;
+  height: 32px;
+  background: #FFFFFF;
+  border: 1px solid #E5EEFF;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-exam-action.status-btn {
+  color: #D97706;
+}
+
+.btn-exam-action.status-btn:hover {
+  background: #FFFBEB;
+  border-color: #FDE68A;
+}
+
+.btn-exam-action.edit-btn {
+  color: #1D4ED8;
+}
+
+.btn-exam-action.edit-btn:hover {
+  background: #EFF6FF;
+  border-color: #BFDBFE;
+}
+
+.btn-exam-action.delete-btn {
+  color: #BA1A1A;
+}
+
+.btn-exam-action.delete-btn:hover {
+  background: #FEF2F2;
+  border-color: #FECACA;
+}
+
+/* ==========================================================================
+   5. Phân trang chuẩn
+   ========================================================================== */
+.exams-pagination {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 16px;
+  background: rgba(239, 244, 255, 0.4);
+  border-top: 1px solid #E5EEFF;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.exams-pagination__left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+}
+
+.exams-pagination__info {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 20px;
+  color: #45464D;
+}
+
+.exams-pagination__select {
+  height: 32px;
+  padding: 0 24px 0 8px;
+  background: #FFFFFF;
+  border: 1px solid #CBD5E1;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 11px;
+  color: #0B1C30;
+  cursor: pointer;
+}
+
+.exams-pagination__right {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+}
+
+.exams-page-btn {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  color: #0B1C30;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.exams-page-btn.active {
+  background: #316BF3;
+  border-color: #316BF3;
+  color: #FFFFFF;
+  font-weight: 600;
+}
+
+.exams-page-nav-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0 10px;
+  height: 32px;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 4px;
+  font-size: 12px;
+  color: #45464D;
+  cursor: pointer;
+}
+
+.exams-page-nav-btn:hover {
+  background: #F8FAFC;
+}
+
+.exams-page-nav-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
