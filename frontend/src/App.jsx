@@ -32,6 +32,7 @@ import AdminLayout from './components/layout/admin/AdminLayout';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import UserManagement from './pages/admin/UserManagement';
 import AdminExamManagement from './pages/admin/AdminExamManagement';
+import AdminSubjectManagement from './pages/admin/AdminSubjectManagement';
 
 /**
  * Component kiểm tra kết nối với Laravel Backend
@@ -242,7 +243,7 @@ function App() {
             <Route path="users" element={<UserManagement />} />
             <Route path="exams" element={<AdminExamManagement />} />
             <Route path="questions" element={<AdminDashboard />} />
-            <Route path="subjects" element={<AdminDashboard />} />
+            <Route path="subjects" element={<AdminSubjectManagement />} />
             <Route path="logs" element={<AdminDashboard />} />
             <Route path="settings" element={<AdminDashboard />} />
             <Route path="help" element={<AdminDashboard />} />
