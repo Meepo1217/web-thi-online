@@ -20,6 +20,12 @@ export const adminNavGroups = [
         iconName: 'users',
         badge: '48.2k',
       },
+      {
+        label: 'Quản lý thông báo',
+        path: '/admin/notifications',
+        iconName: 'notifications',
+        badge: '128',
+      },
     ],
   },
   {
