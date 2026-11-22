@@ -1,0 +1,996 @@
+/* ==========================================================================
+   admin-subjects.css - Giao diện Quản lý môn học (Admin Subject Management)
+   Chuẩn pixel-perfect Figma Auto Layout (1280px container, 944px content)
+   ========================================================================== */
+
+.admin-subjects-container {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 1280px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 1024px) {
+  .admin-subjects-container {
+    padding: 16px;
+    gap: 16px;
+  }
+}
+
+/* ==========================================================================
+   1. Header Trang & Actions
+   ========================================================================== */
+.subjects-page-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.subjects-page-header__left {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.subjects-page-header__title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 36px;
+  letter-spacing: -0.7px;
+  color: #0B1C30;
+  margin: 0;
+}
+
+.subjects-page-header__subtitle {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: #64748B;
+  margin: 0;
+}
+
+.subjects-page-header__actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8.01px;
+}
+
+.btn-export-excel {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px 16px;
+  gap: 6px;
+  height: 40px;
+  background: #FFFFFF;
+  border: 1px solid #E5EEFF;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.14px;
+  color: #0B1C30;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-export-excel:hover {
+  background: #F8FAFC;
+  border-color: #CBD5E1;
+}
+
+.btn-export-excel svg {
+  color: #069669;
+}
+
+.btn-create-subject {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px 16px;
+  gap: 6px;
+  height: 40px;
+  background: #316BF3;
+  border: none;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.14px;
+  color: #FFFFFF;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-create-subject:hover {
+  background: #2557D6;
+  box-shadow: 0 4px 12px rgba(49, 107, 243, 0.3);
+}
+
+/* ==========================================================================
+   2. KPI Highlights / Thống kê Tổng số môn học (130px)
+   ========================================================================== */
+.subjects-kpi-container {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+}
+
+.subjects-kpi-card {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  height: 130px;
+  max-width: 360px;
+  width: 100%;
+  background: #FFFFFF;
+  border: 1px solid #E5EEFF;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+.subjects-kpi-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.subjects-kpi-label {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.55px;
+  text-transform: uppercase;
+  color: #45464D;
+}
+
+.subjects-kpi-value-row {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.subjects-kpi-number {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 44px;
+  letter-spacing: -0.72px;
+  color: #0B1C30;
+}
+
+.subjects-kpi-unit {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  color: #45464D;
+}
+
+.subjects-kpi-icon-box {
+  width: 54.41px;
+  height: 56px;
+  background: #EFF4FF;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0051D5;
+  flex-shrink: 0;
+}
+
+/* Secondary KPI card (Khoa / Bộ môn & Giảng viên) */
+.subjects-kpi-card--secondary {
+  max-width: 300px;
+}
+
+.subjects-kpi-icon-box--green {
+  background: #ECFDF5;
+  color: #059669;
+}
+
+.subjects-kpi-icon-box--purple {
+  background: #F5F3FF;
+  color: #7C3AED;
+}
+
+/* ==========================================================================
+   3. Thanh công cụ tìm kiếm và lọc
+   ========================================================================== */
+.subjects-toolbar-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  gap: 16px;
+  background: #FFFFFF;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  border: 1px solid #E5EEFF;
+  border-radius: 8px;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+}
+
+.subjects-search-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  max-width: 640px;
+}
+
+.subjects-search-box {
+  position: relative;
+  flex: 1;
+  max-width: 512px;
+  height: 40px;
+}
+
+.subjects-search-box svg {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #45464D;
+  pointer-events: none;
+}
+
+.subjects-search-input {
+  width: 100%;
+  height: 40px;
+  background: #EFF4FF;
+  border: 1px solid #CBD5E1;
+  border-radius: 4px;
+  padding: 0 16px 0 38px;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  color: #0B1C30;
+  outline: none;
+  transition: all 0.15s ease;
+  box-sizing: border-box;
+}
+
+.subjects-search-input:focus {
+  background: #FFFFFF;
+  border-color: #0051D5;
+  box-shadow: 0 0 0 2px rgba(0, 81, 213, 0.15);
+}
+
+.subjects-search-input::placeholder {
+  color: #64748B;
+}
+
+.btn-search-primary {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 20px;
+  gap: 8px;
+  height: 40px;
+  background: #0051D5;
+  border: none;
+  border-radius: 8px;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  color: #FFFFFF;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.btn-search-primary:hover {
+  background: #0043b3;
+}
+
+.subjects-filter-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.subjects-filter-btn {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px 14px;
+  gap: 6px;
+  height: 40px;
+  background: #EFF4FF;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.24px;
+  color: #0B1C30;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.subjects-filter-btn:hover {
+  background: #DBE9FF;
+}
+
+.subjects-filter-select {
+  height: 40px;
+  padding: 0 32px 0 12px;
+  background: #EFF4FF;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  font-family: 'Inter', sans-serif;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: #0B1C30;
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%2345464D' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+}
+
+.subjects-filter-select:hover,
+.subjects-filter-select:focus {
+  background-color: #DBE9FF;
+  border-color: #93C5FD;
+}
+
+.btn-reset-filters {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 40px;
+  padding: 0 12px;
+  background: #FFFFFF;
+  border: 1px solid #E5EEFF;
+  border-radius: 4px;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: #64748B;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-reset-filters:hover {
+  color: #BA1A1A;
+  border-color: #FCA5A5;
+  background: #FEF2F2;
+}
+
+/* Bulk Selection Toolbar */
+.subjects-bulk-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  background: #EFF4FF;
+  border: 1px solid #BFDBFE;
+  border-radius: 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: #1E3A8A;
+  animation: fadeIn 0.2s ease;
+}
+
+.subjects-bulk-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-bulk-delete {
+  padding: 6px 12px;
+  background: #FEE2E2;
+  border: 1px solid #FECACA;
+  border-radius: 6px;
+  color: #DC2626;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-bulk-delete:hover {
+  background: #FCA5A5;
+  color: #991B1B;
+}
+
+/* ==========================================================================
+   4. Subject Management Table View
+   ========================================================================== */
+.subjects-table-card {
+  display: flex;
+  flex-direction: column;
+  background: #FFFFFF;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  border: 1px solid #E5EEFF;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.subjects-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.subjects-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 860px;
+}
+
+/* Header Row */
+.subjects-table thead tr {
+  background: #EFF4FF;
+  height: 44.72px;
+}
+
+.subjects-table th {
+  padding: 13.86px 16px 14.86px;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: #45464D;
+  text-align: left;
+  border-bottom: 1px solid #E5EEFF;
+  box-sizing: border-box;
+}
+
+.subjects-table th.col-checkbox,
+.subjects-table td.col-checkbox {
+  width: 48px;
+  text-align: center;
+  padding: 14px 16px;
+}
+
+.subjects-table th.col-subject-name {
+  width: 416px;
+}
+
+.subjects-table th.col-teacher {
+  width: 288px;
+}
+
+.subjects-table th.col-actions {
+  width: 192px;
+  text-align: right;
+  padding-right: 24px;
+}
+
+/* Checkbox styling */
+.custom-checkbox {
+  width: 16px;
+  height: 16px;
+  background: #FFFFFF;
+  border: 1px solid #6B7280;
+  border-radius: 2px;
+  cursor: pointer;
+  accent-color: #0051D5;
+}
+
+/* Table Body */
+.subjects-table tbody tr {
+  height: 80px;
+  border-bottom: 1px solid #F1F5F9;
+  transition: background-color 0.15s ease;
+}
+
+.subjects-table tbody tr:hover {
+  background-color: #F8FAFC;
+}
+
+.subjects-table tbody tr.row-selected {
+  background-color: #EFF6FF;
+}
+
+.subjects-table td {
+  padding: 16px;
+  vertical-align: middle;
+  font-family: 'Inter', sans-serif;
+  color: #0B1C30;
+}
+
+/* Subject Name Column */
+.subject-meta-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.subject-name-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.subject-name-text {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  color: #0B1C30;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.subject-name-text:hover {
+  color: #0051D5;
+}
+
+.subject-sub-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #64748B;
+}
+
+.subject-code-badge {
+  display: inline-block;
+  font-weight: 600;
+  color: #2563EB;
+  background: #EFF6FF;
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 11px;
+}
+
+.subject-credits-badge {
+  color: #475569;
+  background: #F1F5F9;
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 11px;
+}
+
+/* Teacher / Head Column */
+.subject-teacher-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+}
+
+.teacher-avatar-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 24px;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.avatar-blue-dark {
+  background: #DBE1FF;
+  color: #00174B;
+}
+
+.avatar-blue-light {
+  background: #DCE9FF;
+  color: #0B1C30;
+}
+
+.avatar-indigo {
+  background: #E0E7FF;
+  color: #3730A3;
+}
+
+.avatar-emerald {
+  background: #D1FAE5;
+  color: #065F46;
+}
+
+.avatar-amber {
+  background: #FEF3C7;
+  color: #92400E;
+}
+
+.avatar-purple {
+  background: #EDE9FE;
+  color: #5B21B6;
+}
+
+.teacher-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.teacher-name-text {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.14px;
+  color: #0B1C30;
+}
+
+.teacher-email-text {
+  font-size: 12px;
+  color: #64748B;
+}
+
+/* Action Buttons Column */
+.subject-actions-cell {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+  padding-right: 8px;
+}
+
+.btn-table-action {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  background: #EFF4FF;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-table-action.btn-edit-action {
+  color: #0051D5;
+}
+
+.btn-table-action.btn-edit-action:hover {
+  background: #DBE9FF;
+}
+
+.btn-table-action.btn-delete-action {
+  color: #BA1A1A;
+}
+
+.btn-table-action.btn-delete-action:hover {
+  background: #FEE2E2;
+}
+
+/* Empty State */
+.subjects-empty-row {
+  text-align: center;
+  padding: 48px 16px !important;
+  color: #64748B;
+  font-size: 14px;
+}
+
+/* ==========================================================================
+   5. Academic Table Pagination Footer
+   ========================================================================== */
+.subjects-pagination-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 16px;
+  gap: 16px;
+  background: rgba(239, 244, 255, 0.4);
+  border-top: 1px solid #E5EEFF;
+  flex-wrap: wrap;
+}
+
+.pagination-status-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+}
+
+.pagination-status-text {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 20px;
+  color: #45464D;
+}
+
+.pagination-rows-selector {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+}
+
+.pagination-rows-label {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.24px;
+  color: #45464D;
+}
+
+.pagination-rows-select {
+  height: 32px;
+  padding: 4px 8px;
+  background: #FFFFFF;
+  border: 1px solid #6B7280;
+  border-radius: 2px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: #0B1C30;
+  outline: none;
+  cursor: pointer;
+}
+
+.pagination-buttons-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+}
+
+.pagination-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 32px;
+  height: 32px;
+  padding: 0 6px;
+  border: none;
+  border-radius: 4px;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  color: #0B1C30;
+  background: #EFF4FF;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+
+.pagination-btn:hover:not(:disabled) {
+  background: #DBE9FF;
+}
+
+.pagination-btn.active {
+  background: #0051D5;
+  color: #FFFFFF;
+  font-weight: 600;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.pagination-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.pagination-ellipsis {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 32px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  color: #76777D;
+}
+
+/* ==========================================================================
+   6. Modal Dialogs (Thêm / Sửa môn học)
+   ========================================================================== */
+.subject-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(11, 28, 48, 0.5);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  animation: fadeIn 0.15s ease;
+}
+
+.subject-modal-content {
+  background: #FFFFFF;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 540px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: modalScaleUp 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.subject-modal-header {
+  padding: 18px 24px;
+  border-bottom: 1px solid #E2E8F0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #F8FAFC;
+}
+
+.subject-modal-header h2 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #0F172A;
+  margin: 0;
+}
+
+.subject-modal-close-btn {
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  color: #64748B;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.subject-modal-close-btn:hover {
+  color: #0F172A;
+  background: #E2E8F0;
+}
+
+.subject-modal-body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-height: 75vh;
+  overflow-y: auto;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #334155;
+}
+
+.form-group label span.required {
+  color: #EF4444;
+}
+
+.form-input,
+.form-select {
+  height: 40px;
+  border: 1px solid #CBD5E1;
+  border-radius: 8px;
+  padding: 0 12px;
+  font-size: 13.5px;
+  color: #0F172A;
+  outline: none;
+  background: #FFFFFF;
+  transition: all 0.15s ease;
+}
+
+.form-input:focus,
+.form-select:focus {
+  border-color: #2563EB;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.subject-modal-footer {
+  padding: 16px 24px;
+  border-top: 1px solid #E2E8F0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  background: #F8FAFC;
+}
+
+.btn-secondary {
+  padding: 0 18px;
+  height: 40px;
+  background: #FFFFFF;
+  border: 1px solid #CBD5E1;
+  border-radius: 8px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #475569;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  background: #F1F5F9;
+}
+
+.btn-primary {
+  padding: 0 20px;
+  height: 40px;
+  background: #316BF3;
+  border: none;
+  border-radius: 8px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #FFFFFF;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(49, 107, 243, 0.25);
+}
+
+.btn-primary:hover {
+  background: #2557D6;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes modalScaleUp {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+

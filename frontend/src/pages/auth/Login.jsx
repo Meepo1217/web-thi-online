@@ -1,26 +1,29 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 import './auth.css';
 
 /**
- * Login - Trang Đăng nhập chung cho cả Học sinh / Sinh viên và Giảng viên
- * Chuẩn Figma pixel-perfect với thanh chuyển đổi Role Minimalist
+ * Login - Trang Đăng nhập chung cho cả Sinh viên, Giảng viên và Quản trị viên
+ * Chuẩn Figma pixel-perfect với thẻ Card trung tâm 500px, bộ lọc vai trò, SSO và bảo mật học thuật
  */
 export default function Login() {
   const navigate = useNavigate();
+  const authContext = useAuth ? useAuth() : null;
+  const login = authContext?.login;
 
-  // Role: 'student' (Học sinh / Sinh viên) hoặc 'teacher' (Giảng viên)
-  const [role, setRole] = useState('student');
+  // Role: 'student' (Học sinh / Sinh viên), 'teacher' (Giảng viên) hoặc 'admin' (Quản trị viên)
+  const [role, setRole] = useState(defaultRole);
 
-  const [identifier, setIdentifier] = useState('sv21020015@eduquiz.vn');
-  const [password, setPassword] = useState('123456');
+  const [identifier, setIdentifier] = useState('');
+  const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(true);
 
   const [isLoading, setIsLoading] = useState(false);
   const [alertInfo, setAlertInfo] = useState(null);
 
-  // Khi chuyển tab Role, tự động đổi gợi ý tài khoản mẫu
+  // Khi chuyển tab Role, reset thông báo
   const handleRoleChange = (newRole) => {
     setRole(newRole);
     setAlertInfo(null);
@@ -47,80 +50,111 @@ export default function Login() {
     setIsLoading(true);
     setAlertInfo(null);
 
-    // Giả lập xác thực đăng nhập
+    // Xác thực tài khoản
     setTimeout(() => {
       setIsLoading(false);
+      let activeRole = role;
+      if (identifier.includes('admin') || role === 'admin') {
+        activeRole = 'admin';
+      }
+
+      if (login) {
+        login(activeRole, {
+          email: identifier,
+          name: activeRole === 'admin'
+            ? 'Quản trị viên'
+            : activeRole === 'teacher'
+            ? 'ThS. Nguyễn Văn A'
+            : 'Nguyễn Văn An'
+        });
+      }
+
       setAlertInfo({
         type: 'success',
-        message: `Đăng nhập thành công với vai trò ${role === 'student' ? 'Học sinh/Sinh viên' : 'Giảng viên'}! Đang chuyển hướng...`
+        message: `Đăng nhập thành công với vai trò ${
+          activeRole === 'admin'
+            ? 'Quản trị viên'
+            : activeRole === 'teacher'
+            ? 'Giảng viên'
+            : 'Học sinh/Sinh viên'
+        }! Đang chuyển hướng...`
       });
 
       setTimeout(() => {
-        if (role === 'student') {
-          navigate('/student');
-        } else {
+        if (activeRole === 'admin') {
+          navigate('/admin/dashboard');
+        } else if (activeRole === 'teacher') {
           navigate('/teacher/dashboard');
+        } else {
+          navigate('/student');
         }
       }, 700);
-    }, 600);
+    }, 500);
   };
 
   const handleGoogleLogin = () => {
     setIsLoading(true);
     setTimeout(() => {
       setIsLoading(false);
-      if (role === 'student') {
-        navigate('/student');
-      } else {
-        navigate('/teacher/dashboard');
+      if (login) {
+        login(role, {
+          email: role === 'teacher' ? 'gv.nguyenan@eduquiz.vn' : 'sv21020015@eduquiz.vn',
+          name: role === 'teacher' ? 'ThS. Nguyễn Văn A' : 'Nguyễn Văn An'
+        });
       }
-    }, 700);
+      navigate(role === 'teacher' ? '/teacher/dashboard' : '/student');
+    }, 800);
   };
 
   const handleForgotPassword = (e) => {
     e.preventDefault();
-    alert('Vui lòng liên hệ Quản trị viên hệ thống hoặc Phòng Đào tạo để được cấp lại mật khẩu qua email trường.');
+    alert('Vui lòng liên hệ Quản trị viên hệ thống hoặc phòng Đào tạo nhà trường để được cấp lại mật khẩu qua email học vụ.');
   };
 
   return (
     <div className="auth-wrapper">
       <div className="auth-container">
-        {/* Ambient Glows */}
-        <div className="auth-glow-top-left"></div>
-        <div className="auth-glow-bottom-right"></div>
+        {/* Subtle ambient decorative glow backdrop chuẩn Figma */}
+        <div className="auth-glow-top-left" />
+        <div className="auth-glow-bottom-right" />
 
-        {/* Card trung tâm */}
+        {/* Thẻ Card trung tâm */}
         <div className="auth-card">
           <div className="auth-card-body">
-            {/* 1. Header Brand & Pill */}
+
+            {/* 1. Header: Brand Logo & Chip Học thuật */}
             <div className="auth-brand-row">
-              <Link to="/" className="auth-brand-left" title="Trang chủ EduQuiz">
+              <Link to="/" className="auth-brand-left" title="Trang chủ HUCE EXAM">
                 <div className="auth-brand-emblem-box">
-                  <svg width="20" height="17" viewBox="0 0 24 24" fill="currentColor">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z" />
                   </svg>
                 </div>
                 <div className="auth-brand-info">
-                  <h2 className="auth-brand-title">EduQuiz</h2>
-                  <span className="auth-brand-subtitle">Academic Platform</span>
+                  <h2 className="auth-brand-title">HUCEEXAM</h2>
+                  <span className="auth-brand-subtitle">
+                    {role === 'admin'
+                      ? 'Dành cho Quản trị viên'
+                      : role === 'student'
+                      ? 'Dành cho Sinh viên'
+                      : 'Dành cho Giảng viên'}
+                  </span>
                 </div>
               </Link>
 
               <div className="auth-badge-pill">
-                <span className="auth-badge-dot"></span>
+                <span className="auth-badge-dot" />
                 <span className="auth-badge-label">
-                  {role === 'student' ? 'Dành cho Sinh viên' : 'Dành cho Giảng viên'}
+                  {role === 'admin' ? 'Super Admin' : role === 'student' ? 'Học viên' : 'Giảng viên'}
                 </span>
               </div>
             </div>
 
             {/* 2. Tiêu đề chào mừng */}
             <div className="auth-header-section">
-              <h1 className="auth-heading">Đăng nhập vào EduQuiz</h1>
+              <h1 className="auth-heading">Đăng nhập tài khoản</h1>
               <p className="auth-subtext">
-                {role === 'student'
-                  ? 'Hệ thống khảo thí & thi trắc nghiệm trực tuyến cho sinh viên'
-                  : 'Cổng quản lý ngân hàng câu hỏi, tạo đề thi & giám sát phòng thi'}
+                Hệ thống Khảo thí & Thi trắc nghiệm trực tuyến tập trung
               </p>
             </div>
 
@@ -133,41 +167,37 @@ export default function Login() {
                   className={`auth-role-tab-btn ${role === 'student' ? 'active' : ''}`}
                   onClick={() => handleRoleChange('student')}
                 >
-                  <span>👨‍🎓</span>
-                  <span>Học sinh / Sinh viên</span>
+                  <svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a10.993 10.993 0 01-1.25 4.88c-.378.892-.619 1.879-.619 2.87a1 1 0 001 1h11.238a1 1 0 001-1c0-.991-.241-1.978-.619-2.87a10.993 10.993 0 01-1.25-4.88l2.644-1.131a1 1 0 000-1.84l-7-3z" />
+                  </svg>
+                  <span>Sinh viên</span>
                 </button>
+
                 <button
                   type="button"
                   className={`auth-role-tab-btn ${role === 'teacher' ? 'active' : ''}`}
                   onClick={() => handleRoleChange('teacher')}
                 >
-                  <span>👨‍🏫</span>
-                  <span>Giảng viên / Giám thị</span>
+                  <svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
+                  </svg>
+                  <span>Giảng viên</span>
+                </button>
+
+                <button
+                  type="button"
+                  className={`auth-role-tab-btn ${role === 'admin' ? 'active' : ''}`}
+                  onClick={() => handleRoleChange('admin')}
+                >
+                  <svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                  <span>Quản trị viên</span>
                 </button>
               </div>
             </div>
 
-            {/* Thanh tài khoản mẫu thử nhanh (Quick demo) */}
-            <div className="auth-demo-bar">
-              <span>💡 Tài khoản mẫu: <strong>{role === 'student' ? 'Sinh viên' : 'Giảng viên'}</strong></span>
-              <button
-                type="button"
-                className="btn-auth-demo-chip"
-                onClick={() => {
-                  if (role === 'student') {
-                    setIdentifier('sv21020015@eduquiz.vn');
-                    setPassword('123456');
-                  } else {
-                    setIdentifier('gv.nguyenan@eduquiz.vn');
-                    setPassword('123456');
-                  }
-                }}
-              >
-                Tự động điền
-              </button>
-            </div>
-
-            {/* Thông báo Alert */}
+            {/* Alert thông báo phản hồi */}
             {alertInfo && (
               <div
                 style={{
@@ -190,61 +220,68 @@ export default function Login() {
 
             {/* 4. Form Đăng nhập */}
             <form className="auth-form" onSubmit={handleSubmit}>
-              {/* Input: Tài khoản / Email */}
+              {/* Input Identifier */}
               <div className="auth-form-group">
                 <div className="auth-form-label-row">
-                  <label htmlFor="auth-id" className="auth-form-label">
+                  <label htmlFor="login-identifier" className="auth-form-label">
                     {role === 'student'
-                      ? 'Email hoặc Mã số học sinh / sinh viên'
-                      : 'Email giảng viên hoặc Mã cán bộ'}
+                      ? 'Email học viên hoặc Mã sinh viên'
+                      : role === 'teacher'
+                      ? 'Email giảng viên hoặc Mã cán bộ'
+                      : 'Email quản trị viên hoặc Tên đăng nhập'}
                   </label>
-                  <span className="auth-form-tag blue">Bắt buộc</span>
+                  <span className="auth-form-tag">Bắt buộc</span>
                 </div>
                 <div className="auth-input-container">
                   <span className="auth-input-icon">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                       <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                       <circle cx="12" cy="7" r="4"></circle>
                     </svg>
                   </span>
                   <input
-                    id="auth-id"
+                    id="login-identifier"
                     type="text"
                     className="auth-input-field"
-                    placeholder={
-                      role === 'student'
-                        ? 'VD: sv21020015@eduquiz.vn hoặc MSSV'
-                        : 'VD: gv.nguyenan@eduquiz.vn hoặc MGV'
-                    }
                     value={identifier}
                     onChange={(e) => setIdentifier(e.target.value)}
+                    placeholder={
+                      role === 'student'
+                        ? 'Ví dụ: sv21020015@eduquiz.vn'
+                        : role === 'teacher'
+                        ? 'Ví dụ: gv.nguyenan@eduquiz.vn'
+                        : 'Ví dụ: admin@huce.edu.vn'
+                    }
                     autoComplete="username"
                     required
                   />
                 </div>
               </div>
 
-              {/* Input: Mật khẩu */}
+              {/* Input Password */}
               <div className="auth-form-group">
                 <div className="auth-form-label-row">
-                  <label htmlFor="auth-password" className="auth-form-label">
+                  <label htmlFor="login-password" className="auth-form-label">
                     Mật khẩu
                   </label>
+                  <a href="#forgot" onClick={handleForgotPassword} className="auth-forgot-link">
+                    Quên mật khẩu?
+                  </a>
                 </div>
                 <div className="auth-input-container">
                   <span className="auth-input-icon">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                       <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
                       <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                     </svg>
                   </span>
                   <input
-                    id="auth-password"
+                    id="login-password"
                     type={showPassword ? 'text' : 'password'}
                     className="auth-input-field"
-                    placeholder="••••••••"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Nhập mật khẩu..."
                     autoComplete="current-password"
                     required
                   />
@@ -252,16 +289,16 @@ export default function Login() {
                     type="button"
                     className="auth-btn-toggle-password"
                     onClick={() => setShowPassword(!showPassword)}
-                    aria-label="Ẩn hiện mật khẩu"
                     title={showPassword ? 'Ẩn mật khẩu' : 'Hiện mật khẩu'}
+                    tabIndex="-1"
                   >
                     {showPassword ? (
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                         <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
                         <line x1="1" y1="1" x2="23" y2="23"></line>
                       </svg>
                     ) : (
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                         <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                         <circle cx="12" cy="12" r="3"></circle>
                       </svg>
@@ -270,7 +307,7 @@ export default function Login() {
                 </div>
               </div>
 
-              {/* Tiện ích: Ghi nhớ & Quên mật khẩu */}
+              {/* Checkbox Remember Me */}
               <div className="auth-utilities-row">
                 <label className="auth-remember-label">
                   <input
@@ -279,25 +316,23 @@ export default function Login() {
                     checked={rememberMe}
                     onChange={(e) => setRememberMe(e.target.checked)}
                   />
-                  <span className="auth-remember-text">Ghi nhớ đăng nhập</span>
+                  <span className="auth-remember-text">Ghi nhớ đăng nhập trên thiết bị này</span>
                 </label>
-
-                <a href="#forgot" onClick={handleForgotPassword} className="auth-forgot-link">
-                  Quên mật khẩu?
-                </a>
               </div>
 
-              {/* Nút bấm Submit */}
+              {/* Submit Button */}
               <button
                 type="submit"
                 className="btn-auth-submit"
                 disabled={isLoading}
               >
                 {isLoading ? (
-                  <span>Đang xác thực tài khoản...</span>
+                  <span>Đang xử lý đăng nhập...</span>
                 ) : (
                   <>
-                    <span>Đăng nhập {role === 'student' ? 'Sinh viên' : 'Giảng viên'}</span>
+                    <span>
+                      Đăng nhập {role === 'admin' ? 'Quản trị viên' : role === 'teacher' ? 'Giảng viên' : 'Sinh viên'}
+                    </span>
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
                       <line x1="5" y1="12" x2="19" y2="12"></line>
                       <polyline points="12 5 19 12 12 19"></polyline>
@@ -386,7 +421,7 @@ export default function Login() {
             </div>
           </div>
           <div className="auth-copyright">
-            © 2026 EduQuiz Academic Examination Platform • All Rights Reserved
+            © 2026 HUCE EXAM Academic Examination Platform • All Rights Reserved
           </div>
         </div>
       </div>

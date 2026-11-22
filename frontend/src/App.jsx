@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { BrowserRouter, Routes, Route, Navigate, Link, useNavigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import ProtectedRoute from './components/auth/ProtectedRoute';
@@ -28,6 +28,20 @@ import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
 import VerifyOtp from './pages/auth/VerifyOtp';
 import StudentPortal from './pages/student/StudentPortal';
+import AdminLayout from './components/layout/admin/AdminLayout';
+import AdminDashboard from './pages/admin/AdminDashboard';
+import UserManagement from './pages/admin/UserManagement';
+import AdminExamManagement from './pages/admin/AdminExamManagement';
+import AdminSubjectManagement from './pages/admin/AdminSubjectManagement';
+import AdminSubjectDetail from './pages/admin/AdminSubjectDetail';
+import AdminSubjectEdit from './pages/admin/AdminSubjectEdit';
+import AdminNotificationManagement from './pages/admin/AdminNotificationManagement';
+import AdminNotificationDetail from './pages/admin/AdminNotificationDetail';
+import AdminNotificationEdit from './pages/admin/AdminNotificationEdit';
+import AdminNotificationCreate from './pages/admin/AdminNotificationCreate';
+import AdminUserDetail from './pages/admin/AdminUserDetail';
+import AdminUserEdit from './pages/admin/AdminUserEdit';
+import AdminUserCreate from './pages/admin/AdminUserCreate';
 
 /**
  * Component kiểm tra kết nối với Laravel Backend
@@ -120,63 +134,177 @@ function ConnectionTest() {
 }
 
 /**
- * App - Cấu hình hệ thống Router phân chia theo Roles:
- * - /student/* : Cổng Sinh viên (Student Portal)
- * - /teacher/* : Cổng Giảng viên (Teacher Portal)
- * - /login     : Xác thực tài khoản (Auth)
+ * Điều hướng root "/" theo trạng thái xác thực và vai trò:
+ * - Chưa đăng nhập -> /login
+ * - Giảng viên -> /teacher/dashboard
+ * - Học sinh / Sinh viên -> /student
+ */
+function RootRedirect() {
+  const { user, isAuthenticated } = useAuth();
+
+  if (!isAuthenticated) {
+    return <Navigate to="/login" replace />;
+  }
+
+  if (user?.role === 'admin') {
+    return <Navigate to="/admin/dashboard" replace />;
+  }
+
+  if (user?.role === 'teacher') {
+    return <Navigate to="/teacher/dashboard" replace />;
+  }
+
+  return <Navigate to="/student" replace />;
+}
+
+/**
+ * App - Cấu hình hệ thống Router:
+ * 1. Truy cập ban đầu ("/") tự động điều hướng về /login nếu chưa đăng nhập.
+ * 2. Khi đăng nhập thành công -> tự động hiển thị theo vai trò (teacher: /teacher/dashboard, student: /student).
+ * 3. Bảo vệ các route với ProtectedRoute theo vai trò.
  */
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        {/* Route xác thực tài khoản chung cho cả Giảng viên và Học sinh / Sinh viên */}
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/verify-otp" element={<VerifyOtp />} />
-        <Route path="/auth/verify-otp" element={<VerifyOtp />} />
-        <Route path="/student/login" element={<Navigate to="/login" replace />} />
-        <Route path="/student/register" element={<Navigate to="/register" replace />} />
-        <Route path="/teacher/login" element={<Navigate to="/login" replace />} />
+    <AuthProvider>
+      <BrowserRouter>
+        <Routes>
+          {/* 1. Mặc định truy cập đầu tiên ("/") -> chuyển hướng theo auth và role */}
+          <Route path="/" element={<RootRedirect />} />
 
-        {/* Route Cổng Sinh viên (Student Portal) */}
-        <Route path="/student/profile" element={<StudentPortal />} />
-        <Route path="/profile" element={<Navigate to="/student/profile" replace />} />
-        <Route path="/student/*" element={<StudentPortal />} />
+          {/* 2. Route xác thực tài khoản chung cho cả Giảng viên và Học sinh / Sinh viên */}
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/verify-otp" element={<VerifyOtp />} />
+          <Route path="/auth/verify-otp" element={<VerifyOtp />} />
+          <Route path="/student/login" element={<Login defaultRole="student" />} />
+          <Route path="/student/register" element={<Navigate to="/register" replace />} />
+          <Route path="/teacher/login" element={<Login defaultRole="teacher" />} />
+          <Route path="/admin/login" element={<Login defaultRole="admin" />} />
 
-        {/* Route kiểm tra kết nối ban đầu */}
-        <Route path="/test-connection" element={<ConnectionTest />} />
+          {/* Route kiểm tra kết nối ban đầu */}
+          <Route path="/test-connection" element={<ConnectionTest />} />
 
-        {/* Layout Route cha dành cho Giảng viên (Teacher Portal) */}
-        <Route path="/teacher" element={<TeacherLayout />}>
-          <Route index element={<TeacherHome />} />
-          <Route path="dashboard" element={<TeacherHome />} />
-          <Route path="schedule" element={<TeacherDashboard />} />
-          <Route path="questions" element={<QuestionBankFolders />} />
-          <Route path="questions/:subjectId" element={<QuestionList />} />
-          <Route path="questions/list" element={<QuestionList />} />
-          <Route path="questions/detail/:questionId" element={<QuestionDetail />} />
-          <Route path="questions/detail" element={<QuestionDetail />} />
-          <Route path="questions/edit/:questionId" element={<QuestionEdit />} />
-          <Route path="questions/edit" element={<QuestionEdit />} />
-          <Route path="exams" element={<ExamManagement />} />
-          <Route path="exam-management" element={<ExamManagement />} />
-          <Route path="sessions" element={<TeacherDashboard />} />
-          <Route path="results" element={<TeacherDashboard />} />
-          <Route path="classes" element={<TeacherDashboard />} />
-          <Route path="students" element={<TeacherDashboard />} />
-          <Route path="statistics" element={<TeacherDashboard />} />
-          <Route path="settings" element={<TeacherDashboard />} />
-          <Route path="help" element={<TeacherDashboard />} />
-          <Route path="*" element={<Navigate to="/teacher/dashboard" replace />} />
-        </Route>
+          {/* 3. Cổng Sinh viên (Student Portal) - Chỉ sinh viên được truy cập */}
+          <Route path="/profile" element={<Navigate to="/student/profile" replace />} />
+          <Route
+            path="/student/*"
+            element={
+              <ProtectedRoute allowedRoles={['student']}>
+                <StudentPortal />
+              </ProtectedRoute>
+            }
+          />
 
-        {/* Mặc định điều hướng vào cổng sinh viên */}
-        <Route path="/" element={<Navigate to="/student" replace />} />
+          {/* 4. Route xác nhận xóa câu hỏi - Chỉ giảng viên được truy cập */}
+          <Route
+            path="/teacher/questions/delete/:questionId"
+            element={
+              <ProtectedRoute allowedRoles={['teacher']}>
+                <QuestionDeletePage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/teacher/questions/delete"
+            element={
+              <ProtectedRoute allowedRoles={['teacher']}>
+                <QuestionDeletePage />
+              </ProtectedRoute>
+            }
+          />
 
-        {/* Bắt mọi route lạ điều hướng về cổng sinh viên */}
-        <Route path="*" element={<Navigate to="/student" replace />} />
-      </Routes>
-    </BrowserRouter>
+          {/* 5. Cổng Giảng viên (Teacher Portal) - Chỉ giảng viên được truy cập */}
+          <Route
+            path="/teacher"
+            element={
+              <ProtectedRoute allowedRoles={['teacher']}>
+                <TeacherLayout />
+              </ProtectedRoute>
+            }
+          >
+            <Route index element={<Navigate to="/teacher/dashboard" replace />} />
+            <Route path="dashboard" element={<TeacherHome />} />
+            <Route path="schedule" element={<TeacherDashboard />} />
+            <Route path="questions" element={<QuestionBankFolders />} />
+            <Route path="questions/:subjectId" element={<SubjectChapters />} />
+            <Route path="questions/:subjectId/chapters" element={<SubjectChapters />} />
+            <Route path="questions/:subjectId/list" element={<QuestionList />} />
+            <Route path="questions/:subjectId/chapters/:chapterId" element={<QuestionList />} />
+            <Route path="questions/list" element={<QuestionList />} />
+            <Route path="questions/detail/:questionId" element={<QuestionDetail />} />
+            <Route path="questions/detail" element={<QuestionDetail />} />
+            <Route path="questions/create" element={<QuestionCreate />} />
+            <Route path="questions/:subjectId/create" element={<QuestionCreate />} />
+            <Route path="questions/edit/:questionId" element={<QuestionEdit />} />
+            <Route path="questions/edit" element={<QuestionEdit />} />
+
+            {/* Quản lý đề thi (Exam Management) */}
+            <Route path="exams" element={<ExamFolders />} />
+            <Route path="exams/detail/:examId" element={<ExamDetail />} />
+            <Route path="exams/detail" element={<ExamDetail />} />
+            <Route path="exams/edit/:examId" element={<ExamEdit />} />
+            <Route path="exams/edit" element={<ExamEdit />} />
+            <Route path="exams/:subjectId" element={<ExamChapters />} />
+            <Route path="exams/:subjectId/chapters" element={<ExamChapters />} />
+            <Route path="exams/:subjectId/list" element={<ExamList />} />
+            <Route path="exams/:subjectId/chapters/:chapterId" element={<ExamList />} />
+            <Route path="exams/:subjectId/detail/:examId" element={<ExamDetail />} />
+            <Route path="exams/:subjectId/edit/:examId" element={<ExamEdit />} />
+            <Route path="exams/:subjectId/edit" element={<ExamEdit />} />
+            <Route path="exams/list" element={<ExamList />} />
+            <Route path="exam-management" element={<Navigate to="/teacher/exams" replace />} />
+
+            <Route path="sessions" element={<TeacherDashboard />} />
+            <Route path="results" element={<TeacherDashboard />} />
+            <Route path="classes" element={<TeacherDashboard />} />
+            <Route path="students" element={<StudentManagement />} />
+            <Route path="statistics" element={<TeacherDashboard />} />
+            <Route path="settings" element={<TeacherSettings />} />
+            <Route path="help" element={<TeacherDashboard />} />
+            <Route path="*" element={<Navigate to="/teacher/dashboard" replace />} />
+          </Route>
+
+          {/* 6. Cổng Quản trị viên (Admin Portal) - Chỉ quản trị viên được truy cập */}
+          <Route
+            path="/admin"
+            element={
+              <ProtectedRoute allowedRoles={['admin']}>
+                <AdminLayout />
+              </ProtectedRoute>
+            }
+          >
+            <Route index element={<Navigate to="/admin/dashboard" replace />} />
+            <Route path="dashboard" element={<AdminDashboard />} />
+            <Route path="users" element={<UserManagement />} />
+            <Route path="users/create" element={<AdminUserCreate />} />
+            <Route path="users/:userId" element={<AdminUserDetail />} />
+            <Route path="users/detail" element={<AdminUserDetail />} />
+            <Route path="users/edit/:userId" element={<AdminUserEdit />} />
+            <Route path="users/edit" element={<AdminUserEdit />} />
+            <Route path="notifications" element={<AdminNotificationManagement />} />
+            <Route path="notifications/create" element={<AdminNotificationCreate />} />
+            <Route path="notifications/edit/:notificationId" element={<AdminNotificationEdit />} />
+            <Route path="notifications/edit" element={<AdminNotificationEdit />} />
+            <Route path="notifications/:notificationId" element={<AdminNotificationDetail />} />
+            <Route path="notifications/detail" element={<AdminNotificationDetail />} />
+            <Route path="exams" element={<AdminExamManagement />} />
+            <Route path="questions" element={<AdminDashboard />} />
+            <Route path="subjects" element={<AdminSubjectManagement />} />
+            <Route path="subjects/edit/:subjectId" element={<AdminSubjectEdit />} />
+            <Route path="subjects/edit" element={<AdminSubjectEdit />} />
+            <Route path="subjects/:subjectId" element={<AdminSubjectDetail />} />
+            <Route path="subjects/detail" element={<AdminSubjectDetail />} />
+            <Route path="logs" element={<AdminDashboard />} />
+            <Route path="settings" element={<AdminDashboard />} />
+            <Route path="help" element={<AdminDashboard />} />
+            <Route path="*" element={<Navigate to="/admin/dashboard" replace />} />
+          </Route>
+
+          {/* 7. Bắt mọi route lạ -> Chuyển về RootRedirect */}
+          <Route path="*" element={<RootRedirect />} />
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
   );
 }
 
