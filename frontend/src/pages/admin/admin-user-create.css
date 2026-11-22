@@ -1,0 +1,526 @@
+/* ==========================================================================
+   admin-user-create.css - Giao diện Tạo tài khoản người dùng
+   Chuẩn pixel-perfect Figma Auto Layout (1280px container, 896px content card)
+   ========================================================================== */
+
+.admin-user-create-container {
+  padding: 32px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 992px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 1024px) {
+  .admin-user-create-container {
+    padding: 20px 16px;
+    gap: 16px;
+  }
+}
+
+/* ==========================================================================
+   1. Breadcrumb & Header Title
+   ========================================================================== */
+.user-create-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  width: 100%;
+}
+
+.user-create-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: #2563EB;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.user-create-back-link:hover {
+  color: #1D4ED8;
+  text-decoration: underline;
+}
+
+.user-create-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing: -0.6px;
+  color: #0F172A;
+  margin: 0;
+}
+
+/* ==========================================================================
+   2. Main Card: Form Container (896x914px)
+   ========================================================================== */
+.user-create-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background: #FFFFFF;
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 16px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* Sub-section 1: Personal Information (485px) */
+.user-create-sub-section {
+  display: flex;
+  flex-direction: column;
+  padding: 28px;
+  gap: 24px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.user-create-sub-header {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #F1F5F9;
+  width: 100%;
+}
+
+.user-create-sub-header__title-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.user-create-sub-header__symbol {
+  width: 12px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #2563EB;
+}
+
+.user-create-sub-header__title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  color: #0F172A;
+  margin: 0;
+}
+
+/* Avatar Upload Area */
+.user-create-avatar-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+}
+
+.user-create-avatar-preview {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  background: #FFFFFF;
+  border: 2px solid #1B1B1B;
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+.user-create-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.user-create-avatar-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background: #F8FAFC;
+  color: #94A3B8;
+}
+
+.btn-choose-file {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 14px;
+  height: 28px;
+  background: #94A3B8;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 6px;
+  border: none;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 11px;
+  color: #FFFFFF;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-choose-file:hover {
+  background: #64748B;
+}
+
+/* Form Fields Grid */
+.user-create-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px 24px;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .user-create-form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.user-create-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.user-create-label {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  color: #334155;
+  margin: 0;
+}
+
+.user-create-input {
+  width: 100%;
+  height: 42px;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  padding: 10px 14px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #1E293B;
+  box-sizing: border-box;
+  transition: all 0.15s ease;
+  outline: none;
+}
+
+.user-create-input::placeholder {
+  color: #94A3B8;
+}
+
+.user-create-input:focus {
+  border-color: #2563EB;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+.user-create-select {
+  width: 100%;
+  height: 42px;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  padding: 0 36px 0 14px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #1E293B;
+  box-sizing: border-box;
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%23334155' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  transition: all 0.15s ease;
+}
+
+.user-create-select:focus {
+  border-color: #2563EB;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+/* Radio Group: Giới tính */
+.user-create-radio-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+  height: 42px;
+}
+
+.user-create-radio-label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 14px;
+  color: #334155;
+  user-select: none;
+}
+
+.user-create-radio-input {
+  width: 18px;
+  height: 18px;
+  accent-color: #2563EB;
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   3. Sub-section 2: Security & Password (340px)
+   ========================================================================== */
+.user-create-security-section {
+  display: flex;
+  flex-direction: column;
+  padding: 28px;
+  gap: 24px;
+  width: 100%;
+  background: rgba(248, 250, 252, 0.3);
+  border-top: 1px solid #F1F5F9;
+  box-sizing: border-box;
+}
+
+.user-create-security-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #F1F5F9;
+  width: 100%;
+}
+
+.user-create-security-header__symbol {
+  width: 15px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #2563EB;
+}
+
+.user-create-security-header__title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  color: #0F172A;
+  margin: 0;
+}
+
+.user-create-password-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px 24px;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .user-create-password-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.user-create-password-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.user-create-password-input {
+  width: 100%;
+  height: 42px;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  padding: 11px 40px 11px 14px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  color: #1E293B;
+  box-sizing: border-box;
+  outline: none;
+  transition: all 0.15s ease;
+}
+
+.user-create-password-input::placeholder {
+  color: #6B7280;
+}
+
+.user-create-password-input:focus {
+  border-color: #2563EB;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+.btn-toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #94A3B8;
+  border-radius: 4px;
+  transition: color 0.15s ease;
+}
+
+.btn-toggle-password:hover {
+  color: #475569;
+}
+
+/* Security Policy Notice Note */
+.user-create-security-notice {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 12px 16px;
+  gap: 10px;
+  width: 100%;
+  background: rgba(239, 246, 255, 0.6);
+  border: 1px solid #DBEAFE;
+  border-radius: 12px;
+  box-sizing: border-box;
+}
+
+.user-create-security-notice__icon {
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #3B82F6;
+  flex-shrink: 0;
+}
+
+.user-create-security-notice__text {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  color: #1D4ED8;
+  margin: 0;
+}
+
+/* ==========================================================================
+   4. Form Action Footer Buttons (87px)
+   ========================================================================== */
+.user-create-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 24px;
+  gap: 12px;
+  width: 100%;
+  background: #F8FAFC;
+  border-top: 1px solid #F1F5F9;
+  border-radius: 0px 0px 16px 16px;
+  box-sizing: border-box;
+}
+
+.btn-user-create-cancel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  height: 38px;
+  background: #FFFFFF;
+  border: 1px solid #CBD5E1;
+  border-radius: 12px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-user-create-cancel:hover {
+  background: #F1F5F9;
+  border-color: #94A3B8;
+}
+
+.btn-user-create-submit {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px 24px;
+  gap: 8px;
+  height: 36px;
+  background: #2563EB;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 12px;
+  border: none;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  color: #FFFFFF;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-user-create-submit:hover {
+  background: #1D4ED8;
+  box-shadow: 0px 4px 12px rgba(37, 99, 235, 0.25);
+}
+
+/* Toast Message */
+.user-create-toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: #0B1C30;
+  color: #FFFFFF;
+  padding: 12px 20px;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  z-index: 9999;
+  font-size: 13.5px;
+  font-weight: 500;
+  animation: fadeIn 0.15s ease;
+}

@@ -36,6 +36,7 @@ import AdminSubjectManagement from './pages/admin/AdminSubjectManagement';
 import AdminNotificationManagement from './pages/admin/AdminNotificationManagement';
 import AdminUserDetail from './pages/admin/AdminUserDetail';
 import AdminUserEdit from './pages/admin/AdminUserEdit';
+import AdminUserCreate from './pages/admin/AdminUserCreate';
 
 /**
  * Component kiểm tra kết nối với Laravel Backend
@@ -244,6 +245,7 @@ function App() {
             <Route index element={<Navigate to="/admin/dashboard" replace />} />
             <Route path="dashboard" element={<AdminDashboard />} />
             <Route path="users" element={<UserManagement />} />
+            <Route path="users/create" element={<AdminUserCreate />} />
             <Route path="users/:userId" element={<AdminUserDetail />} />
             <Route path="users/detail" element={<AdminUserDetail />} />
             <Route path="users/edit/:userId" element={<AdminUserEdit />} />

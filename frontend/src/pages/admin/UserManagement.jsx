@@ -375,7 +375,7 @@ export default function UserManagement() {
           <button
             type="button"
             className="btn-create-user"
-            onClick={handleOpenCreateModal}
+            onClick={() => navigate('/admin/users/create')}
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
               <line x1="12" y1="5" x2="12" y2="19" />
