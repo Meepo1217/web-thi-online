@@ -1,0 +1,421 @@
+/* ==========================================================================
+   admin-notification-detail.css - Giao diện Xem chi tiết thông báo
+   Chuẩn pixel-perfect Figma Auto Layout (1280px container, 944px content)
+   ========================================================================== */
+
+.admin-notification-detail-container {
+  padding: 24px 32px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 1280px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 1024px) {
+  .admin-notification-detail-container {
+    padding: 16px;
+    gap: 16px;
+  }
+}
+
+/* ==========================================================================
+   1. Breadcrumbs & Header
+   ========================================================================== */
+.notif-detail-header-block {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.notif-detail-breadcrumb {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: #64748B;
+}
+
+.notif-detail-breadcrumb a {
+  color: #0051D5;
+  text-decoration: none;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.15s ease;
+}
+
+.notif-detail-breadcrumb a:hover {
+  color: #003fa6;
+}
+
+.notif-detail-breadcrumb-sep {
+  color: #94A3B8;
+  font-size: 12px;
+}
+
+.notif-detail-title-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 4px 0px 0px;
+  gap: 16px;
+  width: 100%;
+}
+
+.notif-detail-page-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 36px;
+  letter-spacing: -0.7px;
+  color: #0B1C30;
+  margin: 0;
+}
+
+/* ==========================================================================
+   2. Main Content Canvas (944px width)
+   ========================================================================== */
+.notif-detail-main-canvas {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  width: 100%;
+  max-width: 944px;
+}
+
+/* ==========================================================================
+   Card 1: Configuration Form (SCREEN_22 Information Block)
+   ========================================================================== */
+.notif-config-card {
+  width: 100%;
+  background: #FFFFFF;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  border: 1px solid #E5EEFF;
+  border-radius: 8px;
+  padding: 24px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.notif-card-header {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #E5EEFF;
+  width: 100%;
+}
+
+.notif-card-header__left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.notif-card-header__icon-box {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background: #EFF4FF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0051D5;
+}
+
+.notif-card-header__title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  color: #0B1C30;
+  margin: 0;
+}
+
+.notif-card-header__actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-notif-action {
+  box-sizing: border-box;
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  padding: 0 12px;
+  gap: 6px;
+  background: #FFFFFF;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 6px;
+  font-family: 'Inter', sans-serif;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-notif-action.btn-delete {
+  border: 1px solid rgba(186, 26, 26, 0.3);
+  color: #BA1A1A;
+}
+
+.btn-notif-action.btn-delete:hover {
+  background: #FEF2F2;
+  border-color: #BA1A1A;
+}
+
+.btn-notif-action.btn-edit {
+  border: 1px solid #DCE9FF;
+  color: #0B1C30;
+}
+
+.btn-notif-action.btn-edit:hover {
+  background: #F8FAFC;
+  border-color: #CBD5E1;
+}
+
+.btn-notif-action.btn-archive {
+  border: 1px solid rgba(186, 26, 26, 0.3);
+  color: #BA1A1A;
+}
+
+.btn-notif-action.btn-archive:hover {
+  background: #FEF2F2;
+  border-color: #BA1A1A;
+}
+
+/* Card 1 Fields */
+.notif-config-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.notif-field-box {
+  background: #EFF4FF;
+  border-radius: 4px;
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.notif-field-label {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.44px;
+  color: #45464D;
+  text-transform: uppercase;
+}
+
+.notif-field-title-value {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  color: #0B1C30;
+}
+
+.notif-config-row-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  width: 100%;
+}
+
+@media (max-width: 640px) {
+  .notif-config-row-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+.notif-field-sub-value {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13.5px;
+  line-height: 18px;
+  letter-spacing: 0.24px;
+  color: #1E293B;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ==========================================================================
+   Card 2: Rich Editor Form (SCREEN_22 Details Block)
+   ========================================================================== */
+.notif-details-card {
+  width: 100%;
+  background: #FFFFFF;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  border: 1px solid #E5EEFF;
+  border-radius: 8px;
+  padding: 24px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.notif-content-preview-box {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 24px;
+  gap: 16px;
+  width: 100%;
+  background: #EFF4FF;
+  border: 1px solid #E5EEFF;
+  border-radius: 8px;
+}
+
+.notif-para-greeting {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 24px;
+  color: #1E293B;
+  margin: 0;
+}
+
+.notif-para-body {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 24px;
+  color: #334155;
+  margin: 0;
+}
+
+/* Schedule and impact callout box */
+.notif-schedule-callout {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 16px 20px;
+  gap: 10px;
+  width: 100%;
+  background: #FFFFFF;
+  border-left: 4px solid #316BF3;
+  border-radius: 4px;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.notif-callout-item {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14.5px;
+  line-height: 23px;
+  color: #334155;
+}
+
+.notif-callout-item strong {
+  font-weight: 700;
+  color: #0B1C30;
+  white-space: nowrap;
+}
+
+.notif-callout-bullet {
+  color: #316BF3;
+  font-weight: bold;
+}
+
+.notif-callout-item.impact-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.notif-callout-item.impact-item .impact-title-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.notif-callout-item.impact-item .impact-desc {
+  padding-left: 18px;
+  font-weight: 400;
+  color: #475569;
+}
+
+/* Meta Footer Info */
+.notif-meta-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding-top: 12px;
+  border-top: 1px solid #E5EEFF;
+  font-family: 'Inter', sans-serif;
+  font-size: 12.5px;
+  color: #64748B;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.notif-meta-footer__time {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.notif-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.notif-status-pill.published {
+  background: #ECFDF5;
+  color: #059669;
+}
+
+.notif-status-pill.draft {
+  background: #F1F5F9;
+  color: #475569;
+}
+
+.notif-status-pill.archived {
+  background: #FEF2F2;
+  color: #BA1A1A;
+}

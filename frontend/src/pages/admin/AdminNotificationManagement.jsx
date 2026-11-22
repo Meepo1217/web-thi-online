@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './admin-notifications.css';
 
 // Dữ liệu mẫu chuẩn xác từ Figma Spec
@@ -90,6 +91,7 @@ const INITIAL_NOTIFICATIONS = [
 ];
 
 export default function AdminNotificationManagement() {
+  const navigate = useNavigate();
   const [notifications, setNotifications] = useState(INITIAL_NOTIFICATIONS);
   const [searchTerm, setSearchTerm] = useState('');
   const [typeFilter, setTypeFilter] = useState('all');
@@ -608,7 +610,7 @@ export default function AdminNotificationManagement() {
                           <span
                             className="notification-title-link"
                             title={notif.title}
-                            onClick={() => setPreviewNotif(notif)}
+                            onClick={() => navigate(`/admin/notifications/${notif.id}`)}
                           >
                             {notif.title}
                           </span>

@@ -9,6 +9,7 @@ import '../../../pages/admin/admin-users.css';
 import '../../../pages/admin/admin-exams.css';
 import '../../../pages/admin/admin-subjects.css';
 import '../../../pages/admin/admin-notifications.css';
+import '../../../pages/admin/admin-notification-detail.css';
 import '../../../pages/admin/admin-user-detail.css';
 import '../../../pages/admin/admin-user-edit.css';
 import '../../../pages/admin/admin-user-create.css';
