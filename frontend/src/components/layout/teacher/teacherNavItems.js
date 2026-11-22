@@ -1,10 +1,8 @@
 /**
  * teacherNavItems.js
- * Cấu hình menu điều hướng cho Giảng viên theo đúng thứ tự yêu cầu:
- * - TỔNG QUAN: Trang chủ
- * - QUẢN LÝ THI: Ngân hàng câu hỏi, Quản lý đề thi, Ca thi
- * - CHẤM THI: Kết quả bài làm, Danh sách sinh viên
- * - HỆ THỐNG: Cài đặt tài khoản
+ * Cấu hình menu điều hướng cho Giảng viên dựa trên số nhóm & mục thực tế trích xuất từ Figma (Aside).
+ * Gồm đúng 4 nhóm và 10 mục điều hướng chính, toàn bộ path bắt đầu bằng /teacher.
+ * Định dạng: { label, path, icon }, không chứa JSX trực tiếp để giữ file .js thuần.
  */
 
 import {
@@ -13,16 +11,19 @@ import {
   IconGrading,
   IconSystem,
   IconDashboard,
+  IconSchedule,
   IconQuestions,
   IconExams,
   IconSessions,
   IconResults,
+  IconClasses,
   IconStudents,
+  IconStats,
   IconSettings,
   IconHelp,
 } from '../../ui/icons';
 
-// 4 Nhóm điều hướng chuẩn cho Giảng viên
+// 4 Nhóm và 10 mục thực tế theo cấu trúc Figma Aside
 export const teacherNavGroups = [
   {
     title: 'TỔNG QUAN',
@@ -51,14 +52,14 @@ export const teacherNavGroups = [
         icon: IconExams,
       },
       {
-        label: 'Ca thi',
+        label: 'Phòng / Ca thi',
         path: '/teacher/sessions',
         icon: IconSessions,
       },
     ],
   },
   {
-    title: 'CHẤM THI',
+    title: 'CHẤM THI & LỚP',
     icon: IconGrading,
     items: [
       {
@@ -66,6 +67,7 @@ export const teacherNavGroups = [
         path: '/teacher/results',
         icon: IconResults,
       },
+
       {
         label: 'Danh sách sinh viên',
         path: '/teacher/students',
