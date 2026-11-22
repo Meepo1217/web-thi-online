@@ -39,20 +39,20 @@ export function BrowserRouter({ children }) {
   );
 }
 
-function matchPath(routePattern, currentPath) {
+function matchPath(routePattern, currentPath, isPrefix = false) {
   if (routePattern === '*') return { matches: true, params: {} };
   if (!routePattern) return { matches: false, params: {} };
 
-  const isWildcard = routePattern.endsWith('/*');
-  const cleanPattern = isWildcard ? routePattern.slice(0, -2) : routePattern;
+  const isWildcard = routePattern.endsWith('/*') || isPrefix;
+  const cleanPattern = routePattern.endsWith('/*') ? routePattern.slice(0, -2) : routePattern;
 
   const patternParts = cleanPattern.split('/').filter(Boolean);
   const pathParts = currentPath.split('/').filter(Boolean);
 
-  if (!isWildcard && patternParts.length !== pathParts.length) {
+  if (!isWildcard && !isPrefix && patternParts.length !== pathParts.length) {
     return { matches: false, params: {} };
   }
-  if (isWildcard && pathParts.length < patternParts.length) {
+  if ((isWildcard || isPrefix) && pathParts.length < patternParts.length) {
     return { matches: false, params: {} };
   }
 
@@ -75,25 +75,30 @@ export function Routes({ children }) {
   const routes = React.Children.toArray(children).filter(React.isValidElement);
 
   for (const route of routes) {
-    const { path, element, children: subRoutes, index } = route.props;
+    const { path, element, children: subRoutes } = route.props;
 
     // Direct match or parent match
     if (path) {
-      const parentMatch = matchPath(path, pathname);
+      const hasSubRoutes = Boolean(subRoutes);
+      const parentMatch = matchPath(path, pathname, hasSubRoutes);
+
       if (parentMatch.matches) {
         // Check sub routes (nested)
         let matchedChildElement = null;
         let combinedParams = { ...parentMatch.params };
 
-        if (subRoutes) {
+        if (hasSubRoutes) {
           const subRouteList = React.Children.toArray(subRoutes).filter(React.isValidElement);
           // Try to match sub route
           const basePath = path.replace(/\/\*$/, '');
-          const subPath = pathname.slice(basePath.length) || '/';
+          const rawSubPath = pathname.slice(basePath.length);
+          const subPath = rawSubPath ? (rawSubPath.startsWith('/') ? rawSubPath : '/' + rawSubPath) : '/';
 
+          let hasSubMatch = false;
           for (const sub of subRouteList) {
             if (sub.props.index && (subPath === '/' || subPath === '')) {
               matchedChildElement = sub.props.element;
+              hasSubMatch = true;
               break;
             }
             if (sub.props.path) {
@@ -101,9 +106,15 @@ export function Routes({ children }) {
               if (subMatch.matches) {
                 matchedChildElement = sub.props.element;
                 combinedParams = { ...combinedParams, ...subMatch.params };
+                hasSubMatch = true;
                 break;
               }
             }
+          }
+
+          // If this parent route has subroutes, only consider it a match if a child matched
+          if (!hasSubMatch) {
+            continue;
           }
         }
 

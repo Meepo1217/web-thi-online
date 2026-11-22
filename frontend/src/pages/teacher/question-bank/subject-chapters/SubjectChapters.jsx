@@ -5,6 +5,7 @@ import SubjectHeaderCard from './SubjectHeaderCard';
 import ChapterCard from './ChapterCard';
 import AddChapterDottedButton from './AddChapterDottedButton';
 import SingleInputModal from '../../../../components/ui/SingleInputModal';
+import AutoShuffleModal from './AutoShuffleModal';
 import { SUBJECT_CHAPTERS_DATA } from './subjectChaptersData';
 import { IconFolder } from '../../../../components/ui/icons';
 import './subject-chapters.css';
@@ -13,10 +14,10 @@ import './subject-chapters.css';
  * SubjectChapters - Màn hình Quản lý Chương / Chuyên đề của Môn học
  * Nằm giữa 'Thư mục các môn học' (subject-folders) và 'Danh sách câu hỏi' (question-list).
  * - Breadcrumbs & Tag trạng thái
- * - Card thông tin môn học & nút sửa/cài đặt
+ * - Card thông tin môn học & nút Trộn đề thi, nút sửa/cài đặt
  * - Danh sách các thẻ chương & nút sửa/xóa từng chương
  * - Nút thêm chương mới dạng viền nét đứt
- * - Tích hợp Popup chung (SingleInputModal) cho các thao tác thêm/sửa 1 trường
+ * - Tích hợp Modal Trộn đề thi tự động theo ma trận câu hỏi (Section 3 Figma)
  */
 export default function SubjectChapters() {
   const { subjectId } = useParams();
@@ -29,6 +30,9 @@ export default function SubjectChapters() {
   });
 
   const [chapters, setChapters] = useState(SUBJECT_CHAPTERS_DATA.chapters);
+
+  // State mở modal Trộn đề thi tự động
+  const [isShuffleModalOpen, setIsShuffleModalOpen] = useState(false);
 
   // Cấu hình Popup chung cho các tác vụ thêm / sửa 1 trường dữ liệu
   const [modalConfig, setModalConfig] = useState({
@@ -169,6 +173,7 @@ export default function SubjectChapters() {
         subject={subjectData}
         onEditSubject={handleEditSubject}
         onSubjectSettings={handleSubjectSettings}
+        onOpenShuffleModal={() => setIsShuffleModalOpen(true)}
       />
 
       {/* 3. Wireframe Chapter List Section */}
@@ -212,6 +217,14 @@ export default function SubjectChapters() {
         iconType={modalConfig.iconType}
         onConfirm={handleModalConfirm}
         onClose={handleModalClose}
+      />
+
+      {/* 6. Modal Trộn đề thi tự động từ Ngân hàng câu hỏi */}
+      <AutoShuffleModal
+        isOpen={isShuffleModalOpen}
+        onClose={() => setIsShuffleModalOpen(false)}
+        chapters={chapters}
+        subject={subjectData}
       />
     </div>
   );

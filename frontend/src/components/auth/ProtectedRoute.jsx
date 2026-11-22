@@ -16,6 +16,9 @@ export default function ProtectedRoute({ children, allowedRoles }) {
 
   // 2. Nếu đã đăng nhập nhưng truy cập sai quyền (Role-based Authorization)
   if (allowedRoles && allowedRoles.length > 0 && !allowedRoles.includes(user?.role)) {
+    if (user?.role === 'admin') {
+      return <Navigate to="/admin/dashboard" replace />;
+    }
     // Nếu là Giảng viên mà vào route Sinh viên -> Điều hướng về Dashboard Giảng viên
     if (user?.role === 'teacher') {
       return <Navigate to="/teacher/dashboard" replace />;

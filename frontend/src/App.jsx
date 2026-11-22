@@ -23,6 +23,8 @@ import {
 } from './pages/teacher/exam-management';
 import StudentManagement from './pages/teacher/student-management';
 import TeacherSettings from './pages/teacher/settings';
+import { TeacherSessions, TeacherCreateSessionPage } from './pages/teacher/session-management';
+import { TeacherResults } from './pages/teacher/results-management';
 import TeacherDashboard from './pages/teacher/TeacherDashboard';
 import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
@@ -49,7 +51,6 @@ import AdminUserCreate from './pages/admin/AdminUserCreate';
 function ConnectionTest() {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
-
   useEffect(() => {
     axios
       .get('http://localhost:8000/api/test-connection')
@@ -63,7 +64,6 @@ function ConnectionTest() {
         );
       });
   }, []);
-
   return (
     <div style={{ padding: '32px', fontFamily: "'Inter', sans-serif" }}>
       <h2>Kiểm tra kết nối Frontend (React) và Backend (Laravel)</h2>
@@ -90,32 +90,6 @@ function ConnectionTest() {
 
       <div style={{ marginTop: '24px', display: 'flex', gap: '16px' }}>
         <Link
-          to="/student"
-          style={{
-            padding: '8px 16px',
-            background: '#059669',
-            color: '#FFFFFF',
-            textDecoration: 'none',
-            borderRadius: '6px',
-            fontWeight: 600,
-          }}
-        >
-          👨‍🎓 Cổng Sinh viên &rarr;
-        </Link>
-        <Link
-          to="/teacher/dashboard"
-          style={{
-            padding: '8px 16px',
-            background: '#0051D5',
-            color: '#FFFFFF',
-            textDecoration: 'none',
-            borderRadius: '6px',
-            fontWeight: 600,
-          }}
-        >
-          👨‍🏫 Cổng Giảng viên &rarr;
-        </Link>
-        <Link
           to="/login"
           style={{
             padding: '8px 16px',
@@ -136,6 +110,7 @@ function ConnectionTest() {
 /**
  * Điều hướng root "/" theo trạng thái xác thực và vai trò:
  * - Chưa đăng nhập -> /login
+ * - Quản trị viên -> /admin/dashboard
  * - Giảng viên -> /teacher/dashboard
  * - Học sinh / Sinh viên -> /student
  */
@@ -159,8 +134,8 @@ function RootRedirect() {
 
 /**
  * App - Cấu hình hệ thống Router:
- * 1. Truy cập ban đầu ("/") tự động điều hướng về /login nếu chưa đăng nhập.
- * 2. Khi đăng nhập thành công -> tự động hiển thị theo vai trò (teacher: /teacher/dashboard, student: /student).
+ * 1. Truy cập ban đầu ("/") tự động điều hướng theo trạng thái auth và vai trò.
+ * 2. Khi đăng nhập thành công -> tự động hiển thị theo vai trò (admin, teacher, student).
  * 3. Bảo vệ các route với ProtectedRoute theo vai trò.
  */
 function App() {
@@ -171,21 +146,18 @@ function App() {
           {/* 1. Mặc định truy cập đầu tiên ("/") -> chuyển hướng theo auth và role */}
           <Route path="/" element={<RootRedirect />} />
 
-          {/* 2. Route xác thực tài khoản chung cho cả Giảng viên và Học sinh / Sinh viên */}
+          {/* 2. Tuyến xác thực tài khoản (Auth) */}
           <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/verify-otp" element={<VerifyOtp />} />
-          <Route path="/auth/verify-otp" element={<VerifyOtp />} />
           <Route path="/student/login" element={<Login defaultRole="student" />} />
-          <Route path="/student/register" element={<Navigate to="/register" replace />} />
           <Route path="/teacher/login" element={<Login defaultRole="teacher" />} />
           <Route path="/admin/login" element={<Login defaultRole="admin" />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/verify-otp" element={<VerifyOtp />} />
 
           {/* Route kiểm tra kết nối ban đầu */}
           <Route path="/test-connection" element={<ConnectionTest />} />
 
           {/* 3. Cổng Sinh viên (Student Portal) - Chỉ sinh viên được truy cập */}
-          <Route path="/profile" element={<Navigate to="/student/profile" replace />} />
           <Route
             path="/student/*"
             element={
@@ -254,8 +226,10 @@ function App() {
             <Route path="exams/list" element={<ExamList />} />
             <Route path="exam-management" element={<Navigate to="/teacher/exams" replace />} />
 
-            <Route path="sessions" element={<TeacherDashboard />} />
-            <Route path="results" element={<TeacherDashboard />} />
+            {/* Quản lý ca thi và kết quả */}
+            <Route path="sessions/create" element={<TeacherCreateSessionPage />} />
+            <Route path="sessions" element={<TeacherSessions />} />
+            <Route path="results" element={<TeacherResults />} />
             <Route path="classes" element={<TeacherDashboard />} />
             <Route path="students" element={<StudentManagement />} />
             <Route path="statistics" element={<TeacherDashboard />} />

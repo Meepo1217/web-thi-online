@@ -16,4 +16,14 @@ class ExampleTest extends TestCase
 
         $response->assertStatus(200);
     }
+
+    public function test_api_test_connection_returns_success(): void
+    {
+        $response = $this->getJson('/api/test-connection');
+
+        $response->assertStatus(200)
+            ->assertJson([
+                'status' => 'success',
+            ]);
+    }
 }

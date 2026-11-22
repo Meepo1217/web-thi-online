@@ -7,10 +7,9 @@ import './auth.css';
  * Login - Trang Đăng nhập chung cho cả Sinh viên, Giảng viên và Quản trị viên
  * Chuẩn Figma pixel-perfect với thẻ Card trung tâm 500px, bộ lọc vai trò, SSO và bảo mật học thuật
  */
-export default function Login() {
+export default function Login({ defaultRole = 'student' }) {
   const navigate = useNavigate();
-  const authContext = useAuth ? useAuth() : null;
-  const login = authContext?.login;
+  const { login } = useAuth();
 
   // Role: 'student' (Học sinh / Sinh viên), 'teacher' (Giảng viên) hoặc 'admin' (Quản trị viên)
   const [role, setRole] = useState(defaultRole);

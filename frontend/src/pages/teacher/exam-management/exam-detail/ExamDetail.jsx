@@ -1,7 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { useParams, useLocation, useNavigate } from 'react-router-dom';
 import ExamDetailHeader from './ExamDetailHeader';
-import ExamStatsFilterStrip from './ExamStatsFilterStrip';
 import ExamQuestionItem from './ExamQuestionItem';
 import ExamMatrixSidebar from './ExamMatrixSidebar';
 import QuestionDeleteModal from '../../question-bank/question-delete/QuestionDeleteModal';
@@ -150,18 +149,6 @@ export default function ExamDetail() {
             })
           }
           onExportExam={() => alert(`Xuất đề thi ${examInfo.code} ra định dạng PDF / Word`)}
-          onCreateSession={() => alert(`Trộn mã đề & tạo ca thi mới từ ${examInfo.code}`)}
-        />
-
-        {/* 2. Exam Quick Stats & Topic Filter Strip */}
-        <ExamStatsFilterStrip
-          metrics={examInfo.metrics}
-          chapterFilters={EXAM_CHAPTER_FILTERS}
-          bloomFilters={EXAM_BLOOM_FILTERS}
-          activeChapter={activeChapter}
-          activeBloom={activeBloom}
-          onChapterChange={setActiveChapter}
-          onBloomChange={setActiveBloom}
         />
 
         {/* 3. Main Asymmetric Workspace: 8 Cols Question Feed & 4 Cols Sticky Matrix Palette */}

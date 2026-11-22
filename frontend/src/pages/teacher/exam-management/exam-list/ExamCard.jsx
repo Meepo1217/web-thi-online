@@ -56,12 +56,6 @@ export default function ExamCard({
             <div className="ql-metadata-left">
               <span className="ql-code-badge">{exam.code}</span>
               {renderLevelBadge()}
-              <span className="ql-exam-meta-pill">
-                ⏱ {exam.duration}
-              </span>
-              <span className="ql-exam-meta-pill">
-                📝 {exam.questionCount} câu
-              </span>
             </div>
 
             <div className="ql-metadata-right">

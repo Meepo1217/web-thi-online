@@ -1,15 +1,13 @@
-import { Link, NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import SidebarGroup from '../shared/SidebarGroup';
-import { teacherNavGroups, teacherBottomNav } from './teacherNavItems';
-import { IconLogo, IconArrowRight } from '../../ui/icons';
+import { teacherNavGroups } from './teacherNavItems';
+import { IconLogo } from '../../ui/icons';
 
 /**
  * TeacherSidebar - Sidebar cố định dành riêng cho Giảng viên
  * Tuân thủ chính xác từng thông số thiết kế trong Figma Aside
  */
 export default function TeacherSidebar({ isOpen, onClose }) {
-  const BottomIcon = teacherBottomNav.icon;
-
   return (
     <>
       {/* Overlay hỗ trợ trên màn hình nhỏ */}
@@ -67,50 +65,6 @@ export default function TeacherSidebar({ isOpen, onClose }) {
               />
             ))}
           </nav>
-        </div>
-
-        {/* Khối dưới cùng: Thẻ dung lượng + Link phụ */}
-        <div className="teacher-sidebar__bottom">
-          {/* Thẻ dung lượng lưu trữ (Figma: nền #EFF4FF, padding 16px, bo 8px) */}
-          <div className="teacher-storage-card">
-            <div className="teacher-storage-card__row">
-              <span className="teacher-storage-card__label">Dung lượng lưu trữ</span>
-              <span className="teacher-storage-card__percent">78%</span>
-            </div>
-
-            <div className="teacher-storage-card__track">
-              <div
-                className="teacher-storage-card__bar"
-                style={{ width: '78%' }}
-              />
-            </div>
-
-            <span className="teacher-storage-card__caption">
-              Đã dùng 15.6 GB / 20 GB
-            </span>
-          </div>
-
-          {/* Link phụ dưới cùng (Figma: justify-content space-between, icon trái + mũi tên phải) */}
-          <NavLink
-            to={teacherBottomNav.path}
-            onClick={onClose}
-            className={({ isActive }) =>
-              `teacher-sidebar__sublink ${isActive ? 'active' : ''}`
-            }
-          >
-            <div className="teacher-sidebar__sublink-left">
-              <span className="teacher-sidebar__sublink-icon">
-                {BottomIcon && <BottomIcon width={15} height={15} />}
-              </span>
-              <span className="teacher-sidebar__sublink-text">
-                {teacherBottomNav.label}
-              </span>
-            </div>
-
-            <span className="teacher-sidebar__sublink-arrow">
-              <IconArrowRight width={5} height={8} />
-            </span>
-          </NavLink>
         </div>
       </aside>
     </>

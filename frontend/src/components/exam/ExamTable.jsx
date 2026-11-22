@@ -100,7 +100,6 @@ export default function ExamTable({
                         <span
                           className="exam-status-badge"
                           style={{
-                            backgroundColor: exam.statusBg,
                             color: exam.statusColor,
                           }}
                         >

@@ -1,0 +1,1247 @@
+/* ==========================================================================
+   TEACHER CREATE SESSION PAGE STYLES (TẠO CA THI MỚI - GIẢNG VIÊN)
+   Chuẩn thiết kế Figma: Auto Layout, Design Tokens, Inter & Plus Jakarta Sans
+   ========================================================================== */
+
+.create-session-page-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100%;
+  background: #F8F9FF;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #0B1C30;
+}
+
+/* 1. Subheader & Tab Navigation Bar */
+.cs-subheader {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  height: 57px;
+  background: #FFFFFF;
+  border-bottom: 1px solid #EFF4FF;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.cs-subheader-inner {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 24px;
+  gap: 8px;
+  width: 100%;
+  max-width: 1440px;
+  height: 56px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* Process Tabs */
+.cs-process-tabs {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  height: 32px;
+}
+
+.cs-tab-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 6px 16px;
+  gap: 6px;
+  border-radius: 8px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.24px;
+  color: #45464D;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  text-decoration: none;
+}
+
+.cs-tab-item:hover {
+  background: #F1F5F9;
+  color: #0B1C30;
+}
+
+.cs-tab-item.active {
+  background: #DBE1FF;
+  color: #003EA8;
+  font-weight: 600;
+}
+
+.cs-tab-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 6px;
+  background: #0051D5;
+  border-radius: 12px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 11px;
+  letter-spacing: 0.44px;
+  color: #FFFFFF;
+}
+
+/* Action Buttons Top Right */
+.cs-header-actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.cs-btn-cancel {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 6px 16px;
+  gap: 6px;
+  height: 32px;
+  background: #FFDAD6;
+  border-radius: 8px;
+  border: none;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.24px;
+  color: #93000A;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.cs-btn-cancel:hover {
+  background: #FFB4AB;
+}
+
+.cs-btn-draft {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 6px 16px;
+  gap: 6px;
+  height: 32px;
+  background: #DCE9FF;
+  border-radius: 8px;
+  border: none;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.24px;
+  color: #0B1C30;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.cs-btn-draft:hover {
+  background: #C6DBFF;
+}
+
+.cs-btn-preview {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 6px 16px;
+  gap: 6px;
+  height: 32px;
+  background: #EFF4FF;
+  border-radius: 8px;
+  border: none;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.24px;
+  color: #0051D5;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.cs-btn-preview:hover {
+  background: #DBE8FF;
+}
+
+.cs-btn-publish {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 6px 18px;
+  gap: 6px;
+  height: 32px;
+  background: #0051D5;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  border: none;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.24px;
+  color: #FFFFFF;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.cs-btn-publish:hover {
+  background: #0040A8;
+  transform: translateY(-1px);
+}
+
+/* 2. Main Canvas */
+.cs-main-canvas {
+  display: flex;
+  flex-direction: column;
+  padding: 32px 24px 64px;
+  width: 100%;
+  max-width: 1024px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  gap: 24px;
+}
+
+/* Card Module Section */
+.cs-section-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 24px;
+  gap: 20px;
+  background: #FFFFFF;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  border: 1px solid #EFF4FF;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+/* Section Header */
+.cs-section-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.cs-header-left-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+}
+
+.cs-icon-box-primary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: #DBE1FF;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.cs-icon-box-danger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: #FFDAD6;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.cs-section-title-col {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.cs-section-h2 {
+  margin: 0;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  color: #0B1C30;
+}
+
+.cs-section-sub {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 20px;
+  color: #45464D;
+}
+
+.cs-section-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.44px;
+}
+
+.cs-section-badge.blue {
+  background: #EFF4FF;
+  color: #0051D5;
+}
+
+.cs-section-badge.deep-blue {
+  background: #DBE1FF;
+  color: #003EA8;
+}
+
+/* Exam Selector Card Component */
+.cs-exam-selected-card {
+  width: 100%;
+  background: #F8FAFF;
+  border: 1.5px solid #0051D5;
+  border-radius: 8px;
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-sizing: border-box;
+}
+
+.cs-exam-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.cs-exam-title-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.cs-exam-code-tag {
+  background: #0051D5;
+  color: #FFFFFF;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+.cs-exam-title-text {
+  font-size: 15px;
+  font-weight: 700;
+  color: #0B1C30;
+}
+
+.cs-btn-change-exam {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: #FFFFFF;
+  border: 1px solid #0051D5;
+  color: #0051D5;
+  border-radius: 6px;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.cs-btn-change-exam:hover {
+  background: #0051D5;
+  color: #FFFFFF;
+}
+
+.cs-exam-meta-pills {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.cs-exam-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  background: #EFF4FF;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #003EA8;
+}
+
+/* SECTION 1: Timing Row (3 boxes) */
+.cs-timing-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  width: 100%;
+}
+
+.cs-timing-box {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  gap: 6px;
+  background: #EFF4FF;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+.cs-timing-label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.24px;
+  color: #0B1C30;
+}
+
+.cs-input-with-suffix {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.cs-input-field {
+  box-sizing: border-box;
+  width: 100%;
+  height: 42px;
+  background: #FFFFFF;
+  border: 1px solid rgba(198, 198, 205, 0.6);
+  border-radius: 4px;
+  padding: 8px 48px 8px 14px;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 24px;
+  color: #0B1C30;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.cs-input-field:focus {
+  border-color: #0051D5;
+}
+
+.cs-input-field:disabled {
+  background: #F1F5F9 !important;
+  color: #94A3B8 !important;
+  border-color: #E2E8F0 !important;
+  cursor: not-allowed !important;
+}
+
+.cs-input-with-suffix.is-disabled {
+  background: #F1F5F9 !important;
+  border-radius: 4px;
+}
+
+.cs-input-with-suffix.is-disabled .cs-suffix-text {
+  color: #94A3B8 !important;
+}
+
+.cs-suffix-text {
+  position: absolute;
+  right: 14px;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.44px;
+  color: #76777D;
+  pointer-events: none;
+}
+
+.cs-help-text {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.44px;
+  color: #76777D;
+}
+
+/* Switch Toggle UI */
+.cs-switch-toggle {
+  position: relative;
+  width: 44px;
+  height: 24px;
+  background: #C6C6CD;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  flex-shrink: 0;
+  border: none;
+  padding: 0;
+}
+
+.cs-switch-toggle.active {
+  background: #0051D5;
+}
+
+.cs-switch-knob {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  left: 2px;
+  top: 2px;
+  background: #FFFFFF;
+  border-radius: 12px;
+  transition: transform 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+.cs-switch-toggle.active .cs-switch-knob {
+  transform: translateX(20px);
+}
+
+/* Schedule Range Row (Start & End Time) */
+.cs-schedule-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  width: 100%;
+}
+
+.cs-schedule-col {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+
+.cs-schedule-label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.24px;
+  color: #0B1C30;
+}
+
+.cs-schedule-input-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 8px 12px;
+  gap: 8px;
+  height: 38px;
+  background: #EFF4FF;
+  border-radius: 8px;
+  box-sizing: border-box;
+  transition: all 0.15s ease;
+}
+
+.cs-schedule-input-box.is-disabled {
+  background: #F1F5F9 !important;
+  border: 1px solid #E2E8F0 !important;
+  cursor: not-allowed !important;
+}
+
+.cs-schedule-datetime {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: #0B1C30;
+  width: 100%;
+}
+
+.cs-schedule-datetime:disabled {
+  color: #94A3B8 !important;
+  cursor: not-allowed !important;
+}
+
+/* Retake & Multi-Attempt Config */
+.cs-retake-card {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  gap: 16px;
+  width: 100%;
+  background: rgba(220, 233, 255, 0.4);
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+.cs-retake-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+/* SECTION 2: Anti-Cheating & AI Proctoring Grid */
+.cs-security-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  width: 100%;
+}
+
+.cs-security-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 16px;
+  gap: 10px;
+  background: #EFF4FF;
+  border-radius: 8px;
+  box-sizing: border-box;
+  min-height: 94px;
+}
+
+.cs-security-left {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 10px;
+  flex: 1;
+}
+
+.cs-sec-icon-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: #FFFFFF;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.cs-sec-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.cs-sec-title-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.cs-sec-title {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.24px;
+  color: #0B1C30;
+}
+
+.cs-sec-badge {
+  display: inline-flex;
+  padding: 2px 8px;
+  background: #DBE1FF;
+  border-radius: 2px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.44px;
+  color: #003EA8;
+}
+
+.cs-sec-badge.gray {
+  background: #DCE9FF;
+  color: #45464D;
+}
+
+.cs-sec-desc {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 20px;
+  color: #45464D;
+}
+
+.cs-checkbox-custom {
+  width: 20px;
+  height: 20px;
+  accent-color: #0075FF;
+  cursor: pointer;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* SECTION 3 / 4: Result Visibility & Review Policy */
+.cs-results-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  width: 100%;
+}
+
+.cs-result-col {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cs-result-group-title {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.24px;
+  color: #0B1C30;
+}
+
+.cs-radio-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 8px 12px;
+  gap: 10px;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: #0B1C30;
+}
+
+.cs-radio-box:hover {
+  background: rgba(219, 225, 255, 0.15);
+}
+
+.cs-radio-box.active {
+  background: rgba(219, 225, 255, 0.35);
+  font-weight: 600;
+}
+
+.cs-check-item-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  background: #EFF4FF;
+  border-radius: 4px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: #0B1C30;
+  cursor: pointer;
+}
+
+/* TAB 1: General Info Form Controls */
+.cs-form-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  width: 100%;
+}
+
+.cs-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+
+.cs-form-label {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 12.5px;
+  color: #0B1C30;
+}
+
+.cs-form-input {
+  box-sizing: border-box;
+  width: 100%;
+  height: 40px;
+  background: #FFFFFF;
+  border: 1px solid rgba(198, 198, 205, 0.6);
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 13.5px;
+  color: #0B1C30;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.cs-form-input:focus {
+  border-color: #0051D5;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .cs-timing-row,
+  .cs-schedule-row,
+  .cs-security-grid,
+  .cs-results-row,
+  .cs-form-grid-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .cs-main-canvas {
+    padding: 20px 16px;
+  }
+}
+
+/* ==========================================================================
+   HÌNH THỨC ĐÁNH GIÁ / LOẠI KỲ THI (Thi chính thức vs Thi thử)
+   ========================================================================== */
+.cs-session-type-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  width: 100%;
+  margin-top: 4px;
+}
+
+.cs-type-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 14px 16px;
+  background: #FFFFFF;
+  border: 1.5px solid #E2E8F0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.cs-type-card:hover {
+  border-color: #93C5FD;
+  background: #F8FAFC;
+}
+
+.cs-type-card.selected {
+  border-color: #0051D5;
+  background: #EFF6FF;
+  box-shadow: 0 0 0 1px #0051D5;
+}
+
+.cs-type-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.cs-type-icon-box {
+  width: 34px;
+  height: 34px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.cs-type-icon-box.official {
+  background: #E5EEFF;
+  color: #0051D5;
+}
+
+.cs-type-icon-box.practice {
+  background: #CCFBF1;
+  color: #0D9488;
+}
+
+.cs-type-title-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+}
+
+.cs-type-title {
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #0B1C30;
+}
+
+.cs-type-badge {
+  font-size: 10.5px;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 4px;
+  display: inline-block;
+  width: fit-content;
+}
+
+.cs-type-badge.official {
+  background: #DBE1FF;
+  color: #003EA8;
+}
+
+.cs-type-badge.practice {
+  background: #D1FAE5;
+  color: #065F46;
+}
+
+.cs-type-radio {
+  accent-color: #0051D5;
+  width: 17px;
+  height: 17px;
+  cursor: pointer;
+}
+
+.cs-type-desc {
+  font-size: 12px;
+  color: #64748B;
+  line-height: 18px;
+  margin: 0;
+}
+
+/* Quick Timing Options for Session Types */
+.cs-timing-quick-config {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px 16px;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  margin-top: 10px;
+  box-sizing: border-box;
+}
+
+.cs-timing-quick-config.official {
+  border-left: 3px solid #0051D5;
+  background: #F8FAFC;
+}
+
+.cs-timing-quick-config.practice {
+  border-left: 3px solid #0D9488;
+  background: #F0FDF4;
+}
+
+.cs-timing-quick-left {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #1E293B;
+}
+
+.cs-timing-quick-inputs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.cs-timing-quick-input {
+  width: 72px;
+  height: 34px;
+  padding: 0 8px;
+  border: 1.5px solid #CBD5E1;
+  border-radius: 6px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 13.5px;
+  color: #0051D5;
+  background: #FFFFFF;
+  outline: none;
+}
+
+.cs-timing-quick-input:focus {
+  border-color: #0051D5;
+  box-shadow: 0 0 0 2px rgba(0, 81, 213, 0.15);
+}
+
+.cs-timing-quick-unit {
+  font-size: 12px;
+  color: #475569;
+}
+
+.cs-practice-timing-label {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #065F46;
+}
+
+.cs-practice-timing-options {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.cs-practice-timing-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border: 1px solid #CBD5E1;
+  border-radius: 6px;
+  background: #FFFFFF;
+  cursor: pointer;
+  font-size: 12.5px;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+
+.cs-practice-timing-pill:hover {
+  border-color: #0D9488;
+}
+
+.cs-practice-timing-pill.active {
+  border-color: #0D9488;
+  background: #ECFDF5;
+  color: #065F46;
+  font-weight: 600;
+}
+
+.cs-practice-timing-pill input[type="radio"] {
+  accent-color: #0D9488;
+  width: 15px;
+  height: 15px;
+}
+
+.cs-timing-quick-input-sm {
+  width: 52px;
+  height: 28px;
+  border: 1px solid #CBD5E1;
+  border-radius: 4px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 12.5px;
+  color: #0D9488;
+  outline: none;
+  background: #FFFFFF;
+}
+
+.cs-timing-quick-input-sm:disabled {
+  background: #F1F5F9;
+  color: #94A3B8;
+  cursor: not-allowed;
+}
+
+.cs-pill-sub {
+  font-size: 11px;
+  color: #64748B;
+  font-weight: normal;
+}
+
+/* Unlimited Time State in Tab 2 */
+.cs-unlimited-time-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: #ECFDF5;
+  border: 1px solid #A7F3D0;
+  border-radius: 6px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.cs-unlimited-badge {
+  font-weight: 700;
+  color: #065F46;
+  font-size: 13px;
+}
+
+.cs-btn-switch-limit {
+  background: #FFFFFF;
+  border: 1px solid #0D9488;
+  color: #0D9488;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 11.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.cs-btn-switch-limit:hover {
+  background: #CCFBF1;
+}
+
+.cs-badge-tiny {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.cs-badge-tiny.official {
+  background: #DBE1FF;
+  color: #003EA8;
+}
+
+.cs-badge-tiny.practice {
+  background: #D1FAE5;
+  color: #065F46;
+}
+
+/* Tab 2 Session Mode Switcher */
+.cs-tab2-mode-selector {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin-bottom: 16px;
+  gap: 12px;
+}
+
+.cs-tab2-mode-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #334155;
+  white-space: nowrap;
+}
+
+.cs-tab2-mode-pills {
+  display: flex;
+  gap: 6px;
+}
+
+.cs-tab2-mode-pill {
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 12.5px;
+  font-weight: 600;
+  border: 1px solid #CBD5E1;
+  background: #FFFFFF;
+  color: #64748B;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cs-tab2-mode-pill:hover {
+  border-color: #94A3B8;
+  color: #1E293B;
+}
+
+.cs-tab2-mode-pill.active.official {
+  background: #EFF6FF;
+  border-color: #0051D5;
+  color: #0051D5;
+  box-shadow: 0 1px 3px rgba(0, 81, 213, 0.15);
+}
+
+.cs-tab2-mode-pill.active.practice {
+  background: #ECFDF5;
+  border-color: #059669;
+  color: #059669;
+  box-shadow: 0 1px 3px rgba(5, 150, 105, 0.15);
+}
+
+/* Practice Choice in Tab 2 */
+.cs-practice-choice-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.cs-practice-radio-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  width: 100%;
+}
+
+.cs-practice-radio-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border: 1.5px solid #E2E8F0;
+  border-radius: 6px;
+  background: #F8FAFC;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.cs-practice-radio-row:hover {
+  border-color: #CBD5E1;
+  background: #F1F5F9;
+}
+
+.cs-practice-radio-row.selected {
+  border-color: #059669;
+  background: #ECFDF5;
+}
+
+.cs-practice-radio-row input[type="radio"] {
+  accent-color: #059669;
+  cursor: pointer;
+  margin: 0;
+}
+
+.cs-radio-text-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.cs-radio-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: #1E293B;
+  line-height: 16px;
+}
+
+.cs-practice-radio-row.selected .cs-radio-title {
+  color: #065F46;
+}
+
+.cs-radio-desc {
+  font-size: 11px;
+  color: #64748B;
+  line-height: 14px;
+}

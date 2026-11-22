@@ -1,0 +1,762 @@
+/* ==========================================================================
+   TEACHER SESSIONS CSS (QUẢN LÝ CA THI DÀNH CHO GIẢNG VIÊN)
+   Kế thừa 100% phong cách thiết kế của StudentDashboardPage & pages.css
+   ========================================================================== */
+
+/* Canh giữa và tối ưu khung hiển thị bên trong TeacherLayout */
+.teacher-sessions-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  min-height: calc(100vh - 65px);
+  padding: 24px 16px 64px;
+  box-sizing: border-box;
+}
+
+.teacher-sessions-wrapper .dashboard-content-canvas {
+  width: 100%;
+  max-width: 1024px;
+  padding: 0;
+  align-items: center;
+}
+
+.teacher-sessions-wrapper .dashboard-container-960 {
+  width: 100%;
+  max-width: 960px;
+  align-items: center;
+}
+
+.teacher-sessions-wrapper .exam-search-box-card {
+  width: 100%;
+  max-width: 960px;
+}
+
+.teacher-sessions-wrapper .exams-section-wrapper {
+  width: 100%;
+  max-width: 960px;
+}
+
+.teacher-sessions-wrapper .exams-cards-grid {
+  width: 100%;
+  justify-content: center;
+}
+
+/* Thao tác thanh điều khiển hàng trên (Section Controls Bar) */
+.teacher-section-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.btn-create-session-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 16px;
+  background: #0051D5;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 8px;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 81, 213, 0.25);
+  transition: all 0.15s ease;
+}
+
+.btn-create-session-primary:hover {
+  background: #0040A8;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(0, 81, 213, 0.35);
+}
+
+/* Thẻ bài thi dành cho giáo viên: 2 nút thao tác */
+.card-exam-time-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 8px 12px;
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 6px;
+  margin-top: 10px;
+  box-sizing: border-box;
+}
+
+.card-exam-time-label {
+  font-size: 12px;
+  color: #64748B;
+  font-weight: 500;
+}
+
+.card-exam-time-val {
+  font-size: 12.5px;
+  color: #0051D5;
+  font-weight: 700;
+}
+
+.card-teacher-dual-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  width: 100%;
+  margin-top: 14px;
+}
+
+.btn-teacher-monitor {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 9px 10px;
+  background: #0051D5;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 6px;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.btn-teacher-monitor:hover {
+  background: #0040A8;
+}
+
+.btn-teacher-prep {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 9px 10px;
+  background: #EFF4FF;
+  color: #0051D5;
+  border: 1px solid #DCE9FF;
+  border-radius: 6px;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-teacher-prep:hover {
+  background: #E0ECFF;
+}
+
+/* Badge trạng thái ca thi đặc biệt */
+.badge-ongoing-pulse {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: #059669;
+  font-weight: 700;
+}
+
+.badge-dot-live {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #10B981;
+  box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  animation: pulseGreen 1.5s infinite;
+}
+
+@keyframes pulseGreen {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
+}
+
+/* ==========================================================================
+   MODAL GIÁM SÁT CA THI TRỰC TIẾP (LIVE MONITOR MODAL)
+   ========================================================================== */
+.session-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(11, 28, 48, 0.65);
+  backdrop-filter: blur(4px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  animation: modalFadeIn 0.2s ease-out;
+}
+
+.session-modal-box {
+  width: 100%;
+  max-width: 860px;
+  max-height: 90vh;
+  background: #FFFFFF;
+  border-radius: 12px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: modalScaleUp 0.2s ease-out;
+}
+
+@keyframes modalFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes modalScaleUp {
+  from { transform: scale(0.96); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.session-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 24px;
+  background: #F8F9FF;
+  border-bottom: 1px solid #E5EEFF;
+}
+
+.session-modal-header-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.session-modal-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: #0B1C30;
+}
+
+.session-modal-subtitle {
+  margin: 0;
+  font-size: 13px;
+  color: #64748B;
+}
+
+.session-modal-close-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: #64748B;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: all 0.15s ease;
+}
+
+.session-modal-close-btn:hover {
+  background: #E2E8F0;
+  color: #0B1C30;
+}
+
+.session-modal-body {
+  padding: 24px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Thống kê phòng thi (Strip) */
+.session-monitor-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.session-stat-card {
+  padding: 12px 14px;
+  background: #F8F9FF;
+  border: 1px solid #E5EEFF;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.session-stat-label {
+  font-size: 11.5px;
+  color: #64748B;
+  font-weight: 500;
+}
+
+.session-stat-val {
+  font-size: 20px;
+  font-weight: 700;
+  color: #0B1C30;
+}
+
+/* Bảng danh sách thí sinh trong phòng: Hỗ trợ cuộn mượt và cố định thanh tiêu đề */
+.session-students-table-wrap {
+  border: 1px solid #E5EEFF;
+  border-radius: 8px;
+  max-height: 380px;
+  overflow-y: auto;
+  overflow-x: auto;
+}
+
+.session-students-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  text-align: left;
+}
+
+.session-students-table th {
+  position: sticky;
+  top: 0;
+  background: #F8F9FF;
+  color: #475569;
+  font-weight: 600;
+  padding: 10px 14px;
+  border-bottom: 1px solid #E5EEFF;
+  z-index: 2;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.session-students-table td {
+  padding: 11px 14px;
+  border-bottom: 1px solid #F1F5F9;
+  color: #0B1C30;
+}
+
+.session-students-table tr:hover {
+  background: #F8FAFC;
+}
+
+.session-student-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0;
+  border-radius: 0;
+  background: transparent !important;
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+.session-student-pill.working {
+  color: #0051D5;
+}
+
+.session-student-pill.submitted {
+  color: #059669;
+}
+
+.session-student-pill.warning {
+  color: #D97706;
+}
+
+.session-modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 16px 24px;
+  background: #F8F9FF;
+  border-top: 1px solid #E5EEFF;
+}
+
+.btn-session-sub {
+  padding: 8px 16px;
+  background: #FFFFFF;
+  color: #475569;
+  border: 1px solid #CBD5E1;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.btn-session-sub:hover {
+  background: #F1F5F9;
+}
+
+.btn-session-extend {
+  padding: 8px 16px;
+  background: #F59E0B;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-session-extend:hover {
+  background: #D97706;
+}
+
+.btn-session-end {
+  padding: 8px 16px;
+  background: #BA1A1A;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-session-end:hover {
+  background: #991B1B;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .teacher-sessions-wrapper .exams-cards-grid {
+    grid-template-columns: repeat(2, 307.33px);
+  }
+}
+
+@media (max-width: 680px) {
+  .teacher-sessions-wrapper .exams-cards-grid {
+    grid-template-columns: 1fr;
+  }
+  .session-monitor-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+
+/* ==========================================================================
+   TEACHER SESSION PREP STYLES (CHI TIẾT PHÒNG THI GIẢNG VIÊN)
+   ========================================================================== */
+
+/* Khung thống nhất thông tin ca thi dành cho giáo viên */
+.teacher-prep-unified-card {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background: #FFFFFF;
+  border: 1px solid #E5EEFF;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  padding: 24px 28px;
+  gap: 20px;
+}
+
+.teacher-prep-card-top {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.teacher-prep-badge-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.teacher-prep-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 6px;
+  font-size: 12.5px;
+  font-weight: 600;
+  line-height: 16px;
+}
+
+.teacher-prep-badge.room-badge {
+  background: #EFF6FF;
+  color: #1D4ED8;
+  border: 1px solid #DBEAFE;
+}
+
+.teacher-prep-badge.shift-badge {
+  background: #FEF2F2;
+  color: #DC2626;
+  border: 1px solid #FEE2E2;
+}
+
+.teacher-prep-badge.pin-badge {
+  background: #F0FDF4;
+  color: #16A34A;
+  border: 1px solid #DCFCE7;
+  font-family: monospace;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+}
+
+.teacher-prep-badge.status-badge {
+  background: #ECFDF5;
+  color: #059669;
+  border: 1px solid #D1FAE5;
+}
+
+.teacher-prep-badge.official-badge {
+  background: #EFF6FF;
+  color: #1D4ED8;
+  border: 1px solid #BFDBFE;
+}
+
+.teacher-prep-badge.practice-badge {
+  background: #F3E8FF;
+  color: #7E22CE;
+  border: 1px solid #E9D5FF;
+}
+
+.live-dot-mini {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #10B981;
+}
+
+.teacher-prep-title {
+  font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 28px;
+  color: #0F172A;
+  margin: 0;
+}
+
+.teacher-prep-dept {
+  font-size: 13px;
+  color: #64748B;
+  font-weight: 500;
+}
+
+/* Khối thông tin chi tiết (Bỏ toàn bộ icon, hiển thị thẻ tinh tế) */
+.teacher-prep-info-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  background: #F8FAFC;
+  border: 1px solid #F1F5F9;
+  border-radius: 10px;
+  padding: 16px 20px;
+}
+
+@media (max-width: 900px) {
+  .teacher-prep-info-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .teacher-prep-info-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.teacher-prep-info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.teacher-prep-info-label {
+  font-size: 12px;
+  color: #64748B;
+  font-weight: 500;
+}
+
+.teacher-prep-info-value {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #1E293B;
+}
+
+/* Hàng chân thẻ (Nằm gọn bên trong khung): Nút bấm và lời nhắc */
+.teacher-prep-card-bottom {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 18px;
+  border-top: 1px solid #F1F5F9;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.teacher-prep-card-note {
+  font-size: 12.5px;
+  color: #64748B;
+  font-style: italic;
+  flex: 1;
+  min-width: 260px;
+}
+
+.btn-start-exam-lg {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 10px !important;
+  padding: 12px 28px !important;
+  background: #0051D5 !important;
+  color: #FFFFFF !important;
+  border: none !important;
+  border-radius: 8px !important;
+  font-family: 'Inter', -apple-system, sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  box-shadow: 0 4px 12px rgba(0, 81, 213, 0.28) !important;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  text-decoration: none !important;
+  outline: none !important;
+}
+
+.btn-start-exam-lg:hover {
+  background: #0040A8 !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 18px rgba(0, 81, 213, 0.38) !important;
+}
+
+.btn-start-exam-lg:active {
+  transform: translateY(0) !important;
+}
+
+/* Pulsing live dot */
+.live-pulse-dot-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 12px;
+  height: 12px;
+}
+
+.live-pulse-ping {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #EF4444;
+  opacity: 0.75;
+  animation: livePing 1.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.live-pulse-dot {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #EF4444;
+}
+
+@keyframes livePing {
+  75%, 100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+/* Khối tabs chi tiết phòng thi */
+.prep-tabs-card {
+  width: 100%;
+  background: #FFFFFF;
+  border: 1px solid #E5EEFF;
+  border-radius: 12px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+  margin-top: 24px;
+}
+
+.prep-tab-headers {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: #F8F9FF;
+  border-bottom: 1px solid #E5EEFF;
+}
+
+.prep-tab-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  padding: 9px 18px !important;
+  border-radius: 8px !important;
+  border: 1px solid transparent !important;
+  background: transparent !important;
+  color: #64748B !important;
+  font-family: 'Inter', -apple-system, sans-serif !important;
+  font-size: 13.5px !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
+  transition: all 0.15s ease !important;
+  outline: none !important;
+}
+
+.prep-tab-btn:hover {
+  background: #EFF4FF !important;
+  color: #0051D5 !important;
+}
+
+.prep-tab-btn.active {
+  background: #FFFFFF !important;
+  color: #0051D5 !important;
+  font-weight: 700 !important;
+  border-color: #DCE9FF !important;
+  box-shadow: 0 1px 4px rgba(0, 81, 213, 0.08) !important;
+}
+
+.prep-tab-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 11.5px;
+  font-weight: 700;
+  background: #EFF4FF;
+  color: #0051D5;
+  transition: all 0.15s ease;
+}
+
+.prep-tab-btn.active .prep-tab-badge {
+  background: #0051D5;
+  color: #FFFFFF;
+}
+
+.prep-tab-body {
+  padding: 24px;
+}
+
+/* Rules styling */
+.prep-rule-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px 18px;
+  background: #F8FAFF;
+  border: 1px solid #E5EEFF;
+  border-left: 3.5px solid #0051D5;
+  border-radius: 8px;
+  font-size: 13.5px;
+  color: #334155;
+  line-height: 1.55;
+}
+
+.prep-rule-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #0051D5;
+  color: #FFFFFF;
+  font-size: 12px;
+  font-weight: 700;
+  flex-shrink: 0;
+}

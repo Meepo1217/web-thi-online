@@ -4,9 +4,7 @@ import './layout.css';
 
 export default function Header({ onLogoClick, onProfileClick, user: propUser }) {
   const navigate = useNavigate();
-  const authContext = useAuth ? useAuth() : null;
-  const authUser = authContext?.user;
-  const logout = authContext?.logout;
+  const { user: authUser, logout } = useAuth();
 
   const currentUser = propUser || authUser || {
     name: 'Nguyễn Văn An',
@@ -67,9 +65,6 @@ export default function Header({ onLogoClick, onProfileClick, user: propUser }) 
             <span className="user-meta-name">{currentUser.name}</span>
             <span className="user-meta-role">{currentUser.role}</span>
           </div>
-          <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="#45464D">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M1 1l4 4 4-4" />
-          </svg>
         </div>
 
         {/* Nút Đăng xuất */}
@@ -88,7 +83,7 @@ export default function Header({ onLogoClick, onProfileClick, user: propUser }) 
             <polyline points="16 17 21 12 16 7"></polyline>
             <line x1="21" y1="12" x2="9" y2="12"></line>
           </svg>
-        </div>
+        </button>
       </div>
     </header>
   );

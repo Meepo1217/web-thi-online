@@ -33,5 +33,12 @@ export const SUBJECT_CHAPTERS_DATA = {
       questionCount: 37,
       status: 'active',
     },
+    {
+      id: 'chap-4',
+      order: 4,
+      title: 'Chương IV: Số phức và phương pháp toạ độ trong không gian Oxyz',
+      questionCount: 35,
+      status: 'active',
+    },
   ],
 };

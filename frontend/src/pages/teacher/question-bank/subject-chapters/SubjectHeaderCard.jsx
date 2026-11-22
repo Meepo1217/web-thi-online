@@ -1,16 +1,18 @@
 import React from 'react';
-import { IconEdit, IconFolder, IconMoreVertical } from '../../../../components/ui/icons';
+import { IconEdit, IconFolder, IconMoreVertical, IconShuffle } from '../../../../components/ui/icons';
 
 /**
  * SubjectHeaderCard
  * Wireframe Subject Header Card:
  * - Hiển thị mã môn học, tên môn học và mô tả tóm tắt chương trình
- * - Hai nút thao tác nhanh bên phải: 'Sửa' và 'Cài đặt'
+ * - Nút 'Trộn đề thi' tự động
+ * - Hai nút thao tác: 'Sửa' và 'Cài đặt'
  */
 export default function SubjectHeaderCard({
   subject,
   onEditSubject,
   onSubjectSettings,
+  onOpenShuffleModal,
 }) {
   return (
     <div className="sc-subject-card">
@@ -32,6 +34,18 @@ export default function SubjectHeaderCard({
 
         {/* Right Action Buttons */}
         <div className="sc-subject-actions">
+          {onOpenShuffleModal && (
+            <button
+              type="button"
+              className="sc-btn-shuffle"
+              onClick={onOpenShuffleModal}
+              title="Trộn đề thi tự động từ ngân hàng câu hỏi"
+            >
+              <IconShuffle width={14} height={14} color="#FFFFFF" />
+              <span>Trộn đề thi</span>
+            </button>
+          )}
+
           <button
             type="button"
             className="sc-btn-wireframe"
