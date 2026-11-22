@@ -200,17 +200,9 @@ export default function AdminNotificationManagement() {
     }
   };
 
-  // Mở modal tạo mới
+  // Chuyển sang trang tạo thông báo mới
   const handleOpenCreateModal = () => {
-    setEditingNotif(null);
-    setFormData({
-      title: '',
-      type: 'guide',
-      target: 'Toàn trường',
-      content: '',
-      isEmergency: false,
-    });
-    setIsModalOpen(true);
+    navigate('/admin/notifications/create');
   };
 
   // Chuyển sang trang chỉnh sửa thông báo

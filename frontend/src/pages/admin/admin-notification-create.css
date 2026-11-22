@@ -1,0 +1,537 @@
+/* ==========================================================================
+   admin-notification-create.css - Giao diện Thêm thông báo (Admin Notification Create)
+   Chuẩn pixel-perfect Figma Auto Layout (1280px container, 944px content)
+   ========================================================================== */
+
+.admin-notification-create-container {
+  padding: 24px 32px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 1280px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 1024px) {
+  .admin-notification-create-container {
+    padding: 16px;
+    gap: 16px;
+  }
+}
+
+/* ==========================================================================
+   1. Breadcrumbs & Header
+   ========================================================================== */
+.notif-create-header-block {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.notif-create-breadcrumb {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: #64748B;
+}
+
+.notif-create-breadcrumb a {
+  color: #0051D5;
+  text-decoration: none;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.15s ease;
+}
+
+.notif-create-breadcrumb a:hover {
+  color: #003fa6;
+}
+
+.notif-create-breadcrumb-sep {
+  color: #94A3B8;
+  font-size: 12px;
+}
+
+.notif-create-title-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 4px 0px 0px;
+  gap: 16px;
+  width: 100%;
+}
+
+.notif-create-page-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 36px;
+  letter-spacing: -0.7px;
+  color: #0B1C30;
+  margin: 0;
+}
+
+/* ==========================================================================
+   2. Main Canvas (944px width)
+   ========================================================================== */
+.notif-create-main-canvas {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  width: 100%;
+  max-width: 944px;
+}
+
+/* ==========================================================================
+   Card 1: Configuration Form (269.5px height)
+   ========================================================================== */
+.notif-create-card {
+  width: 100%;
+  background: #FFFFFF;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  border: 1px solid #E5EEFF;
+  border-radius: 8px;
+  padding: 24px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.notif-create-card-header {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #E5EEFF;
+  width: 100%;
+}
+
+.notif-create-card-header__left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.notif-create-card-header__icon-box {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background: #EFF4FF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0051D5;
+}
+
+.notif-create-card-header__title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  color: #0B1C30;
+  margin: 0;
+}
+
+/* Fields Grid inside Card 1 */
+.notif-create-fields-group {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+/* Field Box with border */
+.notif-create-field-box {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 12px 16px;
+  gap: 4px;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 4px;
+  width: 100%;
+  transition: all 0.15s ease;
+}
+
+.notif-create-field-box:focus-within {
+  border-color: #316BF3;
+  box-shadow: 0 0 0 2px rgba(49, 107, 243, 0.15);
+}
+
+.notif-create-field-label {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.44px;
+  color: #45464D;
+  text-transform: uppercase;
+}
+
+.notif-create-title-input {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 22px;
+  color: #1E293B;
+  padding: 2px 0 0;
+  box-sizing: border-box;
+}
+
+.notif-create-title-input::placeholder {
+  color: #94A3B8;
+}
+
+.notif-create-row-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  width: 100%;
+}
+
+@media (max-width: 640px) {
+  .notif-create-row-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+.notif-create-select-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.notif-create-select {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: 0.24px;
+  color: #1E293B;
+  cursor: pointer;
+  appearance: none;
+  padding: 2px 24px 2px 0;
+}
+
+.notif-create-select-arrow {
+  position: absolute;
+  right: 0;
+  pointer-events: none;
+  color: #76777D;
+  display: flex;
+  align-items: center;
+}
+
+/* ==========================================================================
+   Card 2: Rich Editor Form (451px height)
+   ========================================================================== */
+.notif-create-details-card {
+  width: 100%;
+  background: #FFFFFF;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  border: 1px solid #E5EEFF;
+  border-radius: 8px;
+  padding: 24px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Rich-Text Toolbar */
+.notif-create-toolbar {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 6px;
+  gap: 4px;
+  width: 100%;
+  background: #E5EEFF;
+  border-radius: 4px;
+}
+
+.notif-create-toolbar-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #45464D;
+  transition: all 0.15s ease;
+}
+
+.notif-create-toolbar-btn:hover {
+  background: #DCE9FF;
+  color: #0051D5;
+}
+
+.notif-create-toolbar-btn.active {
+  background: #FFFFFF;
+  color: #0051D5;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.notif-create-toolbar-divider {
+  width: 1px;
+  height: 20px;
+  background: rgba(198, 198, 205, 0.4);
+  margin: 0 4px;
+}
+
+/* Content Textarea Box Area */
+.notif-create-textarea-box {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 16px;
+  gap: 12px;
+  width: 100%;
+  min-height: 298px;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 4px;
+  transition: all 0.15s ease;
+}
+
+.notif-create-textarea-box:focus-within {
+  border-color: #316BF3;
+  box-shadow: 0 0 0 2px rgba(49, 107, 243, 0.15);
+}
+
+.notif-create-textarea {
+  width: 100%;
+  min-height: 260px;
+  border: none;
+  outline: none;
+  resize: vertical;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 24px;
+  color: #0B1C30;
+  background: transparent;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.notif-create-textarea::placeholder {
+  color: #45464D;
+}
+
+/* Optional Highlight / Schedule block toggle */
+.notif-create-schedule-toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding-top: 8px;
+  border-top: 1px dashed #E2E8F0;
+}
+
+.notif-create-toggle-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: #475569;
+  cursor: pointer;
+}
+
+.notif-create-schedule-card {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 18px 20px;
+  gap: 12px;
+  width: 100%;
+  background: #F8FAFC;
+  border: 1px dashed #CBD5E1;
+  border-left: 4px solid #316BF3;
+  border-radius: 4px;
+  margin-top: 12px;
+}
+
+.notif-create-schedule-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: #0B1C30;
+  flex-wrap: wrap;
+}
+
+.notif-create-schedule-row strong {
+  font-weight: 600;
+  min-width: 220px;
+  color: #0B1C30;
+}
+
+.notif-create-schedule-input {
+  flex: 1;
+  min-width: 240px;
+  height: 36px;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 4px;
+  padding: 0 12px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13.5px;
+  color: #0B1C30;
+  outline: none;
+  transition: all 0.15s ease;
+}
+
+.notif-create-schedule-input:focus {
+  border-color: #316BF3;
+  box-shadow: 0 0 0 2px rgba(49, 107, 243, 0.15);
+}
+
+.notif-create-impact-block {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+
+.notif-create-impact-textarea {
+  width: 100%;
+  min-height: 60px;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13.5px;
+  line-height: 20px;
+  color: #0B1C30;
+  outline: none;
+  resize: vertical;
+  box-sizing: border-box;
+}
+
+.notif-create-impact-textarea:focus {
+  border-color: #316BF3;
+  box-shadow: 0 0 0 2px rgba(49, 107, 243, 0.15);
+}
+
+/* ==========================================================================
+   3. Form Action Footer Buttons (86px height)
+   ========================================================================== */
+.notif-create-footer-bar {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 24px;
+  gap: 12px;
+  width: 100%;
+  max-width: 944px;
+  background: #F8F9FF;
+  border-top: 1px solid #F1F5F9;
+  border-radius: 0px 0px 16px 16px;
+}
+
+.btn-notif-create-cancel {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+  min-width: 82.66px;
+  height: 38px;
+  background: #FFFFFF;
+  border: 1px solid #CBD5E1;
+  border-radius: 12px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-notif-create-cancel:hover {
+  background: #F8FAFC;
+  border-color: #94A3B8;
+  color: #0B1C30;
+}
+
+.btn-notif-create-submit {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 24px;
+  gap: 8px;
+  min-width: 136.34px;
+  height: 36px;
+  background: #2563EB;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 12px;
+  border: none;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  color: #FFFFFF;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-notif-create-submit:hover {
+  background: #1D4ED8;
+  box-shadow: 0px 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.btn-notif-create-submit:active {
+  transform: translateY(1px);
+}
