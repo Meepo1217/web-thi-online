@@ -15,28 +15,18 @@ export default function Login({ defaultRole = 'student' }) {
   // Role: 'student' (Học sinh / Sinh viên), 'teacher' (Giảng viên) hoặc 'admin' (Quản trị viên)
   const [role, setRole] = useState(defaultRole);
 
-  const [identifier, setIdentifier] = useState('sv21020015@eduquiz.vn');
-  const [password, setPassword] = useState('123456');
+  const [identifier, setIdentifier] = useState('');
+  const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(true);
 
   const [isLoading, setIsLoading] = useState(false);
   const [alertInfo, setAlertInfo] = useState(null);
 
-  // Khi chuyển tab Role, tự động cập nhật tài khoản mẫu
+  // Khi chuyển tab Role, reset thông báo
   const handleRoleChange = (newRole) => {
     setRole(newRole);
     setAlertInfo(null);
-    if (newRole === 'student') {
-      setIdentifier('sv21020015@eduquiz.vn');
-      setPassword('123456');
-    } else if (newRole === 'teacher') {
-      setIdentifier('gv.nguyenan@eduquiz.vn');
-      setPassword('123456');
-    } else if (newRole === 'admin') {
-      setIdentifier('admin@huce.edu.vn');
-      setPassword('123456');
-    }
   };
 
   const handleSubmit = (e) => {
@@ -198,35 +188,6 @@ export default function Login({ defaultRole = 'student' }) {
                   <span>Quản trị viên</span>
                 </button>
               </div>
-            </div>
-
-            {/* Quick Demo Credentials Info */}
-            <div className="auth-demo-bar">
-              <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                <span>💡</span>
-                <span>Tài khoản: <strong>{role === 'admin' ? 'Quản trị viên' : role === 'student' ? 'Sinh viên' : 'Giảng viên'}</strong></span>
-                <code style={{ background: '#E2E8F0', padding: '2px 6px', borderRadius: '4px', fontSize: '11.5px', color: '#1E293B' }}>
-                  {identifier} / {password}
-                </code>
-              </span>
-              <button
-                type="button"
-                className="btn-auth-demo-chip"
-                onClick={() => {
-                  if (role === 'student') {
-                    setIdentifier('sv21020015@eduquiz.vn');
-                    setPassword('123456');
-                  } else if (role === 'teacher') {
-                    setIdentifier('gv.nguyenan@eduquiz.vn');
-                    setPassword('123456');
-                  } else {
-                    setIdentifier('admin@huce.edu.vn');
-                    setPassword('123456');
-                  }
-                }}
-              >
-                Điền mẫu
-              </button>
             </div>
 
             {/* Alert thông báo phản hồi */}
