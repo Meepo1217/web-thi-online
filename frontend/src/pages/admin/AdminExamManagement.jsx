@@ -1,7 +1,7 @@
 import { useState, useMemo } from 'react';
 import './admin-exams.css';
 
-// Dữ liệu mẫu chuẩn xác từ Figma Spec
+// Dữ liệu mẫu chuẩn xác từ Figma Auto Layout Spec 1280px
 const INITIAL_EXAMS = [
   {
     id: 'EX-001',

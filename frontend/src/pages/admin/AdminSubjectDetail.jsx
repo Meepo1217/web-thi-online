@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
+import AdminSubjectEditModal from '../../components/admin/AdminSubjectEditModal';
 import './admin-subject-detail.css';
 
 // Dữ liệu môn học mẫu chuẩn xác từ Figma Spec
@@ -362,131 +363,22 @@ export default function AdminSubjectDetail() {
         </button>
       </div>
 
-      {/* Modal Sửa Môn Học */}
-      {isEditSubjectModalOpen && (
-        <div
-          style={{
-            position: 'fixed',
-            inset: 0,
-            background: 'rgba(15, 23, 42, 0.45)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            zIndex: 9999,
-          }}
-        >
-          <div
-            style={{
-              background: '#FFFFFF',
-              borderRadius: '16px',
-              padding: '24px',
-              maxWidth: '520px',
-              width: '90%',
-              boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1)',
-            }}
-          >
-            <h3 style={{ margin: '0 0 16px', fontSize: '18px', color: '#0F172A', fontWeight: 700 }}>
-              Chỉnh sửa thông tin môn học
-            </h3>
-            <form onSubmit={handleSaveSubject} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-              <div>
-                <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: '#334155', marginBottom: '6px' }}>
-                  Tên môn học
-                </label>
-                <input
-                  type="text"
-                  value={subjectFormData.name}
-                  onChange={(e) => setSubjectFormData({ ...subjectFormData, name: e.target.value })}
-                  style={{
-                    width: '100%',
-                    height: '40px',
-                    borderRadius: '8px',
-                    border: '1px solid #CBD5E1',
-                    padding: '0 12px',
-                    fontSize: '14px',
-                    boxSizing: 'border-box',
-                  }}
-                  required
-                />
-              </div>
-
-              <div>
-                <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: '#334155', marginBottom: '6px' }}>
-                  Mã môn học
-                </label>
-                <input
-                  type="text"
-                  value={subjectFormData.code}
-                  onChange={(e) => setSubjectFormData({ ...subjectFormData, code: e.target.value })}
-                  style={{
-                    width: '100%',
-                    height: '40px',
-                    borderRadius: '8px',
-                    border: '1px solid #CBD5E1',
-                    padding: '0 12px',
-                    fontSize: '14px',
-                    boxSizing: 'border-box',
-                  }}
-                  required
-                />
-              </div>
-
-              <div>
-                <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: '#334155', marginBottom: '6px' }}>
-                  Mô tả môn học
-                </label>
-                <textarea
-                  rows="3"
-                  value={subjectFormData.description}
-                  onChange={(e) => setSubjectFormData({ ...subjectFormData, description: e.target.value })}
-                  style={{
-                    width: '100%',
-                    borderRadius: '8px',
-                    border: '1px solid #CBD5E1',
-                    padding: '8px 12px',
-                    fontSize: '14px',
-                    boxSizing: 'border-box',
-                    fontFamily: 'inherit',
-                  }}
-                />
-              </div>
-
-              <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '10px', marginTop: '8px' }}>
-                <button
-                  type="button"
-                  onClick={() => setIsEditSubjectModalOpen(false)}
-                  style={{
-                    padding: '8px 16px',
-                    borderRadius: '8px',
-                    border: '1px solid #CBD5E1',
-                    background: '#FFFFFF',
-                    cursor: 'pointer',
-                    fontWeight: 600,
-                    fontSize: '13px',
-                  }}
-                >
-                  Hủy
-                </button>
-                <button
-                  type="submit"
-                  style={{
-                    padding: '8px 20px',
-                    borderRadius: '8px',
-                    border: 'none',
-                    background: '#0051D5',
-                    color: '#FFFFFF',
-                    cursor: 'pointer',
-                    fontWeight: 600,
-                    fontSize: '13px',
-                  }}
-                >
-                  Lưu thay đổi
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
+      {/* Modal Sửa Môn Học chuẩn Figma Auto Layout */}
+      <AdminSubjectEditModal
+        isOpen={isEditSubjectModalOpen}
+        onClose={() => setIsEditSubjectModalOpen(false)}
+        subject={subject}
+        onSave={(updatedData) => {
+          setSubject((prev) => ({
+            ...prev,
+            name: updatedData.name,
+            code: updatedData.code,
+            description: updatedData.description,
+            teacher: updatedData.teacher || prev.teacher,
+          }));
+          showToast(`Đã lưu thay đổi cho môn học ${updatedData.code}!`);
+        }}
+      />
 
       {/* Modal Thêm / Sửa Chương */}
       {isChapterModalOpen && (
@@ -665,3 +557,4 @@ export default function AdminSubjectDetail() {
     </div>
   );
 }
+

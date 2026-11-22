@@ -1,6 +1,7 @@
 /* ==========================================================================
    admin-exams.css - Giao diện Quản lý đề thi (Admin Exam Management)
    Chuẩn pixel-perfect Figma Auto Layout (1280px container, 944px content)
+   Tối ưu hóa hiển thị và chuẩn hóa đồng bộ giao diện Admin
    ========================================================================== */
 
 .admin-exams-container {
@@ -734,4 +735,145 @@
   opacity: 0.5;
   cursor: not-allowed;
 }
+
+/* ==========================================================================
+   6. Modal Thêm mới / Chỉnh sửa đề thi
+   ========================================================================== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(11, 28, 48, 0.45);
+  backdrop-filter: blur(2px);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  box-sizing: border-box;
+  animation: fadeIn 0.15s ease-out;
+}
+
+.modal-card {
+  background: #FFFFFF;
+  border-radius: 12px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15), 0 1px 3px rgba(0, 0, 0, 0.05);
+  width: 640px;
+  max-width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  animation: modalScaleUp 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modalScaleUp {
+  0% {
+    opacity: 0;
+    transform: scale(0.96) translateY(-8px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.modal-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 1px solid #E5EEFF;
+}
+
+.modal-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #0B1C30;
+  margin: 0;
+}
+
+.modal-close-btn {
+  background: transparent;
+  border: none;
+  color: #64748B;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+}
+
+.modal-close-btn:hover {
+  background: #F1F5F9;
+  color: #0B1C30;
+}
+
+.modal-body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-height: calc(85vh - 140px);
+  overflow-y: auto;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #0B1C30;
+}
+
+.form-input {
+  height: 42px;
+  padding: 0 14px;
+  background: #FFFFFF;
+  border: 1px solid #CBD5E1;
+  border-radius: 6px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13.5px;
+  color: #0B1C30;
+  transition: all 0.15s ease;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #316BF3;
+  box-shadow: 0 0 0 3px rgba(49, 107, 243, 0.15);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 640px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.modal-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 24px;
+  border-top: 1px solid #E5EEFF;
+  background: #F8FAFC;
+}
+
 

@@ -34,6 +34,7 @@ import UserManagement from './pages/admin/UserManagement';
 import AdminExamManagement from './pages/admin/AdminExamManagement';
 import AdminSubjectManagement from './pages/admin/AdminSubjectManagement';
 import AdminSubjectDetail from './pages/admin/AdminSubjectDetail';
+import AdminSubjectEdit from './pages/admin/AdminSubjectEdit';
 import AdminNotificationManagement from './pages/admin/AdminNotificationManagement';
 import AdminUserDetail from './pages/admin/AdminUserDetail';
 import AdminUserEdit from './pages/admin/AdminUserEdit';
@@ -255,6 +256,8 @@ function App() {
             <Route path="exams" element={<AdminExamManagement />} />
             <Route path="questions" element={<AdminDashboard />} />
             <Route path="subjects" element={<AdminSubjectManagement />} />
+            <Route path="subjects/edit/:subjectId" element={<AdminSubjectEdit />} />
+            <Route path="subjects/edit" element={<AdminSubjectEdit />} />
             <Route path="subjects/:subjectId" element={<AdminSubjectDetail />} />
             <Route path="subjects/detail" element={<AdminSubjectDetail />} />
             <Route path="logs" element={<AdminDashboard />} />
