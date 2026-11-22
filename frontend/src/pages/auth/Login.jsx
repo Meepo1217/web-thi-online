@@ -9,8 +9,7 @@ import './auth.css';
  */
 export default function Login({ defaultRole = 'student' }) {
   const navigate = useNavigate();
-  const authContext = useAuth ? useAuth() : null;
-  const login = authContext?.login;
+  const { login } = useAuth();
 
   // Role: 'student' (Học sinh / Sinh viên), 'teacher' (Giảng viên) hoặc 'admin' (Quản trị viên)
   const [role, setRole] = useState(defaultRole);

@@ -4,9 +4,7 @@ import './layout.css';
 
 export default function Header({ onLogoClick, onProfileClick, user: propUser }) {
   const navigate = useNavigate();
-  const authContext = useAuth ? useAuth() : null;
-  const authUser = authContext?.user;
-  const logout = authContext?.logout;
+  const { user: authUser, logout } = useAuth();
 
   const currentUser = propUser || authUser || {
     name: 'Nguyễn Văn An',
