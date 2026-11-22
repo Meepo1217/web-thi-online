@@ -19,10 +19,7 @@ import {
   ExamChapters,
   ExamList,
   ExamDetail,
-  ExamEdit,
 } from './pages/teacher/exam-management';
-import StudentManagement from './pages/teacher/student-management';
-import TeacherSettings from './pages/teacher/settings';
 import TeacherDashboard from './pages/teacher/TeacherDashboard';
 import Login from './pages/auth/Login';
 import StudentPortal from './pages/student/StudentPortal';
@@ -33,7 +30,6 @@ import StudentPortal from './pages/student/StudentPortal';
 function ConnectionTest() {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
-
   useEffect(() => {
     axios
       .get('http://localhost:8000/api/test-connection')
@@ -47,7 +43,6 @@ function ConnectionTest() {
         );
       });
   }, []);
-
   return (
     <div style={{ padding: '32px', fontFamily: "'Inter', sans-serif" }}>
       <h2>Kiểm tra kết nối Frontend (React) và Backend (Laravel)</h2>
@@ -319,24 +314,20 @@ function App() {
             <Route path="exams" element={<ExamFolders />} />
             <Route path="exams/detail/:examId" element={<ExamDetail />} />
             <Route path="exams/detail" element={<ExamDetail />} />
-            <Route path="exams/edit/:examId" element={<ExamEdit />} />
-            <Route path="exams/edit" element={<ExamEdit />} />
             <Route path="exams/:subjectId" element={<ExamChapters />} />
             <Route path="exams/:subjectId/chapters" element={<ExamChapters />} />
             <Route path="exams/:subjectId/list" element={<ExamList />} />
             <Route path="exams/:subjectId/chapters/:chapterId" element={<ExamList />} />
             <Route path="exams/:subjectId/detail/:examId" element={<ExamDetail />} />
-            <Route path="exams/:subjectId/edit/:examId" element={<ExamEdit />} />
-            <Route path="exams/:subjectId/edit" element={<ExamEdit />} />
             <Route path="exams/list" element={<ExamList />} />
             <Route path="exam-management" element={<Navigate to="/teacher/exams" replace />} />
 
             <Route path="sessions" element={<TeacherDashboard />} />
             <Route path="results" element={<TeacherDashboard />} />
             <Route path="classes" element={<TeacherDashboard />} />
-            <Route path="students" element={<StudentManagement />} />
+            <Route path="students" element={<TeacherDashboard />} />
             <Route path="statistics" element={<TeacherDashboard />} />
-            <Route path="settings" element={<TeacherSettings />} />
+            <Route path="settings" element={<TeacherDashboard />} />
             <Route path="help" element={<TeacherDashboard />} />
             <Route path="*" element={<Navigate to="/teacher/dashboard" replace />} />
           </Route>

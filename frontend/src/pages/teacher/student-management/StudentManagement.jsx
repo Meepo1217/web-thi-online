@@ -401,7 +401,7 @@ export default function StudentManagement() {
               </th>
               <th>Sinh viên / Thí sinh</th>
               <th>Mã sinh viên</th>
-              <th>Lớp & Khối</th>
+              <th>Lớp</th>
               <th>Giới tính</th>
               <th>Số điện thoại</th>
               <th>Trạng thái</th>
@@ -467,10 +467,7 @@ export default function StudentManagement() {
                       <span className="st-mssv-badge">{st.mssv}</span>
                     </td>
                     <td>
-                      <div style={{ display: 'flex', gap: '6px', alignItems: 'center' }}>
-                        <span className="st-class-badge">Lớp {st.className}</span>
-                        <span style={{ fontSize: '12px', color: '#64748B' }}>{st.grade}</span>
-                      </div>
+                      <span className="st-class-badge">{st.className}</span>
                     </td>
                     <td>
                       <span style={{ fontSize: '13px', color: '#475569' }}>{st.gender}</span>

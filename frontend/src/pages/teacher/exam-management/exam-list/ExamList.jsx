@@ -37,7 +37,15 @@ export default function ExamList() {
   const subjectTitle = location.state?.subjectTitle || EXAM_SUBJECT_INFO.name;
   const chapterTitle = location.state?.chapterTitle || EXAM_SUBJECT_INFO.chapterTitle;
 
-  const [exams, setExams] = useState(INITIAL_EXAMS);
+  const [exams, setExams] = useState(() => {
+    try {
+      const stored = JSON.parse(localStorage.getItem('created_exams_list') || '[]');
+      if (Array.isArray(stored) && stored.length > 0) {
+        return [...stored, ...INITIAL_EXAMS];
+      }
+    } catch (e) {}
+    return INITIAL_EXAMS;
+  });
   const [selectedIds, setSelectedIds] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterLevel, setFilterLevel] = useState('all');

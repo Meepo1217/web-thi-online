@@ -43,8 +43,8 @@ function matchPath(routePattern, currentPath, isPrefix = false) {
   if (routePattern === '*') return { matches: true, params: {} };
   if (!routePattern) return { matches: false, params: {} };
 
-  const isWildcard = routePattern.endsWith('/*');
-  const cleanPattern = isWildcard ? routePattern.slice(0, -2) : routePattern;
+  const isWildcard = routePattern.endsWith('/*') || isPrefix;
+  const cleanPattern = routePattern.endsWith('/*') ? routePattern.slice(0, -2) : routePattern;
 
   const patternParts = cleanPattern.split('/').filter(Boolean);
   const pathParts = currentPath.split('/').filter(Boolean);
@@ -75,7 +75,7 @@ export function Routes({ children }) {
   const routes = React.Children.toArray(children).filter(React.isValidElement);
 
   for (const route of routes) {
-    const { path, element, children: subRoutes, index } = route.props;
+    const { path, element, children: subRoutes } = route.props;
 
     // Direct match or parent match
     if (path) {
@@ -91,7 +91,8 @@ export function Routes({ children }) {
           const subRouteList = React.Children.toArray(subRoutes).filter(React.isValidElement);
           // Try to match sub route
           const basePath = path.replace(/\/\*$/, '');
-          const subPath = pathname.slice(basePath.length) || '/';
+          const rawSubPath = pathname.slice(basePath.length);
+          const subPath = rawSubPath ? (rawSubPath.startsWith('/') ? rawSubPath : '/' + rawSubPath) : '/';
 
           let hasSubMatch = false;
           for (const sub of subRouteList) {

@@ -835,29 +835,27 @@
 
 .exam-status-badge {
   display: inline-flex;
-  padding: 3px 10px;
-  border-radius: 12px;
+  padding: 0;
+  border-radius: 0;
+  background: transparent !important;
   font-family: var(--font-inter, 'Inter', sans-serif);
   font-weight: 600;
-  font-size: 11px;
+  font-size: 12px;
   line-height: 14px;
-  letter-spacing: 0.44px;
+  letter-spacing: 0.2px;
 }
 
 .exam-status-badge--active,
 .exam-status-badge--upcoming {
-  background: #DCE9FF;
   color: #0051D5;
 }
 
 .exam-status-badge--completed {
-  background: #E5EEFF;
   color: #45464D;
 }
 
 .exam-status-badge--draft {
-  background: #DCE9FF;
-  color: #45464D;
+  color: #64748B;
 }
 
 .table-actions-group {

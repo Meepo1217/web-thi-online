@@ -28,16 +28,6 @@ export default function QuestionBankHeader({ onDeleteFolder, onCreateFolder }) {
         <div className="qb-toolbar-controls">
           <button
             type="button"
-            className="qb-btn qb-btn-danger-outline"
-            onClick={onDeleteFolder}
-            title="Xóa thư mục môn học"
-          >
-            <IconTrash width={13} height={14} color="#BA1A1A" />
-            <span>Xóa thư mục</span>
-          </button>
-
-          <button
-            type="button"
             className="qb-btn qb-btn-primary"
             onClick={onCreateFolder}
             title="Tạo thư mục môn học mới"

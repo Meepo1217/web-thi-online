@@ -27,7 +27,36 @@ import '../../question-bank/subject-folders/question-bank.css';
  */
 export default function ExamFolders() {
   const navigate = useNavigate();
-  const [folders, setFolders] = useState(EXAM_FOLDERS_DATA);
+  const [folders, setFolders] = useState(() => {
+    try {
+      const stored = JSON.parse(localStorage.getItem('created_exam_folders') || '[]');
+      if (Array.isArray(stored) && stored.length > 0) {
+        const extraFolders = stored.map((name, i) => ({
+          id: `folder-custom-${i}`,
+          code: name.toUpperCase(),
+          grade: 'Tự động tạo',
+          title: name,
+          description: 'Thư mục đề thi tự động tạo từ tính năng trộn đề',
+          totalQuestions: '40',
+          totalExams: '4',
+          authorInitial: 'T',
+          authorBg: '#0051D5',
+          authorName: 'Giảng viên',
+          accentColor: '#0051D5',
+          badgeBg: '#E5EEFF',
+          badgeColor: '#0051D5',
+          iconBg: '#E5EEFF',
+          iconColor: '#0051D5',
+        }));
+        const existingTitles = EXAM_FOLDERS_DATA.map((f) => f.title.toLowerCase());
+        const filteredExtra = extraFolders.filter(
+          (f) => !existingTitles.includes(f.title.toLowerCase())
+        );
+        return [...filteredExtra, ...EXAM_FOLDERS_DATA];
+      }
+    } catch (e) {}
+    return EXAM_FOLDERS_DATA;
+  });
   const [metrics, setMetrics] = useState(EXAM_METRICS);
   const [searchTerm, setSearchTerm] = useState('');
   const [sortOrder, setSortOrder] = useState('newest');
@@ -119,16 +148,6 @@ export default function ExamFolders() {
           </div>
 
           <div className="qb-toolbar-controls">
-            <button
-              type="button"
-              className="qb-btn qb-btn-danger-outline"
-              onClick={() => handleOpenDeleteModal(folders[0])}
-              title="Xóa thư mục môn học"
-            >
-              <IconTrash width={13} height={14} color="#BA1A1A" />
-              <span>Xóa thư mục</span>
-            </button>
-
             <button
               type="button"
               className="qb-btn qb-btn-primary"

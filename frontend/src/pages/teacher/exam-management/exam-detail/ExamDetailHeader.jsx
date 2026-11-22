@@ -4,7 +4,6 @@ import {
   IconArrowLeft,
   IconEdit,
   IconDownload,
-  IconShuffle,
 } from '../../../../components/ui/icons';
 
 /**
@@ -16,7 +15,6 @@ export default function ExamDetailHeader({
   backPath = '/teacher/exams/math/list',
   onEditExam,
   onExportExam,
-  onCreateSession,
 }) {
   return (
     <header className="ed-top-bar">
@@ -65,15 +63,6 @@ export default function ExamDetailHeader({
         >
           <IconDownload width={13.5} height={12} color="#0B1C30" />
           <span>Xuất PDF / Word</span>
-        </button>
-
-        <button
-          type="button"
-          className="ed-btn ed-btn-primary"
-          onClick={onCreateSession}
-        >
-          <IconShuffle width={15} height={14} color="#FFFFFF" />
-          <span>Trộn &amp; Phát hành</span>
         </button>
       </div>
     </header>

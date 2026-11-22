@@ -86,6 +86,9 @@ export default function Login({ defaultRole = 'student' }) {
       });
 
       setIsLoading(false);
+      if (login) {
+        login(role, { email: identifier });
+      }
       setAlertInfo({
         type: 'success',
         message: `Đăng nhập thành công với vai trò ${
