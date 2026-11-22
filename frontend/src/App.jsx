@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { BrowserRouter, Routes, Route, Navigate, Link, useNavigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import ProtectedRoute from './components/auth/ProtectedRoute';
@@ -108,145 +108,6 @@ function ConnectionTest() {
 }
 
 /**
- * Thanh chuyển đổi và kiểm soát Vai trò nhanh ở góc trên màn hình
- */
-function RoleSwitcherBar() {
-  const { user, isAuthenticated, logout, switchRole } = useAuth();
-  const navigate = useNavigate();
-
-  return (
-    <div
-      style={{
-        position: 'fixed',
-        top: '12px',
-        right: '20px',
-        zIndex: 99999,
-        background: 'rgba(15, 23, 42, 0.90)',
-        backdropFilter: 'blur(8px)',
-        color: '#FFFFFF',
-        padding: '6px 14px',
-        borderRadius: '30px',
-        display: 'flex',
-        alignItems: 'center',
-        gap: '10px',
-        boxShadow: '0 4px 16px rgba(0, 0, 0, 0.25)',
-        fontSize: '12px',
-        fontFamily: "'Inter', sans-serif",
-      }}
-    >
-      {isAuthenticated ? (
-        <>
-          <span style={{ color: '#94A3B8', fontSize: '11px' }}>
-            Đang đăng nhập:
-          </span>
-          <span
-            style={{
-              color: '#FFFFFF',
-              fontWeight: 600,
-              fontSize: '12px',
-              maxWidth: '130px',
-              whiteSpace: 'nowrap',
-              overflow: 'hidden',
-              textOverflow: 'ellipsis',
-            }}
-            title={user?.name}
-          >
-            {user?.name}
-          </span>
-          <span
-            style={{
-              padding: '2px 8px',
-              borderRadius: '12px',
-              background:
-                user?.role === 'admin'
-                  ? '#7C3AED'
-                  : user?.role === 'teacher'
-                  ? '#0051D5'
-                  : '#059669',
-              fontSize: '11px',
-              fontWeight: 600,
-            }}
-          >
-            {user?.role === 'admin'
-              ? '🛡️ Quản trị viên'
-              : user?.role === 'teacher'
-              ? '👨‍🏫 Giảng viên'
-              : '👨‍🎓 Sinh viên'}
-          </span>
-
-          {/* Nút đổi vai trò nhanh để test */}
-          <button
-            type="button"
-            onClick={() => {
-              const roles = ['student', 'teacher', 'admin'];
-              const currentIdx = roles.indexOf(user?.role || 'student');
-              const nextRole = roles[(currentIdx + 1) % roles.length];
-              switchRole(nextRole);
-              if (nextRole === 'admin') navigate('/admin/dashboard');
-              else if (nextRole === 'teacher') navigate('/teacher/dashboard');
-              else navigate('/student');
-            }}
-            style={{
-              background: 'rgba(255, 255, 255, 0.16)',
-              border: 'none',
-              color: '#E2E8F0',
-              padding: '3px 8px',
-              borderRadius: '12px',
-              fontSize: '11px',
-              cursor: 'pointer',
-              fontWeight: 500,
-            }}
-            title="Chuyển nhanh vai trò (Sinh viên -> Giảng viên -> Quản trị viên)"
-          >
-            ⇄ Đổi vai trò
-          </button>
-
-          {/* Nút đăng xuất */}
-          <button
-            type="button"
-            onClick={() => {
-              logout();
-              navigate('/login');
-            }}
-            style={{
-              background: '#BA1A1A',
-              border: 'none',
-              color: '#FFFFFF',
-              padding: '3px 8px',
-              borderRadius: '12px',
-              fontSize: '11px',
-              cursor: 'pointer',
-              fontWeight: 600,
-            }}
-            title="Đăng xuất khỏi hệ thống"
-          >
-            Thoát
-          </button>
-        </>
-      ) : (
-        <>
-          <span style={{ color: '#94A3B8', fontSize: '11px' }}>Hệ thống Khảo thí EduQuiz</span>
-          <Link
-            to="/login"
-            style={{
-              color: '#FFFFFF',
-              textDecoration: 'none',
-              padding: '4px 10px',
-              borderRadius: '16px',
-              background: '#0051D5',
-              fontWeight: 600,
-              fontSize: '11px',
-            }}
-          >
-            🔐 Đăng nhập
-          </Link>
-        </>
-      )}
-    </div>
-  );
-}
-
-/**
  * Điều hướng root "/" theo trạng thái xác thực và vai trò:
  * - Chưa đăng nhập -> /login
  * - Quản trị viên -> /admin/dashboard
@@ -281,9 +142,6 @@ function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
-        {/* Thanh chuyển đổi / thông tin Role nổi trên góc phải */}
-        <RoleSwitcherBar />
-
         <Routes>
           {/* 1. Mặc định truy cập đầu tiên ("/") -> chuyển hướng theo auth và role */}
           <Route path="/" element={<RootRedirect />} />
