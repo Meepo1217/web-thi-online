@@ -4,6 +4,12 @@ import AdminSidebar from './AdminSidebar';
 import AdminHeader from './AdminHeader';
 import AdminFooter from './AdminFooter';
 import './admin-layout.css';
+import '../../../pages/admin/admin-dashboard.css';
+import '../../../pages/admin/admin-users.css';
+import '../../../pages/admin/admin-exams.css';
+import '../../../pages/admin/admin-subjects.css';
+import '../../../pages/admin/admin-notifications.css';
+import '../../../pages/admin/admin-user-detail.css';
 
 /**
  * AdminLayout - Master App Shell dành riêng cho Quản trị viên (Super Admin)

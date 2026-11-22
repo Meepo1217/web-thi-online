@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './admin-users.css';
 
 // Dữ liệu mẫu chuẩn xác từ Figma Spec
@@ -84,6 +85,7 @@ const INITIAL_USERS = [
 ];
 
 export default function UserManagement() {
+  const navigate = useNavigate();
   const [users, setUsers] = useState(INITIAL_USERS);
   const [searchTerm, setSearchTerm] = useState('');
   const [roleFilter, setRoleFilter] = useState('all');
@@ -638,7 +640,12 @@ export default function UserManagement() {
 
                       {/* Tài khoản / Họ tên */}
                       <td>
-                        <div className="user-name-cell">
+                        <div
+                          className="user-name-cell"
+                          style={{ cursor: 'pointer' }}
+                          title="Nhấn để xem hồ sơ chi tiết người dùng"
+                          onClick={() => navigate(`/admin/users/${user.id}`)}
+                        >
                           <div className="user-name-cell__top">
                             <span
                               className={`user-username ${
