@@ -598,7 +598,7 @@ export default function ExamResultPage({ exam, onBack, onRetake, isTeacherView =
       {/* Footer */}
       <footer className="result-footer-bar">
         <div className="result-footer-inner">
-          <span>© 2026 HUBT EXAM Academic Platform. Bản quyền thuộc Đại học Kinh doanh và Công nghệ Hà Nội.</span>
+          <span>© 2026 HUCE EXAM Academic Platform. Bản quyền thuộc Trường Đại học Xây dựng Hà Nội (HUCE).</span>
           <div className="result-footer-links">
             <a href="#rules">Quy chế thi</a>
             <a href="#support">Hỗ trợ kỹ thuật</a>

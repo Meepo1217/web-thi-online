@@ -1,16 +1,18 @@
-import { useNavigate } from 'react-router-dom'
-import { useAuth } from '../../context/AuthContext'
-import './layout.css'
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
+import './layout.css';
 
-export default function Header({ onLogoClick, user: propUser }) {
-  const navigate = useNavigate()
-  const { user: authUser, logout } = useAuth()
+export default function Header({ onLogoClick, onProfileClick, user: propUser }) {
+  const navigate = useNavigate();
+  const authContext = useAuth ? useAuth() : null;
+  const authUser = authContext?.user;
+  const logout = authContext?.logout;
 
   const currentUser = propUser || authUser || {
     name: 'Nguyễn Văn An',
     role: 'Học sinh • Lớp 12A1',
     initials: 'NA'
-  }
+  };
 
   return (
     <header className="layout-header">
@@ -23,7 +25,7 @@ export default function Header({ onLogoClick, user: propUser }) {
         </div>
         <div className="brand-text-col">
           <h1 className="brand-title-wrap">
-            <span>HUBT</span>
+            <span>HUCE</span>
             <span className="brand-blue">EXAM</span>
           </h1>
           <span className="brand-subtitle">ACADEMIC PLATFORM</span>
@@ -51,7 +53,12 @@ export default function Header({ onLogoClick, user: propUser }) {
         <div className="header-divider-v"></div>
 
         {/* User Profile Card */}
-        <div className="header-user-card" title="Thông tin cá nhân">
+        <div
+          className="header-user-card"
+          title="Xem tài khoản cá nhân"
+          onClick={onProfileClick}
+          style={{ cursor: 'pointer' }}
+        >
           <div className="header-avatar-badge">
             <div className="avatar-circle-navy">{currentUser.initials}</div>
             <span className="online-dot-green"></span>
@@ -66,7 +73,7 @@ export default function Header({ onLogoClick, user: propUser }) {
         <button
           className="header-tool-btn"
           onClick={() => {
-            logout();
+            if (logout) logout();
             navigate('/login');
           }}
           title="Đăng xuất khỏi hệ thống"
@@ -81,6 +88,5 @@ export default function Header({ onLogoClick, user: propUser }) {
         </button>
       </div>
     </header>
-  )
+  );
 }
-

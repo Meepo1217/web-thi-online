@@ -1,0 +1,558 @@
+/* ==========================================================================
+   admin-user-detail.css - Giao diện Thông tin tài khoản người dùng
+   Chuẩn pixel-perfect Figma Auto Layout (1280px container, 896px content card)
+   ========================================================================== */
+
+.admin-user-detail-container {
+  padding: 32px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 992px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 1024px) {
+  .admin-user-detail-container {
+    padding: 20px 16px;
+    gap: 16px;
+  }
+}
+
+/* ==========================================================================
+   1. Breadcrumb & Header Title
+   ========================================================================== */
+.user-detail-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.user-detail-header__left {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.user-detail-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: #2563EB;
+  text-decoration: none;
+  cursor: pointer;
+  margin-bottom: 4px;
+  transition: color 0.15s ease;
+}
+
+.user-detail-back-link:hover {
+  color: #1D4ED8;
+  text-decoration: underline;
+}
+
+.user-detail-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing: -0.6px;
+  color: #0F172A;
+  margin: 0;
+}
+
+/* ==========================================================================
+   2. Section - Card 1: User Profile Header Card (130px)
+   ========================================================================== */
+.user-profile-header-card {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px;
+  width: 100%;
+  min-height: 128px;
+  background: #FFFFFF;
+  border: 1px solid #DCE9FF;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 16px;
+  box-sizing: border-box;
+}
+
+.user-profile-header__left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Avatar with Online/Active Badge */
+.user-avatar-container {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  flex-shrink: 0;
+}
+
+.user-avatar-large {
+  width: 80px;
+  height: 80px;
+  background: #0B1C30;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 0px 0px 4px #EFF4FF, 0px 4px 6px -1px rgba(0, 0, 0, 0.1), 0px 2px 4px -2px rgba(0, 0, 0, 0.1);
+  color: #FFFFFF;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 32px;
+  user-select: none;
+}
+
+.user-avatar-status-badge {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  right: -4px;
+  bottom: -4px;
+  background: #069669;
+  border-radius: 12px;
+  box-shadow: 0px 0px 0px 2px #FFFFFF, 0px 1px 3px rgba(0, 0, 0, 0.1), 0px 1px 2px -1px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+}
+
+.user-avatar-status-badge.banned {
+  background: #BA1A1A;
+}
+
+.user-meta-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.user-meta-name-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.user-profile-username {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 28px;
+  color: #0B1C30;
+  margin: 0;
+}
+
+.user-meta-code-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.user-code-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  height: 24px;
+  background: #E5EEFF;
+  border: 1px solid #DCE9FF;
+  border-radius: 6px;
+  font-family: 'Liberation Mono', 'Roboto Mono', monospace;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: #0B1C30;
+  letter-spacing: 0.2px;
+  box-sizing: border-box;
+}
+
+.btn-copy-code {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #76777D;
+  border-radius: 4px;
+  transition: all 0.15s ease;
+}
+
+.btn-copy-code:hover {
+  color: #0051D5;
+  background: #EFF4FF;
+}
+
+/* Action Buttons: Ban, Edit, Delete */
+.user-profile-header__actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-action-outline {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 12px;
+  height: 36px;
+  background: #FFFFFF;
+  border: 1px solid #DCE9FF;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #0B1C30;
+  transition: all 0.15s ease;
+  gap: 6px;
+}
+
+.btn-action-outline:hover {
+  background: #F8FAFC;
+  border-color: #CBD5E1;
+}
+
+.btn-action-outline.btn-ban-action {
+  border-color: rgba(186, 26, 26, 0.3);
+  color: #BA1A1A;
+}
+
+.btn-action-outline.btn-ban-action:hover {
+  background: #FEF2F2;
+  border-color: #BA1A1A;
+}
+
+.btn-action-outline.btn-unban-action {
+  border-color: rgba(6, 150, 105, 0.3);
+  color: #069669;
+}
+
+.btn-action-outline.btn-unban-action:hover {
+  background: #ECFDF5;
+  border-color: #069669;
+}
+
+.btn-action-outline.btn-delete-action {
+  border-color: rgba(186, 26, 26, 0.3);
+  color: #BA1A1A;
+}
+
+.btn-action-outline.btn-delete-action:hover {
+  background: #FEF2F2;
+  border-color: #BA1A1A;
+}
+
+/* ==========================================================================
+   3. Section - Card 2: Main Personal Info & Details Card
+   ========================================================================== */
+.user-profile-details-card {
+  display: flex;
+  flex-direction: column;
+  padding: 28px;
+  gap: 24px;
+  width: 100%;
+  background: #FFFFFF;
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 16px;
+  box-sizing: border-box;
+}
+
+.details-card-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #F1F5F9;
+  width: 100%;
+}
+
+.details-card-header__left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.details-card-header__icon {
+  width: 14px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #2563EB;
+}
+
+.details-card-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  color: #0F172A;
+  margin: 0;
+}
+
+/* Form Fields Grid */
+.details-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px 24px;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .details-form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.form-field-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-field-label {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  color: #334155;
+  margin: 0;
+}
+
+.form-field-box {
+  width: 100%;
+  height: 42px;
+  background: #EFF4FF;
+  border: 1px solid #DCE9FF;
+  border-radius: 12px;
+  padding: 11px 14px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: #64748B;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  transition: all 0.15s ease;
+}
+
+.form-field-box.editable {
+  background: #FFFFFF;
+  color: #0F172A;
+  border-color: #CBD5E1;
+}
+
+.form-field-box.editable:focus {
+  border-color: #2563EB;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+.form-field-select {
+  width: 100%;
+  height: 42px;
+  background: #EFF4FF;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  padding: 0 36px 0 14px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: #64748B;
+  box-sizing: border-box;
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%2376777D' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+}
+
+.form-field-select.editable {
+  background-color: #FFFFFF;
+  color: #0F172A;
+  border-color: #CBD5E1;
+}
+
+/* Gender Options Field */
+.gender-options-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+  height: 42px;
+}
+
+.gender-option-label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 14px;
+  color: #334155;
+  user-select: none;
+}
+
+.gender-radio-custom {
+  width: 18px;
+  height: 18px;
+  accent-color: #2563EB;
+  cursor: pointer;
+}
+
+/* Status Field with Dot */
+.status-indicator-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  height: 32px;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 12px;
+  background: #34D399;
+}
+
+.status-dot.banned {
+  background: #BA1A1A;
+}
+
+.status-dot.pending {
+  background: #F59E0B;
+}
+
+.status-text {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  color: #34D399;
+}
+
+.status-text.banned {
+  color: #BA1A1A;
+}
+
+.status-text.pending {
+  color: #F59E0B;
+}
+
+/* Timestamp Fields */
+.timestamp-text {
+  font-family: 'Liberation Mono', 'Roboto Mono', monospace;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: #0B1C30;
+  padding-top: 4px;
+}
+
+/* Details Footer Buttons */
+.details-card-footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  padding-top: 16px;
+  border-top: 1px solid #F1F5F9;
+  width: 100%;
+}
+
+.btn-save-changes {
+  height: 40px;
+  padding: 0 20px;
+  background: #316BF3;
+  border: none;
+  border-radius: 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #FFFFFF;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  box-shadow: 0 2px 6px rgba(49, 107, 243, 0.25);
+}
+
+.btn-save-changes:hover {
+  background: #2557D6;
+}
+
+.btn-cancel-edit {
+  height: 40px;
+  padding: 0 16px;
+  background: #FFFFFF;
+  border: 1px solid #CBD5E1;
+  border-radius: 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #475569;
+  cursor: pointer;
+}
+
+.btn-cancel-edit:hover {
+  background: #F1F5F9;
+}
+
+/* Toast Message */
+.detail-toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: #0B1C30;
+  color: #FFFFFF;
+  padding: 12px 20px;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  z-index: 9999;
+  font-size: 13.5px;
+  font-weight: 500;
+  animation: fadeIn 0.15s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+

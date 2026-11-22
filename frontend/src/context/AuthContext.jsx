@@ -17,13 +17,23 @@ export function AuthProvider({ children }) {
 
   /**
    * Đăng nhập người dùng theo vai trò
-   * @param {'teacher' | 'student'} role - Vai trò của người dùng
+   * @param {'admin' | 'teacher' | 'student'} role - Vai trò của người dùng
    * @param {Object} customData - Thông tin bổ sung
    */
   const login = (role = 'student', customData = {}) => {
     let authUser = null;
 
-    if (role === 'teacher') {
+    if (role === 'admin') {
+      authUser = {
+        role: 'admin',
+        name: customData.name || 'Quản trị viên',
+        email: customData.email || 'admin@huce.edu.vn',
+        title: 'Quản trị viên hệ thống',
+        department: 'Ban CNTT & Khảo thí',
+        initials: 'AD',
+        ...customData,
+      };
+    } else if (role === 'teacher') {
       authUser = {
         role: 'teacher',
         name: customData.name || 'ThS. Nguyễn Văn A',
