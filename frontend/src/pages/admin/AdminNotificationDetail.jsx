@@ -39,10 +39,9 @@ export default function AdminNotificationDetail() {
     }, 3200);
   };
 
-  // Mở modal sửa thông báo
+  // Mở trang sửa thông báo
   const handleOpenEdit = () => {
-    setEditFormData({ ...notification });
-    setIsEditModalOpen(true);
+    navigate(`/admin/notifications/edit/${notification.id}`);
   };
 
   // Lưu chỉnh sửa
@@ -546,3 +545,4 @@ export default function AdminNotificationDetail() {
     </div>
   );
 }
+

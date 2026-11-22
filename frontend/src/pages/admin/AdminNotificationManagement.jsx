@@ -213,17 +213,9 @@ export default function AdminNotificationManagement() {
     setIsModalOpen(true);
   };
 
-  // Mở modal chỉnh sửa
+  // Chuyển sang trang chỉnh sửa thông báo
   const handleOpenEditModal = (notif) => {
-    setEditingNotif(notif);
-    setFormData({
-      title: notif.title,
-      type: notif.type,
-      target: notif.target,
-      content: notif.content,
-      isEmergency: notif.isEmergency || notif.type === 'emergency',
-    });
-    setIsModalOpen(true);
+    navigate(`/admin/notifications/edit/${notif.id}`);
   };
 
   // Lưu thông báo (Tạo hoặc Cập nhật)
