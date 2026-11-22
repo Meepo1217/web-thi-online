@@ -39,7 +39,7 @@ export function BrowserRouter({ children }) {
   );
 }
 
-function matchPath(routePattern, currentPath, isPrefix = false) {
+function matchPath(routePattern, currentPath) {
   if (routePattern === '*') return { matches: true, params: {} };
   if (!routePattern) return { matches: false, params: {} };
 
@@ -49,10 +49,10 @@ function matchPath(routePattern, currentPath, isPrefix = false) {
   const patternParts = cleanPattern.split('/').filter(Boolean);
   const pathParts = currentPath.split('/').filter(Boolean);
 
-  if (!isWildcard && !isPrefix && patternParts.length !== pathParts.length) {
+  if (!isWildcard && patternParts.length !== pathParts.length) {
     return { matches: false, params: {} };
   }
-  if ((isWildcard || isPrefix) && pathParts.length < patternParts.length) {
+  if (isWildcard && pathParts.length < patternParts.length) {
     return { matches: false, params: {} };
   }
 
@@ -79,25 +79,21 @@ export function Routes({ children }) {
 
     // Direct match or parent match
     if (path) {
-      const hasSubRoutes = Boolean(subRoutes);
-      const parentMatch = matchPath(path, pathname, hasSubRoutes);
-
+      const parentMatch = matchPath(path, pathname);
       if (parentMatch.matches) {
         // Check sub routes (nested)
         let matchedChildElement = null;
         let combinedParams = { ...parentMatch.params };
 
-        if (hasSubRoutes) {
+        if (subRoutes) {
           const subRouteList = React.Children.toArray(subRoutes).filter(React.isValidElement);
           // Try to match sub route
           const basePath = path.replace(/\/\*$/, '');
           const subPath = pathname.slice(basePath.length) || '/';
 
-          let hasSubMatch = false;
           for (const sub of subRouteList) {
             if (sub.props.index && (subPath === '/' || subPath === '')) {
               matchedChildElement = sub.props.element;
-              hasSubMatch = true;
               break;
             }
             if (sub.props.path) {
@@ -105,15 +101,9 @@ export function Routes({ children }) {
               if (subMatch.matches) {
                 matchedChildElement = sub.props.element;
                 combinedParams = { ...combinedParams, ...subMatch.params };
-                hasSubMatch = true;
                 break;
               }
             }
-          }
-
-          // If this parent route has subroutes, only consider it a match if a child matched
-          if (!hasSubMatch) {
-            continue;
           }
         }
 

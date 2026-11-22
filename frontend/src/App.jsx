@@ -90,6 +90,32 @@ function ConnectionTest() {
 
       <div style={{ marginTop: '24px', display: 'flex', gap: '16px' }}>
         <Link
+          to="/student"
+          style={{
+            padding: '8px 16px',
+            background: '#059669',
+            color: '#FFFFFF',
+            textDecoration: 'none',
+            borderRadius: '6px',
+            fontWeight: 600,
+          }}
+        >
+          👨‍🎓 Cổng Sinh viên &rarr;
+        </Link>
+        <Link
+          to="/teacher/dashboard"
+          style={{
+            padding: '8px 16px',
+            background: '#0051D5',
+            color: '#FFFFFF',
+            textDecoration: 'none',
+            borderRadius: '6px',
+            fontWeight: 600,
+          }}
+        >
+          👨‍🏫 Cổng Giảng viên &rarr;
+        </Link>
+        <Link
           to="/login"
           style={{
             padding: '8px 16px',
