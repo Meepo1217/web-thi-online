@@ -1,5 +1,6 @@
 import { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
+import AdminSubjectEditModal from '../../components/admin/AdminSubjectEditModal';
 import './admin-subjects.css';
 
 // Dữ liệu mẫu chuẩn xác từ Figma Spec
@@ -118,6 +119,7 @@ export default function AdminSubjectManagement() {
 
   // Modal tạo / chỉnh sửa môn học
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [editingSubject, setEditingSubject] = useState(null);
   const [formData, setFormData] = useState({
     code: '',
@@ -234,15 +236,7 @@ export default function AdminSubjectManagement() {
   // Mở modal sửa
   const handleOpenEditModal = (subject) => {
     setEditingSubject(subject);
-    setFormData({
-      code: subject.code,
-      name: subject.name,
-      credits: subject.credits,
-      faculty: subject.faculty,
-      teacher: subject.teacher,
-      teacherEmail: subject.teacherEmail,
-    });
-    setIsModalOpen(true);
+    setIsEditModalOpen(true);
   };
 
   // Lưu môn học (Tạo hoặc Cập nhật)
@@ -864,6 +858,29 @@ export default function AdminSubjectManagement() {
           </div>
         </div>
       )}
+
+      {/* Modal Chỉnh sửa môn học chuẩn Figma Auto Layout */}
+      <AdminSubjectEditModal
+        isOpen={isEditModalOpen}
+        onClose={() => setIsEditModalOpen(false)}
+        subject={editingSubject}
+        onSave={(updatedData) => {
+          setSubjects((prev) =>
+            prev.map((s) =>
+              s.id === editingSubject.id
+                ? {
+                    ...s,
+                    code: updatedData.code,
+                    name: updatedData.name,
+                    description: updatedData.description,
+                    teacher: updatedData.teacher || s.teacher,
+                  }
+                : s
+            )
+          );
+          showToast(`Đã lưu thay đổi cho môn học ${updatedData.code}!`);
+        }}
+      />
     </div>
   );
 }
