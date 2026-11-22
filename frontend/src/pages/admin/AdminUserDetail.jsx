@@ -239,13 +239,13 @@ export default function AdminUserDetail() {
           <button
             type="button"
             className="btn-action-outline"
-            onClick={isEditing ? handleCancelEdit : handleStartEdit}
+            onClick={() => navigate(`/admin/users/edit/${userData.id}`)}
           >
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M12 20h9" />
               <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" />
             </svg>
-            <span>{isEditing ? 'Hủy sửa' : 'Chỉnh sửa'}</span>
+            <span>Chỉnh sửa</span>
           </button>
 
           {/* Nút Xóa */}
@@ -494,3 +494,4 @@ export default function AdminUserDetail() {
     </div>
   );
 }
+
