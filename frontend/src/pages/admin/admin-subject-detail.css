@@ -1,0 +1,387 @@
+/* ==========================================================================
+   admin-subject-detail.css - Giao diện Thông tin môn học & Quản lý chương
+   Chuẩn pixel-perfect Figma Auto Layout (1280px container, 944px content stream)
+   ========================================================================== */
+
+.admin-subject-detail-container {
+  padding: 24px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 1024px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 1024px) {
+  .admin-subject-detail-container {
+    padding: 16px;
+    gap: 16px;
+  }
+}
+
+/* ==========================================================================
+   1. Breadcrumb & Navigation
+   ========================================================================== */
+.subject-detail-breadcrumb {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: #64748B;
+}
+
+.subject-detail-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #2563EB;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.15s ease;
+}
+
+.subject-detail-back-link:hover {
+  color: #1D4ED8;
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   2. Course Hero Card / Banner Block (944x181px)
+   ========================================================================== */
+.subject-hero-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 40px;
+  width: 100%;
+  min-height: 181px;
+  background: #FFFFFF;
+  box-shadow: 0px 1px 3px rgba(15, 23, 42, 0.05);
+  border-radius: 8px;
+  box-sizing: border-box;
+  gap: 16px;
+}
+
+.subject-hero-card__top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  gap: 24px;
+}
+
+.subject-hero-card__left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  flex: 1;
+}
+
+.subject-hero-card__title-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.subject-hero-card__title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 45px;
+  letter-spacing: -0.9px;
+  color: #0B1C30;
+  margin: 0;
+}
+
+.subject-hero-card__badge {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 4px 8px;
+  background: #DCE9FF;
+  border-radius: 4px;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.55px;
+  text-transform: uppercase;
+  color: #0051D5;
+}
+
+.subject-hero-card__desc {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 24px;
+  color: #45464D;
+  margin: 0;
+  max-width: 873px;
+}
+
+/* Action Buttons (32x32px) */
+.subject-hero-card__actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.btn-subject-action {
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-subject-action.edit-action {
+  color: #0051D5;
+}
+
+.btn-subject-action.edit-action:hover {
+  background: #EFF4FF;
+  border-color: #BFDBFE;
+}
+
+.btn-subject-action.delete-action {
+  color: #BA1A1A;
+}
+
+.btn-subject-action.delete-action:hover {
+  background: #FEF2F2;
+  border-color: #FECACA;
+}
+
+/* ==========================================================================
+   3. Main Course Stream Layout / Chapters Stream (944px width)
+   ========================================================================== */
+.subject-chapters-stream {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  width: 100%;
+}
+
+/* Section Toolbar Header */
+.subject-chapters-toolbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 0px;
+  width: 100%;
+}
+
+.subject-chapters-toolbar__left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+}
+
+.subject-chapters-toolbar__icon {
+  width: 16.5px;
+  height: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0051D5;
+}
+
+.subject-chapters-toolbar__title {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.44px;
+  text-transform: uppercase;
+  color: #45464D;
+  margin: 0;
+}
+
+.subject-chapters-toolbar__count {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.24px;
+  color: #76777D;
+}
+
+/* ==========================================================================
+   4. Chapter Cards List (74px height)
+   ========================================================================== */
+.subject-chapter-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  width: 100%;
+  min-height: 74px;
+  background: #FFFFFF;
+  border: 1px solid rgba(198, 198, 205, 0.3);
+  box-shadow: 0px 1px 3px rgba(15, 23, 42, 0.05);
+  border-radius: 8px;
+  box-sizing: border-box;
+  transition: all 0.15s ease;
+}
+
+.subject-chapter-card:hover {
+  border-color: #BFDBFE;
+  box-shadow: 0px 4px 12px rgba(0, 81, 213, 0.06);
+}
+
+.subject-chapter-card__left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  flex: 1;
+}
+
+.subject-chapter-card__icon-box {
+  width: 20px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0051D5;
+  flex-shrink: 0;
+}
+
+.subject-chapter-card__info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.subject-chapter-card__title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  color: #0B1C30;
+  margin: 0;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.subject-chapter-card__title:hover {
+  color: #0051D5;
+}
+
+.subject-chapter-card__meta {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+}
+
+.subject-chapter-card__question-icon {
+  width: 12px;
+  height: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0051D5;
+}
+
+.subject-chapter-card__question-count {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.44px;
+  color: #76777D;
+}
+
+.subject-chapter-card__actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+  margin-left: 8px;
+}
+
+/* ==========================================================================
+   5. Button - Bottom Action: Thêm chương mới (56px)
+   ========================================================================== */
+.btn-add-chapter-dashed {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 16px 24px;
+  gap: 8px;
+  width: 100%;
+  height: 56px;
+  background: #FFFFFF;
+  border: 2px dashed rgba(0, 81, 213, 0.4);
+  box-shadow: 0px 1px 3px rgba(15, 23, 42, 0.05);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.14px;
+  color: #0051D5;
+  box-sizing: border-box;
+}
+
+.btn-add-chapter-dashed:hover {
+  background: #EFF6FF;
+  border-color: #0051D5;
+  box-shadow: 0px 4px 12px rgba(0, 81, 213, 0.12);
+}
+
+.btn-add-chapter-dashed svg {
+  color: #0051D5;
+}
+
+/* Toast Message */
+.subject-detail-toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: #0B1C30;
+  color: #FFFFFF;
+  padding: 12px 20px;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  z-index: 9999;
+  font-size: 13.5px;
+  font-weight: 500;
+  animation: fadeIn 0.15s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}

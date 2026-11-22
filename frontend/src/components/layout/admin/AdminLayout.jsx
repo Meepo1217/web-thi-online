@@ -12,6 +12,7 @@ import '../../../pages/admin/admin-notifications.css';
 import '../../../pages/admin/admin-user-detail.css';
 import '../../../pages/admin/admin-user-edit.css';
 import '../../../pages/admin/admin-user-create.css';
+import '../../../pages/admin/admin-subject-detail.css';
 
 /**
  * AdminLayout - Master App Shell dành riêng cho Quản trị viên (Super Admin)

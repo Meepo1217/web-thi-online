@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './admin-subjects.css';
 
 // Dữ liệu mẫu chuẩn xác từ Figma Spec
@@ -87,9 +88,24 @@ const INITIAL_SUBJECTS = [
     questionCount: 540,
     createdAt: '28/09/2025',
   },
+  {
+    id: 'IT4043',
+    code: 'IT4043',
+    name: 'Học máy',
+    credits: 3,
+    faculty: 'Công nghệ thông tin',
+    teacher: 'TS. Nguyễn Hoàng Nam',
+    teacherEmail: 'nam.nh@huce.edu.vn',
+    avatarInitials: 'HM',
+    avatarClass: 'avatar-blue-dark',
+    examCount: 16,
+    questionCount: 53,
+    createdAt: '30/09/2025',
+  },
 ];
 
 export default function AdminSubjectManagement() {
+  const navigate = useNavigate();
   const [subjects, setSubjects] = useState(INITIAL_SUBJECTS);
   const [searchTerm, setSearchTerm] = useState('');
   const [sortBy, setSortBy] = useState('latest');
@@ -527,7 +543,8 @@ export default function AdminSubjectManagement() {
                           <div className="subject-name-row">
                             <span
                               className="subject-name-text"
-                              onClick={() => handleOpenEditModal(sub)}
+                              title="Nhấn để xem thông tin chi tiết và danh sách chương"
+                              onClick={() => navigate(`/admin/subjects/${sub.id}`)}
                             >
                               {sub.name}
                             </span>
